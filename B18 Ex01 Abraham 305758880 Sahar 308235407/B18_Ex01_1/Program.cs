@@ -32,6 +32,7 @@ namespace B18_Ex01_1
             //todo: decreasing seria
             Console.WriteLine(string.Format("The average number is: {0}", averageNumber));
 
+
         }
 
         private static string getNumberFromUser()
