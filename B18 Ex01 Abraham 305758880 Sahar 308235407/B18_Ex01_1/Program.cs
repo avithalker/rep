@@ -20,19 +20,15 @@ namespace B18_Ex01_1
             double averageOneCount = getDigitCountAverage(binaryNumber1, binaryNumber2, binaryNumber3, k_BinaryOne);
             int powerOfTwoConter = getPowerOfTwoCounter(decimalNumber1, decimalNumber2, decimalNumber3);
             double averageNumber = calculateAverage(decimalNumber1, decimalNumber2, decimalNumber3);
+            int decreasingCounter = getDecreasingNumbersCounter(decimalNumber1, decimalNumber2, decimalNumber3);
 
-
-            Console.WriteLine("The numbers in decimal format are:");
-            Console.WriteLine(decimalNumber1);
-            Console.WriteLine(decimalNumber2);
-            Console.WriteLine(decimalNumber3);
+            Console.WriteLine(string.Format("The numbers in decimal format are:\n{0}\n{1}\n{2}", decimalNumber1, decimalNumber2, decimalNumber3));
             Console.WriteLine(string.Format("Average count of {0} is: {1}", k_BinaryZero, averageZeroCount));
             Console.WriteLine(string.Format("Average count of {0} is: {1}", k_BinaryOne, averageOneCount));
             Console.WriteLine(string.Format("There are {0} numbers which are power of two", powerOfTwoConter));
-            //todo: decreasing seria
+            Console.WriteLine(string.Format("There are {0} numbers that has decreasing digit seria", decreasingCounter));
             Console.WriteLine(string.Format("The average number is: {0}", averageNumber));
-
-
+            Console.ReadLine();
         }
 
         private static string getNumberFromUser()
@@ -45,7 +41,7 @@ namespace B18_Ex01_1
                 Console.WriteLine("Please enter a number in binary format");
                 binaryNumber = Console.ReadLine();
                 isInputValid = isBinaryNumber(binaryNumber);
-                if(!isInputValid)
+                if (!isInputValid)
                 {
                     Console.WriteLine("Invalid input! try again.");
                 }
@@ -59,7 +55,7 @@ namespace B18_Ex01_1
         {
             bool isValidNumber = true;
 
-            if(i_Number.Length!=k_BinaryNumberLength)
+            if (i_Number.Length != k_BinaryNumberLength)
             {
                 isValidNumber = false;
             }
@@ -82,10 +78,11 @@ namespace B18_Ex01_1
             int currentDigit = 0;
             int decimalNumber = 0;
 
-            for (int i = i_BinaryString.Length - 1; i <= 0; i--)
+            for (int i = i_BinaryString.Length - 1; i >= 0; i--)
             {
                 currentDigit = int.Parse(i_BinaryString[i].ToString());
                 decimalNumber += currentDigit * (int)Math.Pow(k_Base, power);
+                power++;
             }
 
             return decimalNumber;
@@ -95,7 +92,7 @@ namespace B18_Ex01_1
         {
             int powerOfTwoCounter = 0;
 
-            if(isPowerOfTwo(i_DecimalNumber1))
+            if (isPowerOfTwo(i_DecimalNumber1))
             {
                 powerOfTwoCounter++;
             }
@@ -124,7 +121,7 @@ namespace B18_Ex01_1
 
         private static double getDigitCountAverage(string i_BinaryNumber1, string i_BinaryNumber2, string i_BinaryNumber3, char i_Digit)
         {
-            const int k_NumbersCount = 3;
+            const double k_NumbersCount = 3;
             int digitCount = 0;
 
             digitCount += getDigitCounter(i_BinaryNumber1, i_Digit);
@@ -148,11 +145,55 @@ namespace B18_Ex01_1
             return counter;
         }
 
-        private static double calculateAverage(int i_Number1,int i_Number2,int i_Number3)
+        private static double calculateAverage(int i_Number1, int i_Number2, int i_Number3)
         {
-            int k_NumberCount = 3;
+            double k_NumberCount = 3;
 
             return (i_Number1 + i_Number2 + i_Number3) / k_NumberCount;
+        }
+
+        private static int getDecreasingNumbersCounter(int i_Number1, int i_Number2, int i_Number3)
+        {
+            int decreasingCounter = 0;
+
+            if (isDigitsDecreasing(i_Number1))
+            {
+                decreasingCounter++;
+            }
+
+            if (isDigitsDecreasing(i_Number2))
+            {
+                decreasingCounter++;
+            }
+
+            if (isDigitsDecreasing(i_Number3))
+            {
+                decreasingCounter++;
+            }
+
+            return decreasingCounter;
+        }
+
+        private static bool isDigitsDecreasing(int i_Number)
+        {
+            int prevDigit = i_Number % 10;
+            int currentDigit;
+            bool isDecreasing = true;
+
+            i_Number = i_Number / 10;
+            while (i_Number > 0 && isDecreasing)
+            {
+                currentDigit = i_Number % 10;
+                if (currentDigit <= prevDigit)
+                {
+                    isDecreasing = false;
+                }
+
+                prevDigit = currentDigit;
+                i_Number = i_Number / 10;
+            }
+
+            return isDecreasing;
         }
     }
 }
