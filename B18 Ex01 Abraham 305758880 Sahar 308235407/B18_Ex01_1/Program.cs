@@ -28,7 +28,6 @@ namespace B18_Ex01_1
             Console.WriteLine(string.Format("There are {0} numbers which are power of two", powerOfTwoConter));
             Console.WriteLine(string.Format("There are {0} numbers that has decreasing digit seria", decreasingCounter));
             Console.WriteLine(string.Format("The average number is: {0}", averageNumber));
-            Console.ReadLine();
         }
 
         private static string getNumberFromUser()
