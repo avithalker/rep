@@ -1,0 +1,6 @@
+C:\Users\Jonathan\Documents\GitHub\rep\B18 Ex01 Abraham 305758880 Sahar 308235407\B18_Ex01_2\bin\Debug\B18_Ex01_2.exe.config
+C:\Users\Jonathan\Documents\GitHub\rep\B18 Ex01 Abraham 305758880 Sahar 308235407\B18_Ex01_2\bin\Debug\B18_Ex01_2.exe
+C:\Users\Jonathan\Documents\GitHub\rep\B18 Ex01 Abraham 305758880 Sahar 308235407\B18_Ex01_2\bin\Debug\B18_Ex01_2.pdb
+C:\Users\Jonathan\Documents\GitHub\rep\B18 Ex01 Abraham 305758880 Sahar 308235407\B18_Ex01_2\obj\Debug\B18_Ex01_2.csprojResolveAssemblyReference.cache
+C:\Users\Jonathan\Documents\GitHub\rep\B18 Ex01 Abraham 305758880 Sahar 308235407\B18_Ex01_2\obj\Debug\B18_Ex01_2.exe
+C:\Users\Jonathan\Documents\GitHub\rep\B18 Ex01 Abraham 305758880 Sahar 308235407\B18_Ex01_2\obj\Debug\B18_Ex01_2.pdb
