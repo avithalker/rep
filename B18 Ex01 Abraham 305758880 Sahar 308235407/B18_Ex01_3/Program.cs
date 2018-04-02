@@ -5,8 +5,6 @@ namespace B18_Ex01_3
 {
     public class Program
     {
-        
-
         static void Main()
         {
             Console.WriteLine("Please enter your desired hourglass height:\n");
@@ -44,14 +42,14 @@ namespace B18_Ex01_3
         private static string setSpaces(int i_numOfSpaces)
         {
             string spaces = "";
-            for(int i=0;i<i_numOfSpaces;i++)
+            for (int i = 0; i < i_numOfSpaces; i++)
             {
                 spaces += " ";
             }
             return spaces;
         }
 
-        public static void  printHourglass(int i_hourglassHeight)
+        public static void printHourglass(int i_hourglassHeight)
         {
             string newLine=Environment.NewLine;
             string hourglass = "";

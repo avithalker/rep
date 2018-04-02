@@ -13,14 +13,13 @@ namespace B18_Ex01_5
             Console.WriteLine(string.Format("The smallest digit in the number is: {0}", findDigit(number, !k_FindBiggestDigit)));
             Console.WriteLine(string.Format("The number contains {0} even digits", getEvenDigitCount(number)));
             Console.WriteLine(string.Format("There are {0} smaller digit than the unity digit", getSmallerThanUnityDigitCounter(number)));
-            Console.ReadLine();
         }
 
         private static int getNumberFromUser()
         {
             const int k_NumberLength = 6;
             bool isNumberValid;
-            string numberAsString = "";
+            string numberAsString = string.Empty;
             int userNumber = 0;
 
             do
@@ -48,8 +47,8 @@ namespace B18_Ex01_5
                     Console.WriteLine("Invalid input. Must be positive");
                     isNumberValid = false;
                 }
-
-            } while (!isNumberValid);
+            }
+            while (!isNumberValid);
 
             return userNumber;
         }

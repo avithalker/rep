@@ -4,3 +4,8 @@ C:\Users\Jonathan\Documents\GitHub\rep\B18 Ex01 Abraham 305758880 Sahar 30823540
 C:\Users\Jonathan\Documents\GitHub\rep\B18 Ex01 Abraham 305758880 Sahar 308235407\B18_Ex01_3\obj\Debug\B18_Ex01_3.exe
 C:\Users\Jonathan\Documents\GitHub\rep\B18 Ex01 Abraham 305758880 Sahar 308235407\B18_Ex01_3\obj\Debug\B18_Ex01_3.pdb
 C:\Users\Jonathan\Documents\GitHub\rep\B18 Ex01 Abraham 305758880 Sahar 308235407\B18_Ex01_3\obj\Debug\B18_Ex01_3.csprojResolveAssemblyReference.cache
+C:\Users\avi\Documents\c#\rep\B18 Ex01 Abraham 305758880 Sahar 308235407\B18_Ex01_3\bin\Debug\B18_Ex01_3.exe.config
+C:\Users\avi\Documents\c#\rep\B18 Ex01 Abraham 305758880 Sahar 308235407\B18_Ex01_3\bin\Debug\B18_Ex01_3.exe
+C:\Users\avi\Documents\c#\rep\B18 Ex01 Abraham 305758880 Sahar 308235407\B18_Ex01_3\bin\Debug\B18_Ex01_3.pdb
+C:\Users\avi\Documents\c#\rep\B18 Ex01 Abraham 305758880 Sahar 308235407\B18_Ex01_3\obj\Debug\B18_Ex01_3.exe
+C:\Users\avi\Documents\c#\rep\B18 Ex01 Abraham 305758880 Sahar 308235407\B18_Ex01_3\obj\Debug\B18_Ex01_3.pdb

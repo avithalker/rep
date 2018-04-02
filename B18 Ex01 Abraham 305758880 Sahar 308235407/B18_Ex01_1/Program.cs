@@ -8,7 +8,7 @@ namespace B18_Ex01_1
         public const char k_BinaryZero = '0';
         public const char k_BinaryOne = '1';
 
-        static void Main()
+        public static void Main()
         {
             string binaryNumber1 = getNumberFromUser();
             string binaryNumber2 = getNumberFromUser();
@@ -44,8 +44,8 @@ namespace B18_Ex01_1
                 {
                     Console.WriteLine("Invalid input! try again.");
                 }
-
-            } while (!isInputValid);
+            }
+            while (!isInputValid);
 
             return binaryNumber;
         }
