@@ -11,10 +11,22 @@ namespace B18_Ex01_3
         {
             Console.WriteLine("Please enter your desired hourglass height:\n");
             int hourglassHeight = int.Parse(Console.ReadLine());
+            hourglassHeight=changeHeightToOdd(hourglassHeight);
             printHourglass(hourglassHeight);
 
             Console.WriteLine("Press any key to continue...");
             String input = Console.ReadLine();
+        }
+
+        private static int changeHeightToOdd(int io_hourglassHeight)
+        {
+            if(io_hourglassHeight%2==0)
+            {
+                io_hourglassHeight++;
+            }
+            
+                return io_hourglassHeight;
+            
         }
 
         private static string setStars(int i_numOfStars)
@@ -52,7 +64,7 @@ namespace B18_Ex01_3
                 hourglass += newLine;
                 
             }
-            for(int i=1;i<=i_hourglassHeight;i+=2)
+            for(int i=3;i<=i_hourglassHeight;i+=2)
             {
                 hourglass += setSpaces((i_hourglassHeight - i) / 2);
                 hourglass += setStars(i);
