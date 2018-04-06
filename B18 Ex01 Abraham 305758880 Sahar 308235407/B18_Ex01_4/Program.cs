@@ -22,7 +22,6 @@ namespace B18_Ex01_4
             {
                 Console.WriteLine(string.Format("Is string an even number: {0}", isNumberEven(inputString)));
             }               
-            
         }
 
         private static string getStringFromUser()
