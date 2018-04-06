@@ -4,7 +4,7 @@ namespace B18_Ex01_4
 {
     public class Program
     {
-        static void Main()
+        public static void Main()
         {
             string inputString = getStringFromUser();
             while (!isStringValid(inputString))
@@ -12,14 +12,7 @@ namespace B18_Ex01_4
                 inputString = getStringFromUser();
             }
 
-            if (isStringPalindrome(inputString))
-            {
-                Console.WriteLine("The string is a palindrome");
-            }
-            else
-            {
-                Console.WriteLine("The string is not a palindrome");
-            }
+            Console.WriteLine(string.Format("Is string Palindrome: {0}", isStringPalindrome(inputString)));
 
             if (isALetter(inputString[0]))
             {
@@ -27,16 +20,9 @@ namespace B18_Ex01_4
             }
             else
             {
-                if (isNumberEven(inputString))
-                {
-                    Console.WriteLine("The string is an Even number");
-                }
-                else
-                {
-                    Console.WriteLine("The string is an Odd number");
-                }
+                Console.WriteLine(string.Format("Is string an even number: {0}", isNumberEven(inputString)));
             }               
-            ////Console.ReadLine();
+            
         }
 
         private static string getStringFromUser()
@@ -109,7 +95,7 @@ namespace B18_Ex01_4
             int numberOfLowercaseLetters = 0;
             for (int i = 0; i < i_userInputString.Length; i++)
             {
-                if (i_userInputString[i] >= 'a' || i_userInputString[i] <= 'z')
+                if (i_userInputString[i] >= 'a' && i_userInputString[i] <= 'z')
                 {
                     numberOfLowercaseLetters++;
                 }
