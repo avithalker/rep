@@ -6,12 +6,12 @@ namespace B18_Ex01_2
     {
        public static void Main()
         {
-            const string fiveStars = "*****";
-            const string threeStars = "***";
-            const string oneStar = "*";
+            const string k_fiveStars = "*****";
+            const string k_threeStars = "***";
+            const string k_oneStar = "*";
             string newline = Environment.NewLine;
 
-            Console.WriteLine(string.Format("{1}{0} {2} {0}  {3}  {0} {2} {0}{1}", newline, fiveStars, threeStars, oneStar));
+            Console.WriteLine(string.Format("{1}{0} {2} {0}  {3}  {0} {2} {0}{1}", newline, k_fiveStars, k_threeStars, k_oneStar));
         }
     }
 }

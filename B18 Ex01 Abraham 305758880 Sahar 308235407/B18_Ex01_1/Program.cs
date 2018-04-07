@@ -22,7 +22,7 @@ namespace B18_Ex01_1
             double averageNumber = calculateAverage(decimalNumber1, decimalNumber2, decimalNumber3);
             int decreasingCounter = getDecreasingNumbersCounter(decimalNumber1, decimalNumber2, decimalNumber3);
 
-            Console.WriteLine(string.Format("The numbers in decimal format are:\n{0}\n{1}\n{2}", decimalNumber1, decimalNumber2, decimalNumber3));
+            Console.WriteLine(string.Format("The numbers in decimal format are:{3}{0}{3}{1}{3}{2}", decimalNumber1, decimalNumber2, decimalNumber3, Environment.NewLine));
             Console.WriteLine(string.Format("Average count of {0} is: {1}", k_BinaryZero, averageZeroCount));
             Console.WriteLine(string.Format("Average count of {0} is: {1}", k_BinaryOne, averageOneCount));
             Console.WriteLine(string.Format("There are {0} numbers which are power of two", powerOfTwoConter));
