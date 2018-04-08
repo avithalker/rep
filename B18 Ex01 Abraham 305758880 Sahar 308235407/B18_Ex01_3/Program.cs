@@ -40,6 +40,7 @@ namespace B18_Ex01_3
         private static string setSpaces(int i_numOfSpaces)
         {
             StringBuilder spaces = new StringBuilder();
+
             for (int i = 0; i < i_numOfSpaces; i++)
             {
                 spaces.Append(" ");
