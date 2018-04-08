@@ -6,16 +6,16 @@ namespace B18_Ex01_5
     {
         public static void Main()
         {
-            int number = getNumberFromUser();
+            string numberAsString = getNumberFromUser();
             const bool k_FindBiggestDigit = true;
 
-            Console.WriteLine(string.Format("The biggest digit in the number is: {0}", findDigit(number, k_FindBiggestDigit)));
-            Console.WriteLine(string.Format("The smallest digit in the number is: {0}", findDigit(number, !k_FindBiggestDigit)));
-            Console.WriteLine(string.Format("The number contains {0} even digits", getEvenDigitCount(number)));
-            Console.WriteLine(string.Format("There are {0} smaller digit than the unity digit", getSmallerThanUnityDigitCounter(number)));
+            Console.WriteLine(string.Format("The biggest digit in the number is: {0}", findDigit(numberAsString, k_FindBiggestDigit)));
+            Console.WriteLine(string.Format("The smallest digit in the number is: {0}", findDigit(numberAsString, !k_FindBiggestDigit)));
+            Console.WriteLine(string.Format("The number contains {0} even digits", getEvenDigitCount(numberAsString)));
+            Console.WriteLine(string.Format("There are {0} smaller digit than the unity digit", getSmallerThanUnityDigitCounter(numberAsString)));
         }
 
-        private static int getNumberFromUser()
+        private static string getNumberFromUser()
         {
             const int k_NumberLength = 6;
             bool isNumberValid;
@@ -42,7 +42,7 @@ namespace B18_Ex01_5
                     }
                 }
 
-                if(isNumberValid && userNumber <= 0)
+                if (isNumberValid && userNumber <= 0)
                 {
                     Console.WriteLine("Invalid input. Must be positive");
                     isNumberValid = false;
@@ -50,19 +50,22 @@ namespace B18_Ex01_5
             }
             while (!isNumberValid);
 
-            return userNumber;
+            return numberAsString;
         }
 
-        private static int findDigit(int i_Number, bool i_FindMaxDigit)
+        private static int findDigit(string i_NumberAsString, bool i_FindMaxDigit)
         {
-            int requestedDigit = i_Number % 10;
+            int requestedDigit;
             int currentDigit = 0;
+            int digitIndex = i_NumberAsString.Length - 1;
 
-            while (i_Number != 0)
+            int.TryParse(i_NumberAsString[digitIndex] + string.Empty, out requestedDigit);
+            digitIndex--;
+            while (digitIndex >= 0)
             {
-                currentDigit = i_Number % 10;
+                int.TryParse(i_NumberAsString[digitIndex] + string.Empty, out currentDigit);
                 requestedDigit = getDigitByCompare(requestedDigit, currentDigit, i_FindMaxDigit);
-                i_Number = i_Number / 10;
+                digitIndex--;
             }
 
             return requestedDigit;
@@ -90,40 +93,44 @@ namespace B18_Ex01_5
             return requestedDigit;
         }
 
-        private static int getEvenDigitCount(int i_Number)
+        private static int getEvenDigitCount(string i_NumberAsString)
         {
             int evenDigitCounter = 0;
             int currentDigit = 0;
+            int digitIndex = i_NumberAsString.Length - 1;
 
-            while (i_Number != 0)
+            while (digitIndex >= 0)
             {
-                currentDigit = i_Number % 10;
+                int.TryParse(i_NumberAsString[digitIndex] + string.Empty, out currentDigit);
                 if (currentDigit % 2 == 0)
                 {
                     evenDigitCounter++;
                 }
 
-                i_Number = i_Number / 10;
+                digitIndex--;
             }
 
             return evenDigitCounter;
         }
 
-        private static int getSmallerThanUnityDigitCounter(int i_Number)
+        private static int getSmallerThanUnityDigitCounter(string i_NumberAsString)
         {
-            int unityDigit = i_Number % 10;
+            int unityDigit;
             int counter = 0;
             int currentDigit;
+            int digitIndex = i_NumberAsString.Length - 1;
 
-            while(i_Number != 0)
+            int.TryParse(i_NumberAsString[digitIndex] + string.Empty, out unityDigit);
+            digitIndex--;
+            while (digitIndex >= 0)
             {
-                currentDigit = i_Number % 10;
+                int.TryParse(i_NumberAsString[digitIndex] + string.Empty, out currentDigit);
                 if (currentDigit < unityDigit)
                 {
                     counter++;
                 }
 
-                i_Number = i_Number / 10;
+                digitIndex--;
             }
 
             return counter;

@@ -49,8 +49,7 @@ namespace B18_Ex01_4
                 return true;
             }
         
-         return false;
-            
+         return false;       
         }
 
         private static bool isStringHasEightCharacters(string i_userInputString)
@@ -60,7 +59,7 @@ namespace B18_Ex01_4
 
         private static bool isStringIncludesOnlyLetters(string i_userInputString)
         {
-            for(int i=0;i<i_userInputString.Length;i++)
+            for (int i = 0; i < i_userInputString.Length; i++)
             {
                 if (!isALetter(i_userInputString[i]))
                 {
@@ -73,7 +72,7 @@ namespace B18_Ex01_4
 
         private static bool isANumber(char i_char)
         {
-            return (i_char >= '0' && i_char <= '9');
+            return i_char >= '0' && i_char <= '9';
         }
 
         private static bool isStringIncludesOnlyNumbers(string i_userInputString)

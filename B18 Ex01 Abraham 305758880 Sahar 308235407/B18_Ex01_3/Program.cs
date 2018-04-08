@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+
 namespace B18_Ex01_3
 {
     public class Program
@@ -26,7 +27,7 @@ namespace B18_Ex01_3
 
         private static string setStars(int i_numOfStars)
         {
-            StringBuilder stars = new StringBuilder("");
+            StringBuilder stars = new StringBuilder();
 
             for (int i = 0; i < i_numOfStars; i++)
             {
@@ -38,7 +39,7 @@ namespace B18_Ex01_3
 
         private static string setSpaces(int i_numOfSpaces)
         {
-            StringBuilder spaces = new StringBuilder("");
+            StringBuilder spaces = new StringBuilder();
             for (int i = 0; i < i_numOfSpaces; i++)
             {
                 spaces.Append(" ");
@@ -51,7 +52,7 @@ namespace B18_Ex01_3
         {
             string newLine = Environment.NewLine;
             const int k_secondPartPrintPoint = 3;
-            StringBuilder hourglass = new StringBuilder("");
+            StringBuilder hourglass = new StringBuilder();
         
             for (int i = i_hourglassHeight; i > 0; i -= 2)
             {
