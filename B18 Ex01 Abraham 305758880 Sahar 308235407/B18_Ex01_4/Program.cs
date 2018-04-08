@@ -14,11 +14,11 @@ namespace B18_Ex01_4
             }
 
             Console.WriteLine(string.Format("Is string Palindrome: {0}", isStringPalindrome(inputString)));
-            if (isALetter(inputString[0]))
+            if (isStringIncludesOnlyLetters(inputString))
             {
                 Console.WriteLine(string.Format("The string has {0} lowercase letters", getNumberOfLowercaseLetters(inputString)));
             }
-            else
+            else if(isStringIncludesOnlyNumbers(inputString))
             {
                 Console.WriteLine(string.Format("Is string an even number: {0}", isNumberEven(inputString)));
             }
@@ -39,29 +39,51 @@ namespace B18_Ex01_4
 
         private static bool isStringValid(string i_userInputString)
         {
-            if (i_userInputString[0] >= '0' && i_userInputString[0] <= '9')
+            if(!isStringHasEightCharacters(i_userInputString))
             {
-                for (int i = 1; i < i_userInputString.Length; i++)
+                return false;        
+            }
+          
+            if(isStringIncludesOnlyLetters(i_userInputString) || isStringIncludesOnlyNumbers(i_userInputString))
+            {
+                return true;
+            }
+        
+         return false;
+            
+        }
+
+        private static bool isStringHasEightCharacters(string i_userInputString)
+        {
+            return i_userInputString.Length == 8;
+        }
+
+        private static bool isStringIncludesOnlyLetters(string i_userInputString)
+        {
+            for(int i=0;i<i_userInputString.Length;i++)
+            {
+                if (!isALetter(i_userInputString[i]))
                 {
-                    if (!(i_userInputString[0] >= '0' && i_userInputString[0] <= '9'))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
-            else if (isALetter(i_userInputString[0]))
+
+            return true;
+        }
+
+        private static bool isANumber(char i_char)
+        {
+            return (i_char >= '0' && i_char <= '9');
+        }
+
+        private static bool isStringIncludesOnlyNumbers(string i_userInputString)
+        {
+            for (int i = 0; i < i_userInputString.Length; i++)
             {
-                for (int i = 1; i < i_userInputString.Length; i++)
+                if (isANumber(i_userInputString[i]))
                 {
-                    if (!isALetter(i_userInputString[i]))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
-            }
-            else
-            {
-                return false;
             }
 
             return true;

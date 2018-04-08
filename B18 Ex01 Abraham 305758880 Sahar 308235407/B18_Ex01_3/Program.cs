@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Text;
 namespace B18_Ex01_3
 {
     public class Program
@@ -26,46 +26,47 @@ namespace B18_Ex01_3
 
         private static string setStars(int i_numOfStars)
         {
-            string stars = string.Empty;
+            StringBuilder stars = new StringBuilder("");
 
             for (int i = 0; i < i_numOfStars; i++)
             {
-                stars += "*";         
+                stars.Append("*");         
             }
 
-            return stars;
+            return stars.ToString();
         }
 
         private static string setSpaces(int i_numOfSpaces)
         {
-            string spaces = string.Empty;
+            StringBuilder spaces = new StringBuilder("");
             for (int i = 0; i < i_numOfSpaces; i++)
             {
-                spaces += " ";
+                spaces.Append(" ");
             }
 
-            return spaces;
+            return spaces.ToString();
         }
 
         public static void printHourglass(int i_hourglassHeight)
         {
             string newLine = Environment.NewLine;
-            string hourglass = string.Empty;
-
+            const int k_secondPartPrintPoint = 3;
+            StringBuilder hourglass = new StringBuilder("");
+        
             for (int i = i_hourglassHeight; i > 0; i -= 2)
             {
-                hourglass += setSpaces((i_hourglassHeight - i) / 2);
-                hourglass += setStars(i);
-                hourglass += setSpaces((i_hourglassHeight - i) / 2);
-                hourglass += newLine;     
+                hourglass.Append(setSpaces((i_hourglassHeight - i) / 2));
+                hourglass.Append(setStars(i));
+                hourglass.Append(setSpaces((i_hourglassHeight - i) / 2));
+                hourglass.Append(newLine);     
             }
 
-            for (int i = 3; i <= i_hourglassHeight; i += 2)
+            for (int i = k_secondPartPrintPoint; i <= i_hourglassHeight; i += 2)
             {
-                hourglass += setSpaces((i_hourglassHeight - i) / 2);
-                hourglass += setStars(i);
-                hourglass += setSpaces((i_hourglassHeight - i) / 2);
-                hourglass += newLine;
+                hourglass.Append(setSpaces((i_hourglassHeight - i) / 2));
+                hourglass.Append(setStars(i));
+                hourglass.Append(setSpaces((i_hourglassHeight - i) / 2));
+                hourglass.Append(newLine);
             }
 
             Console.WriteLine(hourglass);
