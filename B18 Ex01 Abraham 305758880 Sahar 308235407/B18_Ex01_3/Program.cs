@@ -6,20 +6,22 @@ namespace B18_Ex01_3
     {
         public static void Main()
         {
-            Console.WriteLine("Please enter your desired hourglass height:\n");
-            int hourglassHeight = int.Parse(Console.ReadLine());
+            int hourglassHeight;
+
+            Console.WriteLine("Please enter your desired hourglass height:");
+            hourglassHeight = int.Parse(Console.ReadLine());
             hourglassHeight = changeHeightToOdd(hourglassHeight);
             printHourglass(hourglassHeight);
         }
 
-        private static int changeHeightToOdd(int io_hourglassHeight)
+        private static int changeHeightToOdd(int i_hourglassHeight)
         {
-            if (io_hourglassHeight % 2 == 0)
+            if (i_hourglassHeight % 2 == 0)
             {
-                io_hourglassHeight++;
+                i_hourglassHeight++;
             }
-            
-                return io_hourglassHeight;            
+
+            return i_hourglassHeight;
         }
 
         private static string setStars(int i_numOfStars)
