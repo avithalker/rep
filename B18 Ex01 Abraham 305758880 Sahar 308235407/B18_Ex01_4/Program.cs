@@ -80,7 +80,7 @@ namespace B18_Ex01_4
         {
             for (int i = 0; i < i_userInputString.Length; i++)
             {
-                if (isANumber(i_userInputString[i]))
+                if (!isANumber(i_userInputString[i]))
                 {
                     return false;
                 }
