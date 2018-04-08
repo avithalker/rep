@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B18_Ex01_1", "B18_Ex01_1\B18_Ex01_1.csproj", "{DF2F352F-D063-44A1-B7B9-5DD2BDC2969A}"
 EndProject
@@ -12,6 +12,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B18_Ex01_3", "B18_Ex01_3\B18_Ex01_3.csproj", "{FED17585-5BD0-4632-A80E-02E022EDFA4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B18_Ex01_4", "B18_Ex01_4\B18_Ex01_4.csproj", "{4DC35159-DA12-4495-9E2D-B8CAC1FC00AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{409A0CCC-C141-4EFB-81C0-FC16D376A0FB}"
+	ProjectSection(SolutionItems) = preProject
+		B18 Ex01 Abraham 305758880 Sahar 308235407.txt = B18 Ex01 Abraham 305758880 Sahar 308235407.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,5 +47,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4573FDF7-9992-4E09-AF2A-9E6BC2CB8AFB}
 	EndGlobalSection
 EndGlobal
