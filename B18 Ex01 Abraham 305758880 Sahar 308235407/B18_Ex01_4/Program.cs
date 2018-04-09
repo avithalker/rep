@@ -63,7 +63,7 @@ namespace B18_Ex01_4
         {
             bool isAllLetters = true;
 
-            for (int i = 0; i < i_userInputString.Length; i++)
+            for (int i = 0; i < i_userInputString.Length && isAllLetters == true; i++)
             {
                 if (!isALetter(i_userInputString[i]))
                 {
@@ -83,7 +83,7 @@ namespace B18_Ex01_4
         {
             bool isAllNumbers = true;
 
-            for (int i = 0; i < i_userInputString.Length; i++)
+            for (int i = 0; i < i_userInputString.Length && isAllNumbers == true; i++)
             {
                 if (!isANumber(i_userInputString[i]))
                 {
@@ -99,7 +99,7 @@ namespace B18_Ex01_4
             int reverseIndex = i_userInputString.Length - 1;
             bool isPalindrome = true;
 
-            for (int i = 0; i < i_userInputString.Length; i++)
+            for (int i = 0; i < i_userInputString.Length && isPalindrome == true; i++)
             {
                 if (i_userInputString[i] != i_userInputString[reverseIndex])
                 {
