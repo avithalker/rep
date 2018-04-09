@@ -39,17 +39,19 @@ namespace B18_Ex01_4
 
         private static bool isStringValid(string i_userInputString)
         {
+            bool isValid = true;
+
             if(!isStringHasEightCharacters(i_userInputString))
             {
-                return false;        
+                isValid = false;        
             }
           
-            if(isStringIncludesOnlyLetters(i_userInputString) || isStringIncludesOnlyNumbers(i_userInputString))
+            if(!(isStringIncludesOnlyLetters(i_userInputString) || isStringIncludesOnlyNumbers(i_userInputString)))
             {
-                return true;
+                isValid = false;
             }
         
-         return false;       
+         return isValid;       
         }
 
         private static bool isStringHasEightCharacters(string i_userInputString)
@@ -59,15 +61,17 @@ namespace B18_Ex01_4
 
         private static bool isStringIncludesOnlyLetters(string i_userInputString)
         {
+            bool isAllLetters = true;
+
             for (int i = 0; i < i_userInputString.Length; i++)
             {
                 if (!isALetter(i_userInputString[i]))
                 {
-                    return false;
+                    isAllLetters = false;
                 }
             }
 
-            return true;
+            return isAllLetters;
         }
 
         private static bool isANumber(char i_char)
@@ -77,38 +81,48 @@ namespace B18_Ex01_4
 
         private static bool isStringIncludesOnlyNumbers(string i_userInputString)
         {
+            bool isAllNumbers = true;
+
             for (int i = 0; i < i_userInputString.Length; i++)
             {
                 if (!isANumber(i_userInputString[i]))
                 {
-                    return false;
+                    isAllNumbers = false;
                 }
             }
 
-            return true;
+            return isAllNumbers;
         }
 
         private static bool isStringPalindrome(string i_userInputString)
         {
             int reverseIndex = i_userInputString.Length - 1;
+            bool isPalindrome = true;
+
             for (int i = 0; i < i_userInputString.Length; i++)
             {
                 if (i_userInputString[i] != i_userInputString[reverseIndex])
                 {
-                    return false;
+                    isPalindrome = false;
                 }
 
                 reverseIndex--;
             }
 
-            return true;
+            return isPalindrome;
         }
 
         private static bool isNumberEven(string i_userInputString)
         {
-            int inputNumber = int.Parse(i_userInputString);
+            int inputNum;
 
-            return inputNumber % 2 == 0;
+            while (!int.TryParse(i_userInputString, out inputNum))
+            {
+                Console.WriteLine("The number you entered is too big...");
+                i_userInputString = getStringFromUser();
+            }
+
+            return inputNum % 2 == 0;
         }
 
         private static int getNumberOfLowercaseLetters(string i_userInputString)
