@@ -72,6 +72,7 @@ namespace B18_Ex01_3
             }
 
             Console.WriteLine(hourglass);
+            //
         }   
     }
 }
