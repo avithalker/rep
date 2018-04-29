@@ -79,7 +79,7 @@ namespace CheckersApp
             return playerMove;
         }
 
-        public void PrintGameBoard(Cell [,] i_GameBoard, int i_BoardSize)
+        public static void PrintGameBoard(Cell [,] i_GameBoard, int i_BoardSize)
         {
             char currentRowSign = 'a';
             int k_RowsPerCell = 2;
