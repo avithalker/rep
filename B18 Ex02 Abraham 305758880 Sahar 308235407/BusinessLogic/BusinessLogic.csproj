@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\PlayerTitles.cs" />
+    <Compile Include="Enums\SoldierTypes.cs" />
     <Compile Include="GameBoard\BoardManager.cs" />
     <Compile Include="GameBoard\Cell.cs" />
     <Compile Include="Enums\GameModes.cs" />
