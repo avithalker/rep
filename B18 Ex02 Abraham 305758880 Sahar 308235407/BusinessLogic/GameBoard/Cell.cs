@@ -1,4 +1,4 @@
-﻿namespace BusinessLogic
+﻿namespace BusinessLogic.GameBoard
 {
     public class Cell
     {

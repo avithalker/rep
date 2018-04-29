@@ -40,9 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoardManager.cs" />
-    <Compile Include="Cell.cs" />
+    <Compile Include="GameBoard\BoardManager.cs" />
+    <Compile Include="GameBoard\Cell.cs" />
     <Compile Include="Enums\GameModes.cs" />
+    <Compile Include="GameBoard\CheckerMoveInfo.cs" />
     <Compile Include="GlobalDefines.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

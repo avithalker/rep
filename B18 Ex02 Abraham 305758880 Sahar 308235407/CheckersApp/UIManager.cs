@@ -1,4 +1,5 @@
 ﻿using BusinessLogic;
+using BusinessLogic.GameBoard;
 using BusinessLogic.Enums;
 using System;
 
@@ -79,6 +80,16 @@ namespace CheckersApp
             return playerMove;
         }
 
+        public static void PrintLastMove(CheckerMoveInfo i_LastMove)
+        {
+            Console.WriteLine("{0}'s move was: {1}>{2}", i_LastMove.PlayerName, i_LastMove.PreviousCell, i_LastMove.CurrentCell);
+        }
+
+        public static void PrintPlayerTurnAnnouncment(string i_PlayerName, char i_PlayerSign)
+        {
+            Console.WriteLine("{0}'s turn! ({1})", i_PlayerName, i_PlayerSign);
+        }
+
         public static void PrintGameBoard(Cell [,] i_GameBoard, int i_BoardSize)
         {
             char currentRowSign = 'a';
@@ -137,12 +148,12 @@ namespace CheckersApp
             Console.WriteLine();
         }
 
-        private static void PrintCell(Cell i_Cell,bool i_IsLastInRow)
+        private static void PrintCell(Cell i_Cell, bool i_IsLastInRow)
         {
             char k_CellDelimiter = '|';
             if (!i_IsLastInRow)
             {
-                Console.Write("{0} {1} ",k_CellDelimiter,"cell content");
+                Console.Write("{0} {1} ", k_CellDelimiter, "cell content");
             }
             else
             {
