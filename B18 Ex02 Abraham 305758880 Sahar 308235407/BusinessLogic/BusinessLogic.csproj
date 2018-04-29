@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="BoardManager.cs" />
     <Compile Include="Cell.cs" />
+    <Compile Include="Enums\GameModes.cs" />
+    <Compile Include="GlobalDefines.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
