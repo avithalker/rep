@@ -9,7 +9,7 @@ using BusinessLogic.GameBoard;
 
 namespace BusinessLogic
 {
-    public class GameManager
+    public partial class GameManager
     {
         BoardManager m_boardManager;
         

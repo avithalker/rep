@@ -1,12 +1,19 @@
 ﻿using BusinessLogic;
 using BusinessLogic.GameBoard;
 using BusinessLogic.Enums;
+using Ex02.ConsoleUtils;
 using System;
+using BusinessLogic.Dtos;
 
 namespace CheckersApp
 {
     public static class UIManager
     {
+        public static void CleanScreen()
+        {
+            Screen.Clear();
+        }
+
         public static string GetPlayerName(int i_PlayerNumber)
         {
             bool isNameValid;
@@ -49,6 +56,32 @@ namespace CheckersApp
             return boardSize;
         }
 
+        public static bool IsGameRestartRequired()
+        {
+            bool isInputValid;
+            char answer;
+
+            do
+            {
+                Console.WriteLine("Do you want to restart the game (Y/N)? ");
+                isInputValid = char.TryParse(Console.ReadLine(), out answer);
+                if (isInputValid)
+                {
+                    if (answer != 'Y' && answer != 'N')
+                    {
+                        isInputValid = false;
+                    }
+                }
+
+                if (!isInputValid)
+                {
+                    Console.WriteLine("Invalid input was entered. Try again.");
+                }
+            } while (!isInputValid);
+
+            return answer == 'Y';
+        }
+
         public static GameModes.eGameModes GetGameMode()
         {
             int gameModeInput;
@@ -88,6 +121,29 @@ namespace CheckersApp
         public static void PrintPlayerTurnAnnouncment(string i_PlayerName, char i_PlayerSign)
         {
             Console.WriteLine("{0}'s turn! ({1})", i_PlayerName, i_PlayerSign);
+        }
+
+        public static void PrintEndGameAnnouncment(GameSummery i_GameSummery)
+        {
+            Console.WriteLine("The game was ended");
+            switch (i_GameSummery.EndGameState)
+            {
+                case EndGameStates.eEndGameStates.Tie:
+                    {
+                        Console.WriteLine("There is a Tie between the players");
+                    }
+                    break;
+                case EndGameStates.eEndGameStates.Winner:
+                    {
+                        Console.WriteLine("The Winner is:{0} with score of:{1}", i_GameSummery.WinnerName, i_GameSummery.Score);
+                    }
+                    break;
+            }
+        }
+
+        public static void PrintGeneralAnnouncment(string i_Message)
+        {
+            Console.WriteLine(i_Message);
         }
 
         public static void PrintGameBoard(Cell [,] i_GameBoard, int i_BoardSize)

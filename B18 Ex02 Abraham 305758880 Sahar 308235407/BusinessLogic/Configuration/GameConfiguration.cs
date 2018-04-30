@@ -49,6 +49,5 @@ namespace BusinessLogic.Configuration
         {
             m_PlayerConfigurations.Add(i_PlayerConfiguration);
         }
-
     }
 }
