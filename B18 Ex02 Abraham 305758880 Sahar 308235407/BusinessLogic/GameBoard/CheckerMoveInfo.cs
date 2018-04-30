@@ -33,7 +33,7 @@ namespace BusinessLogic.GameBoard
 
         public CheckerMoveInfo()
         {
-
+           
         }
     }
 }
