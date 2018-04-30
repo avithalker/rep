@@ -16,9 +16,8 @@ namespace BusinessLogic
 
         public void Init(GameConfiguration i_gameConfiguration)
         {
-            //setPlayers(i_gameConfiguration.playersConfigurationList); (initialize the member players)
+            SetPlayers(i_gameConfiguration. PlayerConfigurations);
             m_BoardManager = new BoardManager(i_gameConfiguration.BoardSize, ref players);
-
         }
 
         private void SetPlayers(List<PlayerConfiguration> i_playersConfiguration)

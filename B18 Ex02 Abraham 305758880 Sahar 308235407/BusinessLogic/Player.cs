@@ -25,5 +25,28 @@ namespace BusinessLogic
             m_Name = i_playerConfiguration.PlayerName;
 
         }
+
+        public PlayerTypes.ePlayerTypes PlayerType
+        {
+            get { return m_Type; }
+            set { m_Type = value; }
+        }
+
+        public PlayerTitles.ePlayerTitles PlayerTitle
+        {
+            get { return m_Title; }
+            set { m_Title = value; }
+        }
+
+        public int Score
+        {
+            get { return m_Score; }
+            set { m_Score = value; }
+        }
+
+        public void AddSoldier(Soldier i_soldier)
+        {
+            m_Soldiers.Add(i_soldier);
+        }
     }
 }
