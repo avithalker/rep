@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.GameBoard;
 using BusinessLogic.Enums;
+using System.Collections.Generic;
 
 
 
@@ -10,11 +11,13 @@ namespace BusinessLogic.GameBoard
         private Cell[,] m_Board;
         private readonly int NUM_ROWS_FOR_PLAYER;
         private const int SPACES_BETWEEN_PLAYERS = 2;
+        private List<Player> m_Players;
 
-        public BoardManager(int i_size)
+        public BoardManager(int i_size, ref List<Player> players)
         {
             m_Board = new Cell[i_size, i_size];
             NUM_ROWS_FOR_PLAYER = (i_size - 2) / 2;
+            this.m_Players = players;    
         }
         public void InitializeBoardsData()
         {
@@ -58,8 +61,26 @@ namespace BusinessLogic.GameBoard
         private Cell createNewCell(int i_row, int i_col,  SoldierTypes.eSoldierTypes i_soldierType, PlayerTitles.ePlayerTitles i_playerTitle)
         {
             Soldier k_soldier = new Soldier(new Location(i_row, i_col), i_soldierType, i_playerTitle);
+            GetPlayerByTitle(i_playerTitle).AddSoldier(k_soldier);
 
             return new Cell(k_soldier);
+        }
+
+        private Player GetPlayerByTitle(PlayerTitles.ePlayerTitles i_playerTitle)
+        {
+            Player k_player = null;
+
+            if(m_Players[0].PlayerTitle == i_playerTitle)
+            {
+                k_player = m_Players[0];
+            }
+            else
+            {
+                k_player = m_Players[1];
+            }
+
+            return k_player;
+            
         }
     }
 }
