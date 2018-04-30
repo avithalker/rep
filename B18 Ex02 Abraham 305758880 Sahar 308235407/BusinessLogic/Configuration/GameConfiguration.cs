@@ -26,6 +26,14 @@ namespace BusinessLogic.Configuration
             }
         }
 
+        public List<PlayerConfiguration> PlayerConfigurations
+        {
+            get
+            {
+                return m_PlayerConfigurations;
+            }
+        }
+
         public int BoardSize
         {
             get { return m_BoardSize; }
