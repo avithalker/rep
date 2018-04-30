@@ -40,13 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\GameConfiguration.cs" />
+    <Compile Include="Configuration\PlayerConfiguration.cs" />
     <Compile Include="Enums\PlayerTitles.cs" />
+    <Compile Include="Enums\PlayerTypes.cs" />
     <Compile Include="Enums\SoldierTypes.cs" />
     <Compile Include="GameBoard\BoardManager.cs" />
     <Compile Include="GameBoard\Cell.cs" />
     <Compile Include="Enums\GameModes.cs" />
     <Compile Include="GameBoard\CheckerMoveInfo.cs" />
+    <Compile Include="GameBoard\Location.cs" />
+    <Compile Include="GameBoard\Soldier.cs" />
     <Compile Include="GlobalDefines.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
