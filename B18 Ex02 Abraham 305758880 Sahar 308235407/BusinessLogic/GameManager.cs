@@ -14,10 +14,10 @@ namespace BusinessLogic
         BoardManager m_BoardManager;
         List<Player> players;
 
-        public void Init(GameConfiguration i_gameConfiguration)
+        public void InitializeGame(GameConfiguration i_GameConfiguration)
         {
-            SetPlayers(i_gameConfiguration. PlayerConfigurations);
-            m_BoardManager = new BoardManager(i_gameConfiguration.BoardSize, ref players);
+            SetPlayers(i_GameConfiguration.PlayerConfigurations);
+            m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, ref players);
         }
 
         private void SetPlayers(List<PlayerConfiguration> i_playersConfiguration)

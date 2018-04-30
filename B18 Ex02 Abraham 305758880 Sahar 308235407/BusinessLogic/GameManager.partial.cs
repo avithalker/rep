@@ -22,11 +22,6 @@ namespace BusinessLogic
             get { return null; } // return the last move! if no last move, will return null
         }
 
-        public void InitializeGame(GameConfiguration i_GameConfiguration)
-        {
-
-        }
-
         public void StartGame()
         {
 
