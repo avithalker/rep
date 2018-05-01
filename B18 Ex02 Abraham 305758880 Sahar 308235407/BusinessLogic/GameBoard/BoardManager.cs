@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using BusinessLogic.GameBoard;
 using BusinessLogic.Enums;
+using BusinessLogic.Dtos;
 
 namespace BusinessLogic.GameBoard
 {
@@ -10,10 +11,12 @@ namespace BusinessLogic.GameBoard
         private readonly int NUM_ROWS_FOR_PLAYER;
         private List<Player> m_Players;
         private Cell[,] m_Board;
+        private int m_BoardSize;
 
         public BoardManager(int i_size, ref List<Player> players)
         {
             m_Board = new Cell[i_size, i_size];
+            m_BoardSize = i_size;
             NUM_ROWS_FOR_PLAYER = (i_size - 2) / 2;
             this.m_Players = players;    
         }
@@ -41,6 +44,11 @@ namespace BusinessLogic.GameBoard
         private void initializeSoldiersLocationInBoard(int i_row, PlayerTitles.ePlayerTitles i_playerTitle)
         {
             bool setSoldier = false;
+
+            if (i_playerTitle == PlayerTitles.ePlayerTitles.PlayerTwo)
+            {
+                setSoldier = true;
+            }
 
             for (int i = i_row; i < NUM_ROWS_FOR_PLAYER; i++)
             {
@@ -82,6 +90,23 @@ namespace BusinessLogic.GameBoard
             }
 
             return k_player;   
+        }
+
+        public int BoardSize
+        {
+            get { return m_BoardSize; }
+            set { m_BoardSize = value; }
+        }
+
+        public Cell[,] Board
+        {
+            get { return m_Board; }
+            set { m_Board = value; }
+        }
+
+        public ActionResult SetCheckersMove(string i_Action)
+        {
+            return new ActionResult(true,string.Empty);
         }
     }
 }

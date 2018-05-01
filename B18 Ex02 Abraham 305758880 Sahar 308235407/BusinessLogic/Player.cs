@@ -15,6 +15,7 @@ namespace BusinessLogic
         private PlayerTitles.ePlayerTitles m_Title;
         private PlayerTypes.ePlayerTypes m_Type;
         private String m_Name;
+        private char m_PlayerSign;
 
         public Player(PlayerConfiguration i_playerConfiguration, PlayerTitles.ePlayerTitles i_title)
         {
@@ -23,6 +24,23 @@ namespace BusinessLogic
             m_Title = i_title;
             m_Type = i_playerConfiguration.PlayerType;
             m_Name = i_playerConfiguration.PlayerName;
+        }
+        
+        public char GetPlayerSign()
+        {
+            char k_sign;
+
+            if(m_Title == PlayerTitles.ePlayerTitles.PlayerOne)
+            {
+                k_sign = 'O'; 
+            }
+
+            else
+            {
+                k_sign = 'X';
+            }
+
+            return k_sign;
         }
 
         public PlayerTypes.ePlayerTypes PlayerType
@@ -35,6 +53,12 @@ namespace BusinessLogic
         {
             get { return m_Title; }
             set { m_Title = value; }
+        }
+
+        public string PlayerName
+        {
+            get { return m_Name; }
+            set { m_Name = value; }
         }
 
         public int Score

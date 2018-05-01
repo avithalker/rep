@@ -54,12 +54,12 @@
     <Compile Include="GameBoard\Location.cs" />
     <Compile Include="GameBoard\Soldier.cs" />
     <Compile Include="GameManager.cs" />
-    <Compile Include="GameManager.partial.cs" />
     <Compile Include="GlobalDefines.cs" />
     <Compile Include="Dtos\ActionResult.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Dtos\PlayerInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

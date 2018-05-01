@@ -30,8 +30,9 @@ namespace BusinessLogic.GameBoard
             set { m_PlayerName = value; }
         }
 
-        public CheckerMoveInfo()
+        public CheckerMoveInfo(String i_Action)
         {
+            
         }
     }
 }
