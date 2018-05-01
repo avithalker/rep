@@ -6,13 +6,12 @@ namespace BusinessLogic
 {
     partial class GameManager
     {
-
         public int BoardSize
         {
             get { return 8; } // return the real board size!!!!
         }
 
-        public Cell [,] Board
+        public Cell[,] Board
         {
             get { return null; } // return the real board!!!
         }
@@ -24,7 +23,6 @@ namespace BusinessLogic
 
         public void StartGame()
         {
-
         }
 
         public bool IsGameEnded()
@@ -34,7 +32,7 @@ namespace BusinessLogic
 
         public PlayerInfo GetCurrentPlayerTurn()
         {
-            return new PlayerInfo(); //here need to return the current player that need to play! fill the player info with the data!
+            return new PlayerInfo(); //// here need to return the current player that need to play! fill the player info with the data!
         }
 
         public ActionResult HandlePlayerAction(string i_Action) // handle player move/Quit game

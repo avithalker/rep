@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 using BusinessLogic.Configuration;
 using BusinessLogic.GameBoard;
 
-
 namespace BusinessLogic
 {
     public partial class GameManager
     {
-        BoardManager m_BoardManager;
-        List<Player> players;
+        private BoardManager m_BoardManager;
+        private List<Player> players;
 
         public void InitializeGame(GameConfiguration i_GameConfiguration)
         {
@@ -28,8 +27,3 @@ namespace BusinessLogic
         }
     }
 }
-
-
-
-
-

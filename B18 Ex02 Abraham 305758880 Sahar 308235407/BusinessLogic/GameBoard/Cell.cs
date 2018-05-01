@@ -1,6 +1,4 @@
-﻿
-
-namespace BusinessLogic.GameBoard
+﻿namespace BusinessLogic.GameBoard
 {
     public class Cell
     {
@@ -12,9 +10,7 @@ namespace BusinessLogic.GameBoard
         }
 
         public Cell()
-        {
-
+        { 
         }
-
     }
 }

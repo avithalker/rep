@@ -1,8 +1,8 @@
-﻿using BusinessLogic;
+﻿using System;
+using BusinessLogic;
 using BusinessLogic.GameBoard;
 using BusinessLogic.Enums;
 using Ex02.ConsoleUtils;
-using System;
 using BusinessLogic.Dtos;
 
 namespace CheckersApp
@@ -132,11 +132,13 @@ namespace CheckersApp
                     {
                         Console.WriteLine("There is a Tie between the players");
                     }
+
                     break;
                 case EndGameStates.eEndGameStates.Winner:
                     {
                         Console.WriteLine("The Winner is:{0} with score of:{1}", i_GameSummery.WinnerName, i_GameSummery.Score);
                     }
+
                     break;
             }
         }
@@ -146,7 +148,7 @@ namespace CheckersApp
             Console.WriteLine(i_Message);
         }
 
-        public static void PrintGameBoard(Cell [,] i_GameBoard, int i_BoardSize)
+        public static void PrintGameBoard(Cell[,] i_GameBoard, int i_BoardSize)
         {
             char currentRowSign = 'a';
             int k_RowsPerCell = 2;
@@ -218,4 +220,3 @@ namespace CheckersApp
         }
     }
 }
-

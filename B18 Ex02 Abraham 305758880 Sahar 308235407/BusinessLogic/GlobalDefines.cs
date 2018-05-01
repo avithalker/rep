@@ -1,5 +1,5 @@
-﻿using BusinessLogic.Enums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using BusinessLogic.Enums;
 
 namespace BusinessLogic
 {
@@ -22,14 +22,17 @@ namespace BusinessLogic
                                 {
                                     soldierSign = 'X';
                                 }
+
                                 break;
                             case SoldierTypes.eSoldierTypes.King:
                                 {
                                     soldierSign = 'K';
                                 }
+
                                 break;
                         }
                     }
+
                     break;
                 case PlayerTitles.ePlayerTitles.PlayerTwo:
                     {
@@ -39,14 +42,17 @@ namespace BusinessLogic
                                 {
                                     soldierSign = 'O';
                                 }
+
                                 break;
                             case SoldierTypes.eSoldierTypes.King:
                                 {
                                     soldierSign = 'U';
                                 }
+
                                 break;
                         }
                     }
+
                     break;
             }
 

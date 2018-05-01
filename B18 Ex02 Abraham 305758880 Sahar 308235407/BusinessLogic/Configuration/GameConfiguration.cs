@@ -1,5 +1,5 @@
-﻿using BusinessLogic.Enums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using BusinessLogic.Enums;
 
 namespace BusinessLogic.Configuration
 {

@@ -14,12 +14,10 @@ namespace BusinessLogic
         private Location m_Location;
         private PlayerTitles.ePlayerTitles m_PlayersTitle;
 
-        public Soldier(Location location, SoldierTypes.eSoldierTypes i_type,PlayerTitles.ePlayerTitles i_playerTitle)
+        public Soldier(Location location, SoldierTypes.eSoldierTypes i_type, PlayerTitles.ePlayerTitles i_playerTitle)
         {
             this.m_Type = i_type;
             this.m_Location = location;
         }
-
     }
-
 }

@@ -24,7 +24,6 @@ namespace BusinessLogic.GameBoard
             set { m_PreviousCell = value; }
         }
 
-
         public string PlayerName
         {
             get { return m_PlayerName; }
@@ -33,7 +32,6 @@ namespace BusinessLogic.GameBoard
 
         public CheckerMoveInfo()
         {
-           
         }
     }
 }

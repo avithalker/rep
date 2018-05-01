@@ -16,14 +16,13 @@ namespace BusinessLogic
         private PlayerTypes.ePlayerTypes m_Type;
         private String m_Name;
 
-        public Player(PlayerConfiguration i_playerConfiguration,PlayerTitles.ePlayerTitles i_title)
+        public Player(PlayerConfiguration i_playerConfiguration, PlayerTitles.ePlayerTitles i_title)
         {
             m_Score = 0;
             m_Soldiers = new List<Soldier>();
             m_Title = i_title;
             m_Type = i_playerConfiguration.PlayerType;
             m_Name = i_playerConfiguration.PlayerName;
-
         }
 
         public PlayerTypes.ePlayerTypes PlayerType
