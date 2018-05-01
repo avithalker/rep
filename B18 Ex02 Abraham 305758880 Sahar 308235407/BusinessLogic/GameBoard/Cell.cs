@@ -4,6 +4,12 @@
     {
         private Soldier m_Soldier = null;
  
+        public Soldier Soldier
+        {
+            get { return m_Soldier; }
+            set { m_Soldier = value; }
+        }
+
         public Cell(Soldier i_soldier)
         {
             m_Soldier = i_soldier;
@@ -11,6 +17,11 @@
 
         public Cell()
         { 
+        }
+
+        public bool IsCellEmpty()
+        {
+            return m_Soldier == null;
         }
     }
 }

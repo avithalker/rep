@@ -46,7 +46,7 @@ namespace CheckersApp
                 isSizeValid = true;
                 Console.WriteLine("Enter the board size:");
                 isInputValid = int.TryParse(Console.ReadLine(), out boardSize);
-                if (!isInputValid || GlobalDefines.rs_AllowedBoardSizes.Contains(boardSize))
+                if (!isInputValid || !GlobalDefines.rs_AllowedBoardSizes.Contains(boardSize))
                 {
                     isSizeValid = false;
                     Console.WriteLine("Invalid board size!. try again.");
@@ -152,6 +152,7 @@ namespace CheckersApp
         {
             char currentRowSign = 'a';
             int k_RowsPerCell = 2;
+            int rowIndex = 0;
 
             PrintColumnHeaders(i_BoardSize);
             for (int i = 0; i < i_BoardSize * k_RowsPerCell; i++) 
@@ -168,9 +169,10 @@ namespace CheckersApp
                     for (int j = 0; j < i_BoardSize; j++)
                     {
                         bool isLastCellInRow = j == i_BoardSize - 1;
-                        PrintCell(i_GameBoard[i, j], isLastCellInRow);
+                        PrintCell(i_GameBoard[rowIndex, j], isLastCellInRow);
                     }
 
+                    rowIndex++;
                     Console.WriteLine();
                 }
             }
@@ -182,10 +184,10 @@ namespace CheckersApp
         {
             char currentColumnSign = 'A';
 
-            Console.Write(" ");
+            Console.Write("  ");
             for (int i = 0; i < i_BoardSize; i++)
             {
-                Console.Write("  {0}  ", currentColumnSign);
+                Console.Write(" {0}  ", currentColumnSign);
                 currentColumnSign++;
             }
 
@@ -195,8 +197,8 @@ namespace CheckersApp
         private static void PrintRowDelimiterLine(int i_BoardSize)
         {
             char k_DelimiterSign = '=';
-            int k_SignPerCell = 5;
-            int signInRow = i_BoardSize * k_SignPerCell;
+            int k_SignPerCell = 4;
+            int signInRow = i_BoardSize * k_SignPerCell + 1;
 
             for(int i = 0; i < signInRow; i++)
             {
@@ -209,13 +211,24 @@ namespace CheckersApp
         private static void PrintCell(Cell i_Cell, bool i_IsLastInRow)
         {
             char k_CellDelimiter = '|';
-            if (!i_IsLastInRow)
+            char cellContent;
+
+            if(i_Cell.IsCellEmpty())
             {
-                Console.Write("{0} {1} ", k_CellDelimiter, "cell content");
+                cellContent = ' ';
             }
             else
             {
-                Console.Write("{0} {1} {0}", k_CellDelimiter, "cell content");
+                cellContent = GlobalDefines.GetSoldierSign(i_Cell.Soldier.Owner, i_Cell.Soldier.SoldierType);
+            }
+
+            if (!i_IsLastInRow)
+            {
+                Console.Write("{0} {1} ", k_CellDelimiter, cellContent);
+            }
+            else
+            {
+                Console.Write("{0} {1} {0}", k_CellDelimiter, cellContent);
             }
         }
     }

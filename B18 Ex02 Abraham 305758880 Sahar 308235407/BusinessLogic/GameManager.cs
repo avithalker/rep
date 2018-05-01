@@ -47,7 +47,7 @@ namespace BusinessLogic
 
         public void StartGame()
         {
-
+            m_BoardManager.InitializeBoardsData();
         }
 
         public bool IsGameEnded()
