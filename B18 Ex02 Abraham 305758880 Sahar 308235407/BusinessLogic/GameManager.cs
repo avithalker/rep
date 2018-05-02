@@ -19,8 +19,9 @@ namespace BusinessLogic
         public void InitializeGame(GameConfiguration i_GameConfiguration)
         {
             SetPlayers(i_GameConfiguration.PlayerConfigurations);
-            m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, ref players);
-            m_CurrentPlayer = players[0];
+            m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, players);
+            m_LastMove = new CheckerMoveInfo("He>Gf"); //test !!! 
+           
         }
 
         private void SetPlayers(List<PlayerConfiguration> i_playersConfiguration)
@@ -47,6 +48,7 @@ namespace BusinessLogic
 
         public void StartGame()
         {
+            m_CurrentPlayer = players[0];
             m_BoardManager.InitializeBoardsData();
         }
 

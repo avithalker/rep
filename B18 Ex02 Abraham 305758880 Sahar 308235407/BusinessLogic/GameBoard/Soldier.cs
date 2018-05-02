@@ -16,8 +16,8 @@ namespace BusinessLogic
 
         public Soldier(Location location, SoldierTypes.eSoldierTypes i_type, PlayerTitles.ePlayerTitles i_playerTitle)
         {
-            this.m_Type = i_type;
-            this.m_Location = location;
+            m_Type = i_type;
+            m_Location = location;
             m_Owner = i_playerTitle;
         }
 

@@ -13,8 +13,8 @@ namespace BusinessLogic
 
         public Location(int i_row, int i_col)
         {
-            this.m_Row = i_row;
-            this.m_Column = i_col;
+            m_Row = i_row;
+            m_Column = i_col;
         }
     }
 }

@@ -13,19 +13,19 @@ namespace BusinessLogic.GameBoard
         private Cell[,] m_Board;
         private int m_BoardSize;
 
-        public BoardManager(int i_size, ref List<Player> players)
+        public BoardManager(int i_size, List<Player> players)
         {
             m_Board = new Cell[i_size, i_size];
             m_BoardSize = i_size;
             NUM_ROWS_FOR_PLAYER = (i_size - 2) / 2;
-            this.m_Players = players;    
+            m_Players = players;    
         }
 
         public void InitializeBoardsData()
         {
             initializeSoldiersLocationInBoard(0, PlayerTitles.ePlayerTitles.PlayerOne);
             initializeEmptyCells(NUM_ROWS_FOR_PLAYER);
-            initializeSoldiersLocationInBoard(0, PlayerTitles.ePlayerTitles.PlayerTwo);
+            initializeSoldiersLocationInBoard(NUM_ROWS_FOR_PLAYER+2, PlayerTitles.ePlayerTitles.PlayerTwo);
         }
 
         private void initializeEmptyCells(int i_startRow)
@@ -43,37 +43,46 @@ namespace BusinessLogic.GameBoard
 
         private void initializeSoldiersLocationInBoard(int i_row, PlayerTitles.ePlayerTitles i_playerTitle)
         {
-            bool setSoldier = false;
+            bool setSoldierInCell = false;
+            bool setSoldierInStartOfRow = false;
 
             if (i_playerTitle == PlayerTitles.ePlayerTitles.PlayerTwo)
             {
-                setSoldier = true;
+                setSoldierInStartOfRow = true;
             }
 
-            for (int i = i_row; i < NUM_ROWS_FOR_PLAYER; i++)
+            
+
+            for (int i = 0; i < NUM_ROWS_FOR_PLAYER; i++)
             {
+                setSoldierInCell = setSoldierInStartOfRow;
+
                 for (int j = 0; j < m_Board.GetLength(1); j++)
                 {
-                    if (setSoldier)
+                    m_Board[i_row, j] = new Cell();
+
+                    if (setSoldierInCell)
                     {
-                        m_Board[i, j] = createNewCell(i, j, SoldierTypes.eSoldierTypes.Regular, i_playerTitle);
-                        setSoldier = false;
+                        m_Board[i_row, j].Soldier = CreateNewSoldier(i,j,i_playerTitle);
+                        setSoldierInCell = false;
                     }
                     else
                     {
-                        m_Board[i, j] = new Cell();
-                        setSoldier = true;
+                        setSoldierInCell = true;
                     }
                 }
+
+                setSoldierInStartOfRow = !setSoldierInStartOfRow;
+                i_row++;
             }
         }
 
-        private Cell createNewCell(int i_row, int i_col,  SoldierTypes.eSoldierTypes i_soldierType, PlayerTitles.ePlayerTitles i_playerTitle)
+        private Soldier CreateNewSoldier(int i_row, int i_col, PlayerTitles.ePlayerTitles i_playerTitle)
         {
-            Soldier k_soldier = new Soldier(new Location(i_row, i_col), i_soldierType, i_playerTitle);
+            Soldier k_soldier = new Soldier(new Location(i_row, i_col), SoldierTypes.eSoldierTypes.Regular, i_playerTitle);
             GetPlayerByTitle(i_playerTitle).AddSoldier(k_soldier);
 
-            return new Cell(k_soldier);
+            return k_soldier;
         }
 
         private Player GetPlayerByTitle(PlayerTitles.ePlayerTitles i_playerTitle)
