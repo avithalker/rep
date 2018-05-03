@@ -52,6 +52,7 @@
     <Compile Include="Enums\GameModes.cs" />
     <Compile Include="GameBoard\CheckerMoveInfo.cs" />
     <Compile Include="GameBoard\Location.cs" />
+    <Compile Include="GameBoard\Move.cs" />
     <Compile Include="GameBoard\Soldier.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="GlobalDefines.cs" />

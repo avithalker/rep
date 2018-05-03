@@ -20,7 +20,7 @@ namespace BusinessLogic
         {
             SetPlayers(i_GameConfiguration.PlayerConfigurations);
             m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, players);
-            m_LastMove = new CheckerMoveInfo("He>Gf"); //test !!! 
+            m_LastMove = new CheckerMoveInfo(" ", players[0].PlayerName);
            
         }
 
@@ -67,22 +67,29 @@ namespace BusinessLogic
         {
             ActionResult k_ActionResult = null;
 
-            if(!IsMoveSyntaxValid())
+            if(!IsMoveSyntaxValid(i_Action))
             {
                 k_ActionResult = new ActionResult(false, "Invalid command syntax");
             }
             else
             {
-                k_ActionResult = m_BoardManager.SetCheckersMove(i_Action); // here need to return if the action succeeded or not. if not, fill the message.
+                k_ActionResult = m_BoardManager.SetCheckersMove(i_Action, m_CurrentPlayer); // here need to return if the action succeeded or not. if not, fill the message.
             }
 
             return k_ActionResult;
            
         }
 
-        private bool IsMoveSyntaxValid()
+        private bool IsMoveSyntaxValid(String i_Action)
         {
-            return false;
+            String[] moves = i_Action.Split('>');
+
+            if(moves.Length != 2)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public GameSummery GetGameSummery()

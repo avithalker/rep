@@ -2,6 +2,7 @@
 using BusinessLogic.GameBoard;
 using BusinessLogic.Enums;
 using BusinessLogic.Dtos;
+using System.Linq;
 
 namespace BusinessLogic.GameBoard
 {
@@ -15,7 +16,7 @@ namespace BusinessLogic.GameBoard
 
         public BoardManager(int i_size, List<Player> players)
         {
-            m_Board = new Cell[i_size, i_size];
+            m_Board = new Cell[i_size, i_size];  //board[row][col]
             m_BoardSize = i_size;
             NUM_ROWS_FOR_PLAYER = (i_size - 2) / 2;
             m_Players = players;    
@@ -113,9 +114,38 @@ namespace BusinessLogic.GameBoard
             set { m_Board = value; }
         }
 
-        public ActionResult SetCheckersMove(string i_Action)
+        public ActionResult SetCheckersMove(string i_Action, Player i_CurrentPlayer)
         {
-            return new ActionResult(true,string.Empty);
+            string[] k_move = i_Action.Split('>');
+            Move k_desiredMove = new Move(k_move[0], k_move[1]);
+            ActionResult k_actionResult;
+            Move[] k_leagelMoves = GetLeagalMovesOfPlayer(i_CurrentPlayer);
+
+            if(IsExistInMovesArray(k_leagelMoves, k_desiredMove))
+            {
+                SetMoveInBoard(k_desiredMove);
+                k_actionResult = new ActionResult(true, string.Empty);
+            }
+            else
+            {
+                k_actionResult = new ActionResult(false, "Error- WrongMove ");  //need to create 2 differenr error-types....
+            }
+
+            return k_actionResult;
+        }
+
+        public void SetMoveInBoard(Move i_Move)
+        {
+        }
+
+        private Move[] GetLeagalMovesOfPlayer(Player i_CurrentPlayer)
+        {
+            return null;
+        }
+
+        private bool IsExistInMovesArray(Move[] i_MoveArray, Move i_Move)
+        {
+            return false;
         }
     }
 }

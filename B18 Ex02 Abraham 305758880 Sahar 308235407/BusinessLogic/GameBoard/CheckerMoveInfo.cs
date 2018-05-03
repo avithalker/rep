@@ -32,7 +32,15 @@ namespace BusinessLogic.GameBoard
 
         public CheckerMoveInfo(String i_Action, String i_PlayerName)
         {
-            
+            m_PlayerName = i_PlayerName;
+
+            if ( i_Action != null)
+            {
+                String[] moves = i_Action.Split('>');
+                m_PreviousCell = moves[0];
+                m_CurrentCell = moves[1];
+            }
+           
         }
     }
 }
