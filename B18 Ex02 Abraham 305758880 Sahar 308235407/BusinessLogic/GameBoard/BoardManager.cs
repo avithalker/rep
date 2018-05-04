@@ -131,7 +131,7 @@ namespace BusinessLogic.GameBoard
             return true;
         }
 
-        private List<Move> GetLegalMovesOfPlayer(Player i_CurrentPlayer)
+        public List<Move> GetLegalMovesOfPlayer(Player i_CurrentPlayer)
         {
             List<Move> freeMoves = new List<Move>();
             List<Move> eatMoves = new List<Move>();

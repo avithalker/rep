@@ -2,13 +2,14 @@
 using BusinessLogic.Configuration;
 using BusinessLogic.GameBoard;
 using BusinessLogic.Dtos;
+using System;
 
 namespace BusinessLogic
 {
     public class GameManager
     {
         private BoardManager m_BoardManager;
-        private List<Player> players;
+        private List<Player> m_players;
         private CheckerMoveInfo m_LastMove;
         private int m_CurrentPlayerIndex;
 
@@ -30,14 +31,14 @@ namespace BusinessLogic
         public void InitializeGame(GameConfiguration i_GameConfiguration)
         {
             SetPlayers(i_GameConfiguration.PlayerConfigurations);
-            m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, players);
+            m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, m_players);
         }
 
         private void SetPlayers(List<PlayerConfiguration> i_playersConfiguration)
         {
-            players = new List<Player>();
-            players.Add(new Player(i_playersConfiguration[0], Enums.PlayerTitles.ePlayerTitles.PlayerOne));
-            players.Add(new Player(i_playersConfiguration[1], Enums.PlayerTitles.ePlayerTitles.PlayerTwo));
+            m_players = new List<Player>();
+            m_players.Add(new Player(i_playersConfiguration[0], Enums.PlayerTitles.ePlayerTitles.PlayerOne));
+            m_players.Add(new Player(i_playersConfiguration[1], Enums.PlayerTitles.ePlayerTitles.PlayerTwo));
         }
 
         public void StartGame()
@@ -54,7 +55,7 @@ namespace BusinessLogic
         public PlayerInfo GetCurrentPlayerTurn()
         {
             PlayerInfo playerInfo = new PlayerInfo();
-            Player currentPlayer = players[m_CurrentPlayerIndex];
+            Player currentPlayer = m_players[m_CurrentPlayerIndex];
 
             playerInfo.PlayerName = currentPlayer.PlayerName;
             playerInfo.PlayerSign = currentPlayer.PlayerSign;
@@ -66,8 +67,8 @@ namespace BusinessLogic
 
         public ActionResult HandlePlayerAction(string i_Action) // handle player move/Quit game
         {
-            ActionResult ActionResult = null;
-
+            ActionResult actionResult = null;
+            
             if (i_Action == "Q")
             {
                 QuitCurrentPlayer();
@@ -78,15 +79,20 @@ namespace BusinessLogic
 
                 if (Move != null)
                 {
-                    ActionResult = m_BoardManager.MoveChecker(Move, players[m_CurrentPlayerIndex]);
+                    actionResult = m_BoardManager.MoveChecker(Move, m_players[m_CurrentPlayerIndex]);
+                    if(actionResult.IsSucceed)
+                    {
+                        HandleEndOfTurn();
+
+                    }
                 }
                 else
                 {
-                    ActionResult = new ActionResult(false, "Invalid command syntax");
+                    actionResult = new ActionResult(false, "Invalid command syntax");
                 }
             }
 
-            return ActionResult;
+            return actionResult;
         }
 
         private void QuitCurrentPlayer()
@@ -100,13 +106,13 @@ namespace BusinessLogic
 
         private void ChangePlayerTurn()
         {
-            m_CurrentPlayerIndex = (m_CurrentPlayerIndex + 1) % players.Count;
+            m_CurrentPlayerIndex = (m_CurrentPlayerIndex + 1) % m_players.Count;
         }
 
         private void HandleEndOfTurn()
         {
             ChangePlayerTurn();
-            if (players[m_CurrentPlayerIndex].PlayerType == Enums.PlayerTypes.ePlayerTypes.Computer)
+            if (m_players[m_CurrentPlayerIndex].PlayerType == Enums.PlayerTypes.ePlayerTypes.Computer)
             {
                 PlayComputerMove();
             }
@@ -114,6 +120,8 @@ namespace BusinessLogic
 
         private void PlayComputerMove()
         {
+            List<Move> legalMoves = m_BoardManager.GetLegalMovesOfPlayer(m_players[m_CurrentPlayerIndex]);
+            Move chosenMove = ComputerPlayer.SelectMoveAction(legalMoves);
 
         }
 
