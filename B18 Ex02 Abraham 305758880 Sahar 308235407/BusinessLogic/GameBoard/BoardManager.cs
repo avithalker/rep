@@ -124,7 +124,7 @@ namespace BusinessLogic.GameBoard
                 int rowOfSoldier = System.Math.Min(i_Move.CurrentLocation.Row, i_Move.NextLocation.Row) + 1;
                 Location eatenSoldierLocation = new Location(rowOfSoldier, colOfSoldier);
                 Soldier soldierToRemove = GetCellByLocation(eatenSoldierLocation).Soldier;
-
+                
                 GetPlayerByTitle(soldierToRemove.Owner).RemoveSoldierFromList(soldierToRemove);
                 GetCellByLocation(eatenSoldierLocation).Soldier = null;
             }
@@ -133,6 +133,8 @@ namespace BusinessLogic.GameBoard
                 nextLocationCell.Soldier = currentLocationCell.Soldier;
                 currentLocationCell.Soldier = null;
             }
+
+
         }
 
         private bool IsEatMove(Move i_Move)
