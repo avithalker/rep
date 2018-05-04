@@ -80,7 +80,7 @@ namespace CheckersApp
             {
                 UIManager.CleanScreen();
                 UIManager.PrintGameBoard(m_GameManager.Board, m_GameManager.BoardSize);
-                if (m_GameManager != null)
+                if (m_GameManager.LastCheckerMove != null)
                 {
                     UIManager.PrintLastMove(m_GameManager.LastCheckerMove);
                 }

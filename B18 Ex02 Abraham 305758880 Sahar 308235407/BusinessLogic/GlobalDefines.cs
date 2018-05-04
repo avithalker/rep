@@ -20,13 +20,13 @@ namespace BusinessLogic
                         {
                             case SoldierTypes.eSoldierTypes.Regular:
                                 {
-                                    soldierSign = 'X';
+                                    soldierSign = 'O';
                                 }
 
                                 break;
                             case SoldierTypes.eSoldierTypes.King:
                                 {
-                                    soldierSign = 'K';
+                                    soldierSign = 'U';
                                 }
 
                                 break;
@@ -40,13 +40,13 @@ namespace BusinessLogic
                         {
                             case SoldierTypes.eSoldierTypes.Regular:
                                 {
-                                    soldierSign = 'O';
+                                    soldierSign = 'X';
                                 }
 
                                 break;
                             case SoldierTypes.eSoldierTypes.King:
                                 {
-                                    soldierSign = 'U';
+                                    soldierSign = 'K';
                                 }
 
                                 break;

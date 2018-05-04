@@ -67,12 +67,16 @@ namespace BusinessLogic
         public int Score
         {
             get { return m_Score; }
-            set { m_Score = value; }
         }
 
         public void AddSoldier(Soldier i_soldier)
         {
             m_Soldiers.Add(i_soldier);
+        }
+
+        public void AddPoints(int i_Points)
+        {
+            m_Score += i_Points;
         }
     }
 }
