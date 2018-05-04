@@ -38,13 +38,13 @@ namespace BusinessLogic.GameBoard
                 move.CurrentLocation = Location.Parse(locations[0]);
                 move.NextLocation = Location.Parse(locations[1]);
 
-                if (move.CurrentLocation == null || k_move.NextLocation == null)
+                if (move.CurrentLocation == null || move.NextLocation == null)
                 {
-                    k_move = null;
+                    move = null;
                 }
             }
 
-            return k_move;
+            return move;
         }
 
     }

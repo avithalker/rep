@@ -12,6 +12,19 @@ namespace BusinessLogic
         private CheckerMoveInfo m_LastMove;
         private int m_CurrentPlayerIndex;
 
+        public void InitializeGame(GameConfiguration i_GameConfiguration)
+        {
+            SetPlayers(i_GameConfiguration.PlayerConfigurations);
+            m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, players);
+        }
+
+        private void SetPlayers(List<PlayerConfiguration> i_playersConfiguration)
+        {
+            players = new List<Player>();
+            players.Add(new Player(i_playersConfiguration[0], Enums.PlayerTitles.ePlayerTitles.PlayerOne));
+            players.Add(new Player(i_playersConfiguration[1], Enums.PlayerTitles.ePlayerTitles.PlayerTwo));
+        }
+
         public int BoardSize
         {
             get { return m_BoardManager.BoardSize; }
@@ -25,19 +38,6 @@ namespace BusinessLogic
         public CheckerMoveInfo LastCheckerMove
         {
             get { return m_LastMove; }
-        }
-
-        public void InitializeGame(GameConfiguration i_GameConfiguration)
-        {
-            SetPlayers(i_GameConfiguration.PlayerConfigurations);
-            m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, players);
-        }
-
-        private void SetPlayers(List<PlayerConfiguration> i_playersConfiguration)
-        {
-            players = new List<Player>();
-            players.Add(new Player(i_playersConfiguration[0], Enums.PlayerTitles.ePlayerTitles.PlayerOne));
-            players.Add(new Player(i_playersConfiguration[1], Enums.PlayerTitles.ePlayerTitles.PlayerTwo));
         }
 
         public void StartGame()
@@ -70,7 +70,7 @@ namespace BusinessLogic
 
             if (i_Action == "Q")
             {
-                QuitCurretPlayer();
+                QuitCurrentPlayer();
             }
             else
             {
@@ -78,15 +78,12 @@ namespace BusinessLogic
 
                 if (Move != null)
                 {
-<<<<<<< HEAD
                     QuitCurrentPlayer();
-=======
                     ActionResult = m_BoardManager.MoveChecker(Move, players[m_CurrentPlayerIndex]);
                 }
                 else
                 {
                     ActionResult = new ActionResult(false, "Invalid command syntax");
->>>>>>> f2c5d3efd8188f78e4b30da64e63b8957fdb4c40
                 }
             }
 
@@ -110,7 +107,7 @@ namespace BusinessLogic
         private void HandleEndOfTurn()
         {
             ChangePlayerTurn();
-            if (players[m_CurrentPlayerIndex].PlayerType == Enums.PlayerTypes.ePlayerTypes.Computer)
+            if(players[m_CurrentPlayerIndex].PlayerType == Enums.PlayerTypes.ePlayerTypes.Computer)
             {
                 PlayComputerMove();
             }
@@ -120,16 +117,16 @@ namespace BusinessLogic
         {
 
         }
-
+            
         private int CalculatePointsOfPlayer(Player i_Player)
         {
             int gamePoints = 0;
             int k_pointsForRegularSoldier = 1;
             int k_pointsForKingSoldier = 4;
 
-            foreach (Soldier soldier in i_Player.Soldiers)
+            foreach(Soldier soldier in i_Player.Soldiers)
             {
-                if (soldier.SoldierType == Enums.SoldierTypes.eSoldierTypes.Regular)
+                if(soldier.SoldierType == Enums.SoldierTypes.eSoldierTypes.Regular)
                 {
                     gamePoints += k_pointsForRegularSoldier;
                 }
