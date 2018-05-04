@@ -14,6 +14,14 @@ namespace BusinessLogic.GameBoard
         private Cell[,] m_Board;
         private int m_BoardSize;
 
+        public BoardManager(int i_size, List<Player> players)
+        {
+            m_Board = new Cell[i_size, i_size];  //board[row][col]
+            m_BoardSize = i_size;
+            NUM_ROWS_FOR_PLAYER = (i_size - 2) / 2;
+            m_Players = players;    
+        }
+
         public int BoardSize
         {
             get { return m_BoardSize; }
@@ -24,14 +32,6 @@ namespace BusinessLogic.GameBoard
         {
             get { return m_Board; }
             set { m_Board = value; }
-        }
-
-        public BoardManager(int i_size, List<Player> players)
-        {
-            m_Board = new Cell[i_size, i_size];  //board[row][col]
-            m_BoardSize = i_size;
-            NUM_ROWS_FOR_PLAYER = (i_size - 2) / 2;
-            m_Players = players;    
         }
 
         public void InitializeBoardsData()
