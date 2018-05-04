@@ -124,16 +124,16 @@ namespace BusinessLogic
             Move chosenMove = ComputerPlayer.SelectMoveAction(legalMoves);
 
         }
-
+            
         private int CalculatePointsOfPlayer(Player i_Player)
         {
             int gamePoints = 0;
             int k_pointsForRegularSoldier = 1;
             int k_pointsForKingSoldier = 4;
 
-            foreach (Soldier soldier in i_Player.Soldiers)
+            foreach(Soldier soldier in i_Player.Soldiers)
             {
-                if (soldier.SoldierType == Enums.SoldierTypes.eSoldierTypes.Regular)
+                if(soldier.SoldierType == Enums.SoldierTypes.eSoldierTypes.Regular)
                 {
                     gamePoints += k_pointsForRegularSoldier;
                 }

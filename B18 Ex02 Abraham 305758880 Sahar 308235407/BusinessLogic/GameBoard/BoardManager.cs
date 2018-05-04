@@ -4,6 +4,7 @@ using BusinessLogic.Enums;
 using BusinessLogic.Dtos;
 using System.Linq;
 
+
 namespace BusinessLogic.GameBoard
 {
     public class BoardManager
@@ -117,18 +118,18 @@ namespace BusinessLogic.GameBoard
             if(IsEatMove(i_Move))
             {
                 Cell nextLocationCell = GetCellByLocation(i_Move.NextLocation);
-                Cell currentLocationCell = GetCellByLocation(i_Move.CurrentLocation);
-                Soldier eatenSoldier = nextLocationCell.Soldier;
-                GetPlayerByTitle(eatenSoldier.Owner).RemoveSoldierFromList(eatenSoldier);
-                nextLocationCell.Soldier = currentLocationCell.Soldier;
-                currentLocationCell.Soldier = null;
-                
+                int colOfSoldier = System.Math.Min(i_Move.CurrentLocation.Col, i_Move.NextLocation.Col) + 1;
+                int rowOfSoldier = System.Math.Min(i_Move.CurrentLocation.Row, i_Move.NextLocation.Row) + 1;
+                Location eatenSoldierLocation = new Location(rowOfSoldier, colOfSoldier);
+                Soldier soldierToRemove = GetCellByLocation(eatenSoldierLocation).Soldier;
+                GetPlayerByTitle(soldierToRemove.Owner).RemoveSoldierFromList(soldierToRemove);
+                GetCellByLocation(eatenSoldierLocation).Soldier = null;
             }
         }
 
         private bool IsEatMove(Move i_Move)
         {
-            return true;
+            return System.Math.Abs(i_Move.CurrentLocation.Col - i_Move.NextLocation.Col) > 1;
         }
 
         public List<Move> GetLegalMovesOfPlayer(Player i_CurrentPlayer)
