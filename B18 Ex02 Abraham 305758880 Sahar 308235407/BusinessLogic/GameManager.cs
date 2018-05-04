@@ -76,21 +76,28 @@ namespace BusinessLogic
             }
             else
             {
-                Move Move = Move.Parse(i_Action);
+                Move move = Move.Parse(i_Action);
 
-                if (Move != null)
+                if (move != null)
                 {
-
-                    actionResult = m_BoardManager.MoveChecker(Move, m_players[m_CurrentPlayerIndex]);
-                    if(actionResult.IsSucceed)
-                    {
-                        HandleEndOfTurn();
-                    }
+                    actionResult = MoveChecker(move);
                 }
                 else
                 {
                     actionResult = new ActionResult(false, "Invalid command syntax");
                 }
+            }
+
+            return actionResult;
+        }
+
+        private ActionResult MoveChecker(Move i_Move)
+        {
+            ActionResult actionResult = m_BoardManager.MoveChecker(i_Move, m_players[m_CurrentPlayerIndex]);
+
+            if (actionResult.IsSucceed)
+            {
+                HandleEndOfTurn();
             }
 
             return actionResult;
@@ -124,7 +131,7 @@ namespace BusinessLogic
         {
             List<Move> legalMoves = m_BoardManager.GetLegalMovesOfPlayer(m_players[m_CurrentPlayerIndex]);
             Move chosenMove = ComputerPlayer.SelectMoveAction(legalMoves);
-
+            MoveChecker(chosenMove);
         }
             
         private int CalculatePointsOfPlayer(Player i_Player)
