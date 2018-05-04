@@ -38,11 +38,11 @@ namespace BusinessLogic.GameBoard
         public void InitializeBoardsData()
         {
             InitializeSoldiersLocationInBoard(0, PlayerTitles.ePlayerTitles.PlayerOne);
-            InitializeEmptyCells(NUM_ROWS_FOR_PLAYER);
+            initializeEmptyCells(NUM_ROWS_FOR_PLAYER);
             InitializeSoldiersLocationInBoard(NUM_ROWS_FOR_PLAYER+2, PlayerTitles.ePlayerTitles.PlayerTwo);
         }
 
-        private void InitializeEmptyCells(int i_startRow)
+        private void initializeEmptyCells(int i_startRow)
         {
             for (int i = 0; i < SPACES_BETWEEN_PLAYERS; i++)
             {
@@ -115,15 +115,23 @@ namespace BusinessLogic.GameBoard
 
         public void MakeMove(Move i_Move)
         {
-            if(IsEatMove(i_Move))
+            Cell nextLocationCell = GetCellByLocation(i_Move.NextLocation);
+            Cell currentLocationCell = GetCellByLocation(i_Move.CurrentLocation);
+
+            if (IsEatMove(i_Move))
             {
-                Cell nextLocationCell = GetCellByLocation(i_Move.NextLocation);
                 int colOfSoldier = System.Math.Min(i_Move.CurrentLocation.Col, i_Move.NextLocation.Col) + 1;
                 int rowOfSoldier = System.Math.Min(i_Move.CurrentLocation.Row, i_Move.NextLocation.Row) + 1;
                 Location eatenSoldierLocation = new Location(rowOfSoldier, colOfSoldier);
                 Soldier soldierToRemove = GetCellByLocation(eatenSoldierLocation).Soldier;
+
                 GetPlayerByTitle(soldierToRemove.Owner).RemoveSoldierFromList(soldierToRemove);
                 GetCellByLocation(eatenSoldierLocation).Soldier = null;
+            }
+            else
+            {
+                nextLocationCell.Soldier = currentLocationCell.Soldier;
+                currentLocationCell.Soldier = null;
             }
         }
 
@@ -152,7 +160,7 @@ namespace BusinessLogic.GameBoard
                 }
             }
 
-            if(eatMoves.Count != 0)
+            if(eatMoves != null)
             {
                 finalMoveList = eatMoves;
             }
