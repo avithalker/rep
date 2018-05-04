@@ -117,6 +117,7 @@ namespace BusinessLogic.GameBoard
         {
             Cell nextLocationCell = GetCellByLocation(i_Move.NextLocation);
             Cell currentLocationCell = GetCellByLocation(i_Move.CurrentLocation);
+            Soldier currentSoldier = currentLocationCell.Soldier;
 
             if (IsEatMove(i_Move))
             {
@@ -124,17 +125,14 @@ namespace BusinessLogic.GameBoard
                 int rowOfSoldier = System.Math.Min(i_Move.CurrentLocation.Row, i_Move.NextLocation.Row) + 1;
                 Location eatenSoldierLocation = new Location(rowOfSoldier, colOfSoldier);
                 Soldier soldierToRemove = GetCellByLocation(eatenSoldierLocation).Soldier;
-                
+
                 GetPlayerByTitle(soldierToRemove.Owner).RemoveSoldierFromList(soldierToRemove);
                 GetCellByLocation(eatenSoldierLocation).Soldier = null;
             }
-            else
-            {
-                nextLocationCell.Soldier = currentLocationCell.Soldier;
-                currentLocationCell.Soldier = null;
-            }
-
-
+            
+                nextLocationCell.Soldier = currentLocationCell.Soldier; //put the soldier in the nextLocation
+                currentLocationCell.Soldier = null; //make the cell empty
+                currentSoldier.Location = i_Move.NextLocation; //update Soldier's location
         }
 
         private bool IsEatMove(Move i_Move)
