@@ -70,7 +70,7 @@ namespace BusinessLogic
 
             if (i_Action == "Q")
             {
-                QuitCurretPlayer();
+                QuitCurrentPlayer();
             }
             else
             {
@@ -78,15 +78,11 @@ namespace BusinessLogic
 
                 if (Move != null)
                 {
-<<<<<<< HEAD
-                    QuitCurrentPlayer();
-=======
                     ActionResult = m_BoardManager.MoveChecker(Move, players[m_CurrentPlayerIndex]);
                 }
                 else
                 {
                     ActionResult = new ActionResult(false, "Invalid command syntax");
->>>>>>> f2c5d3efd8188f78e4b30da64e63b8957fdb4c40
                 }
             }
 
