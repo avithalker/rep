@@ -2,7 +2,8 @@
 using BusinessLogic.Configuration;
 using BusinessLogic.GameBoard;
 using BusinessLogic.Dtos;
-using System;
+using BusinessLogic.Enums;
+
 
 namespace BusinessLogic
 {
@@ -12,6 +13,19 @@ namespace BusinessLogic
         private List<Player> m_players;
         private CheckerMoveInfo m_LastMove;
         private int m_CurrentPlayerIndex;
+
+        public void InitializeGame(GameConfiguration i_GameConfiguration)
+        {
+            SetPlayers(i_GameConfiguration.PlayerConfigurations);
+            m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, m_players);
+        }
+
+        private void SetPlayers(List<PlayerConfiguration> i_playersConfiguration)
+        {
+            m_players = new List<Player>();
+            m_players.Add(new Player(i_playersConfiguration[0], PlayerTitles.ePlayerTitles.PlayerOne));
+            m_players.Add(new Player(i_playersConfiguration[1], PlayerTitles.ePlayerTitles.PlayerTwo));
+        }
 
         public int BoardSize
         {
@@ -26,19 +40,6 @@ namespace BusinessLogic
         public CheckerMoveInfo LastCheckerMove
         {
             get { return m_LastMove; }
-        }
-
-        public void InitializeGame(GameConfiguration i_GameConfiguration)
-        {
-            SetPlayers(i_GameConfiguration.PlayerConfigurations);
-            m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, m_players);
-        }
-
-        private void SetPlayers(List<PlayerConfiguration> i_playersConfiguration)
-        {
-            m_players = new List<Player>();
-            m_players.Add(new Player(i_playersConfiguration[0], Enums.PlayerTitles.ePlayerTitles.PlayerOne));
-            m_players.Add(new Player(i_playersConfiguration[1], Enums.PlayerTitles.ePlayerTitles.PlayerTwo));
         }
 
         public void StartGame()
@@ -79,11 +80,11 @@ namespace BusinessLogic
 
                 if (Move != null)
                 {
+
                     actionResult = m_BoardManager.MoveChecker(Move, m_players[m_CurrentPlayerIndex]);
                     if(actionResult.IsSucceed)
                     {
                         HandleEndOfTurn();
-
                     }
                 }
                 else
@@ -112,7 +113,8 @@ namespace BusinessLogic
         private void HandleEndOfTurn()
         {
             ChangePlayerTurn();
-            if (m_players[m_CurrentPlayerIndex].PlayerType == Enums.PlayerTypes.ePlayerTypes.Computer)
+
+            if (m_players[m_CurrentPlayerIndex].PlayerType == PlayerTypes.ePlayerTypes.Computer)
             {
                 PlayComputerMove();
             }
@@ -133,7 +135,7 @@ namespace BusinessLogic
 
             foreach(Soldier soldier in i_Player.Soldiers)
             {
-                if(soldier.SoldierType == Enums.SoldierTypes.eSoldierTypes.Regular)
+                if(soldier.SoldierType == SoldierTypes.eSoldierTypes.Regular)
                 {
                     gamePoints += k_pointsForRegularSoldier;
                 }
