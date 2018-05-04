@@ -15,13 +15,12 @@ namespace BusinessLogic
         private List<Player> players;
         private CheckerMoveInfo m_LastMove;
         private Player m_CurrentPlayer;
+        private int m_CurrentPlayerIndex;
 
         public void InitializeGame(GameConfiguration i_GameConfiguration)
         {
             SetPlayers(i_GameConfiguration.PlayerConfigurations);
-            m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, players);
-            //m_LastMove = new CheckerMoveInfo(" ", players[0].PlayerName);
-           
+            m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, players);           
         }
 
         private void SetPlayers(List<PlayerConfiguration> i_playersConfiguration)
@@ -48,6 +47,7 @@ namespace BusinessLogic
 
         public void StartGame()
         {
+            m_CurrentPlayerIndex = 0;
             m_CurrentPlayer = players[0];
             m_BoardManager.InitializeBoardsData();
         }
@@ -95,6 +95,46 @@ namespace BusinessLogic
         public GameSummery GetGameSummery()
         {
             return new GameSummery(); // here need to return all the end game info like the winner name, score, game state(TIE/WINNER)
+        }
+
+        private void ChangePlayerTurn()
+        {
+            m_CurrentPlayerIndex = (m_CurrentPlayerIndex + 1) % players.Count;
+        }
+
+        private void HandleEndOfTurn()
+        {
+            ChangePlayerTurn();
+            if(players[m_CurrentPlayerIndex].PlayerType == Enums.PlayerTypes.ePlayerTypes.Computer)
+            {
+                PlayComputerMove();
+            }
+        }
+
+        private void PlayComputerMove()
+        {
+
+        }
+            
+        private int CalculatePointsOfPlayer(Player i_Player)
+        {
+            int gamePoints = 0;
+            int k_pointsForRegularSoldier = 1;
+            int k_pointsForKingSoldier = 4;
+
+            foreach(Soldier soldier in i_Player.Soldiers)
+            {
+                if(soldier.SoldierType == Enums.SoldierTypes.eSoldierTypes.Regular)
+                {
+                    gamePoints += k_pointsForRegularSoldier;
+                }
+                else
+                {
+                    gamePoints += k_pointsForKingSoldier;
+                }
+            }
+
+            return gamePoints;
         }
     }
 }
