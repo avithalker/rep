@@ -40,17 +40,17 @@ namespace CheckersApp
             PlayerConfiguration mainPlayerConfiguration = new PlayerConfiguration();
 
             mainPlayerConfiguration.PlayerName = UIManager.GetPlayerName(currentPlayer);
-            mainPlayerConfiguration.PlayerType = PlayerTypes.ePlayerTypes.Human;
+            mainPlayerConfiguration.PlayerType = ePlayerTypes.Human;
             gameConfiguration.AddPlayerConfiguration(mainPlayerConfiguration);
             gameConfiguration.BoardSize = UIManager.GetBoardSize();
             gameConfiguration.GameMode = UIManager.GetGameMode();
-            if (gameConfiguration.GameMode == GameModes.eGameModes.TwoPlayersGame)
+            if (gameConfiguration.GameMode == eGameModes.TwoPlayersGame)
             {
                 PlayerConfiguration secondaryPlayerConfiguration = new PlayerConfiguration();
 
                 currentPlayer++;
                 secondaryPlayerConfiguration.PlayerName = UIManager.GetPlayerName(currentPlayer);
-                secondaryPlayerConfiguration.PlayerType = PlayerTypes.ePlayerTypes.Human;
+                secondaryPlayerConfiguration.PlayerType = ePlayerTypes.Human;
                 gameConfiguration.AddPlayerConfiguration(secondaryPlayerConfiguration);
             }
 

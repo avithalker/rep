@@ -6,21 +6,21 @@ namespace BusinessLogic.Configuration
     public class GameConfiguration
     {
         private int m_BoardSize;
-        private GameModes.eGameModes m_GameMode;
+        private eGameModes m_GameMode;
         private List<PlayerConfiguration> m_PlayerConfigurations;
 
-        public GameModes.eGameModes GameMode
+        public eGameModes GameMode
         {
             get { return m_GameMode; }
             set
             {
                 m_GameMode = value;
-                if(m_GameMode == GameModes.eGameModes.OnePlayerGame)
+                if(m_GameMode == eGameModes.OnePlayerGame)
                 {
                     PlayerConfiguration computerPlayerConfig = new PlayerConfiguration();
 
                     computerPlayerConfig.PlayerName = "Computer";
-                    computerPlayerConfig.PlayerType = PlayerTypes.ePlayerTypes.Computer;
+                    computerPlayerConfig.PlayerType = ePlayerTypes.Computer;
                     AddPlayerConfiguration(computerPlayerConfig);
                 }
             }

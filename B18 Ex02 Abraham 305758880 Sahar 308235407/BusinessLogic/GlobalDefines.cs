@@ -8,23 +8,23 @@ namespace BusinessLogic
         public const int k_MaxNameLength = 20;
         public static readonly List<int> rs_AllowedBoardSizes = new List<int> { 6, 8, 10 };
 
-        public static char GetSoldierSign(PlayerTitles.ePlayerTitles i_PlayerTitle, SoldierTypes.eSoldierTypes i_SoldierType)
+        public static char GetSoldierSign(ePlayerTitles i_PlayerTitle, eSoldierTypes i_SoldierType)
         {
             char soldierSign = 'X';
 
             switch (i_PlayerTitle)
             {
-                case PlayerTitles.ePlayerTitles.PlayerOne:
+                case ePlayerTitles.PlayerOne:
                     {
                         switch (i_SoldierType)
                         {
-                            case SoldierTypes.eSoldierTypes.Regular:
+                            case eSoldierTypes.Regular:
                                 {
                                     soldierSign = 'O';
                                 }
 
                                 break;
-                            case SoldierTypes.eSoldierTypes.King:
+                            case eSoldierTypes.King:
                                 {
                                     soldierSign = 'U';
                                 }
@@ -34,17 +34,17 @@ namespace BusinessLogic
                     }
 
                     break;
-                case PlayerTitles.ePlayerTitles.PlayerTwo:
+                case ePlayerTitles.PlayerTwo:
                     {
                         switch (i_SoldierType)
                         {
-                            case SoldierTypes.eSoldierTypes.Regular:
+                            case eSoldierTypes.Regular:
                                 {
                                     soldierSign = 'X';
                                 }
 
                                 break;
-                            case SoldierTypes.eSoldierTypes.King:
+                            case eSoldierTypes.King:
                                 {
                                     soldierSign = 'K';
                                 }

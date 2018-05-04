@@ -44,7 +44,7 @@
     <Compile Include="Configuration\GameConfiguration.cs" />
     <Compile Include="Configuration\PlayerConfiguration.cs" />
     <Compile Include="Dtos\GameSummery.cs" />
-    <Compile Include="Enums\EndGameStates.cs" />
+    <Compile Include="Enums\GameStatus.cs" />
     <Compile Include="Enums\PlayerTitles.cs" />
     <Compile Include="Enums\PlayerTypes.cs" />
     <Compile Include="Enums\SoldierTypes.cs" />

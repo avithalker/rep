@@ -1,12 +1,9 @@
 ﻿namespace BusinessLogic.Enums
 {
-    public class PlayerTitles
+    public enum ePlayerTitles
     {
-        public enum ePlayerTitles
-        {
-            PlayerOne = 1,
-            PlayerTwo = 2,
-            None = 3,
-        }
+        PlayerOne = 1,
+        PlayerTwo = 2,
+        None = 3,
     }
 }

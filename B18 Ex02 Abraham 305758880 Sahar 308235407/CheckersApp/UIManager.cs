@@ -84,7 +84,7 @@ namespace CheckersApp
             return answer == 'Y';
         }
 
-        public static GameModes.eGameModes GetGameMode()
+        public static eGameModes GetGameMode()
         {
             int gameModeInput;
             bool isGameModeValid;
@@ -93,9 +93,9 @@ namespace CheckersApp
             do
             {
                 isGameModeValid = true;
-                Console.WriteLine("Enter the game mode. {0}- for {1}, {2}- for {3}:", (int)GameModes.eGameModes.OnePlayerGame, GameModes.eGameModes.OnePlayerGame, (int)GameModes.eGameModes.TwoPlayersGame, GameModes.eGameModes.TwoPlayersGame);
+                Console.WriteLine("Enter the game mode. {0}- for {1}, {2}- for {3}:", (int)eGameModes.OnePlayerGame, eGameModes.OnePlayerGame, (int)eGameModes.TwoPlayersGame, eGameModes.TwoPlayersGame);
                 isInputValid = int.TryParse(Console.ReadLine(), out gameModeInput);
-                if (!isInputValid || (gameModeInput != (int)GameModes.eGameModes.OnePlayerGame && gameModeInput != (int)GameModes.eGameModes.TwoPlayersGame))
+                if (!isInputValid || (gameModeInput != (int)eGameModes.OnePlayerGame && gameModeInput != (int)eGameModes.TwoPlayersGame))
                 {
                     Console.WriteLine("Invalid game mode was entered! try again.");
                     isGameModeValid = false;
@@ -103,7 +103,7 @@ namespace CheckersApp
             }
             while (!isGameModeValid);
 
-            return (GameModes.eGameModes)gameModeInput;
+            return (eGameModes)gameModeInput;
         }
 
         public static string GetPlayerMove(string i_PlayerName)
@@ -131,13 +131,13 @@ namespace CheckersApp
             Console.WriteLine("The game was ended");
             switch (i_GameSummery.EndGameState)
             {
-                case EndGameStates.eEndGameStates.Tie:
+                case eGameStatus.Tie:
                     {
                         Console.WriteLine("There is a Tie between the players");
                     }
 
                     break;
-                case EndGameStates.eEndGameStates.Winner:
+                case eGameStatus.Winner:
                     {
                         Console.WriteLine("The Winner is:{0} with score of:{1}", i_GameSummery.WinnerName, i_GameSummery.Score);
                     }
@@ -158,9 +158,9 @@ namespace CheckersApp
             int rowIndex = 0;
 
             PrintColumnHeaders(i_BoardSize);
-            for (int i = 0; i < i_BoardSize * k_RowsPerCell; i++) 
+            for (int i = 0; i < i_BoardSize * k_RowsPerCell; i++)
             {
-                if (i % 2 == 0) 
+                if (i % 2 == 0)
                 {
                     Console.Write(" ");
                     PrintRowDelimiterLine(i_BoardSize);
@@ -203,7 +203,7 @@ namespace CheckersApp
             int k_SignPerCell = 4;
             int k_signInRow = (i_BoardSize * k_SignPerCell) + 1;
 
-            for(int i = 0; i < k_signInRow; i++)
+            for (int i = 0; i < k_signInRow; i++)
             {
                 Console.Write("{0}", k_DelimiterSign);
             }
@@ -216,7 +216,7 @@ namespace CheckersApp
             char k_CellDelimiter = '|';
             char cellContent;
 
-            if(i_Cell.IsCellEmpty())
+            if (i_Cell.IsCellEmpty())
             {
                 cellContent = ' ';
             }

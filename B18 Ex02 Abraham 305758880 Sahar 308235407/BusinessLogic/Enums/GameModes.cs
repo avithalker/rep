@@ -1,11 +1,8 @@
 ﻿namespace BusinessLogic.Enums
 {
-    public class GameModes
+    public enum eGameModes
     {
-        public enum eGameModes
-        {
-            OnePlayerGame = 1,
-            TwoPlayersGame = 2
-        }
+        OnePlayerGame = 1,
+        TwoPlayersGame = 2
     }
 }

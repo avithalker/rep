@@ -1,11 +1,8 @@
 ﻿namespace BusinessLogic.Enums
 {
-    public class PlayerTypes
+    public enum ePlayerTypes
     {
-        public enum ePlayerTypes
-        {
-            Human = 1,
-            Computer = 2
-        }
+        Human = 1,
+        Computer = 2
     }
 }

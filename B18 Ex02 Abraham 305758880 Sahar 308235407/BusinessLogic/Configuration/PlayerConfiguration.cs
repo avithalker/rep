@@ -5,9 +5,9 @@ namespace BusinessLogic.Configuration
     public class PlayerConfiguration
     {
         private string m_PlayerName;
-        private PlayerTypes.ePlayerTypes m_PlayerType;
+        private ePlayerTypes m_PlayerType;
 
-        public PlayerTypes.ePlayerTypes PlayerType
+        public ePlayerTypes PlayerType
         {
             get { return m_PlayerType; }
             set { m_PlayerType = value; }

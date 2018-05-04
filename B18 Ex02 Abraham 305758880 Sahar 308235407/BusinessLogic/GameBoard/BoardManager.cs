@@ -36,9 +36,9 @@ namespace BusinessLogic.GameBoard
 
         public void InitializeBoardsData()
         {
-            InitializeSoldiersLocationInBoard(0, PlayerTitles.ePlayerTitles.PlayerOne);
+            InitializeSoldiersLocationInBoard(0, ePlayerTitles.PlayerOne);
             initializeEmptyCells(NUM_ROWS_FOR_PLAYER);
-            InitializeSoldiersLocationInBoard(NUM_ROWS_FOR_PLAYER+2, PlayerTitles.ePlayerTitles.PlayerTwo);
+            InitializeSoldiersLocationInBoard(NUM_ROWS_FOR_PLAYER+2, ePlayerTitles.PlayerTwo);
         }
 
         private void initializeEmptyCells(int i_startRow)
@@ -54,12 +54,12 @@ namespace BusinessLogic.GameBoard
             }
         }
 
-        private void InitializeSoldiersLocationInBoard(int i_row, PlayerTitles.ePlayerTitles i_playerTitle)
+        private void InitializeSoldiersLocationInBoard(int i_row, ePlayerTitles i_playerTitle)
         {
             bool setSoldierInCell = false;
             bool setSoldierInStartOfRow = false;
 
-            if (i_playerTitle == PlayerTitles.ePlayerTitles.PlayerTwo)
+            if (i_playerTitle == ePlayerTitles.PlayerTwo)
             {
                 setSoldierInStartOfRow = true;
             }
@@ -72,7 +72,7 @@ namespace BusinessLogic.GameBoard
                     m_Board[i_row, j] = new Cell();
                     if (setSoldierInCell)
                     {
-                        m_Board[i_row, j].Soldier = CreateNewSoldier(i,j,i_playerTitle);
+                        m_Board[i_row, j].Soldier = CreateNewSoldier(i_row, j, i_playerTitle);
                         setSoldierInCell = false;
                     }
                     else
@@ -86,9 +86,9 @@ namespace BusinessLogic.GameBoard
             }
         }
 
-        private Soldier CreateNewSoldier(int i_row, int i_col, PlayerTitles.ePlayerTitles i_playerTitle)
+        private Soldier CreateNewSoldier(int i_row, int i_col, ePlayerTitles i_playerTitle)
         {
-            Soldier soldier = new Soldier(new Location(i_row, i_col), SoldierTypes.eSoldierTypes.Regular, i_playerTitle);
+            Soldier soldier = new Soldier(new Location(i_row, i_col), eSoldierTypes.Regular, i_playerTitle);
             GetPlayerByTitle(i_playerTitle).AddSoldier(soldier);
 
             return soldier;
@@ -160,7 +160,7 @@ namespace BusinessLogic.GameBoard
                 }
             }
 
-            if(eatMoves != null)
+            if(eatMoves.Count != 0)
             {
                 finalMoveList = eatMoves;
             }
@@ -206,7 +206,7 @@ namespace BusinessLogic.GameBoard
                 finalEatMoves.Add(eatMove);
             }
 
-            if (i_soldier.SoldierType == SoldierTypes.eSoldierTypes.King)
+            if (i_soldier.SoldierType == eSoldierTypes.King)
             {
                 eatMove = GetSingleEatMoveOfSoldier(i_soldier, rowDeletaDirection * -1, 1);
                 if (eatMove != null)
@@ -266,7 +266,7 @@ namespace BusinessLogic.GameBoard
                 locations.Add(nextLocation);
             }
 
-            if (i_Soldier.SoldierType == SoldierTypes.eSoldierTypes.King)
+            if (i_Soldier.SoldierType == eSoldierTypes.King)
             {
                 nextLocation = new Location(i_Soldier.Location.Row + rowDeltaDirection * -1, i_Soldier.Location.Col - 1);
                 if (LocationExistInBoard(nextLocation))
@@ -284,11 +284,11 @@ namespace BusinessLogic.GameBoard
             return locations;
         }
 
-        private int GetRowDeltaDirection(PlayerTitles.ePlayerTitles i_PlayerTitle)
+        private int GetRowDeltaDirection(ePlayerTitles i_PlayerTitle)
         {
             int rowDeltaDirection;
 
-            if (i_PlayerTitle == PlayerTitles.ePlayerTitles.PlayerOne)
+            if (i_PlayerTitle == ePlayerTitles.PlayerOne)
             {
                 rowDeltaDirection = 1;
             }
@@ -302,8 +302,8 @@ namespace BusinessLogic.GameBoard
 
         private void CheckAndUpdateToKing(Soldier i_Soldier)
         {
-            if ((i_Soldier.Owner == PlayerTitles.ePlayerTitles.PlayerOne && i_Soldier.Location.Row == BoardSize - 1) ||
-                (i_Soldier.Owner == PlayerTitles.ePlayerTitles.PlayerTwo && i_Soldier.Location.Row == 0))
+            if ((i_Soldier.Owner == ePlayerTitles.PlayerOne && i_Soldier.Location.Row == BoardSize - 1) ||
+                (i_Soldier.Owner == ePlayerTitles.PlayerTwo && i_Soldier.Location.Row == 0))
             {
                 i_Soldier.PromoteSoldier();
             }
@@ -323,6 +323,14 @@ namespace BusinessLogic.GameBoard
 
         private bool IsExistInMovesArray(List<Move> i_MoveArray, Move i_Move)
         {
+            foreach(Move possibleMove in  i_MoveArray)
+            {
+                if(possibleMove.AreEqual(i_Move))
+                {
+                    return true;
+                }
+            }
+
             return false;
         }
 
@@ -331,7 +339,7 @@ namespace BusinessLogic.GameBoard
             return m_Board[i_Location.Row, i_Location.Col];
         }
 
-        private Player GetPlayerByTitle(PlayerTitles.ePlayerTitles i_playerTitle)
+        private Player GetPlayerByTitle(ePlayerTitles i_playerTitle)
         {
             Player player = null;
 

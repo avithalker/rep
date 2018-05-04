@@ -5,8 +5,8 @@ namespace BusinessLogic.Dtos
     public class PlayerInfo
     {
         private string m_PlayerName;
-        private PlayerTypes.ePlayerTypes m_PlayerType;
-        private PlayerTitles.ePlayerTitles m_PlayerTitle;
+        private ePlayerTypes m_PlayerType;
+        private ePlayerTitles m_PlayerTitle;
         private char m_PlayerSign;
 
 
@@ -16,7 +16,7 @@ namespace BusinessLogic.Dtos
             set { m_PlayerSign = value; }
         }
 
-        public PlayerTitles.ePlayerTitles PlayerTitle
+        public ePlayerTitles PlayerTitle
         {
             get { return m_PlayerTitle; }
             set { m_PlayerTitle = value; }
@@ -28,7 +28,7 @@ namespace BusinessLogic.Dtos
             set { m_PlayerName = value; }
         }
 
-        public PlayerTypes.ePlayerTypes PlayerType
+        public ePlayerTypes PlayerType
         {
             get { return m_PlayerType; }
             set { m_PlayerType = value; }

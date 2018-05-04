@@ -4,11 +4,11 @@ namespace BusinessLogic.Dtos
 {
     public class GameSummery
     {
-        private EndGameStates.eEndGameStates m_endGameState;
+        private eGameStatus m_endGameState;
         private string m_WinnerName;
         private int m_Score;
 
-        public EndGameStates.eEndGameStates EndGameState
+        public eGameStatus EndGameState
         {
             get { return m_endGameState; }
             set { m_endGameState = value; }
