@@ -20,11 +20,7 @@ namespace BusinessLogic
         public void InitializeGame(GameConfiguration i_GameConfiguration)
         {
             SetPlayers(i_GameConfiguration.PlayerConfigurations);
-<<<<<<< HEAD
             m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, players);
-=======
-            m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, players);           
->>>>>>> 4f315e91dc9fee97e818286cb30833fede1607dc
         }
 
         private void SetPlayers(List<PlayerConfiguration> i_playersConfiguration)
