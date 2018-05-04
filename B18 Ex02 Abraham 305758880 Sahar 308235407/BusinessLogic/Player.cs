@@ -40,6 +40,11 @@ namespace BusinessLogic
             set { m_Soldiers = value; }
         }
         
+        public void RemoveSoldierFromList(Soldier i_Soldier)
+        {
+            m_Soldiers.Remove(i_Soldier);
+        }
+
         public char PlayerSign
         {
             get{ return m_PlayerSign; }

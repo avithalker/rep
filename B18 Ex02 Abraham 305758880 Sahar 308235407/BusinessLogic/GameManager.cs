@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BusinessLogic.Configuration;
 using BusinessLogic.GameBoard;
 using BusinessLogic.Dtos;
@@ -14,7 +10,6 @@ namespace BusinessLogic
         private BoardManager m_BoardManager;
         private List<Player> players;
         private CheckerMoveInfo m_LastMove;
-        private Player m_CurrentPlayer;
         private int m_CurrentPlayerIndex;
 
         public void InitializeGame(GameConfiguration i_GameConfiguration)
@@ -32,23 +27,22 @@ namespace BusinessLogic
 
         public int BoardSize
         {
-            get { return m_BoardManager.BoardSize; } // return the real board size!!!!
+            get { return m_BoardManager.BoardSize; }
         }
 
         public Cell[,] Board
         {
-            get { return m_BoardManager.Board; } // return the real board!!!
+            get { return m_BoardManager.Board; }
         }
 
         public CheckerMoveInfo LastCheckerMove
         {
-            get { return m_LastMove; } // return the last move! if no last move, will return null
+            get { return m_LastMove; }
         }
 
         public void StartGame()
         {
             m_CurrentPlayerIndex = 0;
-            m_CurrentPlayer = players[0];
             m_BoardManager.InitializeBoardsData();
         }
 
@@ -59,35 +53,44 @@ namespace BusinessLogic
 
         public PlayerInfo GetCurrentPlayerTurn()
         {
-            PlayerInfo k_PlayerInfo = new PlayerInfo();
-            k_PlayerInfo.PlayerName = m_CurrentPlayer.PlayerName;
-            k_PlayerInfo.PlayerSign = m_CurrentPlayer.PlayerSign;
-            k_PlayerInfo.PlayerTitle = m_CurrentPlayer.PlayerTitle;
-            k_PlayerInfo.PlayerType = m_CurrentPlayer.PlayerType;
+            PlayerInfo playerInfo = new PlayerInfo();
+            Player currentPlayer = players[m_CurrentPlayerIndex];
 
-            return k_PlayerInfo; //// here need to return the current player that need to play! fill the player info with the data!
+            playerInfo.PlayerName = currentPlayer.PlayerName;
+            playerInfo.PlayerSign = currentPlayer.PlayerSign;
+            playerInfo.PlayerTitle = currentPlayer.PlayerTitle;
+            playerInfo.PlayerType = currentPlayer.PlayerType;
+
+            return playerInfo;
         }
 
         public ActionResult HandlePlayerAction(string i_Action) // handle player move/Quit game
         {
-            ActionResult k_ActionResult = null;
-            Move k_Move = Move.Parse(i_Action);
+            ActionResult ActionResult = null;
 
-            if (k_Move == null && i_Action != "Q") 
+            if (i_Action == "Q")
             {
-                k_ActionResult = new ActionResult(false, "Invalid command syntax");
+                QuitCurretPlayer();
             }
             else
             {
-                if(i_Action== "Q")
-                {
-                    QuitCurrentPlayer();
-                }
+                Move Move = Move.Parse(i_Action);
 
-                k_ActionResult = m_BoardManager.SetCheckersMove(k_Move, m_CurrentPlayer); // here need to return if the action succeeded or not. if not, fill the message.
+                if (Move != null)
+                {
+<<<<<<< HEAD
+                    QuitCurrentPlayer();
+=======
+                    ActionResult = m_BoardManager.MoveChecker(Move, players[m_CurrentPlayerIndex]);
+                }
+                else
+                {
+                    ActionResult = new ActionResult(false, "Invalid command syntax");
+>>>>>>> f2c5d3efd8188f78e4b30da64e63b8957fdb4c40
+                }
             }
 
-            return k_ActionResult;  
+            return ActionResult;
         }
 
         private void QuitCurrentPlayer()

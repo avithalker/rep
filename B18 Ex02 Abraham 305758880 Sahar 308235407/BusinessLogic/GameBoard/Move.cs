@@ -27,18 +27,18 @@ namespace BusinessLogic.GameBoard
 
         public static Move Parse(String i_Action)
         {
-            Move k_move = new Move();
-            String[] k_Locations = i_Action.Split('>');
-            if(k_Locations.Length != 2)
+            Move move = new Move();
+            String[] locations = i_Action.Split('>');
+            if(locations.Length != 2)
             {
-                k_move = null; 
+                move = null; 
             }
             else
             {
-                k_move.CurrentLocation = Location.Parse(k_Locations[0]);
-                k_move.NextLocation = Location.Parse(k_Locations[1]);
+                move.CurrentLocation = Location.Parse(locations[0]);
+                move.NextLocation = Location.Parse(locations[1]);
 
-                if (k_move.CurrentLocation == null || k_move.NextLocation == null)
+                if (move.CurrentLocation == null || k_move.NextLocation == null)
                 {
                     k_move = null;
                 }

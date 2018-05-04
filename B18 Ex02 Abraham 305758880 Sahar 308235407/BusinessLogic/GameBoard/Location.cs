@@ -17,23 +17,32 @@ namespace BusinessLogic
             m_Column = i_col;
         }
 
-        public int Row { get { return m_Row; } set { m_Row = value; } }
-        public int Col { get { return m_Column; } set { m_Column = value; } }
+        public int Row
+        {
+            get { return m_Row; }
+            set { m_Row = value; }
+        }
+
+        public int Col
+        {
+            get { return m_Column; }
+            set { m_Column = value; }
+        }
 
         public static Location Parse(String i_Location)
         {
-            Location k_Location;
+            Location location;
             
-            if ((i_Location[0] < 'A' || i_Location[0] > 'J') || (i_Location[1] < 'a' || i_Location[1] > 'j'))
+            if ((i_Location[0] < 'A' || i_Location[0] > 'Z') || (i_Location[1] < 'a' || i_Location[1] > 'z'))
             {
-                k_Location = null;
+                location = null;
             }
             else
             {
-               k_Location = new Location(i_Location[0] - 'A', i_Location[1] - 'a');
+               location = new Location(i_Location[0] - 'A', i_Location[1] - 'a');
             }
 
-            return k_Location;
+            return location;
         }
             
     }
