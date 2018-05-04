@@ -115,11 +115,10 @@ namespace BusinessLogic.GameBoard
         }
 
         public ActionResult SetCheckersMove(string i_Action, Player i_CurrentPlayer)
-        {
-            string[] k_move = i_Action.Split('>');
-            Move k_desiredMove = new Move(k_move[0], k_move[1]);
+        { 
+            Move k_desiredMove = new Move(i_Action);
             ActionResult k_actionResult;
-            Move[] k_leagelMoves = GetLeagalMovesOfPlayer(i_CurrentPlayer);
+            List<Move> k_leagelMoves = GetLeagalMovesOfPlayer(i_CurrentPlayer); //change to title parameter
 
             if(IsExistInMovesArray(k_leagelMoves, k_desiredMove))
             {
@@ -128,7 +127,7 @@ namespace BusinessLogic.GameBoard
             }
             else
             {
-                k_actionResult = new ActionResult(false, "Error- WrongMove ");  //need to create 2 differenr error-types....
+                k_actionResult = new ActionResult(false, "Invalid Move");  //need to create 2 differenr error-types....
             }
 
             return k_actionResult;
@@ -138,14 +137,88 @@ namespace BusinessLogic.GameBoard
         {
         }
 
-        private Move[] GetLeagalMovesOfPlayer(Player i_CurrentPlayer)
+        private List<Move> GetLeagalMovesOfPlayer(Player i_CurrentPlayer)
+        {
+            List<Move> k_LegalMoves = new List<Move>();
+            List<Move> k_LegalEatMoves = new List<Move>();
+            List<Move> k_FinalMoveList = null;
+
+            foreach(Soldier soldier in i_CurrentPlayer.Soldiers)
+            {
+                List<Move> k_LegalSoldierEatMoves = GetLegalEatMovesOfSoldier(soldier);
+
+                if ( k_LegalSoldierEatMoves == null)
+                {
+                   k_LegalMoves.AddRange(GetLegalMovesOfSoldier(soldier));
+                   
+                }
+                else
+                {
+                    k_LegalEatMoves.AddRange(k_LegalSoldierEatMoves);
+                }
+            }
+
+            if(k_LegalEatMoves == null)
+            {
+                k_FinalMoveList = k_LegalMoves;
+            }
+            else
+            {
+                k_FinalMoveList = k_LegalEatMoves;
+            }
+
+            return k_FinalMoveList;
+        }
+
+        private List<Move> GetLegalEatMovesOfSoldier(Soldier i_soldier)
         {
             return null;
         }
 
-        private bool IsExistInMovesArray(Move[] i_MoveArray, Move i_Move)
+        private List<Move> GetLegalMovesOfSoldier(Soldier i_Soldier)
+        {
+            /*Cell[] k_cells = GetCellsToMoveByPlayer(i_Soldier);
+            bool k_HasEatMove = false;
+
+            if(ThereIsASoldierToEat(k_cells))
+            {
+                foreach(Cell cell in k_cells)
+                {
+                    if(cell.)
+                }
+            }
+          */
+
+            return null;
+        }
+
+        private bool IsExistInMovesArray(List<Move> i_MoveArray, Move i_Move)
         {
             return false;
         }
+
+        /*private void CheckForEatMoves(List<Move> i_moves)
+        {
+            bool k_thereIsAnEatMove = false; 
+            foreach(Move move in i_moves)
+            {
+                if(move.IsSoldierWasEaten())
+                {
+                    k_thereIsAnEatMove = true;
+                }
+            }
+
+            if(k_thereIsAnEatMove)
+            {
+                foreach(Move move in i_moves)
+                {
+                    if(!move.IsSoldierWasEaten())
+                    {
+                        i_moves.Remove(move);
+                    }
+                }
+            }
+        }
+        */
     }
 }

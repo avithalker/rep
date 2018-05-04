@@ -24,23 +24,26 @@ namespace BusinessLogic
             m_Title = i_title;
             m_Type = i_playerConfiguration.PlayerType;
             m_Name = i_playerConfiguration.PlayerName;
-        }
-        
-        public char GetPlayerSign()
-        {
-            char k_sign;
-
-            if(m_Title == PlayerTitles.ePlayerTitles.PlayerOne)
+            if(i_title == PlayerTitles.ePlayerTitles.PlayerOne)
             {
-                k_sign = 'O'; 
+                m_PlayerSign = 'O';
             }
-
             else
             {
-                k_sign = 'X';
+                m_PlayerSign = 'X';
             }
+        }
 
-            return k_sign;
+        public List<Soldier> Soldiers
+        {
+            get { return m_Soldiers; }
+            set { m_Soldiers = value; }
+        }
+        
+        public char PlayerSign
+        {
+            get{ return m_PlayerSign; }
+            set { m_PlayerSign = value; }
         }
 
         public PlayerTypes.ePlayerTypes PlayerType
