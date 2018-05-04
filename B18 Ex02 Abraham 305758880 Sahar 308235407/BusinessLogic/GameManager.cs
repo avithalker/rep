@@ -81,7 +81,7 @@ namespace BusinessLogic
             {
                 if(i_Action== "Q")
                 {
-                    QuitCurretPlayer();
+                    QuitCurrentPlayer();
                 }
 
                 k_ActionResult = m_BoardManager.SetCheckersMove(k_Move, m_CurrentPlayer); // here need to return if the action succeeded or not. if not, fill the message.
@@ -90,20 +90,8 @@ namespace BusinessLogic
             return k_ActionResult;  
         }
 
-        private void QuitCurretPlayer()
+        private void QuitCurrentPlayer()
         {
-        }
-
-        private bool IsMoveSyntaxValid(String i_Action)
-        {
-            String[] moves = i_Action.Split('>');
-
-            if(moves.Length != 2)
-            {
-                return false;
-            }
-
-            return true;
         }
 
         public GameSummery GetGameSummery()
