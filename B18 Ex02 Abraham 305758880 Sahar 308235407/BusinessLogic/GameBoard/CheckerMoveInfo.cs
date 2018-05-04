@@ -30,7 +30,7 @@ namespace BusinessLogic.GameBoard
             set { m_PlayerName = value; }
         }
 
-        public CheckerMoveInfo(String i_Action, String i_PlayerName)
+        public CheckerMoveInfo()
         {
            
         }
