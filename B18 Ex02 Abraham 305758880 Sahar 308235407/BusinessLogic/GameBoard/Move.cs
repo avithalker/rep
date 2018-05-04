@@ -14,10 +14,11 @@ namespace BusinessLogic.GameBoard
         public Location CurrentLocation { get{ return m_CurrentLocation; } set { m_CurrentLocation = value; } }
         public Location NextLocation { get { return m_NextLocation; } set { m_NextLocation = value; } }
 
-        public Move(String i_CurrentLocation, String i_NextLocation)
+        public Move(String i_Action)
         {
-            m_CurrentLocation = Location.Parse(i_CurrentLocation);
-            m_NextLocation = Location.Parse(i_NextLocation);
+            String[] k_Locations = i_Action.Split('>');
+            m_CurrentLocation = Location.Parse(k_Locations[0]);
+            m_NextLocation = Location.Parse(k_Locations[1]);
         }
 
     }

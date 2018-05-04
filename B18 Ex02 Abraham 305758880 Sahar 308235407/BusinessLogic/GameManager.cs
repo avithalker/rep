@@ -69,7 +69,7 @@ namespace BusinessLogic
 
             if(!IsMoveSyntaxValid(i_Action))
             {
-                k_ActionResult = new ActionResult(false, "Invalid command syntax");
+                k_ActionResult = new ActionResult(false, "Invalid command syntax"); //add Quit 
             }
             else
             {

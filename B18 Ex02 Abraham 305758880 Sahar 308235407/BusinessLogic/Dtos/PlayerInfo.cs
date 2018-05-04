@@ -14,7 +14,7 @@ namespace BusinessLogic.Dtos
             this.m_PlayerName = i_player.PlayerName;
             this.m_PlayerType = i_player.PlayerType;
             this.m_PlayerTitle = i_player.PlayerTitle;
-            this.m_PlayerSign = i_player.GetPlayerSign();
+            this.m_PlayerSign = i_player.PlayerSign;
         }
 
         public char PlayerSign
