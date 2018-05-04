@@ -9,13 +9,6 @@ namespace BusinessLogic.Dtos
         private PlayerTitles.ePlayerTitles m_PlayerTitle;
         private char m_PlayerSign;
 
-        public PlayerInfo(Player i_player)
-        {
-            this.m_PlayerName = i_player.PlayerName;
-            this.m_PlayerType = i_player.PlayerType;
-            this.m_PlayerTitle = i_player.PlayerTitle;
-            this.m_PlayerSign = i_player.PlayerSign;
-        }
 
         public char PlayerSign
         {

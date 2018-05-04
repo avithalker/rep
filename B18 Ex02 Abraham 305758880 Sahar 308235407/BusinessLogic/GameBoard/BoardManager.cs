@@ -114,20 +114,19 @@ namespace BusinessLogic.GameBoard
             set { m_Board = value; }
         }
 
-        public ActionResult SetCheckersMove(string i_Action, Player i_CurrentPlayer)
+        public ActionResult SetCheckersMove(Move i_Move, Player i_CurrentPlayer)
         { 
-            Move k_desiredMove = new Move(i_Action);
             ActionResult k_actionResult;
-            List<Move> k_leagelMoves = GetLeagalMovesOfPlayer(i_CurrentPlayer); //change to title parameter
+            List<Move> k_legalMoves = GetLegalMovesOfPlayer(i_CurrentPlayer); //change to title parameter
 
-            if(IsExistInMovesArray(k_leagelMoves, k_desiredMove))
+            if(IsExistInMovesArray(k_legalMoves, i_Move))
             {
-                SetMoveInBoard(k_desiredMove);
+                SetMoveInBoard(i_Move);
                 k_actionResult = new ActionResult(true, string.Empty);
             }
             else
             {
-                k_actionResult = new ActionResult(false, "Invalid Move");  //need to create 2 differenr error-types....
+                k_actionResult = new ActionResult(false, "Invalid Move");
             }
 
             return k_actionResult;
@@ -137,7 +136,7 @@ namespace BusinessLogic.GameBoard
         {
         }
 
-        private List<Move> GetLeagalMovesOfPlayer(Player i_CurrentPlayer)
+        private List<Move> GetLegalMovesOfPlayer(Player i_CurrentPlayer)
         {
             List<Move> k_LegalMoves = new List<Move>();
             List<Move> k_LegalEatMoves = new List<Move>();
@@ -172,24 +171,117 @@ namespace BusinessLogic.GameBoard
 
         private List<Move> GetLegalEatMovesOfSoldier(Soldier i_soldier)
         {
-            return null;
+            Location k_CurrentLocation = i_soldier.Location;
+            List<Location> k_NextPossibleLocationsInBoard = GetNextPossibleLocationsInBoard(i_soldier);
+            List<Move> k_FinalEatMoves = new List<Move>();
+
+            foreach (Location location in k_NextPossibleLocationsInBoard)
+            {
+                if (!Board[location.Row, location.Col].IsCellEmpty())
+                {
+                    if(Board[location.Row, location.Col].Soldier.Owner != i_soldier.Owner)
+                    {
+                        if (i_soldier.Owner == PlayerTitles.ePlayerTitles.PlayerOne)
+                        {
+                            if (location.Col > i_soldier.Location.Col)
+                            {
+                                if (LocationExistInBoard(new Location(location.Col + 1, location.Row + 1)) && Board[location.Row + 1, location.Row + 1].IsCellEmpty())
+                                {
+                                    k_FinalEatMoves.Add(new Move(i_soldier.Location, new Location(location.Row + 1, location.Col + 1)));
+                                }
+                            }
+
+                            else
+                            {
+                                if (LocationExistInBoard(new Location(location.Col - 1, location.Row + 1)) && Board[location.Row - 1, location.Row + 1].IsCellEmpty())
+                                {
+                                    k_FinalEatMoves.Add(new Move(i_soldier.Location, new Location(location.Row + 1, location.Col - 1)));
+                                }
+                            }
+                        }
+
+                        else
+                        {
+                            if (location.Col > i_soldier.Location.Col)
+                            {
+                                if (LocationExistInBoard(new Location(location.Col + 1, location.Row - 1)) && Board[location.Row + 1, location.Row + 1].IsCellEmpty())
+                                {
+                                    k_FinalEatMoves.Add(new Move(i_soldier.Location, new Location(location.Row - 1, location.Col + 1)));
+                                }
+                            }
+
+                            else
+                            {
+                                if (LocationExistInBoard(new Location(location.Col - 1, location.Row - 1)) && Board[location.Row - 1, location.Row + 1].IsCellEmpty())
+                                {
+                                    k_FinalEatMoves.Add(new Move(i_soldier.Location, new Location(location.Row - 1, location.Col - 1)));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return k_FinalEatMoves;
+        }
+
+        private List<Location> GetNextPossibleLocationsInBoard(Soldier i_Soldier)
+        {
+            List<Location> k_Locations = new List<Location>();
+
+            if (i_Soldier.Owner == PlayerTitles.ePlayerTitles.PlayerOne)
+            {
+                if (LocationExistInBoard(new Location(i_Soldier.Location.Col - 1, i_Soldier.Location.Row + 1))) //left diagonal
+                {
+                    k_Locations.Add(new Location(i_Soldier.Location.Col - 1, i_Soldier.Location.Row + 1));
+                }
+                if (LocationExistInBoard(new Location(i_Soldier.Location.Col + 1, i_Soldier.Location.Row + 1)))
+                {
+                    k_Locations.Add(new Location(i_Soldier.Location.Col - 1, i_Soldier.Location.Row + 1));
+                }
+            }
+
+            else
+            {
+                if (LocationExistInBoard(new Location(i_Soldier.Location.Col + 1, i_Soldier.Location.Row - 1))) //left diagonal
+                {
+                    k_Locations.Add(new Location(i_Soldier.Location.Col + 1, i_Soldier.Location.Row - 1));
+                }
+                if (LocationExistInBoard(new Location(i_Soldier.Location.Col - 1, i_Soldier.Location.Row - 1)))
+                {
+                    k_Locations.Add(new Location(i_Soldier.Location.Col - 1, i_Soldier.Location.Row - 1));
+                }
+            }
+
+            return k_Locations;
+        }
+
+        private bool LocationExistInBoard(Location i_Location)
+        {
+            bool k_isInBoard = true; 
+
+            if(i_Location.Row >= m_BoardSize || i_Location.Col >= m_BoardSize)
+            {
+                k_isInBoard = false;
+            }
+
+            return k_isInBoard;
         }
 
         private List<Move> GetLegalMovesOfSoldier(Soldier i_Soldier)
         {
-            /*Cell[] k_cells = GetCellsToMoveByPlayer(i_Soldier);
-            bool k_HasEatMove = false;
+            List<Move> k_LegalMoves = new List<Move>();
+            List<Location> k_PossibleNextLocations = GetNextPossibleLocationsInBoard(i_Soldier);
 
-            if(ThereIsASoldierToEat(k_cells))
+            foreach(Location location in k_PossibleNextLocations)
             {
-                foreach(Cell cell in k_cells)
+                if(Board[location.Row, location.Col].IsCellEmpty())
                 {
-                    if(cell.)
+                    k_LegalMoves.Add(new Move(i_Soldier.Location, location));
                 }
             }
-          */
 
-            return null;
+            return k_LegalMoves;
         }
 
         private bool IsExistInMovesArray(List<Move> i_MoveArray, Move i_Move)
