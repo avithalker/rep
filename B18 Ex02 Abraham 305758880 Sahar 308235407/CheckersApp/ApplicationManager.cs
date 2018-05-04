@@ -103,7 +103,8 @@ namespace CheckersApp
                 {
                     UIManager.PrintGeneralAnnouncment(actionResult.Message);
                 }
-            } while (!actionResult.IsSucceed);
+            }
+            while (!actionResult.IsSucceed);
         }
     }
 }

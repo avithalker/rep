@@ -29,8 +29,8 @@ namespace CheckersApp
                     isNameValid = false;
                     Console.WriteLine("Invalid name. Max name length is {0}. Try again.", GlobalDefines.k_MaxNameLength);
                 }
-
-            } while (!isNameValid);
+            }
+            while (!isNameValid);
 
             return playerName;
         }
@@ -51,7 +51,8 @@ namespace CheckersApp
                     isSizeValid = false;
                     Console.WriteLine("Invalid board size!. try again.");
                 }
-            } while (!isSizeValid);
+            }
+            while (!isSizeValid);
 
             return boardSize;
         }
@@ -77,7 +78,8 @@ namespace CheckersApp
                 {
                     Console.WriteLine("Invalid input was entered. Try again.");
                 }
-            } while (!isInputValid);
+            }
+            while (!isInputValid);
 
             return answer == 'Y';
         }
@@ -98,7 +100,8 @@ namespace CheckersApp
                     Console.WriteLine("Invalid game mode was entered! try again.");
                     isGameModeValid = false;
                 }
-            } while (!isGameModeValid);
+            }
+            while (!isGameModeValid);
 
             return (GameModes.eGameModes)gameModeInput;
         }
@@ -198,9 +201,9 @@ namespace CheckersApp
         {
             char k_DelimiterSign = '=';
             int k_SignPerCell = 4;
-            int signInRow = i_BoardSize * k_SignPerCell + 1;
+            int k_signInRow = (i_BoardSize * k_SignPerCell) + 1;
 
-            for(int i = 0; i < signInRow; i++)
+            for(int i = 0; i < k_signInRow; i++)
             {
                 Console.Write("{0}", k_DelimiterSign);
             }
