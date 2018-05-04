@@ -107,7 +107,7 @@ namespace CheckersApp
         {
             string playerMove;
 
-            Console.WriteLine("{0}, please enter your next move:");
+            Console.WriteLine("{0}, please enter your next move:", i_PlayerName);
             playerMove = Console.ReadLine();
 
             return playerMove;

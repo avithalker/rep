@@ -20,7 +20,7 @@ namespace BusinessLogic
         {
             SetPlayers(i_GameConfiguration.PlayerConfigurations);
             m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, players);
-            m_LastMove = new CheckerMoveInfo(" ", players[0].PlayerName);
+            //m_LastMove = new CheckerMoveInfo(" ", players[0].PlayerName);
            
         }
 
