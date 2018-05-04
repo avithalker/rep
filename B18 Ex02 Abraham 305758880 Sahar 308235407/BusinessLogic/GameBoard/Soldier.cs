@@ -31,6 +31,12 @@ namespace BusinessLogic
             get { return m_Owner; }
         }
 
+        public Location Location
+        {
+            get { return m_Location; }
+            set { m_Location = value; }
+        }
+
        
 
     }

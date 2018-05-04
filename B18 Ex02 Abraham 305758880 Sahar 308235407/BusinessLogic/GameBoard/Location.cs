@@ -22,7 +22,18 @@ namespace BusinessLogic
 
         public static Location Parse(String i_Location)
         {
-            return new Location(i_Location[0] - 'A', i_Location[1] - 'a');
+            Location k_Location;
+            
+            if ((i_Location[0] < 'A' || i_Location[0] > 'J') || (i_Location[1] < 'a' || i_Location[1] > 'j'))
+            {
+                k_Location = null;
+            }
+            else
+            {
+               k_Location = new Location(i_Location[0] - 'A', i_Location[1] - 'a');
+            }
+
+            return k_Location;
         }
             
     }
