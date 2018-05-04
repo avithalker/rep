@@ -37,11 +37,11 @@ namespace BusinessLogic.GameBoard
         public void InitializeBoardsData()
         {
             InitializeSoldiersLocationInBoard(0, PlayerTitles.ePlayerTitles.PlayerOne);
-            initializeEmptyCells(NUM_ROWS_FOR_PLAYER);
+            InitializeEmptyCells(NUM_ROWS_FOR_PLAYER);
             InitializeSoldiersLocationInBoard(NUM_ROWS_FOR_PLAYER+2, PlayerTitles.ePlayerTitles.PlayerTwo);
         }
 
-        private void initializeEmptyCells(int i_startRow)
+        private void InitializeEmptyCells(int i_startRow)
         {
             for (int i = 0; i < SPACES_BETWEEN_PLAYERS; i++)
             {
@@ -151,7 +151,7 @@ namespace BusinessLogic.GameBoard
                 }
             }
 
-            if(eatMoves != null)
+            if(eatMoves.Count != 0)
             {
                 finalMoveList = eatMoves;
             }
