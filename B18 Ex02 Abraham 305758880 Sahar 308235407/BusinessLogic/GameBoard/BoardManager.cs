@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using BusinessLogic.GameBoard;
+﻿using System;
+using System.Collections.Generic;
 using BusinessLogic.Enums;
 using BusinessLogic.Dtos;
-using System.Linq;
 
 
 namespace BusinessLogic.GameBoard
@@ -121,23 +120,24 @@ namespace BusinessLogic.GameBoard
 
             if (IsEatMove(i_Move))
             {
-                int colOfSoldier = System.Math.Min(i_Move.CurrentLocation.Col, i_Move.NextLocation.Col) + 1;
-                int rowOfSoldier = System.Math.Min(i_Move.CurrentLocation.Row, i_Move.NextLocation.Row) + 1;
+                int colOfSoldier = Math.Min(i_Move.CurrentLocation.Col, i_Move.NextLocation.Col) + 1;
+                int rowOfSoldier = Math.Min(i_Move.CurrentLocation.Row, i_Move.NextLocation.Row) + 1;
                 Location eatenSoldierLocation = new Location(rowOfSoldier, colOfSoldier);
                 Soldier soldierToRemove = GetCellByLocation(eatenSoldierLocation).Soldier;
 
                 GetPlayerByTitle(soldierToRemove.Owner).RemoveSoldierFromList(soldierToRemove);
                 GetCellByLocation(eatenSoldierLocation).Soldier = null;
             }
-            
-                nextLocationCell.Soldier = currentLocationCell.Soldier; //put the soldier in the nextLocation
-                currentLocationCell.Soldier = null; //make the cell empty
-                currentSoldier.Location = i_Move.NextLocation; //update Soldier's location
+
+            nextLocationCell.Soldier = currentLocationCell.Soldier; //put the soldier in the nextLocation
+            currentLocationCell.Soldier = null; //make the cell empty
+            currentSoldier.Location = i_Move.NextLocation; //update Soldier's location
+            CheckAndUpdateToKing(currentSoldier);
         }
 
         private bool IsEatMove(Move i_Move)
         {
-            return System.Math.Abs(i_Move.CurrentLocation.Col - i_Move.NextLocation.Col) > 1;
+            return Math.Abs(i_Move.CurrentLocation.Col - i_Move.NextLocation.Col) > 1;
         }
 
         public List<Move> GetLegalMovesOfPlayer(Player i_CurrentPlayer)
@@ -298,6 +298,15 @@ namespace BusinessLogic.GameBoard
             }
 
             return rowDeltaDirection;
+        }
+
+        private void CheckAndUpdateToKing(Soldier i_Soldier)
+        {
+            if ((i_Soldier.Owner == PlayerTitles.ePlayerTitles.PlayerOne && i_Soldier.Location.Row == BoardSize - 1) ||
+                (i_Soldier.Owner == PlayerTitles.ePlayerTitles.PlayerTwo && i_Soldier.Location.Row == 0))
+            {
+                i_Soldier.PromoteSoldier();
+            }
         }
 
         private bool LocationExistInBoard(Location i_Location)

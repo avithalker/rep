@@ -37,7 +37,9 @@ namespace BusinessLogic
             set { m_Location = value; }
         }
 
-       
-
+        public void PromoteSoldier()
+        {
+            m_Type = SoldierTypes.eSoldierTypes.King;
+        }
     }
 }
