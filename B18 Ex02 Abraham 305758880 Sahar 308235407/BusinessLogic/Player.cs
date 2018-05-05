@@ -30,12 +30,6 @@ namespace BusinessLogic
         public List<Soldier> Soldiers
         {
             get { return m_Soldiers; }
-            set { m_Soldiers = value; }
-        }
-        
-        public void RemoveSoldierFromList(Soldier i_Soldier)
-        {
-            m_Soldiers.Remove(i_Soldier);
         }
 
         public char PlayerSign
@@ -82,5 +76,14 @@ namespace BusinessLogic
             m_Score += i_Points;
         }
 
+        public void RemoveSoldierFromList(Soldier i_Soldier)
+        {
+            m_Soldiers.Remove(i_Soldier);
+        }
+
+        public void RemoveAllSoldiers()
+        {
+            m_Soldiers.Clear();
+        }
     }
 }

@@ -77,7 +77,6 @@ namespace BusinessLogic
 
             if (i_Action == "Q")
             {
-                
                 actionResult = QuitCurrentPlayerIfLegal();
             }
             else
@@ -99,12 +98,15 @@ namespace BusinessLogic
 
         private ActionResult MoveChecker(Move i_Move)
         {
-            ActionResult actionResult = m_BoardManager.MoveChecker(i_Move, m_players[m_CurrentPlayerIndex]);
+            bool isDoubleEatMove;
+            ActionResult actionResult = m_BoardManager.MoveChecker(i_Move, m_players[m_CurrentPlayerIndex], out isDoubleEatMove);
 
             if (actionResult.IsSucceed)
             {
-                m_LastMove = ConvertMoveToCheckerMoveInfo(i_Move);          //TODO: update here the m_LastMove !!!!
-                HandleEndOfTurn();
+                bool isTurnNeedToBeChanged = !isDoubleEatMove;
+
+                m_LastMove = ConvertMoveToCheckerMoveInfo(i_Move);
+                HandleEndOfTurn(isTurnNeedToBeChanged);
             }
 
             return actionResult;
@@ -122,20 +124,21 @@ namespace BusinessLogic
         private string GetPlayerNameByTitle(ePlayerTitles i_Title)
         {
             string name = m_players[0].PlayerName;
-            if(m_players[1].PlayerTitle == i_Title)
+
+            if (m_players[1].PlayerTitle == i_Title)
             {
                 name = m_players[1].PlayerName;
             }
 
             return name;
         }
-           
+
 
         private ActionResult QuitCurrentPlayerIfLegal()
         {
             ActionResult actionResult;
 
-            if(CheckIfPlayerCanQuit())
+            if (CheckIfPlayerCanQuit())
             {
                 QuitCurrentPlayerFromGame();
                 actionResult = new ActionResult(true, string.Empty);
@@ -150,14 +153,10 @@ namespace BusinessLogic
 
         private bool CheckIfPlayerCanQuit()
         {
-            ePlayerTitles currentPlayerTitle = currentPlayerTitle = m_players[m_CurrentPlayerIndex].PlayerTitle;
-            int opponentIndex = 0;
+            ePlayerTitles currentPlayerTitle = m_players[m_CurrentPlayerIndex].PlayerTitle;
+            int opponentIndex = GetOpponentPlayerIndex();
             bool hasSmallerScore = false;
             bool hasSmallerAmountOfSoldiers = false;
-            if (m_CurrentPlayerIndex == 0)
-            {
-                opponentIndex = 1;
-            }
 
             if (m_players[opponentIndex].Score > m_players[m_CurrentPlayerIndex].Score)
             {
@@ -174,17 +173,10 @@ namespace BusinessLogic
 
         private void QuitCurrentPlayerFromGame()
         {
+            int winnerPlayerIndex = GetOpponentPlayerIndex();
+
             m_GameStatus = eGameStatus.Winner;
-            
-            if(m_CurrentPlayerIndex == 0)
-            {
-                m_LastWinner = m_players[1];
-            }
-            else
-            {
-                m_LastWinner = m_players[0];
-            }
-            
+            m_LastWinner = m_players[winnerPlayerIndex];
         }
 
         public GameSummery GetGameSummery()
@@ -203,7 +195,12 @@ namespace BusinessLogic
 
         private void ChangePlayerTurn()
         {
-            m_CurrentPlayerIndex = (m_CurrentPlayerIndex + 1) % m_players.Count;
+            m_CurrentPlayerIndex = GetOpponentPlayerIndex();
+        }
+
+        private int GetOpponentPlayerIndex()
+        {
+            return ((m_CurrentPlayerIndex + 1) % m_players.Count);
         }
 
         private void CheckAndUpdateIfGameEnded()
@@ -241,18 +238,20 @@ namespace BusinessLogic
             }
         }
 
-        private void HandleEndOfTurn()
+        private void HandleEndOfTurn(bool i_ChangeTurn)
         {
-            ChangePlayerTurn();
+            CheckAndUpdateIfGameEnded();
+            if (!IsGameEnded())
+            {
+                if (i_ChangeTurn)
+                {
+                    ChangePlayerTurn();
+                }
 
-            if (m_players[m_CurrentPlayerIndex].PlayerType == ePlayerTypes.Computer)
-            {
-                PlayComputerMove();
-                CheckAndUpdateIfGameEnded();
-            }
-            else
-            {
-                CheckAndUpdateIfGameEnded();
+                if (m_players[m_CurrentPlayerIndex].PlayerType == ePlayerTypes.Computer)
+                {
+                    PlayComputerMove();
+                }
             }
         }
 
@@ -283,7 +282,7 @@ namespace BusinessLogic
                 {
                     gamePoints += k_pointsForRegularSoldier;
                 }
-                else
+                else if (soldier.SoldierType == eSoldierTypes.King)
                 {
                     gamePoints += k_pointsForKingSoldier;
                 }

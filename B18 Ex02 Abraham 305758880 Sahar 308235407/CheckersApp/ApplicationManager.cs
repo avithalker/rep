@@ -78,17 +78,13 @@ namespace CheckersApp
 
             while (!m_GameManager.IsGameEnded())
             {
-                UIManager.CleanScreen();
-                UIManager.PrintGameBoard(m_GameManager.Board, m_GameManager.BoardSize);
-                if (m_GameManager.LastCheckerMove != null)
-                {
-                    UIManager.PrintLastMove(m_GameManager.LastCheckerMove);
-                }
-
+                ShowGameView();
                 currentPlayer = m_GameManager.GetCurrentPlayerTurn();
                 UIManager.PrintPlayerTurnAnnouncment(currentPlayer.PlayerName, currentPlayer.PlayerSign);
                 HandlePlayerMove(currentPlayer);
             }
+
+            ShowGameView();
         }
 
         private void HandlePlayerMove(PlayerInfo i_CurrentPlayer)
@@ -105,6 +101,16 @@ namespace CheckersApp
                 }
             }
             while (!actionResult.IsSucceed);
+        }
+
+        private void ShowGameView()
+        {
+            UIManager.CleanScreen();
+            UIManager.PrintGameBoard(m_GameManager.Board, m_GameManager.BoardSize);
+            if (m_GameManager.LastCheckerMove != null)
+            {
+                UIManager.PrintLastMove(m_GameManager.LastCheckerMove);
+            }
         }
     }
 }

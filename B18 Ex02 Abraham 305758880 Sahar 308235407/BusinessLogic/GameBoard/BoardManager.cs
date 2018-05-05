@@ -14,10 +14,10 @@ namespace BusinessLogic.GameBoard
         private Cell[,] m_Board;
         private int m_BoardSize;
         private bool m_StartRowWithSoldier;
+        private List<Move> m_DoubleEatMoves;
 
         public BoardManager(int i_size, List<Player> players)
         {
-            m_Board = new Cell[i_size, i_size];  //board[row][col]
             m_BoardSize = i_size;
             NUM_ROWS_FOR_PLAYER = (i_size - 2) / 2;
             m_Players = players;
@@ -37,6 +37,13 @@ namespace BusinessLogic.GameBoard
 
         public void InitializeBoardsData()
         {
+            m_DoubleEatMoves = new List<Move>();
+            m_Board = new Cell[m_BoardSize, m_BoardSize];
+            foreach(Player player in m_Players)
+            {
+                player.RemoveAllSoldiers();
+            }
+
             InitializeSoldiersLocationInBoard(0, ePlayerTitles.PlayerOne, false);
             InitializeEmptyCells(NUM_ROWS_FOR_PLAYER);
             InitializeSoldiersLocationInBoard(NUM_ROWS_FOR_PLAYER + 2, ePlayerTitles.PlayerTwo, m_StartRowWithSoldier);
@@ -91,14 +98,15 @@ namespace BusinessLogic.GameBoard
             return soldier;
         }
 
-        public ActionResult MoveChecker(Move i_Move, Player i_CurrentPlayer)
+        public ActionResult MoveChecker(Move i_Move, Player i_CurrentPlayer, out bool o_IsDoubleEatMove)
         {
             ActionResult actionResult;
             List<Move> legalMoves = GetLegalMovesOfPlayer(i_CurrentPlayer);
 
+            o_IsDoubleEatMove = false;
             if (IsExistInMovesArray(legalMoves, i_Move))
             {
-                MakeMove(i_Move);
+                MakeMove(i_Move, out o_IsDoubleEatMove);
                 actionResult = new ActionResult(true, string.Empty);
             }
             else
@@ -109,32 +117,46 @@ namespace BusinessLogic.GameBoard
             return actionResult;
         }
 
-        private void MakeMove(Move i_Move)
+        private void MakeMove(Move i_Move, out bool o_IsDoubleEatMove)
         {
             Cell nextLocationCell = GetCellByLocation(i_Move.NextLocation);
             Cell currentLocationCell = GetCellByLocation(i_Move.CurrentLocation);
             Soldier currentSoldier = currentLocationCell.Soldier;
 
-            if (IsEatMove(i_Move))
-            {
-                int colOfSoldier = Math.Min(i_Move.CurrentLocation.Col, i_Move.NextLocation.Col) + 1;
-                int rowOfSoldier = Math.Min(i_Move.CurrentLocation.Row, i_Move.NextLocation.Row) + 1;
-                Location eatenSoldierLocation = new Location(rowOfSoldier, colOfSoldier);
-                Soldier soldierToRemove = GetCellByLocation(eatenSoldierLocation).Soldier;
-
-                GetPlayerByTitle(soldierToRemove.Owner).RemoveSoldierFromList(soldierToRemove);
-                GetCellByLocation(eatenSoldierLocation).Soldier = null;
-            }
-
             nextLocationCell.Soldier = currentLocationCell.Soldier; //put the soldier in the nextLocation
             currentLocationCell.Soldier = null; //make the cell empty
             currentSoldier.Location = i_Move.NextLocation; //update Soldier's location
             CheckAndUpdateToKing(currentSoldier);
+            o_IsDoubleEatMove = false;
+            if (IsEatMove(i_Move))
+            {
+                EatSoldier(i_Move);
+                m_DoubleEatMoves = GetLegalEatMovesOfSoldier(currentSoldier);
+                if (m_DoubleEatMoves.Count != 0)
+                {
+                    o_IsDoubleEatMove = true;
+                }
+            }
+            else
+            {
+                m_DoubleEatMoves.Clear();
+            }
         }
 
         private bool IsEatMove(Move i_Move)
         {
             return Math.Abs(i_Move.CurrentLocation.Col - i_Move.NextLocation.Col) > 1;
+        }
+
+        private void EatSoldier(Move i_EatMove)
+        {
+            int colOfSoldier = Math.Min(i_EatMove.CurrentLocation.Col, i_EatMove.NextLocation.Col) + 1;
+            int rowOfSoldier = Math.Min(i_EatMove.CurrentLocation.Row, i_EatMove.NextLocation.Row) + 1;
+            Location eatenSoldierLocation = new Location(rowOfSoldier, colOfSoldier);
+            Soldier soldierToRemove = GetCellByLocation(eatenSoldierLocation).Soldier;
+
+            GetPlayerByTitle(soldierToRemove.Owner).RemoveSoldierFromList(soldierToRemove);
+            GetCellByLocation(eatenSoldierLocation).Soldier = null;
         }
 
         public List<Move> GetLegalMovesOfPlayer(Player i_CurrentPlayer)
@@ -143,21 +165,28 @@ namespace BusinessLogic.GameBoard
             List<Move> eatMoves = new List<Move>();
             List<Move> finalMoveList = null;
 
-            foreach (Soldier soldier in i_CurrentPlayer.Soldiers)
+            if (m_DoubleEatMoves.Count == 0) // if we are not in double eat move flow then find other legal moves
             {
-                List<Move> soldierEatMoves = GetLegalEatMovesOfSoldier(soldier);
+                foreach (Soldier soldier in i_CurrentPlayer.Soldiers)
+                {
+                    List<Move> soldierEatMoves = GetLegalEatMovesOfSoldier(soldier);
 
-                if (soldierEatMoves.Count != 0)
-                {
-                    eatMoves.AddRange(soldierEatMoves);
-                }
-                else
-                {
-                    freeMoves.AddRange(GetLegalFreeMovesOfSoldier(soldier));
+                    if (soldierEatMoves.Count != 0)
+                    {
+                        eatMoves.AddRange(soldierEatMoves);
+                    }
+                    else
+                    {
+                        freeMoves.AddRange(GetLegalFreeMovesOfSoldier(soldier));
+                    }
                 }
             }
 
-            if (eatMoves.Count != 0)
+            if (m_DoubleEatMoves.Count != 0)
+            {
+                finalMoveList = m_DoubleEatMoves;
+            }
+            else if (eatMoves.Count != 0)
             {
                 finalMoveList = eatMoves;
             }
@@ -306,7 +335,6 @@ namespace BusinessLogic.GameBoard
                 i_Soldier.PromoteSoldier();
             }
         }
-
 
         private bool LocationExistInBoard(Location i_Location)
         {
