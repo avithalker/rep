@@ -333,7 +333,7 @@ namespace BusinessLogic.GameBoard
             return false;
         }
 
-        private Cell GetCellByLocation(Location i_Location)
+        public Cell GetCellByLocation(Location i_Location)
         {
             return m_Board[i_Location.Row, i_Location.Col];
         }

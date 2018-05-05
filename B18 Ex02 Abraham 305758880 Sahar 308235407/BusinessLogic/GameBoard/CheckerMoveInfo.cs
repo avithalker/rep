@@ -6,9 +6,11 @@
         private string m_PreviousCell;
         private string m_CurrentCell;
 
-        public CheckerMoveInfo()
+        public CheckerMoveInfo(string i_PlayerName, string i_PreviousCell, string i_CurrentCell)
         {
-           
+            m_PlayerName = i_PlayerName;
+            m_CurrentCell = i_CurrentCell;
+            m_PreviousCell = i_PreviousCell;
         }
 
         public string CurrentCell

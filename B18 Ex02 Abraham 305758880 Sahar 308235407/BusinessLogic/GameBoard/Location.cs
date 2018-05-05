@@ -49,6 +49,15 @@ namespace BusinessLogic
 
             return location;
         }
-            
+
+        public string ToString(Location i_Location)
+        {
+            char col = (char)(i_Location.Col + 'A');
+            char row = (char)(i_Location.Row + 'a');
+            string colRow = col + row +"";
+            return colRow;
+        }
+
+
     }
 }

@@ -103,12 +103,33 @@ namespace BusinessLogic
 
             if (actionResult.IsSucceed)
             {
-                //TODO: update here the m_LastMove !!!!
+                m_LastMove = ConvertMoveToCheckerMoveInfo(i_Move);          //TODO: update here the m_LastMove !!!!
                 HandleEndOfTurn();
             }
 
             return actionResult;
         }
+
+        private CheckerMoveInfo ConvertMoveToCheckerMoveInfo(Move i_Move)
+        {
+            string playerName = GetPlayerNameByTitle(m_BoardManager.GetCellByLocation(i_Move.NextLocation).Soldier.Owner);
+            string previousMove = i_Move.CurrentLocation.ToString();
+            string nextMove = i_Move.NextLocation.ToString();
+
+            return new CheckerMoveInfo(playerName, previousMove, nextMove);
+        }
+
+        private string GetPlayerNameByTitle(ePlayerTitles i_Title)
+        {
+            string name = m_players[0].PlayerName;
+            if(m_players[1].PlayerTitle == i_Title)
+            {
+                name = m_players[1].PlayerName;
+            }
+
+            return name;
+        }
+           
 
         private void QuitCurrentPlayer()
         {
