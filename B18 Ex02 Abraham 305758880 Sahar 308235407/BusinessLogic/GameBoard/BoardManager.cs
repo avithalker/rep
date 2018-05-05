@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using BusinessLogic.GameBoard;
 using BusinessLogic.Enums;
 using BusinessLogic.Dtos;
-using System.Linq;
 
 
 namespace BusinessLogic.GameBoard
@@ -39,11 +37,11 @@ namespace BusinessLogic.GameBoard
         public void InitializeBoardsData()
         {
             InitializeSoldiersLocationInBoard(0, ePlayerTitles.PlayerOne, false);
-            initializeEmptyCells(NUM_ROWS_FOR_PLAYER);
+            InitializeEmptyCells(NUM_ROWS_FOR_PLAYER);
             InitializeSoldiersLocationInBoard(NUM_ROWS_FOR_PLAYER+2, ePlayerTitles.PlayerTwo, m_StartRowWithSoldier);
         }
 
-        private void initializeEmptyCells(int i_startRow)
+        private void InitializeEmptyCells(int i_startRow)
         {
             for (int i = 0; i < SPACES_BETWEEN_PLAYERS; i++)
             {
@@ -110,7 +108,7 @@ namespace BusinessLogic.GameBoard
             return actionResult;
         }
 
-        public void MakeMove(Move i_Move)
+        private void MakeMove(Move i_Move)
         {
             Cell nextLocationCell = GetCellByLocation(i_Move.NextLocation);
             Cell currentLocationCell = GetCellByLocation(i_Move.CurrentLocation);

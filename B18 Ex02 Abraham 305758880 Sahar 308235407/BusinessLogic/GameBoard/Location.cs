@@ -54,10 +54,7 @@ namespace BusinessLogic
         {
             char col = (char)(m_Column + 'A');
             char row = (char)(m_Row + 'a');
-            string colRow = col.ToString() + row.ToString();
-            return colRow;
+            return col.ToString() + row.ToString();
         }
-
-
     }
 }

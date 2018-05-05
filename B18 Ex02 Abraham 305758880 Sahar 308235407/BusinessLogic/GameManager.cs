@@ -16,6 +16,20 @@ namespace BusinessLogic
         private Player m_LastWinner;
         private eGameStatus m_GameStatus;
 
+        public int BoardSize
+        {
+            get { return m_BoardManager.BoardSize; }
+        }
+
+        public Cell[,] Board
+        {
+            get { return m_BoardManager.Board; }
+        }
+
+        public CheckerMoveInfo LastCheckerMove
+        {
+            get { return m_LastMove; }
+        }
 
         public void InitializeGame(GameConfiguration i_GameConfiguration)
         {
@@ -30,21 +44,6 @@ namespace BusinessLogic
             m_players = new List<Player>();
             m_players.Add(new Player(i_playersConfiguration[0], ePlayerTitles.PlayerOne));
             m_players.Add(new Player(i_playersConfiguration[1], ePlayerTitles.PlayerTwo));
-        }
-
-        public int BoardSize
-        {
-            get { return m_BoardManager.BoardSize; }
-        }
-
-        public Cell[,] Board
-        {
-            get { return m_BoardManager.Board; }
-        }
-
-        public CheckerMoveInfo LastCheckerMove
-        {
-            get { return m_LastMove; }
         }
 
         public void StartGame()
