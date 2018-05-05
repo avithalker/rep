@@ -150,7 +150,7 @@ namespace BusinessLogic
 
         private bool CheckIfPlayerCanQuit()
         {
-            Enums.ePlayerTitles currentPlayerTitle = currentPlayerTitle = m_players[m_CurrentPlayerIndex].PlayerTitle;
+            ePlayerTitles currentPlayerTitle = currentPlayerTitle = m_players[m_CurrentPlayerIndex].PlayerTitle;
             int opponentIndex = 0;
             bool hasSmallerScore = false;
             bool hasSmallerAmountOfSoldiers = false;
