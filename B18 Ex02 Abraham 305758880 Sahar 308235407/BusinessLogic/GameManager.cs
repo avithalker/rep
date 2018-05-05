@@ -78,7 +78,8 @@ namespace BusinessLogic
 
             if (i_Action == "Q")
             {
-                QuitCurrentPlayer();
+                
+                actionResult = QuitCurrentPlayerIfLegal();
             }
             else
             {
@@ -131,8 +132,50 @@ namespace BusinessLogic
         }
            
 
-        private void QuitCurrentPlayer()
+        private ActionResult QuitCurrentPlayerIfLegal()
         {
+            ActionResult actionResult;
+
+            if(CheckIfPlayerCanQuit())
+            {
+                QuitCurrentPlayerFromGame();
+                actionResult = new ActionResult(true, string.Empty);
+            }
+            else
+            {
+                actionResult = new ActionResult(false, "You cannot quit at this point");
+            }
+
+            return actionResult;
+        }
+
+        private bool CheckIfPlayerCanQuit()
+        {
+            Enums.ePlayerTitles currentPlayerTitle = currentPlayerTitle = m_players[m_CurrentPlayerIndex].PlayerTitle;
+            int opponentIndex = 0;
+            bool hasSmallerScore = false;
+            bool hasSmallerAmountOfSoldiers = false;
+            if (m_CurrentPlayerIndex == 0)
+            {
+                opponentIndex = 1;
+            }
+
+            if (m_players[opponentIndex].Score > m_players[m_CurrentPlayerIndex].Score)
+            {
+                hasSmallerScore = true;
+            }
+
+            if (m_players[opponentIndex].Soldiers.Count > m_players[m_CurrentPlayerIndex].Soldiers.Count)
+            {
+                hasSmallerAmountOfSoldiers = true;
+            }
+
+            return hasSmallerAmountOfSoldiers & hasSmallerScore;
+        }
+
+        private void QuitCurrentPlayerFromGame()
+        {
+
         }
 
         public GameSummery GetGameSummery()
