@@ -50,11 +50,11 @@ namespace BusinessLogic
             return location;
         }
 
-        public string ToString(Location i_Location)
+        public override string ToString()
         {
-            char col = (char)(i_Location.Col + 'A');
-            char row = (char)(i_Location.Row + 'a');
-            string colRow = col + row +"";
+            char col = (char)(m_Column + 'A');
+            char row = (char)(m_Row + 'a');
+            string colRow = col.ToString() + row.ToString();
             return colRow;
         }
 
