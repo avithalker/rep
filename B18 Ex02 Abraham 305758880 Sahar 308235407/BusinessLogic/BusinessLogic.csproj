@@ -51,7 +51,7 @@
     <Compile Include="GameBoard\BoardManager.cs" />
     <Compile Include="GameBoard\Cell.cs" />
     <Compile Include="Enums\GameModes.cs" />
-    <Compile Include="GameBoard\CheckerMoveInfo.cs" />
+    <Compile Include="Dtos\CheckerMoveInfo.cs" />
     <Compile Include="GameBoard\Location.cs" />
     <Compile Include="GameBoard\Move.cs" />
     <Compile Include="GameBoard\Soldier.cs" />

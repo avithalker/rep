@@ -1,4 +1,4 @@
-﻿namespace BusinessLogic.GameBoard
+﻿namespace BusinessLogic.Dtos
 {
     public class CheckerMoveInfo
     {
