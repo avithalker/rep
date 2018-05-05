@@ -175,7 +175,17 @@ namespace BusinessLogic
 
         private void QuitCurrentPlayerFromGame()
         {
-
+            m_GameStatus = eGameStatus.Winner;
+            
+            if(m_CurrentPlayerIndex == 0)
+            {
+                m_LastWinner = m_players[1];
+            }
+            else
+            {
+                m_LastWinner = m_players[0];
+            }
+            
         }
 
         public GameSummery GetGameSummery()
