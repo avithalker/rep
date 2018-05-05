@@ -12,26 +12,19 @@ namespace BusinessLogic
     {
         private int m_Score;
         private List<Soldier> m_Soldiers;
-        private PlayerTitles.ePlayerTitles m_Title;
-        private PlayerTypes.ePlayerTypes m_Type;
+        private ePlayerTitles m_Title;
+        private ePlayerTypes m_Type;
         private String m_Name;
         private char m_PlayerSign;
 
-        public Player(PlayerConfiguration i_playerConfiguration, PlayerTitles.ePlayerTitles i_title)
+        public Player(PlayerConfiguration i_playerConfiguration, ePlayerTitles i_title)
         {
             m_Score = 0;
             m_Soldiers = new List<Soldier>();
             m_Title = i_title;
             m_Type = i_playerConfiguration.PlayerType;
             m_Name = i_playerConfiguration.PlayerName;
-            if(i_title == PlayerTitles.ePlayerTitles.PlayerOne)
-            {
-                m_PlayerSign = 'O';
-            }
-            else
-            {
-                m_PlayerSign = 'X';
-            }
+            m_PlayerSign = GlobalDefines.GetSoldierSign(i_title, eSoldierTypes.Regular);
         }
 
         public List<Soldier> Soldiers
@@ -51,13 +44,13 @@ namespace BusinessLogic
             set { m_PlayerSign = value; }
         }
 
-        public PlayerTypes.ePlayerTypes PlayerType
+        public ePlayerTypes PlayerType
         {
             get { return m_Type; }
             set { m_Type = value; }
         }
 
-        public PlayerTitles.ePlayerTitles PlayerTitle
+        public ePlayerTitles PlayerTitle
         {
             get { return m_Title; }
             set { m_Title = value; }
@@ -79,9 +72,15 @@ namespace BusinessLogic
             m_Soldiers.Add(i_soldier);
         }
 
+        public bool IsHasAliveSoldiers()
+        {
+            return m_Soldiers.Count != 0;
+        }
+
         public void AddPoints(int i_Points)
         {
             m_Score += i_Points;
         }
+
     }
 }

@@ -10,23 +10,23 @@ namespace BusinessLogic
 {
     public class Soldier
     {
-        private SoldierTypes.eSoldierTypes m_Type;
+        private eSoldierTypes m_Type;
         private Location m_Location;
-        private PlayerTitles.ePlayerTitles m_Owner;
+        private ePlayerTitles m_Owner;
 
-        public Soldier(Location location, SoldierTypes.eSoldierTypes i_type, PlayerTitles.ePlayerTitles i_playerTitle)
+        public Soldier(Location location, eSoldierTypes i_type, ePlayerTitles i_playerTitle)
         {
             m_Type = i_type;
             m_Location = location;
             m_Owner = i_playerTitle;
         }
 
-        public SoldierTypes.eSoldierTypes SoldierType
+        public eSoldierTypes SoldierType
         {
             get { return m_Type; }
         }
 
-        public PlayerTitles.ePlayerTitles Owner
+        public ePlayerTitles Owner
         {
             get { return m_Owner; }
         }
@@ -39,7 +39,7 @@ namespace BusinessLogic
 
         public void PromoteSoldier()
         {
-            m_Type = SoldierTypes.eSoldierTypes.King;
+            m_Type = eSoldierTypes.King;
         }
     }
 }

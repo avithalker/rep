@@ -11,10 +11,6 @@ namespace BusinessLogic.GameBoard
         private Location m_CurrentLocation;
         private Location m_NextLocation;
 
-        public Location CurrentLocation { get{ return m_CurrentLocation; } set { m_CurrentLocation = value; } }
-        public Location NextLocation { get { return m_NextLocation; } set { m_NextLocation = value; } }
-
-
         public Move(Location i_CurrentLocation, Location i_NextLocation)
         {
             m_CurrentLocation = i_CurrentLocation;
@@ -23,6 +19,23 @@ namespace BusinessLogic.GameBoard
 
         public Move()
         {
+        }
+
+        public Location CurrentLocation
+        {
+            get { return m_CurrentLocation; }
+            set { m_CurrentLocation = value; }
+        }
+
+        public Location NextLocation
+        {
+            get { return m_NextLocation; }
+            set { m_NextLocation = value; }
+        }
+
+        public bool AreEqual(Move i_Move)
+        {
+            return (CurrentLocation.AreEqual(i_Move.CurrentLocation) && NextLocation.AreEqual(i_Move.NextLocation));
         }
 
         public static Move Parse(String i_Action)

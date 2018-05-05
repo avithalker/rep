@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BusinessLogic.GameBoard
+﻿namespace BusinessLogic.GameBoard
 {
     public class CheckerMoveInfo
     {
         private string m_PlayerName;
         private string m_PreviousCell;
         private string m_CurrentCell;
+
+        public CheckerMoveInfo()
+        {
+           
+        }
 
         public string CurrentCell
         {
@@ -28,11 +27,6 @@ namespace BusinessLogic.GameBoard
         {
             get { return m_PlayerName; }
             set { m_PlayerName = value; }
-        }
-
-        public CheckerMoveInfo()
-        {
-           
         }
     }
 }

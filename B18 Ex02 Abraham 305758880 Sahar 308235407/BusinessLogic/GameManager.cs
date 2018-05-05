@@ -13,9 +13,14 @@ namespace BusinessLogic
         private List<Player> m_players;
         private CheckerMoveInfo m_LastMove;
         private int m_CurrentPlayerIndex;
+        private Player m_LastWinner;
+        private eGameStatus m_GameStatus;
+
 
         public void InitializeGame(GameConfiguration i_GameConfiguration)
         {
+            m_GameStatus = eGameStatus.None;
+            m_LastWinner = null;
             SetPlayers(i_GameConfiguration.PlayerConfigurations);
             m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, m_players);
         }
@@ -23,8 +28,8 @@ namespace BusinessLogic
         private void SetPlayers(List<PlayerConfiguration> i_playersConfiguration)
         {
             m_players = new List<Player>();
-            m_players.Add(new Player(i_playersConfiguration[0], PlayerTitles.ePlayerTitles.PlayerOne));
-            m_players.Add(new Player(i_playersConfiguration[1], PlayerTitles.ePlayerTitles.PlayerTwo));
+            m_players.Add(new Player(i_playersConfiguration[0], ePlayerTitles.PlayerOne));
+            m_players.Add(new Player(i_playersConfiguration[1], ePlayerTitles.PlayerTwo));
         }
 
         public int BoardSize
@@ -46,11 +51,12 @@ namespace BusinessLogic
         {
             m_CurrentPlayerIndex = 0;
             m_BoardManager.InitializeBoardsData();
+            m_GameStatus = eGameStatus.Started;
         }
 
         public bool IsGameEnded()
         {
-            return false;
+            return m_GameStatus == eGameStatus.Tie || m_GameStatus == eGameStatus.Winner;
         }
 
         public PlayerInfo GetCurrentPlayerTurn()
@@ -69,7 +75,7 @@ namespace BusinessLogic
         public ActionResult HandlePlayerAction(string i_Action) // handle player move/Quit game
         {
             ActionResult actionResult = null;
-            
+
             if (i_Action == "Q")
             {
                 QuitCurrentPlayer();
@@ -97,6 +103,7 @@ namespace BusinessLogic
 
             if (actionResult.IsSucceed)
             {
+                //TODO: update here the m_LastMove !!!!
                 HandleEndOfTurn();
             }
 
@@ -109,7 +116,16 @@ namespace BusinessLogic
 
         public GameSummery GetGameSummery()
         {
-            return new GameSummery(); // here need to return all the end game info like the winner name, score, game state(TIE/WINNER)
+            GameSummery gameSummery = new GameSummery();
+
+            gameSummery.EndGameState = m_GameStatus;
+            if (m_GameStatus == eGameStatus.Winner)
+            {
+                gameSummery.WinnerName = m_LastWinner.PlayerName;
+                gameSummery.Score = m_LastWinner.Score;
+            }
+
+            return gameSummery;
         }
 
         private void ChangePlayerTurn()
@@ -117,13 +133,53 @@ namespace BusinessLogic
             m_CurrentPlayerIndex = (m_CurrentPlayerIndex + 1) % m_players.Count;
         }
 
+        private void CheckAndUpdateIfGameEnded()
+        {
+            bool[] playersHasMoves = new bool[m_players.Count];
+            bool hasMovesToDo = false;
+
+            for (int i = 0; i < m_players.Count; i++)
+            {
+                if (m_BoardManager.GetLegalMovesOfPlayer(m_players[i]).Count != 0)
+                {
+                    playersHasMoves[i] = true;
+                    hasMovesToDo = true;
+                }
+            }
+
+            if (hasMovesToDo)
+            {
+                if (playersHasMoves[0] && !playersHasMoves[1])
+                {
+                    m_LastWinner = m_players[0];
+                    UpdateWinnerScore(m_players[0], m_players[1]);
+                    m_GameStatus = eGameStatus.Winner;
+                }
+                else if (!playersHasMoves[0] && playersHasMoves[1])
+                {
+                    m_LastWinner = m_players[1];
+                    UpdateWinnerScore(m_players[1], m_players[0]);
+                    m_GameStatus = eGameStatus.Winner;
+                }
+            }
+            else
+            {
+                m_GameStatus = eGameStatus.Tie;
+            }
+        }
+
         private void HandleEndOfTurn()
         {
             ChangePlayerTurn();
 
-            if (m_players[m_CurrentPlayerIndex].PlayerType == PlayerTypes.ePlayerTypes.Computer)
+            if (m_players[m_CurrentPlayerIndex].PlayerType == ePlayerTypes.Computer)
             {
                 PlayComputerMove();
+                CheckAndUpdateIfGameEnded();
+            }
+            else
+            {
+                CheckAndUpdateIfGameEnded();
             }
         }
 
@@ -133,16 +189,24 @@ namespace BusinessLogic
             Move chosenMove = ComputerPlayer.SelectMoveAction(legalMoves);
             MoveChecker(chosenMove);
         }
-            
+
+        private void UpdateWinnerScore(Player i_Winner, Player i_Looser)
+        {
+            int winnerPoints = CalculatePointsOfPlayer(i_Winner);
+            int looserPoints = CalculatePointsOfPlayer(i_Looser);
+
+            i_Winner.AddPoints(winnerPoints - looserPoints);
+        }
+
         private int CalculatePointsOfPlayer(Player i_Player)
         {
             int gamePoints = 0;
             int k_pointsForRegularSoldier = 1;
             int k_pointsForKingSoldier = 4;
 
-            foreach(Soldier soldier in i_Player.Soldiers)
+            foreach (Soldier soldier in i_Player.Soldiers)
             {
-                if(soldier.SoldierType == SoldierTypes.eSoldierTypes.Regular)
+                if (soldier.SoldierType == eSoldierTypes.Regular)
                 {
                     gamePoints += k_pointsForRegularSoldier;
                 }
