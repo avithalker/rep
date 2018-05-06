@@ -214,40 +214,31 @@ namespace BusinessLogic.GameBoard
             return legalMoves;
         }
 
-        private List<Move> GetLegalEatMovesOfSoldier(Soldier i_soldier)
+        private List<Move> GetLegalEatMovesOfSoldier(Soldier i_Soldier)
         {
-            Move eatMove = null;
             List<Move> finalEatMoves = new List<Move>();
-            int rowDeletaDirection = GetRowDeltaDirection(i_soldier.Owner);
+            int rowDeletaDirection = GetRowDeltaDirection(i_Soldier.Owner);
 
-            eatMove = GetSingleEatMoveOfSoldier(i_soldier, rowDeletaDirection, 1);
-            if (eatMove != null)
+            addEatMoveIfExist(i_Soldier, rowDeletaDirection, 1, ref finalEatMoves);
+            addEatMoveIfExist(i_Soldier, rowDeletaDirection, -1, ref finalEatMoves);
+
+            if (i_Soldier.SoldierType == eSoldierTypes.King)
             {
-                finalEatMoves.Add(eatMove);
-            }
-
-            eatMove = GetSingleEatMoveOfSoldier(i_soldier, rowDeletaDirection, -1);
-            if (eatMove != null)
-            {
-                finalEatMoves.Add(eatMove);
-            }
-
-            if (i_soldier.SoldierType == eSoldierTypes.King)
-            {
-                eatMove = GetSingleEatMoveOfSoldier(i_soldier, rowDeletaDirection * -1, 1);
-                if (eatMove != null)
-                {
-                    finalEatMoves.Add(eatMove);
-                }
-
-                eatMove = GetSingleEatMoveOfSoldier(i_soldier, rowDeletaDirection * -1, -1);
-                if (eatMove != null)
-                {
-                    finalEatMoves.Add(eatMove);
-                }
+                addEatMoveIfExist(i_Soldier, rowDeletaDirection * -1, 1, ref finalEatMoves);
+                addEatMoveIfExist(i_Soldier, rowDeletaDirection * -1, -1, ref finalEatMoves);
             }
 
             return finalEatMoves;
+        }
+
+        private void addEatMoveIfExist(Soldier i_Soldier, int i_VerticalDirection, int i_HorizontalDirection, ref List<Move> io_EatMoves)
+        {
+            Move eatMove = GetSingleEatMoveOfSoldier(i_Soldier, i_VerticalDirection, i_HorizontalDirection);
+
+            if (eatMove != null)
+            {
+                io_EatMoves.Add(eatMove);
+            }
         }
 
         private Move GetSingleEatMoveOfSoldier(Soldier i_Soldier, int i_rowDeltaDirection, int i_columnDeltaDirection)
@@ -277,37 +268,26 @@ namespace BusinessLogic.GameBoard
         private List<Location> GetNextPossibleLocationsOfSoldier(Soldier i_Soldier)
         {
             List<Location> locations = new List<Location>();
-            Location nextLocation;
             int rowDeltaDirection = GetRowDeltaDirection(i_Soldier.Owner);
 
-            nextLocation = new Location(i_Soldier.Location.Row + rowDeltaDirection, i_Soldier.Location.Col - 1);
-            if (LocationExistInBoard(nextLocation))
-            {
-                locations.Add(nextLocation);
-            }
-
-            nextLocation = new Location(i_Soldier.Location.Row + rowDeltaDirection, i_Soldier.Location.Col + 1);
-            if (LocationExistInBoard(nextLocation))
-            {
-                locations.Add(nextLocation);
-            }
-
+            addNextLocationIfPossible(i_Soldier, rowDeltaDirection, -1, ref locations);
+            addNextLocationIfPossible(i_Soldier, rowDeltaDirection, 1, ref locations);
             if (i_Soldier.SoldierType == eSoldierTypes.King)
             {
-                nextLocation = new Location(i_Soldier.Location.Row + (rowDeltaDirection * -1), i_Soldier.Location.Col - 1);
-                if (LocationExistInBoard(nextLocation))
-                {
-                    locations.Add(nextLocation);
-                }
-
-                nextLocation = new Location(i_Soldier.Location.Row + (rowDeltaDirection * -1), i_Soldier.Location.Col + 1);
-                if (LocationExistInBoard(nextLocation))
-                {
-                    locations.Add(nextLocation);
-                }
+                addNextLocationIfPossible(i_Soldier, rowDeltaDirection * -1, -1, ref locations);
+                addNextLocationIfPossible(i_Soldier, rowDeltaDirection * -1, 1, ref locations);
             }
 
             return locations;
+        }
+
+        private void addNextLocationIfPossible(Soldier i_Soldier, int i_VerticalDirection, int i_HorizontalDirection, ref List<Location> io_Locations)
+        {
+            Location nextLocation = new Location(i_Soldier.Location.Row + i_VerticalDirection, i_Soldier.Location.Col + i_HorizontalDirection);
+            if (LocationExistInBoard(nextLocation))
+            {
+                io_Locations.Add(nextLocation);
+            }
         }
 
         private int GetRowDeltaDirection(ePlayerTitles i_PlayerTitle)
