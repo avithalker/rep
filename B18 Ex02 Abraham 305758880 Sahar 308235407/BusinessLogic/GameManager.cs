@@ -151,7 +151,6 @@ namespace BusinessLogic
 
         private bool checkIfPlayerCanQuit()
         {
-            ePlayerTitles currentPlayerTitle = m_Players[m_CurrentPlayerIndex].PlayerTitle;
             int opponentIndex = getOpponentPlayerIndex();
 
             return calculatePointsOfPlayer(m_Players[opponentIndex]) > calculatePointsOfPlayer(m_Players[m_CurrentPlayerIndex]); 

@@ -217,21 +217,22 @@ namespace BusinessLogic.GameBoard
         private List<Move> getLegalEatMovesOfSoldier(Soldier i_Soldier)
         {
             List<Move> finalEatMoves = new List<Move>();
-            int rowDeletaDirection = getRowDeltaDirection(i_Soldier.Owner);
+            eVertical verticalDirection = getVerticalDirection(i_Soldier.Owner);
 
-            addEatMoveIfExist(i_Soldier, rowDeletaDirection, 1, ref finalEatMoves);
-            addEatMoveIfExist(i_Soldier, rowDeletaDirection, -1, ref finalEatMoves);
+            addEatMoveIfExist(i_Soldier, verticalDirection, eHorizontal.Right, ref finalEatMoves);
+            addEatMoveIfExist(i_Soldier, verticalDirection, eHorizontal.Left, ref finalEatMoves);
 
             if (i_Soldier.SoldierType == eSoldierTypes.King)
             {
-                addEatMoveIfExist(i_Soldier, rowDeletaDirection * -1, 1, ref finalEatMoves);
-                addEatMoveIfExist(i_Soldier, rowDeletaDirection * -1, -1, ref finalEatMoves);
+                verticalDirection = (eVertical)(((int)verticalDirection) * -1); // flip the vertical direction
+                addEatMoveIfExist(i_Soldier, verticalDirection, eHorizontal.Right, ref finalEatMoves);
+                addEatMoveIfExist(i_Soldier, verticalDirection, eHorizontal.Left, ref finalEatMoves);
             }
 
             return finalEatMoves;
         }
 
-        private void addEatMoveIfExist(Soldier i_Soldier, int i_VerticalDirection, int i_HorizontalDirection, ref List<Move> io_EatMoves)
+        private void addEatMoveIfExist(Soldier i_Soldier, eVertical i_VerticalDirection, eHorizontal i_HorizontalDirection, ref List<Move> io_EatMoves)
         {
             Move eatMove = getSingleEatMoveOfSoldier(i_Soldier, i_VerticalDirection, i_HorizontalDirection);
 
@@ -241,10 +242,10 @@ namespace BusinessLogic.GameBoard
             }
         }
 
-        private Move getSingleEatMoveOfSoldier(Soldier i_Soldier, int i_rowDeltaDirection, int i_columnDeltaDirection)
+        private Move getSingleEatMoveOfSoldier(Soldier i_Soldier, eVertical i_VerticalDirection, eHorizontal i_HorizontalDirection)
         {
             Location currentLocation = i_Soldier.Location;
-            Location opponentSoldierLocation = new Location(currentLocation.Row + i_rowDeltaDirection, currentLocation.Col + i_columnDeltaDirection);
+            Location opponentSoldierLocation = new Location(currentLocation.Row + (int)i_VerticalDirection, currentLocation.Col + (int)i_HorizontalDirection);
             Move eatMove = null;
 
             if (locationExistInBoard(opponentSoldierLocation))
@@ -253,7 +254,7 @@ namespace BusinessLogic.GameBoard
 
                 if (!cell.IsCellEmpty() && cell.Soldier.Owner != i_Soldier.Owner)
                 {
-                    Location jumppingLocation = new Location(opponentSoldierLocation.Row + i_rowDeltaDirection, opponentSoldierLocation.Col + i_columnDeltaDirection);
+                    Location jumppingLocation = new Location(opponentSoldierLocation.Row + (int)i_VerticalDirection, opponentSoldierLocation.Col + (int)i_HorizontalDirection);
 
                     if (locationExistInBoard(jumppingLocation) && GetCellByLocation(jumppingLocation).IsCellEmpty())
                     {
@@ -268,42 +269,43 @@ namespace BusinessLogic.GameBoard
         private List<Location> getNextPossibleLocationsOfSoldier(Soldier i_Soldier)
         {
             List<Location> locations = new List<Location>();
-            int rowDeltaDirection = getRowDeltaDirection(i_Soldier.Owner);
+            eVertical verticalDirection = getVerticalDirection(i_Soldier.Owner);
 
-            addNextLocationIfPossible(i_Soldier, rowDeltaDirection, -1, ref locations);
-            addNextLocationIfPossible(i_Soldier, rowDeltaDirection, 1, ref locations);
+            addNextLocationIfPossible(i_Soldier, verticalDirection, eHorizontal.Left, ref locations);
+            addNextLocationIfPossible(i_Soldier, verticalDirection, eHorizontal.Right, ref locations);
             if (i_Soldier.SoldierType == eSoldierTypes.King)
             {
-                addNextLocationIfPossible(i_Soldier, rowDeltaDirection * -1, -1, ref locations);
-                addNextLocationIfPossible(i_Soldier, rowDeltaDirection * -1, 1, ref locations);
+                verticalDirection = (eVertical)(((int)verticalDirection) * -1); // flip the vertical direction
+                addNextLocationIfPossible(i_Soldier, verticalDirection, eHorizontal.Left, ref locations);
+                addNextLocationIfPossible(i_Soldier, verticalDirection, eHorizontal.Right, ref locations);
             }
 
             return locations;
         }
 
-        private void addNextLocationIfPossible(Soldier i_Soldier, int i_VerticalDirection, int i_HorizontalDirection, ref List<Location> io_Locations)
+        private void addNextLocationIfPossible(Soldier i_Soldier, eVertical i_VerticalDirection, eHorizontal i_HorizontalDirection, ref List<Location> io_Locations)
         {
-            Location nextLocation = new Location(i_Soldier.Location.Row + i_VerticalDirection, i_Soldier.Location.Col + i_HorizontalDirection);
+            Location nextLocation = new Location(i_Soldier.Location.Row + (int)i_VerticalDirection, i_Soldier.Location.Col + (int)i_HorizontalDirection);
             if (locationExistInBoard(nextLocation))
             {
                 io_Locations.Add(nextLocation);
             }
         }
 
-        private int getRowDeltaDirection(ePlayerTitles i_PlayerTitle)
+        private eVertical getVerticalDirection(ePlayerTitles i_PlayerTitle)
         {
-            int rowDeltaDirection;
+            eVertical verticalDirection;
 
             if (i_PlayerTitle == ePlayerTitles.PlayerOne)
             {
-                rowDeltaDirection = 1;
+                verticalDirection = eVertical.Down;
             }
             else
             {
-                rowDeltaDirection = -1;
+                verticalDirection = eVertical.Up;
             }
 
-            return rowDeltaDirection;
+            return verticalDirection;
         }
 
         private void checkAndUpdateToKing(Soldier i_Soldier)
