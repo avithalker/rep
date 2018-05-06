@@ -6,7 +6,7 @@ namespace BusinessLogic
     public class GlobalDefines
     {
         public const int k_MaxNameLength = 20;
-        public static readonly List<int> rs_AllowedBoardSizes = new List<int> { 6, 8, 10 };
+        public static readonly List<int> Rs_AllowedBoardSizes = new List<int> { 6, 8, 10 };
 
         public static char GetSoldierSign(ePlayerTitles i_PlayerTitle, eSoldierTypes i_SoldierType)
         {

@@ -29,15 +29,10 @@ namespace BusinessLogic
             set { m_Column = value; }
         }
 
-        public bool AreEqual(Location i_Location)
-        {
-            return (m_Row == i_Location.Row && m_Column == i_Location.Col);
-        }
-
-        public static Location Parse(String i_Location)
+        public static Location Parse(string i_Location)
         {
             Location location;
-            
+
             if ((i_Location[0] < 'A' || i_Location[0] > 'Z') || (i_Location[1] < 'a' || i_Location[1] > 'z'))
             {
                 location = null;
@@ -48,6 +43,11 @@ namespace BusinessLogic
             }
 
             return location;
+        }
+
+        public bool AreEqual(Location i_Location)
+        {
+            return m_Row == i_Location.Row && m_Column == i_Location.Col;
         }
 
         public override string ToString()

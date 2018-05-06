@@ -9,7 +9,6 @@ namespace BusinessLogic.Dtos
         private ePlayerTitles m_PlayerTitle;
         private char m_PlayerSign;
 
-
         public char PlayerSign
         {
             get { return m_PlayerSign; }

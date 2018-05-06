@@ -14,7 +14,7 @@ namespace BusinessLogic
         private List<Soldier> m_Soldiers;
         private ePlayerTitles m_Title;
         private ePlayerTypes m_Type;
-        private String m_Name;
+        private string m_Name;
         private char m_PlayerSign;
 
         public Player(PlayerConfiguration i_playerConfiguration, ePlayerTitles i_title)
@@ -34,7 +34,7 @@ namespace BusinessLogic
 
         public char PlayerSign
         {
-            get{ return m_PlayerSign; }
+            get { return m_PlayerSign; }
             set { m_PlayerSign = value; }
         }
 

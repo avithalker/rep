@@ -46,7 +46,7 @@ namespace CheckersApp
                 isSizeValid = true;
                 Console.WriteLine("Enter the board size:");
                 isInputValid = int.TryParse(Console.ReadLine(), out boardSize);
-                if (!isInputValid || !GlobalDefines.rs_AllowedBoardSizes.Contains(boardSize))
+                if (!isInputValid || !GlobalDefines.Rs_AllowedBoardSizes.Contains(boardSize))
                 {
                     isSizeValid = false;
                     Console.WriteLine("Invalid board size!. try again.");

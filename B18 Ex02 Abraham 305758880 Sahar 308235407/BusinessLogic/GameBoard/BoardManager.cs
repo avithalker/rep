@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using BusinessLogic.Enums;
 using BusinessLogic.Dtos;
 
-
 namespace BusinessLogic.GameBoard
 {
     public class BoardManager
@@ -123,9 +122,9 @@ namespace BusinessLogic.GameBoard
             Cell currentLocationCell = GetCellByLocation(i_Move.CurrentLocation);
             Soldier currentSoldier = currentLocationCell.Soldier;
 
-            nextLocationCell.Soldier = currentLocationCell.Soldier; //put the soldier in the nextLocation
-            currentLocationCell.Soldier = null; //make the cell empty
-            currentSoldier.Location = i_Move.NextLocation; //update Soldier's location
+            nextLocationCell.Soldier = currentLocationCell.Soldier; // put the soldier in the nextLocation
+            currentLocationCell.Soldier = null; // make the cell empty
+            currentSoldier.Location = i_Move.NextLocation; // update Soldier's location
             CheckAndUpdateToKing(currentSoldier);
             o_IsDoubleEatMove = false;
             if (IsEatMove(i_Move))
@@ -165,7 +164,8 @@ namespace BusinessLogic.GameBoard
             List<Move> eatMoves = new List<Move>();
             List<Move> finalMoveList = null;
 
-            if (m_DoubleEatMoves.Count == 0) // if we are not in double eat move flow then find other legal moves
+            // if we are not in double eat move flow then find other legal moves
+            if (m_DoubleEatMoves.Count == 0) 
             {
                 foreach (Soldier soldier in i_CurrentPlayer.Soldiers)
                 {
@@ -294,13 +294,13 @@ namespace BusinessLogic.GameBoard
 
             if (i_Soldier.SoldierType == eSoldierTypes.King)
             {
-                nextLocation = new Location(i_Soldier.Location.Row + rowDeltaDirection * -1, i_Soldier.Location.Col - 1);
+                nextLocation = new Location(i_Soldier.Location.Row + (rowDeltaDirection * -1), i_Soldier.Location.Col - 1);
                 if (LocationExistInBoard(nextLocation))
                 {
                     locations.Add(nextLocation);
                 }
 
-                nextLocation = new Location(i_Soldier.Location.Row + rowDeltaDirection * -1, i_Soldier.Location.Col + 1);
+                nextLocation = new Location(i_Soldier.Location.Row + (rowDeltaDirection * -1), i_Soldier.Location.Col + 1);
                 if (LocationExistInBoard(nextLocation))
                 {
                     locations.Add(nextLocation);
@@ -325,7 +325,6 @@ namespace BusinessLogic.GameBoard
 
             return rowDeltaDirection;
         }
-
 
         private void CheckAndUpdateToKing(Soldier i_Soldier)
         {

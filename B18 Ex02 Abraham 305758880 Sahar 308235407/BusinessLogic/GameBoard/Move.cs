@@ -33,18 +33,13 @@ namespace BusinessLogic.GameBoard
             set { m_NextLocation = value; }
         }
 
-        public bool AreEqual(Move i_Move)
-        {
-            return (CurrentLocation.AreEqual(i_Move.CurrentLocation) && NextLocation.AreEqual(i_Move.NextLocation));
-        }
-
-        public static Move Parse(String i_Action)
+        public static Move Parse(string i_Action)
         {
             Move move = new Move();
-            String[] locations = i_Action.Split('>');
-            if(locations.Length != 2)
+            string[] locations = i_Action.Split('>');
+            if (locations.Length != 2)
             {
-                move = null; 
+                move = null;
             }
             else
             {
@@ -60,5 +55,9 @@ namespace BusinessLogic.GameBoard
             return move;
         }
 
+        public bool AreEqual(Move i_Move)
+        {
+            return CurrentLocation.AreEqual(i_Move.CurrentLocation) && NextLocation.AreEqual(i_Move.NextLocation);
+        }
     }
 }

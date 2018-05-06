@@ -4,7 +4,6 @@ using BusinessLogic.GameBoard;
 using BusinessLogic.Dtos;
 using BusinessLogic.Enums;
 
-
 namespace BusinessLogic
 {
     public class GameManager
@@ -133,7 +132,6 @@ namespace BusinessLogic
             return name;
         }
 
-
         private ActionResult QuitCurrentPlayerIfLegal()
         {
             ActionResult actionResult;
@@ -200,7 +198,7 @@ namespace BusinessLogic
 
         private int GetOpponentPlayerIndex()
         {
-            return ((m_CurrentPlayerIndex + 1) % m_players.Count);
+            return (m_CurrentPlayerIndex + 1) % m_players.Count;
         }
 
         private void CheckAndUpdateIfGameEnded()
