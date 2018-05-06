@@ -7,8 +7,8 @@ namespace BusinessLogic.GameBoard
 {
     public class BoardManager
     {
-        private const int SPACES_BETWEEN_PLAYERS = 2;
-        private readonly int NUM_ROWS_FOR_PLAYER;
+        private const int k_SpacesBetweenPlayers = 2;
+        private readonly int k_NumRowsForPlayer;
         private List<Player> m_Players;
         private Cell[,] m_Board;
         private int m_BoardSize;
@@ -18,7 +18,7 @@ namespace BusinessLogic.GameBoard
         public BoardManager(int i_size, List<Player> players)
         {
             m_BoardSize = i_size;
-            NUM_ROWS_FOR_PLAYER = (i_size - 2) / 2;
+            k_NumRowsForPlayer = (i_size - 2) / 2;
             m_Players = players;
         }
 
@@ -43,14 +43,14 @@ namespace BusinessLogic.GameBoard
                 player.RemoveAllSoldiers();
             }
 
-            InitializeSoldiersLocationInBoard(0, ePlayerTitles.PlayerOne, false);
-            InitializeEmptyCells(NUM_ROWS_FOR_PLAYER);
-            InitializeSoldiersLocationInBoard(NUM_ROWS_FOR_PLAYER + 2, ePlayerTitles.PlayerTwo, m_StartRowWithSoldier);
+            initializeSoldiersLocationInBoard(0, ePlayerTitles.PlayerOne, false);
+            initializeEmptyCells(k_NumRowsForPlayer);
+            initializeSoldiersLocationInBoard(k_NumRowsForPlayer + 2, ePlayerTitles.PlayerTwo, m_StartRowWithSoldier);
         }
 
-        private void InitializeEmptyCells(int i_startRow)
+        private void initializeEmptyCells(int i_startRow)
         {
-            for (int i = 0; i < SPACES_BETWEEN_PLAYERS; i++)
+            for (int i = 0; i < k_SpacesBetweenPlayers; i++)
             {
                 for (int j = 0; j < m_Board.GetLength(1); j++)
                 {
@@ -61,11 +61,11 @@ namespace BusinessLogic.GameBoard
             }
         }
 
-        private void InitializeSoldiersLocationInBoard(int i_row, ePlayerTitles i_playerTitle, bool i_SetSoldierInStartOfRow)
+        private void initializeSoldiersLocationInBoard(int i_row, ePlayerTitles i_playerTitle, bool i_SetSoldierInStartOfRow)
         {
             bool setSoldierInCell = false;
 
-            for (int i = 0; i < NUM_ROWS_FOR_PLAYER; i++)
+            for (int i = 0; i < k_NumRowsForPlayer; i++)
             {
                 setSoldierInCell = i_SetSoldierInStartOfRow;
                 for (int j = 0; j < m_Board.GetLength(1); j++)
@@ -73,7 +73,7 @@ namespace BusinessLogic.GameBoard
                     m_Board[i_row, j] = new Cell();
                     if (setSoldierInCell)
                     {
-                        m_Board[i_row, j].Soldier = CreateNewSoldier(i_row, j, i_playerTitle);
+                        m_Board[i_row, j].Soldier = createNewSoldier(i_row, j, i_playerTitle);
                         setSoldierInCell = false;
                     }
                     else
@@ -89,10 +89,10 @@ namespace BusinessLogic.GameBoard
             m_StartRowWithSoldier = i_SetSoldierInStartOfRow;
         }
 
-        private Soldier CreateNewSoldier(int i_row, int i_col, ePlayerTitles i_playerTitle)
+        private Soldier createNewSoldier(int i_row, int i_col, ePlayerTitles i_playerTitle)
         {
             Soldier soldier = new Soldier(new Location(i_row, i_col), eSoldierTypes.Regular, i_playerTitle);
-            GetPlayerByTitle(i_playerTitle).AddSoldier(soldier);
+            getPlayerByTitle(i_playerTitle).AddSoldier(soldier);
 
             return soldier;
         }
@@ -103,9 +103,9 @@ namespace BusinessLogic.GameBoard
             List<Move> legalMoves = GetLegalMovesOfPlayer(i_CurrentPlayer);
 
             o_IsDoubleEatMove = false;
-            if (IsExistInMovesArray(legalMoves, i_Move))
+            if (isExistInMovesArray(legalMoves, i_Move))
             {
-                MakeMove(i_Move, out o_IsDoubleEatMove);
+                makeMove(i_Move, out o_IsDoubleEatMove);
                 actionResult = new ActionResult(true, string.Empty);
             }
             else
@@ -116,7 +116,7 @@ namespace BusinessLogic.GameBoard
             return actionResult;
         }
 
-        private void MakeMove(Move i_Move, out bool o_IsDoubleEatMove)
+        private void makeMove(Move i_Move, out bool o_IsDoubleEatMove)
         {
             Cell nextLocationCell = GetCellByLocation(i_Move.NextLocation);
             Cell currentLocationCell = GetCellByLocation(i_Move.CurrentLocation);
@@ -125,12 +125,12 @@ namespace BusinessLogic.GameBoard
             nextLocationCell.Soldier = currentLocationCell.Soldier; // put the soldier in the nextLocation
             currentLocationCell.Soldier = null; // make the cell empty
             currentSoldier.Location = i_Move.NextLocation; // update Soldier's location
-            CheckAndUpdateToKing(currentSoldier);
+            checkAndUpdateToKing(currentSoldier);
             o_IsDoubleEatMove = false;
-            if (IsEatMove(i_Move))
+            if (isEatMove(i_Move))
             {
-                EatSoldier(i_Move);
-                m_DoubleEatMoves = GetLegalEatMovesOfSoldier(currentSoldier);
+                eatSoldier(i_Move);
+                m_DoubleEatMoves = getLegalEatMovesOfSoldier(currentSoldier);
                 if (m_DoubleEatMoves.Count != 0)
                 {
                     o_IsDoubleEatMove = true;
@@ -142,19 +142,19 @@ namespace BusinessLogic.GameBoard
             }
         }
 
-        private bool IsEatMove(Move i_Move)
+        private bool isEatMove(Move i_Move)
         {
             return Math.Abs(i_Move.CurrentLocation.Col - i_Move.NextLocation.Col) > 1;
         }
 
-        private void EatSoldier(Move i_EatMove)
+        private void eatSoldier(Move i_EatMove)
         {
             int colOfSoldier = Math.Min(i_EatMove.CurrentLocation.Col, i_EatMove.NextLocation.Col) + 1;
             int rowOfSoldier = Math.Min(i_EatMove.CurrentLocation.Row, i_EatMove.NextLocation.Row) + 1;
             Location eatenSoldierLocation = new Location(rowOfSoldier, colOfSoldier);
             Soldier soldierToRemove = GetCellByLocation(eatenSoldierLocation).Soldier;
 
-            GetPlayerByTitle(soldierToRemove.Owner).RemoveSoldierFromList(soldierToRemove);
+            getPlayerByTitle(soldierToRemove.Owner).RemoveSoldierFromList(soldierToRemove);
             GetCellByLocation(eatenSoldierLocation).Soldier = null;
         }
 
@@ -169,7 +169,7 @@ namespace BusinessLogic.GameBoard
             {
                 foreach (Soldier soldier in i_CurrentPlayer.Soldiers)
                 {
-                    List<Move> soldierEatMoves = GetLegalEatMovesOfSoldier(soldier);
+                    List<Move> soldierEatMoves = getLegalEatMovesOfSoldier(soldier);
 
                     if (soldierEatMoves.Count != 0)
                     {
@@ -177,7 +177,7 @@ namespace BusinessLogic.GameBoard
                     }
                     else
                     {
-                        freeMoves.AddRange(GetLegalFreeMovesOfSoldier(soldier));
+                        freeMoves.AddRange(getLegalFreeMovesOfSoldier(soldier));
                     }
                 }
             }
@@ -198,10 +198,10 @@ namespace BusinessLogic.GameBoard
             return finalMoveList;
         }
 
-        private List<Move> GetLegalFreeMovesOfSoldier(Soldier i_Soldier)
+        private List<Move> getLegalFreeMovesOfSoldier(Soldier i_Soldier)
         {
             List<Move> legalMoves = new List<Move>();
-            List<Location> possibleNextLocations = GetNextPossibleLocationsOfSoldier(i_Soldier);
+            List<Location> possibleNextLocations = getNextPossibleLocationsOfSoldier(i_Soldier);
 
             foreach (Location location in possibleNextLocations)
             {
@@ -214,10 +214,10 @@ namespace BusinessLogic.GameBoard
             return legalMoves;
         }
 
-        private List<Move> GetLegalEatMovesOfSoldier(Soldier i_Soldier)
+        private List<Move> getLegalEatMovesOfSoldier(Soldier i_Soldier)
         {
             List<Move> finalEatMoves = new List<Move>();
-            int rowDeletaDirection = GetRowDeltaDirection(i_Soldier.Owner);
+            int rowDeletaDirection = getRowDeltaDirection(i_Soldier.Owner);
 
             addEatMoveIfExist(i_Soldier, rowDeletaDirection, 1, ref finalEatMoves);
             addEatMoveIfExist(i_Soldier, rowDeletaDirection, -1, ref finalEatMoves);
@@ -233,7 +233,7 @@ namespace BusinessLogic.GameBoard
 
         private void addEatMoveIfExist(Soldier i_Soldier, int i_VerticalDirection, int i_HorizontalDirection, ref List<Move> io_EatMoves)
         {
-            Move eatMove = GetSingleEatMoveOfSoldier(i_Soldier, i_VerticalDirection, i_HorizontalDirection);
+            Move eatMove = getSingleEatMoveOfSoldier(i_Soldier, i_VerticalDirection, i_HorizontalDirection);
 
             if (eatMove != null)
             {
@@ -241,13 +241,13 @@ namespace BusinessLogic.GameBoard
             }
         }
 
-        private Move GetSingleEatMoveOfSoldier(Soldier i_Soldier, int i_rowDeltaDirection, int i_columnDeltaDirection)
+        private Move getSingleEatMoveOfSoldier(Soldier i_Soldier, int i_rowDeltaDirection, int i_columnDeltaDirection)
         {
             Location currentLocation = i_Soldier.Location;
             Location opponentSoldierLocation = new Location(currentLocation.Row + i_rowDeltaDirection, currentLocation.Col + i_columnDeltaDirection);
             Move eatMove = null;
 
-            if (LocationExistInBoard(opponentSoldierLocation))
+            if (locationExistInBoard(opponentSoldierLocation))
             {
                 Cell cell = GetCellByLocation(opponentSoldierLocation);
 
@@ -255,7 +255,7 @@ namespace BusinessLogic.GameBoard
                 {
                     Location jumppingLocation = new Location(opponentSoldierLocation.Row + i_rowDeltaDirection, opponentSoldierLocation.Col + i_columnDeltaDirection);
 
-                    if (LocationExistInBoard(jumppingLocation) && GetCellByLocation(jumppingLocation).IsCellEmpty())
+                    if (locationExistInBoard(jumppingLocation) && GetCellByLocation(jumppingLocation).IsCellEmpty())
                     {
                         eatMove = new Move(currentLocation, jumppingLocation);
                     }
@@ -265,10 +265,10 @@ namespace BusinessLogic.GameBoard
             return eatMove;
         }
 
-        private List<Location> GetNextPossibleLocationsOfSoldier(Soldier i_Soldier)
+        private List<Location> getNextPossibleLocationsOfSoldier(Soldier i_Soldier)
         {
             List<Location> locations = new List<Location>();
-            int rowDeltaDirection = GetRowDeltaDirection(i_Soldier.Owner);
+            int rowDeltaDirection = getRowDeltaDirection(i_Soldier.Owner);
 
             addNextLocationIfPossible(i_Soldier, rowDeltaDirection, -1, ref locations);
             addNextLocationIfPossible(i_Soldier, rowDeltaDirection, 1, ref locations);
@@ -284,13 +284,13 @@ namespace BusinessLogic.GameBoard
         private void addNextLocationIfPossible(Soldier i_Soldier, int i_VerticalDirection, int i_HorizontalDirection, ref List<Location> io_Locations)
         {
             Location nextLocation = new Location(i_Soldier.Location.Row + i_VerticalDirection, i_Soldier.Location.Col + i_HorizontalDirection);
-            if (LocationExistInBoard(nextLocation))
+            if (locationExistInBoard(nextLocation))
             {
                 io_Locations.Add(nextLocation);
             }
         }
 
-        private int GetRowDeltaDirection(ePlayerTitles i_PlayerTitle)
+        private int getRowDeltaDirection(ePlayerTitles i_PlayerTitle)
         {
             int rowDeltaDirection;
 
@@ -306,7 +306,7 @@ namespace BusinessLogic.GameBoard
             return rowDeltaDirection;
         }
 
-        private void CheckAndUpdateToKing(Soldier i_Soldier)
+        private void checkAndUpdateToKing(Soldier i_Soldier)
         {
             if ((i_Soldier.Owner == ePlayerTitles.PlayerOne && i_Soldier.Location.Row == BoardSize - 1) ||
                 (i_Soldier.Owner == ePlayerTitles.PlayerTwo && i_Soldier.Location.Row == 0))
@@ -315,7 +315,7 @@ namespace BusinessLogic.GameBoard
             }
         }
 
-        private bool LocationExistInBoard(Location i_Location)
+        private bool locationExistInBoard(Location i_Location)
         {
             bool isInBoard = true;
 
@@ -327,7 +327,7 @@ namespace BusinessLogic.GameBoard
             return isInBoard;
         }
 
-        private bool IsExistInMovesArray(List<Move> i_MoveArray, Move i_Move)
+        private bool isExistInMovesArray(List<Move> i_MoveArray, Move i_Move)
         {
             foreach (Move possibleMove in i_MoveArray)
             {
@@ -345,7 +345,7 @@ namespace BusinessLogic.GameBoard
             return m_Board[i_Location.Row, i_Location.Col];
         }
 
-        private Player GetPlayerByTitle(ePlayerTitles i_playerTitle)
+        private Player getPlayerByTitle(ePlayerTitles i_playerTitle)
         {
             Player player = null;
 
