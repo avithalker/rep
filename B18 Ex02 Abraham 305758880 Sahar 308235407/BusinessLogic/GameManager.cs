@@ -105,7 +105,7 @@ namespace BusinessLogic
                 bool isTurnNeedToBeChanged = !isDoubleEatMove;
 
                 m_LastMove = convertMoveToCheckerMoveInfo(i_Move);
-                HandleEndOfTurn(isTurnNeedToBeChanged);
+                handleEndOfTurn(isTurnNeedToBeChanged);
             }
 
             return actionResult;
