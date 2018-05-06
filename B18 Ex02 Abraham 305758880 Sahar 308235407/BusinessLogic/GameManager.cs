@@ -153,12 +153,8 @@ namespace BusinessLogic
         {
             ePlayerTitles currentPlayerTitle = m_Players[m_CurrentPlayerIndex].PlayerTitle;
             int opponentIndex = getOpponentPlayerIndex();
-            bool hasSmallerScore = false;
-            bool hasSmallerAmountOfSoldiers = false;
 
-            return false;
-
-            
+            return calculatePointsOfPlayer(m_Players[opponentIndex]) > calculatePointsOfPlayer(m_Players[m_CurrentPlayerIndex]); 
         }
 
         private void quitCurrentPlayerFromGame()
@@ -167,7 +163,7 @@ namespace BusinessLogic
 
             m_GameStatus = eGameStatus.Winner;
             m_LastWinner = m_Players[winnerPlayerIndex];
-            //UpdateWinnerScore(m_LastWinner, Plam_CurrentPlayerIndex)
+            updateWinnerScore(m_Players[winnerPlayerIndex], m_Players[m_CurrentPlayerIndex]);
         }
 
         public GameSummery GetGameSummery()
