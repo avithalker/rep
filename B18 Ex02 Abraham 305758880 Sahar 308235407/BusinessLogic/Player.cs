@@ -17,14 +17,14 @@ namespace BusinessLogic
         private string m_Name;
         private char m_PlayerSign;
 
-        public Player(PlayerConfiguration i_playerConfiguration, ePlayerTitles i_title)
+        public Player(PlayerConfiguration i_PlayerConfiguration, ePlayerTitles i_Title)
         {
             m_Score = 0;
             m_Soldiers = new List<Soldier>();
-            m_Title = i_title;
-            m_Type = i_playerConfiguration.PlayerType;
-            m_Name = i_playerConfiguration.PlayerName;
-            m_PlayerSign = GlobalDefines.GetSoldierSign(i_title, eSoldierTypes.Regular);
+            m_Title = i_Title;
+            m_Type = i_PlayerConfiguration.PlayerType;
+            m_Name = i_PlayerConfiguration.PlayerName;
+            m_PlayerSign = GlobalDefines.GetSoldierSign(i_Title, eSoldierTypes.Regular);
         }
 
         public List<Soldier> Soldiers
@@ -61,9 +61,9 @@ namespace BusinessLogic
             get { return m_Score; }
         }
 
-        public void AddSoldier(Soldier i_soldier)
+        public void AddSoldier(Soldier i_Soldier)
         {
-            m_Soldiers.Add(i_soldier);
+            m_Soldiers.Add(i_Soldier);
         }
 
         public bool IsHasAliveSoldiers()

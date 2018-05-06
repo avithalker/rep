@@ -11,10 +11,10 @@ namespace BusinessLogic
         private int m_Row;
         private int m_Column;
 
-        public Location(int i_row, int i_col)
+        public Location(int i_Row, int i_Col)
         {
-            m_Row = i_row;
-            m_Column = i_col;
+            m_Row = i_Row;
+            m_Column = i_Col;
         }
 
         public int Row

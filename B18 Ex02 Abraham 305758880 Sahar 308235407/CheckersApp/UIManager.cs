@@ -157,13 +157,13 @@ namespace CheckersApp
             int k_RowsPerCell = 2;
             int rowIndex = 0;
 
-            PrintColumnHeaders(i_BoardSize);
+            printColumnHeaders(i_BoardSize);
             for (int i = 0; i < i_BoardSize * k_RowsPerCell; i++)
             {
                 if (i % 2 == 0)
                 {
                     Console.Write(" ");
-                    PrintRowDelimiterLine(i_BoardSize);
+                    printRowDelimiterLine(i_BoardSize);
                 }
                 else
                 {
@@ -172,7 +172,7 @@ namespace CheckersApp
                     for (int j = 0; j < i_BoardSize; j++)
                     {
                         bool isLastCellInRow = j == i_BoardSize - 1;
-                        PrintCell(i_GameBoard[rowIndex, j], isLastCellInRow);
+                        printCell(i_GameBoard[rowIndex, j], isLastCellInRow);
                     }
 
                     rowIndex++;
@@ -180,10 +180,10 @@ namespace CheckersApp
                 }
             }
 
-            PrintRowDelimiterLine(i_BoardSize);
+            printRowDelimiterLine(i_BoardSize);
         }
 
-        private static void PrintColumnHeaders(int i_BoardSize)
+        private static void printColumnHeaders(int i_BoardSize)
         {
             char currentColumnSign = 'A';
 
@@ -197,7 +197,7 @@ namespace CheckersApp
             Console.WriteLine();
         }
 
-        private static void PrintRowDelimiterLine(int i_BoardSize)
+        private static void printRowDelimiterLine(int i_BoardSize)
         {
             char k_DelimiterSign = '=';
             int k_SignPerCell = 4;
@@ -211,7 +211,7 @@ namespace CheckersApp
             Console.WriteLine();
         }
 
-        private static void PrintCell(Cell i_Cell, bool i_IsLastInRow)
+        private static void printCell(Cell i_Cell, bool i_IsLastInRow)
         {
             char k_CellDelimiter = '|';
             char cellContent;

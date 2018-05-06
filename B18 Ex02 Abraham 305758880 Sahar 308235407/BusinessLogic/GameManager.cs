@@ -38,13 +38,6 @@ namespace BusinessLogic
             m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, m_Players);
         }
 
-        private void setPlayers(List<PlayerConfiguration> i_playersConfiguration)
-        {
-            m_Players = new List<Player>();
-            m_Players.Add(new Player(i_playersConfiguration[0], ePlayerTitles.PlayerOne));
-            m_Players.Add(new Player(i_playersConfiguration[1], ePlayerTitles.PlayerTwo));
-        }
-
         public void StartGame()
         {
             m_CurrentPlayerIndex = 0;
@@ -93,6 +86,27 @@ namespace BusinessLogic
             }
 
             return actionResult;
+        }
+
+        public GameSummery GetGameSummery()
+        {
+            GameSummery gameSummery = new GameSummery();
+
+            gameSummery.EndGameState = m_GameStatus;
+            if (m_GameStatus == eGameStatus.Winner)
+            {
+                gameSummery.WinnerName = m_LastWinner.PlayerName;
+                gameSummery.Score = m_LastWinner.Score;
+            }
+
+            return gameSummery;
+        }
+
+        private void setPlayers(List<PlayerConfiguration> i_playersConfiguration)
+        {
+            m_Players = new List<Player>();
+            m_Players.Add(new Player(i_playersConfiguration[0], ePlayerTitles.PlayerOne));
+            m_Players.Add(new Player(i_playersConfiguration[1], ePlayerTitles.PlayerTwo));
         }
 
         private ActionResult moveChecker(Move i_Move)
@@ -163,20 +177,6 @@ namespace BusinessLogic
             m_GameStatus = eGameStatus.Winner;
             m_LastWinner = m_Players[winnerPlayerIndex];
             updateWinnerScore(m_Players[winnerPlayerIndex], m_Players[m_CurrentPlayerIndex]);
-        }
-
-        public GameSummery GetGameSummery()
-        {
-            GameSummery gameSummery = new GameSummery();
-
-            gameSummery.EndGameState = m_GameStatus;
-            if (m_GameStatus == eGameStatus.Winner)
-            {
-                gameSummery.WinnerName = m_LastWinner.PlayerName;
-                gameSummery.Score = m_LastWinner.Score;
-            }
-
-            return gameSummery;
         }
 
         private void changePlayerTurn()

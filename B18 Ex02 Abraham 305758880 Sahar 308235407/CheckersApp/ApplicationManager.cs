@@ -18,22 +18,22 @@ namespace CheckersApp
         {
             bool restartGame = true;
 
-            InitializeGame();
+            initializeGame();
             while (restartGame)
             {
-                StartGame();
-                restartGame = EndGame();
+                startGame();
+                restartGame = endGame();
             }
 
-            EndRun();
+            endRun();
         }
 
-        private void EndRun()
+        private void endRun()
         {
             UIManager.PrintGeneralAnnouncment("Thank you for playing. the game was ended. bye bye!");
         }
 
-        private void InitializeGame()
+        private void initializeGame()
         {
             int currentPlayer = 1;
             GameConfiguration gameConfiguration = new GameConfiguration();
@@ -57,13 +57,13 @@ namespace CheckersApp
             m_GameManager.InitializeGame(gameConfiguration);
         }
 
-        private void StartGame()
+        private void startGame()
         {
             m_GameManager.StartGame();
-            HandleGameLoop();
+            handleGameLoop();
         }
         
-        private bool EndGame()
+        private bool endGame()
         {
             bool isRestartRequired;
 
@@ -72,22 +72,22 @@ namespace CheckersApp
             return isRestartRequired;
         }
 
-        private void HandleGameLoop()
+        private void handleGameLoop()
         {
             PlayerInfo currentPlayer = null;
 
             while (!m_GameManager.IsGameEnded())
             {
-                ShowGameView();
+                showGameView();
                 currentPlayer = m_GameManager.GetCurrentPlayerTurn();
                 UIManager.PrintPlayerTurnAnnouncment(currentPlayer.PlayerName, currentPlayer.PlayerSign);
-                HandlePlayerMove(currentPlayer);
+                handlePlayerMove(currentPlayer);
             }
 
-            ShowGameView();
+            showGameView();
         }
 
-        private void HandlePlayerMove(PlayerInfo i_CurrentPlayer)
+        private void handlePlayerMove(PlayerInfo i_CurrentPlayer)
         {
             ActionResult actionResult;
             string playerAction;
@@ -103,7 +103,7 @@ namespace CheckersApp
             while (!actionResult.IsSucceed);
         }
 
-        private void ShowGameView()
+        private void showGameView()
         {
             UIManager.CleanScreen();
             UIManager.PrintGameBoard(m_GameManager.Board, m_GameManager.BoardSize);

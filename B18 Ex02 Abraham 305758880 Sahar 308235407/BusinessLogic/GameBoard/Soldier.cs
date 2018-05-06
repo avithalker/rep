@@ -14,11 +14,11 @@ namespace BusinessLogic
         private Location m_Location;
         private ePlayerTitles m_Owner;
 
-        public Soldier(Location location, eSoldierTypes i_type, ePlayerTitles i_playerTitle)
+        public Soldier(Location i_Location, eSoldierTypes i_Type, ePlayerTitles i_PlayerTitle)
         {
-            m_Type = i_type;
-            m_Location = location;
-            m_Owner = i_playerTitle;
+            m_Type = i_Type;
+            m_Location = i_Location;
+            m_Owner = i_PlayerTitle;
         }
 
         public eSoldierTypes SoldierType

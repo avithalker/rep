@@ -48,55 +48,6 @@ namespace BusinessLogic.GameBoard
             initializeSoldiersLocationInBoard(k_NumRowsForPlayer + 2, ePlayerTitles.PlayerTwo, m_StartRowWithSoldier);
         }
 
-        private void initializeEmptyCells(int i_startRow)
-        {
-            for (int i = 0; i < k_SpacesBetweenPlayers; i++)
-            {
-                for (int j = 0; j < m_Board.GetLength(1); j++)
-                {
-                    m_Board[i_startRow, j] = new Cell();
-                }
-
-                i_startRow++;
-            }
-        }
-
-        private void initializeSoldiersLocationInBoard(int i_row, ePlayerTitles i_playerTitle, bool i_SetSoldierInStartOfRow)
-        {
-            bool setSoldierInCell = false;
-
-            for (int i = 0; i < k_NumRowsForPlayer; i++)
-            {
-                setSoldierInCell = i_SetSoldierInStartOfRow;
-                for (int j = 0; j < m_Board.GetLength(1); j++)
-                {
-                    m_Board[i_row, j] = new Cell();
-                    if (setSoldierInCell)
-                    {
-                        m_Board[i_row, j].Soldier = createNewSoldier(i_row, j, i_playerTitle);
-                        setSoldierInCell = false;
-                    }
-                    else
-                    {
-                        setSoldierInCell = true;
-                    }
-                }
-
-                i_SetSoldierInStartOfRow = !i_SetSoldierInStartOfRow;
-                i_row++;
-            }
-
-            m_StartRowWithSoldier = i_SetSoldierInStartOfRow;
-        }
-
-        private Soldier createNewSoldier(int i_row, int i_col, ePlayerTitles i_playerTitle)
-        {
-            Soldier soldier = new Soldier(new Location(i_row, i_col), eSoldierTypes.Regular, i_playerTitle);
-            getPlayerByTitle(i_playerTitle).AddSoldier(soldier);
-
-            return soldier;
-        }
-
         public ActionResult MoveChecker(Move i_Move, Player i_CurrentPlayer, out bool o_IsDoubleEatMove)
         {
             ActionResult actionResult;
@@ -114,6 +65,100 @@ namespace BusinessLogic.GameBoard
             }
 
             return actionResult;
+        }
+
+        public List<Move> GetLegalMovesOfPlayer(Player i_CurrentPlayer)
+        {
+            List<Move> freeMoves = new List<Move>();
+            List<Move> eatMoves = new List<Move>();
+            List<Move> finalMoveList = null;
+
+            // if we are not in double eat move flow then find other legal moves
+            if (m_DoubleEatMoves.Count == 0)
+            {
+                foreach (Soldier soldier in i_CurrentPlayer.Soldiers)
+                {
+                    List<Move> soldierEatMoves = getLegalEatMovesOfSoldier(soldier);
+
+                    if (soldierEatMoves.Count != 0)
+                    {
+                        eatMoves.AddRange(soldierEatMoves);
+                    }
+                    else
+                    {
+                        freeMoves.AddRange(getLegalFreeMovesOfSoldier(soldier));
+                    }
+                }
+            }
+
+            if (m_DoubleEatMoves.Count != 0)
+            {
+                finalMoveList = m_DoubleEatMoves;
+            }
+            else if (eatMoves.Count != 0)
+            {
+                finalMoveList = eatMoves;
+            }
+            else
+            {
+                finalMoveList = freeMoves;
+            }
+
+            return finalMoveList;
+        }
+
+        public Cell GetCellByLocation(Location i_Location)
+        {
+            return m_Board[i_Location.Row, i_Location.Col];
+        }
+
+        private void initializeEmptyCells(int i_StartRow)
+        {
+            for (int i = 0; i < k_SpacesBetweenPlayers; i++)
+            {
+                for (int j = 0; j < m_Board.GetLength(1); j++)
+                {
+                    m_Board[i_StartRow, j] = new Cell();
+                }
+
+                i_StartRow++;
+            }
+        }
+
+        private void initializeSoldiersLocationInBoard(int i_Row, ePlayerTitles i_PlayerTitle, bool i_SetSoldierInStartOfRow)
+        {
+            bool setSoldierInCell = false;
+
+            for (int i = 0; i < k_NumRowsForPlayer; i++)
+            {
+                setSoldierInCell = i_SetSoldierInStartOfRow;
+                for (int j = 0; j < m_Board.GetLength(1); j++)
+                {
+                    m_Board[i_Row, j] = new Cell();
+                    if (setSoldierInCell)
+                    {
+                        m_Board[i_Row, j].Soldier = createNewSoldier(i_Row, j, i_PlayerTitle);
+                        setSoldierInCell = false;
+                    }
+                    else
+                    {
+                        setSoldierInCell = true;
+                    }
+                }
+
+                i_SetSoldierInStartOfRow = !i_SetSoldierInStartOfRow;
+                i_Row++;
+            }
+
+            m_StartRowWithSoldier = i_SetSoldierInStartOfRow;
+        }
+
+        private Soldier createNewSoldier(int i_Row, int i_Col, ePlayerTitles i_PlayerTitle)
+        {
+            Soldier soldier = new Soldier(new Location(i_Row, i_Col), eSoldierTypes.Regular, i_PlayerTitle);
+            getPlayerByTitle(i_PlayerTitle).AddSoldier(soldier);
+
+            return soldier;
         }
 
         private void makeMove(Move i_Move, out bool o_IsDoubleEatMove)
@@ -156,46 +201,6 @@ namespace BusinessLogic.GameBoard
 
             getPlayerByTitle(soldierToRemove.Owner).RemoveSoldierFromList(soldierToRemove);
             GetCellByLocation(eatenSoldierLocation).Soldier = null;
-        }
-
-        public List<Move> GetLegalMovesOfPlayer(Player i_CurrentPlayer)
-        {
-            List<Move> freeMoves = new List<Move>();
-            List<Move> eatMoves = new List<Move>();
-            List<Move> finalMoveList = null;
-
-            // if we are not in double eat move flow then find other legal moves
-            if (m_DoubleEatMoves.Count == 0) 
-            {
-                foreach (Soldier soldier in i_CurrentPlayer.Soldiers)
-                {
-                    List<Move> soldierEatMoves = getLegalEatMovesOfSoldier(soldier);
-
-                    if (soldierEatMoves.Count != 0)
-                    {
-                        eatMoves.AddRange(soldierEatMoves);
-                    }
-                    else
-                    {
-                        freeMoves.AddRange(getLegalFreeMovesOfSoldier(soldier));
-                    }
-                }
-            }
-
-            if (m_DoubleEatMoves.Count != 0)
-            {
-                finalMoveList = m_DoubleEatMoves;
-            }
-            else if (eatMoves.Count != 0)
-            {
-                finalMoveList = eatMoves;
-            }
-            else
-            {
-                finalMoveList = freeMoves;
-            }
-
-            return finalMoveList;
         }
 
         private List<Move> getLegalFreeMovesOfSoldier(Soldier i_Soldier)
@@ -342,16 +347,11 @@ namespace BusinessLogic.GameBoard
             return false;
         }
 
-        public Cell GetCellByLocation(Location i_Location)
-        {
-            return m_Board[i_Location.Row, i_Location.Col];
-        }
-
-        private Player getPlayerByTitle(ePlayerTitles i_playerTitle)
+        private Player getPlayerByTitle(ePlayerTitles i_PlayerTitle)
         {
             Player player = null;
 
-            if (m_Players[0].PlayerTitle == i_playerTitle)
+            if (m_Players[0].PlayerTitle == i_PlayerTitle)
             {
                 player = m_Players[0];
             }
