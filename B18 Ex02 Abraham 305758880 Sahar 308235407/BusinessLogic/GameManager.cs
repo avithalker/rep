@@ -9,7 +9,7 @@ namespace BusinessLogic
     public class GameManager
     {
         private BoardManager m_BoardManager;
-        private List<Player> m_players;
+        private List<Player> m_Players;
         private CheckerMoveInfo m_LastMove;
         private int m_CurrentPlayerIndex;
         private Player m_LastWinner;
@@ -34,15 +34,15 @@ namespace BusinessLogic
         {
             m_GameStatus = eGameStatus.None;
             m_LastWinner = null;
-            SetPlayers(i_GameConfiguration.PlayerConfigurations);
-            m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, m_players);
+            setPlayers(i_GameConfiguration.PlayerConfigurations);
+            m_BoardManager = new BoardManager(i_GameConfiguration.BoardSize, m_Players);
         }
 
-        private void SetPlayers(List<PlayerConfiguration> i_playersConfiguration)
+        private void setPlayers(List<PlayerConfiguration> i_playersConfiguration)
         {
-            m_players = new List<Player>();
-            m_players.Add(new Player(i_playersConfiguration[0], ePlayerTitles.PlayerOne));
-            m_players.Add(new Player(i_playersConfiguration[1], ePlayerTitles.PlayerTwo));
+            m_Players = new List<Player>();
+            m_Players.Add(new Player(i_playersConfiguration[0], ePlayerTitles.PlayerOne));
+            m_Players.Add(new Player(i_playersConfiguration[1], ePlayerTitles.PlayerTwo));
         }
 
         public void StartGame()
@@ -60,7 +60,7 @@ namespace BusinessLogic
         public PlayerInfo GetCurrentPlayerTurn()
         {
             PlayerInfo playerInfo = new PlayerInfo();
-            Player currentPlayer = m_players[m_CurrentPlayerIndex];
+            Player currentPlayer = m_Players[m_CurrentPlayerIndex];
 
             playerInfo.PlayerName = currentPlayer.PlayerName;
             playerInfo.PlayerSign = currentPlayer.PlayerSign;
@@ -76,7 +76,7 @@ namespace BusinessLogic
 
             if (i_Action == "Q")
             {
-                actionResult = QuitCurrentPlayerIfLegal();
+                actionResult = quitCurrentPlayerIfLegal();
             }
             else
             {
@@ -84,7 +84,7 @@ namespace BusinessLogic
 
                 if (move != null)
                 {
-                    actionResult = MoveChecker(move);
+                    actionResult = moveChecker(move);
                 }
                 else
                 {
@@ -95,50 +95,50 @@ namespace BusinessLogic
             return actionResult;
         }
 
-        private ActionResult MoveChecker(Move i_Move)
+        private ActionResult moveChecker(Move i_Move)
         {
             bool isDoubleEatMove;
-            ActionResult actionResult = m_BoardManager.MoveChecker(i_Move, m_players[m_CurrentPlayerIndex], out isDoubleEatMove);
+            ActionResult actionResult = m_BoardManager.MoveChecker(i_Move, m_Players[m_CurrentPlayerIndex], out isDoubleEatMove);
 
             if (actionResult.IsSucceed)
             {
                 bool isTurnNeedToBeChanged = !isDoubleEatMove;
 
-                m_LastMove = ConvertMoveToCheckerMoveInfo(i_Move);
+                m_LastMove = convertMoveToCheckerMoveInfo(i_Move);
                 HandleEndOfTurn(isTurnNeedToBeChanged);
             }
 
             return actionResult;
         }
 
-        private CheckerMoveInfo ConvertMoveToCheckerMoveInfo(Move i_Move)
+        private CheckerMoveInfo convertMoveToCheckerMoveInfo(Move i_Move)
         {
-            string playerName = GetPlayerNameByTitle(m_BoardManager.GetCellByLocation(i_Move.NextLocation).Soldier.Owner);
+            string playerName = getPlayerNameByTitle(m_BoardManager.GetCellByLocation(i_Move.NextLocation).Soldier.Owner);
             string previousMove = i_Move.CurrentLocation.ToString();
             string nextMove = i_Move.NextLocation.ToString();
 
             return new CheckerMoveInfo(playerName, previousMove, nextMove);
         }
 
-        private string GetPlayerNameByTitle(ePlayerTitles i_Title)
+        private string getPlayerNameByTitle(ePlayerTitles i_Title)
         {
-            string name = m_players[0].PlayerName;
+            string name = m_Players[0].PlayerName;
 
-            if (m_players[1].PlayerTitle == i_Title)
+            if (m_Players[1].PlayerTitle == i_Title)
             {
-                name = m_players[1].PlayerName;
+                name = m_Players[1].PlayerName;
             }
 
             return name;
         }
 
-        private ActionResult QuitCurrentPlayerIfLegal()
+        private ActionResult quitCurrentPlayerIfLegal()
         {
             ActionResult actionResult;
 
-            if (CheckIfPlayerCanQuit())
+            if (checkIfPlayerCanQuit())
             {
-                QuitCurrentPlayerFromGame();
+                quitCurrentPlayerFromGame();
                 actionResult = new ActionResult(true, string.Empty);
             }
             else
@@ -149,32 +149,25 @@ namespace BusinessLogic
             return actionResult;
         }
 
-        private bool CheckIfPlayerCanQuit()
+        private bool checkIfPlayerCanQuit()
         {
-            ePlayerTitles currentPlayerTitle = m_players[m_CurrentPlayerIndex].PlayerTitle;
-            int opponentIndex = GetOpponentPlayerIndex();
+            ePlayerTitles currentPlayerTitle = m_Players[m_CurrentPlayerIndex].PlayerTitle;
+            int opponentIndex = getOpponentPlayerIndex();
             bool hasSmallerScore = false;
             bool hasSmallerAmountOfSoldiers = false;
 
-            if (m_players[opponentIndex].Score > m_players[m_CurrentPlayerIndex].Score)
-            {
-                hasSmallerScore = true;
-            }
+            return false;
 
-            if (m_players[opponentIndex].Soldiers.Count > m_players[m_CurrentPlayerIndex].Soldiers.Count)
-            {
-                hasSmallerAmountOfSoldiers = true;
-            }
-
-            return hasSmallerAmountOfSoldiers & hasSmallerScore;
+            
         }
 
-        private void QuitCurrentPlayerFromGame()
+        private void quitCurrentPlayerFromGame()
         {
-            int winnerPlayerIndex = GetOpponentPlayerIndex();
+            int winnerPlayerIndex = getOpponentPlayerIndex();
 
             m_GameStatus = eGameStatus.Winner;
-            m_LastWinner = m_players[winnerPlayerIndex];
+            m_LastWinner = m_Players[winnerPlayerIndex];
+            //UpdateWinnerScore(m_LastWinner, Plam_CurrentPlayerIndex)
         }
 
         public GameSummery GetGameSummery()
@@ -191,24 +184,24 @@ namespace BusinessLogic
             return gameSummery;
         }
 
-        private void ChangePlayerTurn()
+        private void changePlayerTurn()
         {
-            m_CurrentPlayerIndex = GetOpponentPlayerIndex();
+            m_CurrentPlayerIndex = getOpponentPlayerIndex();
         }
 
-        private int GetOpponentPlayerIndex()
+        private int getOpponentPlayerIndex()
         {
-            return (m_CurrentPlayerIndex + 1) % m_players.Count;
+            return (m_CurrentPlayerIndex + 1) % m_Players.Count;
         }
 
-        private void CheckAndUpdateIfGameEnded()
+        private void checkAndUpdateIfGameEnded()
         {
-            bool[] playersHasMoves = new bool[m_players.Count];
+            bool[] playersHasMoves = new bool[m_Players.Count];
             bool hasMovesToDo = false;
 
-            for (int i = 0; i < m_players.Count; i++)
+            for (int i = 0; i < m_Players.Count; i++)
             {
-                if (m_BoardManager.GetLegalMovesOfPlayer(m_players[i]).Count != 0)
+                if (m_BoardManager.GetLegalMovesOfPlayer(m_Players[i]).Count != 0)
                 {
                     playersHasMoves[i] = true;
                     hasMovesToDo = true;
@@ -219,14 +212,14 @@ namespace BusinessLogic
             {
                 if (playersHasMoves[0] && !playersHasMoves[1])
                 {
-                    m_LastWinner = m_players[0];
-                    UpdateWinnerScore(m_players[0], m_players[1]);
+                    m_LastWinner = m_Players[0];
+                    updateWinnerScore(m_Players[0], m_Players[1]);
                     m_GameStatus = eGameStatus.Winner;
                 }
                 else if (!playersHasMoves[0] && playersHasMoves[1])
                 {
-                    m_LastWinner = m_players[1];
-                    UpdateWinnerScore(m_players[1], m_players[0]);
+                    m_LastWinner = m_Players[1];
+                    updateWinnerScore(m_Players[1], m_Players[0]);
                     m_GameStatus = eGameStatus.Winner;
                 }
             }
@@ -236,39 +229,39 @@ namespace BusinessLogic
             }
         }
 
-        private void HandleEndOfTurn(bool i_ChangeTurn)
+        private void handleEndOfTurn(bool i_ChangeTurn)
         {
-            CheckAndUpdateIfGameEnded();
+            checkAndUpdateIfGameEnded();
             if (!IsGameEnded())
             {
                 if (i_ChangeTurn)
                 {
-                    ChangePlayerTurn();
+                    changePlayerTurn();
                 }
 
-                if (m_players[m_CurrentPlayerIndex].PlayerType == ePlayerTypes.Computer)
+                if (m_Players[m_CurrentPlayerIndex].PlayerType == ePlayerTypes.Computer)
                 {
-                    PlayComputerMove();
+                    playComputerMove();
                 }
             }
         }
 
-        private void PlayComputerMove()
+        private void playComputerMove()
         {
-            List<Move> legalMoves = m_BoardManager.GetLegalMovesOfPlayer(m_players[m_CurrentPlayerIndex]);
+            List<Move> legalMoves = m_BoardManager.GetLegalMovesOfPlayer(m_Players[m_CurrentPlayerIndex]);
             Move chosenMove = ComputerPlayer.SelectMoveAction(legalMoves);
-            MoveChecker(chosenMove);
+            moveChecker(chosenMove);
         }
 
-        private void UpdateWinnerScore(Player i_Winner, Player i_Looser)
+        private void updateWinnerScore(Player i_Winner, Player i_Looser)
         {
-            int winnerPoints = CalculatePointsOfPlayer(i_Winner);
-            int looserPoints = CalculatePointsOfPlayer(i_Looser);
+            int winnerPoints = calculatePointsOfPlayer(i_Winner);
+            int looserPoints = calculatePointsOfPlayer(i_Looser);
 
             i_Winner.AddPoints(winnerPoints - looserPoints);
         }
 
-        private int CalculatePointsOfPlayer(Player i_Player)
+        private int calculatePointsOfPlayer(Player i_Player)
         {
             int gamePoints = 0;
             int k_pointsForRegularSoldier = 1;
