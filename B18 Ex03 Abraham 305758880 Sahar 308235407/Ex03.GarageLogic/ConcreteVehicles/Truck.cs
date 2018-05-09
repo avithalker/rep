@@ -13,12 +13,10 @@ namespace Ex03.GarageLogic.ConcreteVehicles
             set { m_TrunkVolume = value; }
         }
 
-
         public bool IsTrunkCold
         {
             get { return m_IsTrunkCold; }
             set { m_IsTrunkCold = value; }
         }
-
     }
 }
