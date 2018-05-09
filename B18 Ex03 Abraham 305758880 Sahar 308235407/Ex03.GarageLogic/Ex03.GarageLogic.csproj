@@ -40,7 +40,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConcreteVehicles\Car.cs" />
+    <Compile Include="ConcreteVehicles\ElectricCar.cs" />
+    <Compile Include="ConcreteVehicles\ElectricMotorcycle.cs" />
+    <Compile Include="ConcreteVehicles\Motorcycle.cs" />
+    <Compile Include="ConcreteVehicles\Truck.cs" />
+    <Compile Include="Enums\VehicleTypes.cs" />
+    <Compile Include="VehicleFactory.cs" />
+    <Compile Include="VehicleBasics\ElectricVehicle.cs" />
+    <Compile Include="Enums\FuelTypes.cs" />
+    <Compile Include="Enums\LicenseTypes.cs" />
+    <Compile Include="Enums\VehicleColors.cs" />
+    <Compile Include="Enums\VehicleStatuses.cs" />
+    <Compile Include="VehicleBasics\FuelVehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VehicleBasics\Vehicle.cs" />
+    <Compile Include="VehicleBasics\Wheel.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
