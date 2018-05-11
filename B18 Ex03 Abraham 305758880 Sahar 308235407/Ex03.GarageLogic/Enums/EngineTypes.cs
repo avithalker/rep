@@ -1,6 +1,6 @@
 ﻿namespace Ex03.GarageLogic.Enums
 {
-    public enum eVehicleTypes
+    public enum eEngineTypes
     {
         FuelVehicle,
         ElectricVehicle

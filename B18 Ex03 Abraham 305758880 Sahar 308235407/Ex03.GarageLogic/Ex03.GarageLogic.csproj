@@ -41,11 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConcreteVehicles\Car.cs" />
-    <Compile Include="ConcreteVehicles\ElectricCar.cs" />
-    <Compile Include="ConcreteVehicles\ElectricMotorcycle.cs" />
     <Compile Include="ConcreteVehicles\Motorcycle.cs" />
     <Compile Include="ConcreteVehicles\Truck.cs" />
-    <Compile Include="Enums\VehicleTypes.cs" />
+    <Compile Include="EngineFactory.cs" />
+    <Compile Include="Enums\EngineTypes.cs" />
+    <Compile Include="VehicleBasics\ElectricEngine.cs" />
+    <Compile Include="VehicleBasics\Engine.cs" />
+    <Compile Include="VehicleBasics\FuelEngine.cs" />
     <Compile Include="VehicleFactory.cs" />
     <Compile Include="VehicleBasics\ElectricVehicle.cs" />
     <Compile Include="Enums\FuelTypes.cs" />

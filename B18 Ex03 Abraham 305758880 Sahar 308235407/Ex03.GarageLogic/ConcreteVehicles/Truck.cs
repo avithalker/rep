@@ -2,10 +2,14 @@
 
 namespace Ex03.GarageLogic.ConcreteVehicles
 {
-    public class Truck:FuelVehicle
+    public class Truck:Vehicle
     {
         private bool m_IsTrunkCold;
         private double m_TrunkVolume;
+
+        public Truck(Engine i_Engine, string i_Model, string i_LicenseNumber) : base(i_Engine, i_Model, i_LicenseNumber)
+        {
+        }
 
         public double TrunkVolume
         {

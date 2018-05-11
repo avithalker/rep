@@ -2,11 +2,16 @@
 
 namespace Ex03.GarageLogic.VehicleBasics
 {
+    //todo: delete!!
     public abstract class FuelVehicle : Vehicle
     {
         private eFuelTypes m_FuelType;
         private float m_FuelAmount;
         private float m_MaximumFuelAmount;
+
+        public FuelVehicle(Engine i_Engine, string i_Model, string i_LicenseNumber) : base(i_Engine, i_Model, i_LicenseNumber)
+        {
+        }
 
         public eFuelTypes FuelType
         {
