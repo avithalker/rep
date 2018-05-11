@@ -33,5 +33,10 @@ namespace Ex03.GarageLogic.Garage
             get { return m_VehicleOwner; }
             set { m_VehicleOwner = value; }
         }
+
+        public string GetVehicleInformationForm()
+        {
+            return string.Empty;
+        }
     }
 }

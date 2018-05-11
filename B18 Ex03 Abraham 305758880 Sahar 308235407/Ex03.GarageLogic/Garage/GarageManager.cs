@@ -82,6 +82,12 @@ namespace Ex03.GarageLogic.Garage
             vehicleEngine.Charge(i_TimeToCharge);
         }
 
+        public string GetVehicleInformationForm(string i_LisenceNumber)
+        {
+            checkIfVehicleExist(i_LisenceNumber);
+            return m_GarageVehicles[i_LisenceNumber].GetVehicleInformationForm();
+        }
+
         public bool IsVehicleExist(string i_LisenceNumber)
         {
             return m_GarageVehicles.ContainsKey(i_LisenceNumber);

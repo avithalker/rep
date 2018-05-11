@@ -7,7 +7,6 @@ namespace Ex03.GarageLogic.VehicleBasics
     {
         private string m_Model;
         private string m_LicenseNumber;
-        private float m_EnergyLevel;
         private List<Wheel> m_Wheels;
         private Engine m_Engine;
 
@@ -32,7 +31,10 @@ namespace Ex03.GarageLogic.VehicleBasics
 
         public float EnergyLevel
         {
-            get { return m_EnergyLevel; }
+            get
+            {
+                return (m_Engine.EnergyLeft / m_Engine.EnergyCapacity) * 100;
+            }
         }
 
         public string LicenseNumber
