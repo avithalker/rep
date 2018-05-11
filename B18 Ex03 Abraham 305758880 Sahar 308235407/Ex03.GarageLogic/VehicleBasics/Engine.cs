@@ -1,4 +1,7 @@
-﻿namespace Ex03.GarageLogic.VehicleBasics
+﻿using Ex03.GarageLogic.CustomErrors;
+using System;
+
+namespace Ex03.GarageLogic.VehicleBasics
 {
     public abstract class Engine
     {
@@ -21,9 +24,21 @@
             get { return m_EnergyLeft; }
         }
 
-        public void FillEnergy(float i_EnergyAmount)
+        protected void FillEnergy(float i_EnergyAmount)
         {
+            if(i_EnergyAmount < 0)
+            {
+                string errorMsg = string.Format("'Energy to fill' value must be positive!");
 
+                throw new ArgumentException(errorMsg);
+            }
+
+            if(m_EnergyLeft + i_EnergyAmount > m_EnergyCapacity)
+            {
+                throw new ValueOutOfRangeException(0, m_EnergyCapacity);
+            }
+
+            m_EnergyLeft += i_EnergyAmount;
         }
     }
 }

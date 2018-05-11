@@ -1,4 +1,7 @@
-﻿namespace Ex03.GarageLogic.VehicleBasics
+﻿using Ex03.GarageLogic.CustomErrors;
+using System;
+
+namespace Ex03.GarageLogic.VehicleBasics
 {
     public class Wheel
     {
@@ -31,7 +34,19 @@
 
         public void Inflate(float i_AmountOfAir)
         {
+            if (i_AmountOfAir < 0)
+            {
+                string errorMsg = string.Format("'Air to fill' value must be positive!");
 
+                throw new ArgumentException(errorMsg);
+            }
+
+            if (m_AirPressure + i_AmountOfAir > m_MaximumAirPressure)
+            {
+                throw new ValueOutOfRangeException(0, m_MaximumAirPressure);
+            }
+
+            m_AirPressure += i_AmountOfAir;
         }
 
     }

@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Ex03.GarageLogic.Enums;
+using System.Collections.Generic;
 
 namespace Ex03.GarageLogic.VehicleBasics
 {
     public abstract class Vehicle
     {
         private string m_Model;
-        private string LicenseNumber;
+        private string m_LicenseNumber;
         private float m_EnergyLevel;
         private List<Wheel> m_Wheels;
         private Engine m_Engine;
@@ -34,10 +35,10 @@ namespace Ex03.GarageLogic.VehicleBasics
             get { return m_EnergyLevel; }
         }
 
-        public string m_LicenseNumber
+        public string LicenseNumber
         {
-            get { return LicenseNumber; }
-            set { LicenseNumber = value; }
+            get { return m_LicenseNumber; }
+            set { m_LicenseNumber = value; }
         }
 
         public string Model
@@ -46,5 +47,33 @@ namespace Ex03.GarageLogic.VehicleBasics
             set { m_Model = value; }
         }
 
+        public void InflateWheels()
+        {
+            foreach (Wheel wheel in m_Wheels)
+            {
+                if (wheel.AirPressure < wheel.MaximumAirPressure)
+                {
+                    float airAmountDelta = wheel.MaximumAirPressure - wheel.AirPressure;
+
+                    wheel.Inflate(airAmountDelta);
+                }
+            }
+        }
+
+        public eEngineTypes GetEngineType()
+        {
+            eEngineTypes engineType;
+
+            if (m_Engine is ElectricEngine)
+            {
+                engineType = eEngineTypes.ElectricVehicle;
+            }
+            else
+            {
+                engineType = eEngineTypes.FuelVehicle;
+            }
+
+            return engineType;
+        }
     }
 }
