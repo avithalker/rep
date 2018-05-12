@@ -48,6 +48,7 @@
     <Compile Include="Enums\EngineTypes.cs" />
     <Compile Include="Garage\GarageEntity.cs" />
     <Compile Include="Garage\GarageManager.cs" />
+    <Compile Include="Garage\OwnerInfo.cs" />
     <Compile Include="VehicleBasics\ElectricEngine.cs" />
     <Compile Include="VehicleBasics\Engine.cs" />
     <Compile Include="VehicleBasics\FuelEngine.cs" />

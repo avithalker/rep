@@ -14,7 +14,7 @@ namespace Ex03.GarageLogic.Garage
             m_GarageVehicles = new Dictionary<string, GarageEntity>();
         }
 
-        public void InsertVehicleToGarage(Vehicle i_Vehicle, string i_Owner)
+        public void InsertVehicleToGarage(Vehicle i_Vehicle, OwnerInfo i_Owner)
         {
             if (IsVehicleExist(i_Vehicle.LicenseNumber))
             {

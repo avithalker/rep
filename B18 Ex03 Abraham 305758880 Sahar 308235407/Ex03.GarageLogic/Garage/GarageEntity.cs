@@ -5,13 +5,13 @@ namespace Ex03.GarageLogic.Garage
 {
     public class GarageEntity
     {
-        private string m_VehicleOwner;
         private eVehicleStatuses m_VehicleStatus;
         private Vehicle m_VehicleEntity;
+        private OwnerInfo m_OwnerContactInfo;
 
-        public GarageEntity(string i_VehicleOwner,Vehicle i_Vehicle)
+        public GarageEntity(OwnerInfo i_VehicleOwnerInfo,Vehicle i_Vehicle)
         {
-            m_VehicleOwner = i_VehicleOwner;
+            m_OwnerContactInfo = i_VehicleOwnerInfo;
             m_VehicleEntity = i_Vehicle;
             m_VehicleStatus = eVehicleStatuses.InFix;
         }
@@ -28,10 +28,10 @@ namespace Ex03.GarageLogic.Garage
             set { m_VehicleStatus = value; }
         }
 
-        public string CarOwner
+        public OwnerInfo OwnerContactInfo
         {
-            get { return m_VehicleOwner; }
-            set { m_VehicleOwner = value; }
+            get { return m_OwnerContactInfo; }
+            set { m_OwnerContactInfo = value; }
         }
 
         public string GetVehicleInformationForm()
