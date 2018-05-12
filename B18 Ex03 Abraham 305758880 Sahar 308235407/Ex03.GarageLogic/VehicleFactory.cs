@@ -33,7 +33,7 @@ namespace Ex03.GarageLogic
 
             newEngine = EngineFactory.CreateEngine(i_EngineType, energyCapacity, fuelType);
             newCar = new Car(newEngine, i_Model, i_LicenseNumber, i_NumberOfDoors);
-            newCar.Wheels = createWheels(k_AmountOfWheels, k_WheelMaxAirPressure, i_WheelManufacturer);
+            newCar.Wheels = WheelsFactory.CreateWheels(k_AmountOfWheels, k_WheelMaxAirPressure, i_WheelManufacturer);
 
             newCar.VehicleColor = i_Color;
             return newCar;
@@ -64,7 +64,7 @@ namespace Ex03.GarageLogic
             Engine newEngine = EngineFactory.CreateEngine(i_EngineType,energyCapacity, fuelType);
             Motorcycle newMotorCycle = new Motorcycle(newEngine, i_Model, i_LicenseNumber, i_EngineVolume);
 
-            newMotorCycle.Wheels = createWheels(k_AmountOfWheels, k_WheelMaxAirPressure, i_WheelManufacturer);
+            newMotorCycle.Wheels = WheelsFactory.CreateWheels(k_AmountOfWheels, k_WheelMaxAirPressure, i_WheelManufacturer);
             newMotorCycle.LicenseType = i_LicenseType;
             return newMotorCycle;
         }
@@ -77,24 +77,8 @@ namespace Ex03.GarageLogic
             Engine newEngine = EngineFactory.CreateEngine(eEngineTypes.FuelVehicle, k_EnergyCapacity, eFuelTypes.Soler);
             Truck newTruck = new Truck(newEngine, i_Model, i_LicenseNumber);
 
-            newTruck.Wheels = createWheels(k_AmountOfWheels, k_WheelMaxAirPressure, i_WheelManufacturer);
+            newTruck.Wheels = WheelsFactory.CreateWheels(k_AmountOfWheels, k_WheelMaxAirPressure, i_WheelManufacturer);
             return newTruck;
         }
-
-        private static List<Wheel> createWheels(int i_Amount, float i_MaximumAirPressure, string i_Manufacturer)
-        {
-            List<Wheel> wheels = new List<Wheel>(i_Amount);
-
-            for (int i = 0; i < i_Amount; i++)
-            {
-                Wheel wheel = new Wheel(i_Manufacturer, i_MaximumAirPressure);
-
-                wheels.Add(wheel);
-            }
-
-            return wheels;
-        }
-
-
     }
 }

@@ -3,7 +3,7 @@ using Ex03.GarageLogic.VehicleBasics;
 
 namespace Ex03.GarageLogic
 {
-    public static class EngineFactory
+    internal static class EngineFactory
     {
 
         public static Engine CreateEngine(eEngineTypes i_EngineType, float i_EnergyCapacity, eFuelTypes i_FuelType = eFuelTypes.None)

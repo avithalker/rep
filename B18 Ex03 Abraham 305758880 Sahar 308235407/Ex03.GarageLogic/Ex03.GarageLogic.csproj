@@ -51,6 +51,7 @@
     <Compile Include="VehicleBasics\ElectricEngine.cs" />
     <Compile Include="VehicleBasics\Engine.cs" />
     <Compile Include="VehicleBasics\FuelEngine.cs" />
+    <Compile Include="WheelsFactory.cs" />
     <Compile Include="VehicleFactory.cs" />
     <Compile Include="Enums\FuelTypes.cs" />
     <Compile Include="Enums\LicenseTypes.cs" />
