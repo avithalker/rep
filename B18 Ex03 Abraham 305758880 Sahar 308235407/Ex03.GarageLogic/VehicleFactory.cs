@@ -34,7 +34,6 @@ namespace Ex03.GarageLogic
             newEngine = EngineFactory.CreateEngine(i_EngineType, energyCapacity, fuelType);
             newCar = new Car(newEngine, i_Model, i_LicenseNumber, i_NumberOfDoors);
             newCar.Wheels = WheelsFactory.CreateWheels(k_AmountOfWheels, k_WheelMaxAirPressure, i_WheelManufacturer);
-
             newCar.VehicleColor = i_Color;
             return newCar;
         }
