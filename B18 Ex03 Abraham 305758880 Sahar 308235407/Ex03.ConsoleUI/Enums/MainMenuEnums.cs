@@ -8,13 +8,14 @@ namespace Ex03.ConsoleUI.Enums
 {
     public enum eMainMenuOptions
     {
-        None,
+        InvalidChoice,
         EnterNewVehicle,
         ShowLicenseNumbers,
         ChangeVehicleState,
         AddAirToWheels,
         AddFuelToVehicle,
         ChargeVehicle,
-        ShowVehiclesData
+        ShowVehiclesData,
+        ExitProgram
     }
 }
