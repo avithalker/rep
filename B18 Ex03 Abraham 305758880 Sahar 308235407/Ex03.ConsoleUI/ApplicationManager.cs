@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace test
+namespace Ex03.ConsoleUI
 {
-    public class Class1
+    class ApplicationManager
     {
     }
 }
