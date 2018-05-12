@@ -209,7 +209,32 @@ namespace Ex03.ConsoleUI
 
         private void getDataForElectricMotorcycle()
         {
+            string engineType;
+            string model;
+            string wheelsManufacturer;
+            int energyState;
+            string licenseType; 
+            int engineVolume;
 
+            getCommonDataFromUser(out engineType, out model, out wheelsManufacturer, out energyState);
+            getSpecialDataForMotorcycle(out licenseType, out engineVolume);
+
+            //here we need to create Vehicle with these detailse by the VehicleFactory
+        }
+
+        private void getCommonDataFromUser(out string o_EngineType, out string o_Model, out string o_WheelsManufacturer, out int  o_EnergyState)
+        {
+            o_EngineType = "";
+            o_Model = "";
+            o_WheelsManufacturer = "";
+            o_EnergyState = 0;
+
+        }
+
+        private void getSpecialDataForMotorcycle(out String o_LicenseType, out int o_EngineVolume)
+        {
+            o_LicenseType = "";
+            o_EngineVolume = 0;
         }
 
         private void getDataForFuelMotorcycle()
