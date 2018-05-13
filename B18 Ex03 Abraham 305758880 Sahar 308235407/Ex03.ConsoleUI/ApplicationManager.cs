@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ex03.GarageLogic.Garage;
 using Ex03.ConsoleUI.Enums;
 using Ex03.GarageLogic.Enums;
 using Ex03.GarageLogic;
-using Ex03.ConsoleUI;
-
-
-
-
 
 namespace Ex03.ConsoleUI
 {
@@ -28,16 +19,16 @@ namespace Ex03.ConsoleUI
 
         public void PrintMainMenu()
         {
-            System.Console.WriteLine("Welcome To The Garage Manager App!!");
-            System.Console.WriteLine("Please choose from the following options:");
-            System.Console.WriteLine("1.Enter new vehicle to the garage");
-            System.Console.WriteLine("2.Show vehicle license numbers");
-            System.Console.WriteLine("3.Change vehicle's state");
-            System.Console.WriteLine("4.Add air to the vehicle's wheels up to maximum ");
-            System.Console.WriteLine("5.Refuel Gas Vehicle");
-            System.Console.WriteLine("6.Charge electric vehicle");
-            System.Console.WriteLine("7.Show vehicle's full data");
-            System.Console.WriteLine("8.Exit");
+            Console.WriteLine("Welcome To The Garage Manager App!!");
+            Console.WriteLine("Please choose from the following options:");
+            Console.WriteLine("1.Enter new vehicle to the garage");
+            Console.WriteLine("2.Show vehicle license numbers");
+            Console.WriteLine("3.Change vehicle's state");
+            Console.WriteLine("4.Add air to the vehicle's wheels up to maximum ");
+            Console.WriteLine("5.Refuel Gas Vehicle");
+            Console.WriteLine("6.Charge electric vehicle");
+            Console.WriteLine("7.Show vehicle's full data");
+            Console.WriteLine("8.Exit");
 
         }
 
@@ -62,7 +53,7 @@ namespace Ex03.ConsoleUI
             
             do
             {
-                input = System.Console.ReadLine();
+                input = Console.ReadLine();
 
                 try
                 {
@@ -72,12 +63,12 @@ namespace Ex03.ConsoleUI
                 catch( FormatException e)
                 {
                     parseSucceeded = false;
-                    System.Console.WriteLine(e.Message);
+                    Console.WriteLine(e.Message);
                 }
                 catch(ArgumentException e)
                 {
                     parseSucceeded = false;
-                    System.Console.WriteLine(e.Message);
+                    Console.WriteLine(e.Message);
                 }
             } while (!parseSucceeded) ;
 
@@ -150,14 +141,14 @@ namespace Ex03.ConsoleUI
         {
             string licenseNumber;
             string owner;
-            
 
-            System.Console.WriteLine("Please insert your vehicle's license number:");
-            licenseNumber = System.Console.ReadLine();
+
+            Console.WriteLine("Please insert your vehicle's license number:");
+            licenseNumber = Console.ReadLine();
             
             if(m_GarageManager.IsVehicleExist(licenseNumber))
             {
-                System.Console.WriteLine("This Vehicle is already exists in the garage...");
+                Console.WriteLine("This Vehicle is already exists in the garage...");
                 m_GarageManager.ChangeVehicleStatus(licenseNumber, eVehicleStatuses.InFix);
             }
             else
@@ -177,7 +168,7 @@ namespace Ex03.ConsoleUI
                 try
                 {
                     printVehicleTypeOptions();
-                    input = System.Console.ReadLine();
+                    input = Console.ReadLine();
                     vehicleTypeChoice = convertInputToVehicleTypeOption(input);
                     getDataByVehicleTypeChoice(vehicleTypeChoice);
                     parseSucceeded = true;
@@ -229,7 +220,7 @@ namespace Ex03.ConsoleUI
             getDataForMotorycle(eEngineTypes.ElectricVehicle, out model, out licenseNumber, out engineVolume, out wheelsManufacturer, out licenseType);
         }
 
-        private void getDataForMotorycle(GarageLogic.Enums.eEngineTypes i_EngineType, out string o_Model, out string o_LicenseNumber, out int o_EngineVolume, out string o_WheelsManufacturer, out LicenseTypes o_LicenseType)
+        private void getDataForMotorycle(eEngineTypes i_EngineType, out string o_Model, out string o_LicenseNumber, out int o_EngineVolume, out string o_WheelsManufacturer, out LicenseTypes o_LicenseType)
         {
             getModel(out o_Model);
             getValidLicenseNumber(out o_LicenseNumber);
@@ -332,7 +323,7 @@ namespace Ex03.ConsoleUI
 
             do
             {
-                System.Console.WriteLine("Please enter your engine volume");
+                Console.WriteLine("Please enter your engine volume");
                 input = Console.ReadLine();
                 try
                 {
@@ -340,7 +331,7 @@ namespace Ex03.ConsoleUI
                 }
                 catch(FormatException e)
                 {
-                    System.Console.WriteLine(e.Message);
+                    Console.WriteLine(e.Message);
                     parseSucceeded = false;
                 }
             } while (!parseSucceeded);
@@ -349,21 +340,21 @@ namespace Ex03.ConsoleUI
 
         private void getModel(out string o_Model)
         {
-            System.Console.WriteLine("Please insert your vehicle's model:");
-            o_Model = System.Console.ReadLine();
+            Console.WriteLine("Please insert your vehicle's model:");
+            o_Model = Console.ReadLine();
         }
 
         private void getWheelsManufacturer(out string o_wheelsManufacturer)
         {
-            string input; 
+            string input;
 
-            System.Console.WriteLine("Please insert your wheels' manufacturer");
+            Console.WriteLine("Please insert your wheels' manufacturer");
             input = Console.ReadLine();
 
             o_wheelsManufacturer = input;
         }
 
-        private void getLicenseType(out GarageLogic.Enums.LicenseTypes o_LicenseType)
+        private void getLicenseType(out LicenseTypes o_LicenseType)
         {
             string input;
             bool parseSucceeded = false;
@@ -373,14 +364,14 @@ namespace Ex03.ConsoleUI
             {
                 try
                 {
-                    System.Console.WriteLine("Please insert your license type by typing one of the following options: A, A1, B1, B2 :");
-                    input = System.Console.ReadLine();
+                    Console.WriteLine("Please insert your license type by typing one of the following options: A, A1, B1, B2 :");
+                    input = Console.ReadLine();
                     o_LicenseType = convertStringToLicenseType(input);
                     parseSucceeded = true;
                 }
                 catch(FormatException e)
                 {
-                    System.Console.WriteLine(e.Message);
+                    Console.WriteLine(e.Message);
                     parseSucceeded = false;
                 }
                 
@@ -390,7 +381,7 @@ namespace Ex03.ConsoleUI
 
         private LicenseTypes convertStringToLicenseType(string i_Input)
         {
-            GarageLogic.Enums.LicenseTypes licenseType;
+            LicenseTypes licenseType;
             switch (i_Input)
             {
                 case "A": licenseType = LicenseTypes.A;
@@ -419,7 +410,7 @@ namespace Ex03.ConsoleUI
             bool parseSucceeded = false;
             do
             {
-                System.Console.WriteLine("Please enter your License Number");
+                Console.WriteLine("Please enter your License Number");
                 input = Console.ReadLine();
 
                 try
@@ -430,7 +421,7 @@ namespace Ex03.ConsoleUI
                 }
                 catch (FormatException e)
                 {
-                    System.Console.WriteLine(e.Message);
+                    Console.WriteLine(e.Message);
                     parseSucceeded = false;
                 }
 
@@ -507,12 +498,12 @@ namespace Ex03.ConsoleUI
 
         private void printVehicleTypeOptions()
         {
-            System.Console.WriteLine("Please choose from the following Vehicle type options:");
-            System.Console.WriteLine("1.Electric Motorcycle");
-            System.Console.WriteLine("2.Motorcycle Energised by fuel");
-            System.Console.WriteLine("3.Electric Car");
-            System.Console.WriteLine("4.Car energised by fuel");
-            System.Console.WriteLine("5.Truck");
+            Console.WriteLine("Please choose from the following Vehicle type options:");
+            Console.WriteLine("1.Electric Motorcycle");
+            Console.WriteLine("2.Motorcycle Energised by fuel");
+            Console.WriteLine("3.Electric Car");
+            Console.WriteLine("4.Car energised by fuel");
+            Console.WriteLine("5.Truck");
         }
 
 
