@@ -2,6 +2,7 @@
 {
     public enum LicenseTypes
     {
+        None,
         A,
         A1,
         B1,

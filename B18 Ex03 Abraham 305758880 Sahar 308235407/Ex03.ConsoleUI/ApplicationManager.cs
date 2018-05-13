@@ -12,14 +12,12 @@ using Ex03.ConsoleUI;
 
 
 
+
 namespace Ex03.ConsoleUI
 {
     class ApplicationManager
     {
         private GarageManager m_GarageManager;
-
-        bool m_ParseSucceeded = true;
-        bool m_VehicleTypeChoice = true;
         
 
         public ApplicationManager()
@@ -59,6 +57,7 @@ namespace Ex03.ConsoleUI
         private eMainMenuOptions getUserChoice()
         {
             string input;
+            bool parseSucceeded = false;
             eMainMenuOptions choiceValueInput = eMainMenuOptions.InvalidChoice; //had to initialize for "Unassigned return value..." error
             
             do
@@ -68,13 +67,19 @@ namespace Ex03.ConsoleUI
                 try
                 {
                     choiceValueInput = convertInputToChoice(input);
+                    parseSucceeded = true;
                 }
                 catch( FormatException e)
                 {
-                    m_ParseSucceeded = false;
+                    parseSucceeded = false;
                     System.Console.WriteLine(e.Message);
                 }
-            } while (!m_ParseSucceeded) ;
+                catch(ArgumentException e)
+                {
+                    parseSucceeded = false;
+                    System.Console.WriteLine(e.Message);
+                }
+            } while (!parseSucceeded) ;
 
                 return choiceValueInput;
         }
@@ -111,7 +116,7 @@ namespace Ex03.ConsoleUI
                         break;
                     case 8: choice = eMainMenuOptions.ExitProgram;
                         break;
-                    default: throw new FormatException("Invalid Input Format");
+                    default: throw new ArgumentException("Invalid option. Option does not exist...");
                         
                 }
 
@@ -165,6 +170,7 @@ namespace Ex03.ConsoleUI
         private void getDataForCreateNewVehicle()
         {
             eVehicleTypeOptions vehicleTypeChoice;
+            bool parseSucceeded = false;
             string input;
             do
             {
@@ -174,13 +180,18 @@ namespace Ex03.ConsoleUI
                     input = System.Console.ReadLine();
                     vehicleTypeChoice = convertInputToVehicleTypeOption(input);
                     getDataByVehicleTypeChoice(vehicleTypeChoice);
+                    parseSucceeded = true;
                 }
                 catch(FormatException e)
                 {
                     Console.WriteLine(e.Message);
-                    m_VehicleTypeChoice = false;
+                    parseSucceeded = false;
                 }
-            } while (!m_VehicleTypeChoice);
+                catch(ArgumentException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            } while (!parseSucceeded);
            
         }
 
@@ -208,37 +219,237 @@ namespace Ex03.ConsoleUI
         }
 
         private void getDataForElectricMotorcycle()
-        {
-            string engineType;
+        { 
             string model;
+            string licenseNumber;
+            int engineVolume;  //define in factory as int but neet float ? 
+            LicenseTypes licenseType; 
             string wheelsManufacturer;
-            int energyState;
-            string licenseType; 
-            int engineVolume;
 
-            getCommonDataFromUser(out engineType, out model, out wheelsManufacturer, out energyState);
-            getSpecialDataForMotorcycle(out licenseType, out engineVolume);
-
-            //here we need to create Vehicle with these detailse by the VehicleFactory
+            getDataForMotorycle(eEngineTypes.ElectricVehicle, out model, out licenseNumber, out engineVolume, out wheelsManufacturer, out licenseType);
         }
 
-        private void getCommonDataFromUser(out string o_EngineType, out string o_Model, out string o_WheelsManufacturer, out int  o_EnergyState)
+        private void getDataForMotorycle(GarageLogic.Enums.eEngineTypes i_EngineType, out string o_Model, out string o_LicenseNumber, out int o_EngineVolume, out string o_WheelsManufacturer, out LicenseTypes o_LicenseType)
         {
-            o_EngineType = "";
-            o_Model = "";
-            o_WheelsManufacturer = "";
-            o_EnergyState = 0;
+            getModel(out o_Model);
+            getValidLicenseNumber(out o_LicenseNumber);
+            getValidEngineVolume(out o_EngineVolume);
+            getWheelsManufacturer(out o_WheelsManufacturer);
+            getLicenseType(out o_LicenseType);
+
+            VehicleFactory.CreateMotorCycle(i_EngineType, o_Model, o_LicenseNumber, o_EngineVolume, o_LicenseType, o_WheelsManufacturer);
 
         }
 
-        private void getSpecialDataForMotorcycle(out String o_LicenseType, out int o_EngineVolume)
+        /*private void getDataForCar(eEngineTypes i_EngineType, out string o_Model, out string o_LicenseNumber, out int o_NumberOfDoors, out eVehicleColors o_Color, out string o_WheelsManufacturer)
         {
-            o_LicenseType = "";
+            getModel(out o_Model);
+            getValidLicenseNumber(out o_LicenseNumber);
+            getWheelsManufacturer(out o_WheelsManufacturer);
+            getValidNumberOfDoors(out o_NumberOfDoors);
+            //getValidColor(out o_Color);
+        }
+        */
+
+        /*private void getValidNumberOfDoors(out int o_NumberOfDoors)
+        {
+            bool parseSuceeded = false;
+            string input;
+
+            do
+            {
+                System.Console.WriteLine("Please insert the number of doors from the following options: 2,3,4,5: ");
+                input = Console.ReadLine();
+                try
+                {
+                    getIntegerStringInputToInt(input, out o_NumberOfDoors);
+                    CheckNumberOfDoorsValidation(o_NumberOfDoors);
+                    parseSuceeded = true;
+                }
+                catch (FormatException e)
+                {
+                    System.Console.WriteLine(e.Message);
+                }
+                catch (ArgumentException e)
+                {
+                    System.Console.WriteLine(e.Message);
+                }
+            } while (!parseSuceeded);
+        }
+
+        private void CheckNumberOfDoorsValidation(int i_NumberOfDoors)
+        {
+            if (!(i_NumberOfDoors != 5 && i_NumberOfDoors !=4 && i_NumberOfDoors != 3 && i_NumberOfDoors != 2))
+            {
+                throw new ArgumentException("Invalid number of doors");
+            }
+        }
+
+        /*private getValidColor(out eVehicleColors o_Color)
+        {
+            bool parseSucceeded = false;
+            string input;
+
+            do
+            {
+                try
+                {
+                    System.Console.WriteLine("Please insert your car color from the following options:");
+                    System.Console.WriteLine("1.Gray");
+                    System.Console.WriteLine("2.Blue");
+                    System.Console.WriteLine("3.White");
+                    System.Console.WriteLine("4.Black");
+
+                    input = System.Console.ReadLine();
+                    //o_Color = ConvertStringColorToVehicleColor(input);
+                    parseSucceeded = true;
+                }
+                catch (ArgumentException e)
+                {
+                    System.Console.WriteLine(e.Message);
+                }
+            } while (!parseSucceeded);
+        }
+        */
+        /*private ConvertStringColorToVehicleColor(string i_Color)
+        {
+            int colorOption;
+
+           if(!int.TryParse(i_Color,out colorOption))
+            {
+                throw FormatException("Invalid Option Format");
+            }
+           if()
+        }
+        */
+
+        private void getValidEngineVolume(out int o_EngineVolume)
+        {
+            bool parseSucceeded = false;
             o_EngineVolume = 0;
+
+            string input;
+
+            do
+            {
+                System.Console.WriteLine("Please enter your engine volume");
+                input = Console.ReadLine();
+                try
+                {
+                    getIntegerStringInputToInt(input, out o_EngineVolume);
+                }
+                catch(FormatException e)
+                {
+                    System.Console.WriteLine(e.Message);
+                    parseSucceeded = false;
+                }
+            } while (!parseSucceeded);
+      
+        }
+
+        private void getModel(out string o_Model)
+        {
+            System.Console.WriteLine("Please insert your vehicle's model:");
+            o_Model = System.Console.ReadLine();
+        }
+
+        private void getWheelsManufacturer(out string o_wheelsManufacturer)
+        {
+            string input; 
+
+            System.Console.WriteLine("Please insert your wheels' manufacturer");
+            input = Console.ReadLine();
+
+            o_wheelsManufacturer = input;
+        }
+
+        private void getLicenseType(out GarageLogic.Enums.LicenseTypes o_LicenseType)
+        {
+            string input;
+            bool parseSucceeded = false;
+            o_LicenseType = LicenseTypes.None;
+
+            do
+            {
+                try
+                {
+                    System.Console.WriteLine("Please insert your license type by typing one of the following options: A, A1, B1, B2 :");
+                    input = System.Console.ReadLine();
+                    o_LicenseType = convertStringToLicenseType(input);
+                    parseSucceeded = true;
+                }
+                catch(FormatException e)
+                {
+                    System.Console.WriteLine(e.Message);
+                    parseSucceeded = false;
+                }
+                
+            } while (!parseSucceeded); 
+            
+        }
+
+        private LicenseTypes convertStringToLicenseType(string i_Input)
+        {
+            GarageLogic.Enums.LicenseTypes licenseType;
+            switch (i_Input)
+            {
+                case "A": licenseType = LicenseTypes.A;
+                    break;
+                case "A1": licenseType = LicenseTypes.A1;
+                    break;
+                case "B1": licenseType = LicenseTypes.B1;
+                    break;
+                case "B2": licenseType = LicenseTypes.B2;
+                    break;
+                default:
+                    {
+                        throw new FormatException("Invalid license type");
+                    }
+            }
+
+            return licenseType;
+        }
+
+        private void getValidLicenseNumber(out string  o_LicenseNumber)
+        {
+            string input;
+            int LicensenUmberAsInt;
+            o_LicenseNumber = "";
+
+            bool parseSucceeded = false;
+            do
+            {
+                System.Console.WriteLine("Please enter your License Number");
+                input = Console.ReadLine();
+
+                try
+                {
+                    getIntegerStringInputToInt(input, out LicensenUmberAsInt);
+                    parseSucceeded = true;
+                    o_LicenseNumber = input;
+                }
+                catch (FormatException e)
+                {
+                    System.Console.WriteLine(e.Message);
+                    parseSucceeded = false;
+                }
+
+            } while (!parseSucceeded);
+        }
+
+        private void getIntegerStringInputToInt(string i_Input, out int o_InputAsInt)
+        {
+
+            if (!int.TryParse(i_Input, out o_InputAsInt))
+            {
+                throw new FormatException("Invalid Input - input not contains numbers only");
+            }
+
         }
 
         private void getDataForFuelMotorcycle()
         {
+
 
         }
 
@@ -264,7 +475,7 @@ namespace Ex03.ConsoleUI
 
             if(int.TryParse(i_Input, out inputAsInteger))
             {
-                throw new FormatException("Invalid Choice");
+                throw new FormatException("Invalid format input choice");
             }
 
             else
@@ -283,7 +494,7 @@ namespace Ex03.ConsoleUI
                         break;
                     default:
                         {
-                            throw new FormatException("Invalid Input");
+                            throw new ArgumentException("Invalid option. Option does not exist...");
                             
                         }
 
