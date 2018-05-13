@@ -6,7 +6,7 @@ using Ex03.GarageLogic;
 
 namespace Ex03.ConsoleUI
 {
-    class ApplicationManager
+    public class ApplicationManager
     {
         private GarageManager m_GarageManager;
         
