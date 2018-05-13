@@ -1,5 +1,6 @@
 ﻿using Ex03.GarageLogic.Enums;
 using Ex03.GarageLogic.VehicleBasics;
+using System.Text;
 
 namespace Ex03.GarageLogic.Garage
 {
@@ -36,7 +37,12 @@ namespace Ex03.GarageLogic.Garage
 
         public string GetVehicleInformationForm()
         {
-            return string.Empty;
+            StringBuilder informationFormBuilder = new StringBuilder();
+
+            informationFormBuilder.AppendLine(m_OwnerContactInfo.ToString());
+            informationFormBuilder.AppendLine(string.Format("Vehicle stauts: {0}", m_VehicleStatus));
+            informationFormBuilder.AppendLine(m_VehicleEntity.ToString());
+            return informationFormBuilder.ToString();
         }
     }
 }

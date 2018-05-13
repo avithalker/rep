@@ -1,5 +1,6 @@
 ﻿using Ex03.GarageLogic.Enums;
 using Ex03.GarageLogic.VehicleBasics;
+using System.Text;
 
 namespace Ex03.GarageLogic.ConcreteVehicles
 {
@@ -22,6 +23,15 @@ namespace Ex03.GarageLogic.ConcreteVehicles
         {
             get { return m_LicenseType; }
             set { m_LicenseType = value; }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder infoBuilder = new StringBuilder();
+
+            infoBuilder.Append(base.ToString());
+            infoBuilder.AppendLine(string.Format("The Motorcycle has {0} engine volume and it's lisence type is: {1}", m_EngineVolume, m_LicenseType));
+            return infoBuilder.ToString();
         }
     }
 }

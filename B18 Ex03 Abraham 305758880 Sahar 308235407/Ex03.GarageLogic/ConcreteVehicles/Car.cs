@@ -1,5 +1,6 @@
 ﻿using Ex03.GarageLogic.Enums;
 using Ex03.GarageLogic.VehicleBasics;
+using System.Text;
 
 namespace Ex03.GarageLogic.ConcreteVehicles
 {
@@ -22,6 +23,15 @@ namespace Ex03.GarageLogic.ConcreteVehicles
         {
             get { return m_VehicleColor; }
             set { m_VehicleColor = value; }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder infoBuilder = new StringBuilder();
+
+            infoBuilder.Append(base.ToString());
+            infoBuilder.AppendLine(string.Format("The car has {0} doors and it's color is: {1}", m_DoorsNumber, m_VehicleColor));
+            return infoBuilder.ToString();
         }
     }
 }

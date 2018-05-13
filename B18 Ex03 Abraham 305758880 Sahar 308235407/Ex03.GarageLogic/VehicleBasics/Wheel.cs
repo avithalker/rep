@@ -49,5 +49,10 @@ namespace Ex03.GarageLogic.VehicleBasics
             m_AirPressure += i_AmountOfAir;
         }
 
+        public override string ToString()
+        {
+            return string.Format("wheel manufactur: {0}, air pressure: {1}, max air pressure: {2}", m_Manufacturer, m_AirPressure, m_MaximumAirPressure);
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Ex03.GarageLogic.Enums;
 using System;
+using System.Text;
 
 namespace Ex03.GarageLogic.VehicleBasics
 {
@@ -27,6 +28,15 @@ namespace Ex03.GarageLogic.VehicleBasics
             }
 
             FillEnergy(i_AmoutOfFuel);
+        }
+
+        public override string ToString()
+        {
+            StringBuilder infoString = new StringBuilder();
+
+            infoString.AppendLine("Engine: Fuel engine");
+            infoString.AppendLine(string.Format("Fuel type: {0}, fuel left: {1}, fuel capacity: {2}", m_FuelType, EnergyLeft, EnergyCapacity));
+            return infoString.ToString();
         }
     }
 }

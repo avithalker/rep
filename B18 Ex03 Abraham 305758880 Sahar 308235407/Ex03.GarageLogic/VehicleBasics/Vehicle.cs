@@ -1,5 +1,6 @@
 ﻿using Ex03.GarageLogic.Enums;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Ex03.GarageLogic.VehicleBasics
 {
@@ -76,6 +77,17 @@ namespace Ex03.GarageLogic.VehicleBasics
             }
 
             return engineType;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder infoString = new StringBuilder();
+
+            infoString.AppendLine(string.Format("Vehicle lisence number: {0}", m_LicenseNumber));
+            infoString.AppendLine(string.Format("Number of wheels: {0}", m_Wheels.Count));
+            infoString.AppendLine(Wheels[0].ToString());
+            infoString.Append(m_Engine.ToString());
+            return infoString.ToString();
         }
     }
 }
