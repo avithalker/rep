@@ -214,9 +214,21 @@ namespace Ex03.ConsoleUI
             int engineVolume;  //define in factory as int but neet float ? 
             LicenseTypes licenseType;
             string wheelsManufacturer;
+            int wheelsCurrentAirPressure;
+            float currentEnergyState;
             Motorcycle ElectricMotorcycle;
+            
 
             ElectricMotorcycle = getDataForCreateMotorycle(eEngineTypes.ElectricVehicle, out model, i_LicenseNumber, out engineVolume, out wheelsManufacturer, out licenseType);
+            getCurrentEngineState(ElectricMotorcycle, out currentEnergyState);
+            getWheelsCurrentPressure(ElectricMotorcycle, out wheelsCurrentAirPressure);
+
+        }
+
+        private void getAirPressureAndEnergyState(out int o_WheelsCurrentAirPressure, out int o_CurrentEnergyState)
+        {
+            getSpecialIntDataFromUser("Please insert your wheels' current air pressure: ", out o_WheelsCurrentAirPressure);
+            getSpecialIntDataFromUser("Please insert your current energy state: ", out o_CurrentEnergyState);
         }
 
         private Motorcycle getDataForCreateMotorycle(eEngineTypes i_EngineType, out string o_Model, string i_LicenseNumber, out int o_EngineVolume, out string o_WheelsManufacturer, out LicenseTypes o_LicenseType)
@@ -465,12 +477,16 @@ namespace Ex03.ConsoleUI
         {
             string model;
             int engineVolume;  //define in factory as int but neet float ? 
+            float currentEnergyState;
+            int wheelsCurrentAirPressure;
             LicenseTypes licenseType;
             string wheelsManufacturer;
             Motorcycle FuelMotorcycle;
 
-            FuelMotorcycle = getDataForCreateMotorycle(eEngineTypes.FuelVehicle, out model, i_LicenseNumber, out engineVolume, out wheelsManufacturer, out licenseType);
 
+            FuelMotorcycle = getDataForCreateMotorycle(eEngineTypes.FuelVehicle, out model, i_LicenseNumber, out engineVolume, out wheelsManufacturer, out licenseType);
+            getCurrentEngineState(FuelMotorcycle, out currentEnergyState);
+            getWheelsCurrentPressure(FuelMotorcycle, out wheelsCurrentAirPressure);
         }
 
         private void getDataForElectricCar(string i_LicenseNumber)
@@ -478,11 +494,14 @@ namespace Ex03.ConsoleUI
             string model;
             string wheelsManufacturer;
             int numberOfDoors;
+            float currentEnergyState;
+            int wheelsCurrentAirPressure;
             eVehicleColors color;
-            Car eLectricCar;
+            Car electricCar;
 
-            eLectricCar = getDataForCreateCar(eEngineTypes.ElectricVehicle, out model, i_LicenseNumber, out numberOfDoors, out color, out wheelsManufacturer);
-
+            electricCar = getDataForCreateCar(eEngineTypes.ElectricVehicle, out model, i_LicenseNumber, out numberOfDoors, out color, out wheelsManufacturer);
+            getCurrentEngineState(electricCar, out currentEnergyState);
+            getWheelsCurrentPressure(electricCar, out wheelsCurrentAirPressure);
         }
 
         private void getDataForFuelCar(string i_LicenseNumber)
@@ -490,10 +509,14 @@ namespace Ex03.ConsoleUI
             string model;
             string wheelsManufacturer;
             int numberOfDoors;
+            float currentEnergyState;
+            int wheelsCurrentAirPressure;
             eVehicleColors color;
-            Car eLectricCar;
+            Car fuelCar;
 
-            eLectricCar = getDataForCreateCar(eEngineTypes.FuelVehicle, out model, i_LicenseNumber, out numberOfDoors, out color, out wheelsManufacturer);
+            fuelCar = getDataForCreateCar(eEngineTypes.FuelVehicle, out model, i_LicenseNumber, out numberOfDoors, out color, out wheelsManufacturer);
+            getCurrentEngineState(fuelCar, out currentEnergyState);
+            getWheelsCurrentPressure(fuelCar, out wheelsCurrentAirPressure);
         }
 
         private void getDataForTruck(string i_LicenseNumber)
@@ -501,9 +524,13 @@ namespace Ex03.ConsoleUI
             string model;
             string wheelsManufacturer;
             bool isTrunkCold;
+            float currentEnergyState;
+            int wheelsCurrentAirPressure;
             Truck truck;
 
             truck = getDataForCreateTruck(out model, i_LicenseNumber, out isTrunkCold, out wheelsManufacturer);
+            getCurrentEngineState(truck, out currentEnergyState);
+            getWheelsCurrentPressure(truck, out wheelsCurrentAirPressure);
         }
 
         private Truck getDataForCreateTruck(out string o_Model, string i_LicenseNumber, out bool o_IsTrunkCold, out string o_WheelsManufacturer)
@@ -537,6 +564,111 @@ namespace Ex03.ConsoleUI
                 }
             } while (!parseSucceeded);
 
+        }
+
+        private void getWheelsCurrentPressure(GarageLogic.VehicleBasics.Vehicle i_Vehicle, out int o_CurrentPressure)
+        {
+            string input;
+            bool parseSucceeded = false;
+            o_CurrentPressure = 0;
+
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Please enter your current wheels' air pressure: ");
+                    input = Console.ReadLine();
+                    o_CurrentPressure = ConvertStringToInt(input);
+                    //here we need to call the function in logic for check validation.
+                    parseSucceeded = true;
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch(IndexOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            } while (!parseSucceeded);
+        }
+
+        private void getCurrentEngineState(GarageLogic.VehicleBasics.Vehicle i_Vehicle, out float o_CurrentState)
+        {
+            string input;
+            bool parseSucceeded = false;
+            o_CurrentState = 0;
+
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Please enter your current engine state: ");
+                    input = Console.ReadLine();
+                    o_CurrentState = ConvertStringToFloat(input);
+                    //here we need to call the function in logic for check validation.
+                    parseSucceeded = true;
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            } while (!parseSucceeded);
+        }
+
+        private float ConvertStringToFloat(string input)
+        {
+            float inputAsFloat;
+
+            if(float.TryParse(input, out inputAsFloat))
+            {
+                throw new FormatException("Invalid input Format");
+            }
+
+            return inputAsFloat;
+        }
+
+        private void getSpecialIntDataFromUser(string i_Message, out int o_CurrentEnergyState)
+        {
+            string input;
+            bool parseSucceeded = false;
+            o_CurrentEnergyState = 0;
+
+            do
+            {
+                try
+                {
+                    Console.WriteLine(i_Message);
+                    input = Console.ReadLine();
+                    o_CurrentEnergyState = ConvertStringToInt(input);
+                    parseSucceeded = true;
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            } while (!parseSucceeded);
+        }
+
+        
+
+        private int ConvertStringToInt(string input)
+        {
+            int inputAsInt;
+
+            if (!int.TryParse(input, out inputAsInt))
+            {
+                throw new FormatException("Invalid input format");
+            }
+
+            return inputAsInt;
         }
 
         private bool ConvertStringToIsColdBool(string input)
