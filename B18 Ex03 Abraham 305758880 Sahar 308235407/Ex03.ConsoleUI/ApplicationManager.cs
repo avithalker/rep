@@ -153,9 +153,32 @@ namespace Ex03.ConsoleUI
             else
             {
                 vehicle = getDataForCreateNewVehicle(licenseNumber);
+                ownerInfo = CreateOwnerInfoFromUser();
                 m_GarageManager.InsertVehicleToGarage(vehicle, ownerInfo); 
             }
 
+        }
+
+        private OwnerInfo CreateOwnerInfoFromUser()
+        {
+            string owner;
+            string phoneNumber;
+
+            getValidPhoneNumberFromUser(out phoneNumber);
+            getValidOwnerName(out owner);
+
+            return new OwnerInfo(phoneNumber, owner);
+        }
+
+        private void getValidPhoneNumberFromUser(out string o_PhoneNumber)
+        {
+            o_PhoneNumber = "";
+
+        }
+
+        private void getValidOwnerName(out string o_Owner)
+        {
+            o_Owner = "";
         }
 
         private GarageLogic.VehicleBasics.Vehicle getDataForCreateNewVehicle(string i_LicenseNumber)
