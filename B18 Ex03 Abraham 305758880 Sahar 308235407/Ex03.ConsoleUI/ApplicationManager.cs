@@ -140,8 +140,8 @@ namespace Ex03.ConsoleUI
         private void EnterNewVehicleOp()
         {
             string licenseNumber;
-            string owner;
-
+            OwnerInfo ownerInfo = null;
+            GarageLogic.VehicleBasics.Vehicle vehicle;
 
             getValidLicenseNumber(out licenseNumber);
 
@@ -152,15 +152,18 @@ namespace Ex03.ConsoleUI
             }
             else
             {
-                getDataForCreateNewVehicle(licenseNumber);
+                vehicle = getDataForCreateNewVehicle(licenseNumber);
+                m_GarageManager.InsertVehicleToGarage(vehicle, ownerInfo); 
             }
 
         }
 
-        private void getDataForCreateNewVehicle(string i_LicenseNumber)
+        private GarageLogic.VehicleBasics.Vehicle getDataForCreateNewVehicle(string i_LicenseNumber)
         {
             eVehicleTypeOptions vehicleTypeChoice;
             bool parseSucceeded = false;
+            GarageLogic.VehicleBasics.Vehicle vehicle = null;
+
             string input;
             do
             {
@@ -169,7 +172,7 @@ namespace Ex03.ConsoleUI
                     printVehicleTypeOptions();
                     input = Console.ReadLine();
                     vehicleTypeChoice = convertInputToVehicleTypeOption(input);
-                    getDataByVehicleTypeChoice(vehicleTypeChoice, i_LicenseNumber);
+                    vehicle = getDataByVehicleTypeChoice(vehicleTypeChoice, i_LicenseNumber);
                     parseSucceeded = true;
                 }
                 catch (FormatException e)
@@ -183,32 +186,42 @@ namespace Ex03.ConsoleUI
                 }
             } while (!parseSucceeded);
 
+            return vehicle;
         }
 
-        private void getDataByVehicleTypeChoice(eVehicleTypeOptions i_VehicleTypeChoice, string i_LicenseNumber)
+        private GarageLogic.VehicleBasics.Vehicle getDataByVehicleTypeChoice(eVehicleTypeOptions i_VehicleTypeChoice, string i_LicenseNumber)
         {
+            GarageLogic.VehicleBasics.Vehicle vehicle;
+
             switch (i_VehicleTypeChoice)
             {
                 case eVehicleTypeOptions.ElectricMotorcycle:
-                    getDataForElectricMotorcycle(i_LicenseNumber);
+                    vehicle = getDataForElectricMotorcycle(i_LicenseNumber);
                     break;
                 case eVehicleTypeOptions.FuelMotorcycle:
-                    getDataForFuelMotorcycle(i_LicenseNumber);
+                    vehicle = getDataForFuelMotorcycle(i_LicenseNumber);
                     break;
                 case eVehicleTypeOptions.ElectricCar:
-                    getDataForElectricCar(i_LicenseNumber);
+                    vehicle = getDataForElectricCar(i_LicenseNumber);
                     break;
                 case eVehicleTypeOptions.FuelCar:
-                    getDataForFuelCar(i_LicenseNumber);
+                    vehicle = getDataForFuelCar(i_LicenseNumber);
                     break;
                 case eVehicleTypeOptions.Truck:
-                    getDataForTruck(i_LicenseNumber);
+                    vehicle = getDataForTruck(i_LicenseNumber);
+                    break;
+                default:
+                    {
+                        vehicle = null;
+                    }
                     break;
             }
 
+            return vehicle;
+
         }
 
-        private void getDataForElectricMotorcycle(string i_LicenseNumber)
+        private Motorcycle getDataForElectricMotorcycle(string i_LicenseNumber)
         {
             string model;
             int engineVolume;  //define in factory as int but neet float ? 
@@ -216,6 +229,7 @@ namespace Ex03.ConsoleUI
             string wheelsManufacturer;
             int wheelsCurrentAirPressure;
             float currentEnergyState;
+            OwnerInfo ownerInfo;
             Motorcycle ElectricMotorcycle;
             
 
@@ -223,6 +237,7 @@ namespace Ex03.ConsoleUI
             getCurrentEngineState(ElectricMotorcycle, out currentEnergyState);
             getWheelsCurrentPressure(ElectricMotorcycle, out wheelsCurrentAirPressure);
 
+            return ElectricMotorcycle;
         }
 
         private void getAirPressureAndEnergyState(out int o_WheelsCurrentAirPressure, out int o_CurrentEnergyState)
@@ -473,7 +488,7 @@ namespace Ex03.ConsoleUI
 
         }
 
-        private void getDataForFuelMotorcycle(string i_LicenseNumber)
+        private Motorcycle getDataForFuelMotorcycle(string i_LicenseNumber)
         {
             string model;
             int engineVolume;  //define in factory as int but neet float ? 
@@ -487,9 +502,11 @@ namespace Ex03.ConsoleUI
             FuelMotorcycle = getDataForCreateMotorycle(eEngineTypes.FuelVehicle, out model, i_LicenseNumber, out engineVolume, out wheelsManufacturer, out licenseType);
             getCurrentEngineState(FuelMotorcycle, out currentEnergyState);
             getWheelsCurrentPressure(FuelMotorcycle, out wheelsCurrentAirPressure);
+
+            return FuelMotorcycle;
         }
 
-        private void getDataForElectricCar(string i_LicenseNumber)
+        private Car getDataForElectricCar(string i_LicenseNumber)
         {
             string model;
             string wheelsManufacturer;
@@ -502,9 +519,11 @@ namespace Ex03.ConsoleUI
             electricCar = getDataForCreateCar(eEngineTypes.ElectricVehicle, out model, i_LicenseNumber, out numberOfDoors, out color, out wheelsManufacturer);
             getCurrentEngineState(electricCar, out currentEnergyState);
             getWheelsCurrentPressure(electricCar, out wheelsCurrentAirPressure);
+
+            return electricCar;
         }
 
-        private void getDataForFuelCar(string i_LicenseNumber)
+        private Car getDataForFuelCar(string i_LicenseNumber)
         {
             string model;
             string wheelsManufacturer;
@@ -517,9 +536,11 @@ namespace Ex03.ConsoleUI
             fuelCar = getDataForCreateCar(eEngineTypes.FuelVehicle, out model, i_LicenseNumber, out numberOfDoors, out color, out wheelsManufacturer);
             getCurrentEngineState(fuelCar, out currentEnergyState);
             getWheelsCurrentPressure(fuelCar, out wheelsCurrentAirPressure);
+
+            return fuelCar;
         }
 
-        private void getDataForTruck(string i_LicenseNumber)
+        private Truck getDataForTruck(string i_LicenseNumber)
         {
             string model;
             string wheelsManufacturer;
@@ -531,6 +552,8 @@ namespace Ex03.ConsoleUI
             truck = getDataForCreateTruck(out model, i_LicenseNumber, out isTrunkCold, out wheelsManufacturer);
             getCurrentEngineState(truck, out currentEnergyState);
             getWheelsCurrentPressure(truck, out wheelsCurrentAirPressure);
+
+            return truck;
         }
 
         private Truck getDataForCreateTruck(out string o_Model, string i_LicenseNumber, out bool o_IsTrunkCold, out string o_WheelsManufacturer)
