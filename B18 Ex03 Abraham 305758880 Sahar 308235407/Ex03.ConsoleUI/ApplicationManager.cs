@@ -6,7 +6,7 @@ using Ex03.GarageLogic;
 
 namespace Ex03.ConsoleUI
 {
-    public class ApplicationManager
+    public partial class ApplicationManager
     {
         private GarageManager m_GarageManager;
         
@@ -126,13 +126,13 @@ namespace Ex03.ConsoleUI
                     break;
                 case eMainMenuOptions.ChangeVehicleState: ChangeVehicleStateOp();
                     break;
-                case eMainMenuOptions.AddAirToWheels: AddAirToWheelsOp();
+                case eMainMenuOptions.AddAirToWheels: addAirToWheelsOp2();
                     break;
                 case eMainMenuOptions.AddFuelToVehicle: AddFuelToVehicleOp();
                     break;
-                case eMainMenuOptions.ChargeVehicle: CharageVehicleOp();
+                case eMainMenuOptions.ChargeVehicle: charageVehicleOp2();
                     break;
-                case eMainMenuOptions.ShowVehiclesData: ShowVehiclesDataOp();
+                case eMainMenuOptions.ShowVehiclesData: showVehiclesDataOp2();
                     break;
             }
         }
