@@ -5,7 +5,6 @@ namespace Ex03.GarageLogic
 {
     internal static class EngineFactory
     {
-
         public static Engine CreateEngine(eEngineTypes i_EngineType, float i_EnergyCapacity, eFuelTypes i_FuelType = eFuelTypes.None)
         {
             Engine newEngine = null;
@@ -14,13 +13,14 @@ namespace Ex03.GarageLogic
                 case eEngineTypes.ElectricVehicle:
                     {
                         newEngine = createElectricEngine(i_EnergyCapacity);
+                        break;
                     }
-                    break;
+
                 case eEngineTypes.FuelVehicle:
                     {
                         newEngine = createFuelEngine(i_FuelType, i_EnergyCapacity);
+                        break;
                     }
-                    break;
             }
 
             return newEngine;

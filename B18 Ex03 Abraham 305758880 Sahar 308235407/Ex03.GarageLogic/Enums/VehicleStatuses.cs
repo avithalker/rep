@@ -2,9 +2,9 @@
 {
     public enum eVehicleStatuses
     {
-        None,
-        InFix,
-        Fixed,
-        Paid
+        None = 0,
+        InFix = 1,
+        Fixed = 2,
+        Paid = 3
     }
 }

@@ -1,11 +1,11 @@
 ﻿namespace Ex03.GarageLogic.Enums
 {
-    public enum LicenseTypes
+    public enum eLicenseTypes
     {
-        None,
-        A,
-        A1,
-        B1,
-        B2
+        None = 0,
+        A = 1,
+        A1 = 2,
+        B1 = 3,
+        B2 = 4
     }
 }

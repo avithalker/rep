@@ -1,6 +1,6 @@
-﻿using Ex03.GarageLogic.Enums;
-using System;
+﻿using System;
 using System.Text;
+using Ex03.GarageLogic.Enums;
 
 namespace Ex03.GarageLogic.VehicleBasics
 {
@@ -18,9 +18,9 @@ namespace Ex03.GarageLogic.VehicleBasics
             get { return m_FuelType; }
         }
 
-        public void FillFuel(eFuelTypes i_FuelType,float i_AmoutOfFuel)
+        public void FillFuel(eFuelTypes i_FuelType, float i_AmoutOfFuel)
         {
-            if(i_FuelType != m_FuelType)
+            if (i_FuelType != m_FuelType)
             {
                 string errorMsg = string.Format("Cant fill {0} engine with fuel of type {1}!", m_FuelType, i_FuelType);
 

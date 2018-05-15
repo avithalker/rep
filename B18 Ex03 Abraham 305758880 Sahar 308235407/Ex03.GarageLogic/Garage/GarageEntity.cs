@@ -1,6 +1,6 @@
-﻿using Ex03.GarageLogic.Enums;
+﻿using System.Text;
+using Ex03.GarageLogic.Enums;
 using Ex03.GarageLogic.VehicleBasics;
-using System.Text;
 
 namespace Ex03.GarageLogic.Garage
 {
@@ -10,7 +10,7 @@ namespace Ex03.GarageLogic.Garage
         private Vehicle m_VehicleEntity;
         private OwnerInfo m_OwnerContactInfo;
 
-        public GarageEntity(OwnerInfo i_VehicleOwnerInfo,Vehicle i_Vehicle)
+        public GarageEntity(OwnerInfo i_VehicleOwnerInfo, Vehicle i_Vehicle)
         {
             m_OwnerContactInfo = i_VehicleOwnerInfo;
             m_VehicleEntity = i_Vehicle;

@@ -1,7 +1,6 @@
 ﻿using Ex03.GarageLogic.ConcreteVehicles;
 using Ex03.GarageLogic.Enums;
 using Ex03.GarageLogic.VehicleBasics;
-using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
@@ -23,6 +22,7 @@ namespace Ex03.GarageLogic
                         energyCapacity = 3.2f;
                         break;
                     }
+
                 case eEngineTypes.FuelVehicle:
                     {
                         energyCapacity = 45;
@@ -38,7 +38,7 @@ namespace Ex03.GarageLogic
             return newCar;
         }
 
-        public static Motorcycle CreateMotorCycle(eEngineTypes i_EngineType, string i_Model, string i_LicenseNumber, int i_EngineVolume, LicenseTypes i_LicenseType, string i_WheelManufacturer)
+        public static Motorcycle CreateMotorCycle(eEngineTypes i_EngineType, string i_Model, string i_LicenseNumber, int i_EngineVolume, eLicenseTypes i_LicenseType, string i_WheelManufacturer)
         {
             float energyCapacity = 0;
             eFuelTypes fuelType = eFuelTypes.None;
@@ -52,6 +52,7 @@ namespace Ex03.GarageLogic
                         energyCapacity = 1.8f;
                         break;
                     }
+
                 case eEngineTypes.FuelVehicle:
                     {
                         energyCapacity = 6;
@@ -60,7 +61,7 @@ namespace Ex03.GarageLogic
                     }
             }
 
-            Engine newEngine = EngineFactory.CreateEngine(i_EngineType,energyCapacity, fuelType);
+            Engine newEngine = EngineFactory.CreateEngine(i_EngineType, energyCapacity, fuelType);
             Motorcycle newMotorCycle = new Motorcycle(newEngine, i_Model, i_LicenseNumber, i_EngineVolume);
 
             newMotorCycle.Wheels = WheelsFactory.CreateWheels(k_AmountOfWheels, k_WheelMaxAirPressure, i_WheelManufacturer);

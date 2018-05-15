@@ -1,13 +1,13 @@
-﻿using Ex03.GarageLogic.Enums;
-using Ex03.GarageLogic.VehicleBasics;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Ex03.GarageLogic.Enums;
+using Ex03.GarageLogic.VehicleBasics;
 
 namespace Ex03.GarageLogic.Garage
 {
     public class GarageManager
     {
-        Dictionary<string, GarageEntity> m_GarageVehicles;
+        private Dictionary<string, GarageEntity> m_GarageVehicles;
 
         public GarageManager()
         {
@@ -26,6 +26,12 @@ namespace Ex03.GarageLogic.Garage
 
                 m_GarageVehicles.Add(i_Vehicle.LicenseNumber, newGarageEntity);
             }
+        }
+
+        public Vehicle GetVehicleByLicenseNumber(string i_LicenseNumber)
+        {
+            checkIfVehicleExist(i_LicenseNumber);
+            return m_GarageVehicles[i_LicenseNumber].VehicleEntity;
         }
 
         public List<string> GetLisenceByVehicleStatus(eVehicleStatuses i_status)
