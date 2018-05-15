@@ -2,6 +2,7 @@
 {
     public enum eVehicleStatuses
     {
+        None,
         InFix,
         Fixed,
         Paid

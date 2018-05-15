@@ -5,6 +5,7 @@ using Ex03.GarageLogic.Enums;
 using Ex03.GarageLogic.ConcreteVehicles;
 using Ex03.GarageLogic;
 using Ex03.GarageLogic.CustomErrors;
+using System.Collections.Generic;
 
 namespace Ex03.ConsoleUI
 {
@@ -848,7 +849,94 @@ namespace Ex03.ConsoleUI
 
         private void ShowLicenceNumbersOp()
         {
-            
+            string input;
+            int choice;
+            bool parseSucceeded = false;
+
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Please choose which license numbers you would like to see according to the following filters:");
+                    Console.WriteLine("1.Fixed vehicles");
+                    Console.WriteLine("2.In fix vehicles");
+                    Console.WriteLine("3.Paid vehicles");
+                    Console.WriteLine("4.All vehicles");
+                    input = Console.ReadLine();
+                    choice = ConvertInputToFiltersChoice(input);
+                    doActionUserByFilterChoice(choice);
+                }
+                catch( FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch( ArgumentException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            } while (!parseSucceeded);
+         
+        }
+
+        private void doActionUserByFilterChoice(int choice)
+        {
+            switch(choice)
+            {
+                case 1: printLicenseNumbersByVehiclesState(eVehicleStatuses.Fixed);
+                    break;
+                case 2: printLicenseNumbersByVehiclesState(eVehicleStatuses.InFix);
+                    break;
+                case 3: printLicenseNumbersByVehiclesState(eVehicleStatuses.Paid);
+                    break;
+                case 4: printLicenseNumbersByVehiclesState(eVehicleStatuses.None);
+                    break;
+                default:
+                    {
+                        throw new ArgumentException("Invalid choice");
+                    }
+            }
+        }
+
+        private void printLicenseNumbersByVehiclesState(eVehicleStatuses i_VehicleStatus)
+        {
+            List<String> licenseNumbers;
+
+            if(i_VehicleStatus == eVehicleStatuses.None)
+            {
+                //call functon from logic
+            }   
+
+            else
+            {
+                licenseNumbers = m_GarageManager.GetLisenceByVehicleStatus(i_VehicleStatus);
+
+                if (licenseNumbers.Count == 0)
+                {
+                    Console.WriteLine("There are no vehicles in this status");
+                }
+                else
+                {
+                    foreach (string licenseNumber in licenseNumbers)
+                    {
+                        Console.WriteLine(licenseNumber);
+                    }
+                }  
+            }
+        }
+
+        private int ConvertInputToFiltersChoice(string i_Input)
+        {
+            int choice;
+
+            if(!int.TryParse(i_Input, out choice))
+            {
+                throw new FormatException("Invalid Format");
+            }
+            else
+            {
+                return choice;   
+            }
         }
         
         private void ChangeVehicleStateOp()
