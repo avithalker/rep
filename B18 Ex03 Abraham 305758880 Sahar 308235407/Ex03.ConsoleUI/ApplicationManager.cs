@@ -172,13 +172,56 @@ namespace Ex03.ConsoleUI
 
         private void getValidPhoneNumberFromUser(out string o_PhoneNumber)
         {
-            o_PhoneNumber = "";
+            bool parseSucceeded = false;
+            string input;
 
+            do
+            {
+                Console.WriteLine("Please insert the owner's phone number: ");
+                input = Console.ReadLine();
+                ConvertStringToInt(input);
+            } while (!parseSucceeded);
+
+
+            o_PhoneNumber = input;
         }
 
         private void getValidOwnerName(out string o_Owner)
         {
             o_Owner = "";
+            string input;
+            bool parseSucceeded = false;
+
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Please insert the owner's name: ");
+                    input = Console.ReadLine();
+                    CheckIfNameNotContainsNumbers(input);
+                    o_Owner = input;
+                    parseSucceeded = true;
+                }
+                catch(FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                    parseSucceeded = false;
+                }
+
+            } while (!parseSucceeded);
+        }
+
+        private void CheckIfNameNotContainsNumbers(string i_Input)
+        {
+            foreach (char Char in i_Input)
+            {
+                if (!(Char >= 'A' && Char <= 'Z') || (Char>='a' && Char<='z'))
+                {
+                    throw new FormatException("Invalid owner name. name has to contain letters only");
+                }
+            }
+             
+            
         }
 
         private GarageLogic.VehicleBasics.Vehicle getDataForCreateNewVehicle(string i_LicenseNumber)
