@@ -2,6 +2,7 @@
 {
     public enum eVehicleColors
     {
+        None,
         Gray,
         Blue,
         White,

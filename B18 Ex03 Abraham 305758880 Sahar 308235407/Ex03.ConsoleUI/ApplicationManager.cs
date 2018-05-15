@@ -2,14 +2,14 @@
 using Ex03.GarageLogic.Garage;
 using Ex03.ConsoleUI.Enums;
 using Ex03.GarageLogic.Enums;
+using Ex03.GarageLogic.ConcreteVehicles;
 using Ex03.GarageLogic;
-
 namespace Ex03.ConsoleUI
 {
     public partial class ApplicationManager
     {
         private GarageManager m_GarageManager;
-        
+
 
         public ApplicationManager()
         {
@@ -50,7 +50,7 @@ namespace Ex03.ConsoleUI
             string input;
             bool parseSucceeded = false;
             eMainMenuOptions choiceValueInput = eMainMenuOptions.InvalidChoice; //had to initialize for "Unassigned return value..." error
-            
+
             do
             {
                 input = Console.ReadLine();
@@ -60,19 +60,19 @@ namespace Ex03.ConsoleUI
                     choiceValueInput = convertInputToChoice(input);
                     parseSucceeded = true;
                 }
-                catch( FormatException e)
+                catch (FormatException e)
                 {
                     parseSucceeded = false;
                     Console.WriteLine(e.Message);
                 }
-                catch(ArgumentException e)
+                catch (ArgumentException e)
                 {
                     parseSucceeded = false;
                     Console.WriteLine(e.Message);
                 }
-            } while (!parseSucceeded) ;
+            } while (!parseSucceeded);
 
-                return choiceValueInput;
+            return choiceValueInput;
         }
 
         private eMainMenuOptions convertInputToChoice(string i_Input)
@@ -82,7 +82,7 @@ namespace Ex03.ConsoleUI
 
             if (!int.TryParse(i_Input, out inputAsInteger))
             {
-                
+
                 throw new FormatException("Invalid Input Format");
             }
 
@@ -108,17 +108,17 @@ namespace Ex03.ConsoleUI
                     case 8: choice = eMainMenuOptions.ExitProgram;
                         break;
                     default: throw new ArgumentException("Invalid option. Option does not exist...");
-                        
+
                 }
 
-            } 
+            }
 
             return choice;
         }
 
         private void doActionUserByMainMenuChoice(eMainMenuOptions i_Choice)
         {
-            switch(i_Choice)
+            switch (i_Choice)
             {
                 case eMainMenuOptions.EnterNewVehicle: EnterNewVehicleOp();
                     break;
@@ -140,28 +140,96 @@ namespace Ex03.ConsoleUI
         private void EnterNewVehicleOp()
         {
             string licenseNumber;
-            string owner;
+            OwnerInfo ownerInfo = null;
+            GarageLogic.VehicleBasics.Vehicle vehicle;
 
+            getValidLicenseNumber(out licenseNumber);
 
-            Console.WriteLine("Please insert your vehicle's license number:");
-            licenseNumber = Console.ReadLine();
-            
-            if(m_GarageManager.IsVehicleExist(licenseNumber))
+            if (m_GarageManager.IsVehicleExist(licenseNumber))
             {
                 Console.WriteLine("This Vehicle is already exists in the garage...");
                 m_GarageManager.ChangeVehicleStatus(licenseNumber, eVehicleStatuses.InFix);
             }
             else
             {
-                getDataForCreateNewVehicle(); 
+                vehicle = getDataForCreateNewVehicle(licenseNumber);
+                ownerInfo = CreateOwnerInfoFromUser();
+                m_GarageManager.InsertVehicleToGarage(vehicle, ownerInfo); 
             }
 
         }
 
-        private void getDataForCreateNewVehicle()
+        private OwnerInfo CreateOwnerInfoFromUser()
+        {
+            string owner;
+            string phoneNumber;
+
+            getValidPhoneNumberFromUser(out phoneNumber);
+            getValidOwnerName(out owner);
+
+            return new OwnerInfo(phoneNumber, owner);
+        }
+
+        private void getValidPhoneNumberFromUser(out string o_PhoneNumber)
+        {
+            bool parseSucceeded = false;
+            string input;
+
+            do
+            {
+                Console.WriteLine("Please insert the owner's phone number: ");
+                input = Console.ReadLine();
+                ConvertStringToInt(input);
+            } while (!parseSucceeded);
+
+
+            o_PhoneNumber = input;
+        }
+
+        private void getValidOwnerName(out string o_Owner)
+        {
+            o_Owner = "";
+            string input;
+            bool parseSucceeded = false;
+
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Please insert the owner's name: ");
+                    input = Console.ReadLine();
+                    CheckIfNameNotContainsNumbers(input);
+                    o_Owner = input;
+                    parseSucceeded = true;
+                }
+                catch(FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                    parseSucceeded = false;
+                }
+
+            } while (!parseSucceeded);
+        }
+
+        private void CheckIfNameNotContainsNumbers(string i_Input)
+        {
+            foreach (char Char in i_Input)
+            {
+                if (!(Char >= 'A' && Char <= 'Z') || (Char>='a' && Char<='z'))
+                {
+                    throw new FormatException("Invalid owner name. name has to contain letters only");
+                }
+            }
+             
+            
+        }
+
+        private GarageLogic.VehicleBasics.Vehicle getDataForCreateNewVehicle(string i_LicenseNumber)
         {
             eVehicleTypeOptions vehicleTypeChoice;
             bool parseSucceeded = false;
+            GarageLogic.VehicleBasics.Vehicle vehicle = null;
+
             string input;
             do
             {
@@ -170,91 +238,116 @@ namespace Ex03.ConsoleUI
                     printVehicleTypeOptions();
                     input = Console.ReadLine();
                     vehicleTypeChoice = convertInputToVehicleTypeOption(input);
-                    getDataByVehicleTypeChoice(vehicleTypeChoice);
+                    vehicle = getDataByVehicleTypeChoice(vehicleTypeChoice, i_LicenseNumber);
                     parseSucceeded = true;
                 }
-                catch(FormatException e)
+                catch (FormatException e)
                 {
                     Console.WriteLine(e.Message);
                     parseSucceeded = false;
                 }
-                catch(ArgumentException e)
+                catch (ArgumentException e)
                 {
                     Console.WriteLine(e.Message);
                 }
             } while (!parseSucceeded);
-           
+
+            return vehicle;
         }
 
-        private void  getDataByVehicleTypeChoice(eVehicleTypeOptions i_VehicleTypeChoice)
+        private GarageLogic.VehicleBasics.Vehicle getDataByVehicleTypeChoice(eVehicleTypeOptions i_VehicleTypeChoice, string i_LicenseNumber)
         {
-            switch(i_VehicleTypeChoice)
+            GarageLogic.VehicleBasics.Vehicle vehicle;
+
+            switch (i_VehicleTypeChoice)
             {
                 case eVehicleTypeOptions.ElectricMotorcycle:
-                    getDataForElectricMotorcycle();
+                    vehicle = getDataForElectricMotorcycle(i_LicenseNumber);
                     break;
                 case eVehicleTypeOptions.FuelMotorcycle:
-                    getDataForFuelMotorcycle();
+                    vehicle = getDataForFuelMotorcycle(i_LicenseNumber);
                     break;
                 case eVehicleTypeOptions.ElectricCar:
-                    getDataForElectricCar();
+                    vehicle = getDataForElectricCar(i_LicenseNumber);
                     break;
                 case eVehicleTypeOptions.FuelCar:
-                    getDataForFuelCar();
+                    vehicle = getDataForFuelCar(i_LicenseNumber);
                     break;
                 case eVehicleTypeOptions.Truck:
-                    getDataForTruck();
+                    vehicle = getDataForTruck(i_LicenseNumber);
+                    break;
+                default:
+                    {
+                        vehicle = null;
+                    }
                     break;
             }
-               
+
+            return vehicle;
+
         }
 
-        private void getDataForElectricMotorcycle()
-        { 
+        private Motorcycle getDataForElectricMotorcycle(string i_LicenseNumber)
+        {
             string model;
-            string licenseNumber;
             int engineVolume;  //define in factory as int but neet float ? 
-            LicenseTypes licenseType; 
+            LicenseTypes licenseType;
             string wheelsManufacturer;
+            int wheelsCurrentAirPressure;
+            float currentEnergyState;
+            OwnerInfo ownerInfo;
+            Motorcycle ElectricMotorcycle;
+            
 
-            getDataForMotorycle(eEngineTypes.ElectricVehicle, out model, out licenseNumber, out engineVolume, out wheelsManufacturer, out licenseType);
+            ElectricMotorcycle = getDataForCreateMotorycle(eEngineTypes.ElectricVehicle, out model, i_LicenseNumber, out engineVolume, out wheelsManufacturer, out licenseType);
+            getCurrentEngineState(ElectricMotorcycle, out currentEnergyState);
+            getWheelsCurrentPressure(ElectricMotorcycle, out wheelsCurrentAirPressure);
+
+            return ElectricMotorcycle;
         }
 
-        private void getDataForMotorycle(eEngineTypes i_EngineType, out string o_Model, out string o_LicenseNumber, out int o_EngineVolume, out string o_WheelsManufacturer, out LicenseTypes o_LicenseType)
+        private void getAirPressureAndEnergyState(out int o_WheelsCurrentAirPressure, out int o_CurrentEnergyState)
+        {
+            getSpecialIntDataFromUser("Please insert your wheels' current air pressure: ", out o_WheelsCurrentAirPressure);
+            getSpecialIntDataFromUser("Please insert your current energy state: ", out o_CurrentEnergyState);
+        }
+
+        private Motorcycle getDataForCreateMotorycle(eEngineTypes i_EngineType, out string o_Model, string i_LicenseNumber, out int o_EngineVolume, out string o_WheelsManufacturer, out LicenseTypes o_LicenseType)
         {
             getModel(out o_Model);
-            getValidLicenseNumber(out o_LicenseNumber);
             getValidEngineVolume(out o_EngineVolume);
             getWheelsManufacturer(out o_WheelsManufacturer);
             getLicenseType(out o_LicenseType);
 
-            VehicleFactory.CreateMotorCycle(i_EngineType, o_Model, o_LicenseNumber, o_EngineVolume, o_LicenseType, o_WheelsManufacturer);
+            return VehicleFactory.CreateMotorCycle(i_EngineType, o_Model, i_LicenseNumber, o_EngineVolume, o_LicenseType, o_WheelsManufacturer);
 
         }
 
-        /*private void getDataForCar(eEngineTypes i_EngineType, out string o_Model, out string o_LicenseNumber, out int o_NumberOfDoors, out eVehicleColors o_Color, out string o_WheelsManufacturer)
+        private Car getDataForCreateCar(eEngineTypes i_EngineType, out string o_Model, string i_LicenseNumber, out int o_NumberOfDoors, out eVehicleColors o_Color, out string o_WheelsManufacturer)
         {
             getModel(out o_Model);
-            getValidLicenseNumber(out o_LicenseNumber);
             getWheelsManufacturer(out o_WheelsManufacturer);
             getValidNumberOfDoors(out o_NumberOfDoors);
-            //getValidColor(out o_Color);
-        }
-        */
+            getValidColor(out o_Color);
 
-        /*private void getValidNumberOfDoors(out int o_NumberOfDoors)
+            return VehicleFactory.CreateCar(i_EngineType, o_Model, i_LicenseNumber, o_NumberOfDoors, o_Color, o_WheelsManufacturer);
+        }
+
+
+        private void getValidNumberOfDoors(out int o_NumberOfDoors)
         {
             bool parseSuceeded = false;
             string input;
+            o_NumberOfDoors = 0;
 
             do
             {
-                System.Console.WriteLine("Please insert the number of doors from the following options: 2,3,4,5: ");
+                Console.WriteLine("Please insert the number of doors from the following options: 2, 3, 4, 5");
+
                 input = Console.ReadLine();
                 try
                 {
-                    getIntegerStringInputToInt(input, out o_NumberOfDoors);
-                    CheckNumberOfDoorsValidation(o_NumberOfDoors);
+                    CheckNumberOfDoorsValidation(input);
                     parseSuceeded = true;
                 }
                 catch (FormatException e)
@@ -268,18 +361,28 @@ namespace Ex03.ConsoleUI
             } while (!parseSuceeded);
         }
 
-        private void CheckNumberOfDoorsValidation(int i_NumberOfDoors)
+        private void CheckNumberOfDoorsValidation(string i_NumberOfDoors)
         {
-            if (!(i_NumberOfDoors != 5 && i_NumberOfDoors !=4 && i_NumberOfDoors != 3 && i_NumberOfDoors != 2))
+            int numberOfDoors;
+
+            if (!(int.TryParse(i_NumberOfDoors, out numberOfDoors)))
             {
-                throw new ArgumentException("Invalid number of doors");
+                throw new FormatException("Invalid Choice");
+            }
+            else
+            {
+                if (numberOfDoors != 2 && numberOfDoors != 3 && numberOfDoors != 4 && numberOfDoors != 5)
+                {
+                    throw new ArgumentException("Invalid number of Doors");
+                }
             }
         }
 
-        /*private getValidColor(out eVehicleColors o_Color)
+        private void getValidColor(out eVehicleColors o_Color)
         {
             bool parseSucceeded = false;
             string input;
+            o_Color = eVehicleColors.None;
 
             do
             {
@@ -292,7 +395,7 @@ namespace Ex03.ConsoleUI
                     System.Console.WriteLine("4.Black");
 
                     input = System.Console.ReadLine();
-                    //o_Color = ConvertStringColorToVehicleColor(input);
+                    o_Color = ConvertStringColorToVehicleColor(input);
                     parseSucceeded = true;
                 }
                 catch (ArgumentException e)
@@ -301,18 +404,28 @@ namespace Ex03.ConsoleUI
                 }
             } while (!parseSucceeded);
         }
-        */
-        /*private ConvertStringColorToVehicleColor(string i_Color)
+
+        private eVehicleColors ConvertStringColorToVehicleColor(string i_Color)
         {
             int colorOption;
 
-           if(!int.TryParse(i_Color,out colorOption))
+            if (!int.TryParse(i_Color, out colorOption))
             {
-                throw FormatException("Invalid Option Format");
+                throw new FormatException("Invalid Option Format");
             }
-           if()
+
+            if (Enum.IsDefined(typeof(eVehicleColors), colorOption))
+            {
+                throw new ArgumentException("Invalid Color Choice");
+            }
+
+            else
+            {
+                return (eVehicleColors)colorOption;
+            }
+
         }
-        */
+
 
         private void getValidEngineVolume(out int o_EngineVolume)
         {
@@ -329,13 +442,13 @@ namespace Ex03.ConsoleUI
                 {
                     getIntegerStringInputToInt(input, out o_EngineVolume);
                 }
-                catch(FormatException e)
+                catch (FormatException e)
                 {
                     Console.WriteLine(e.Message);
                     parseSucceeded = false;
                 }
             } while (!parseSucceeded);
-      
+
         }
 
         private void getModel(out string o_Model)
@@ -364,44 +477,47 @@ namespace Ex03.ConsoleUI
             {
                 try
                 {
-                    Console.WriteLine("Please insert your license type by typing one of the following options: A, A1, B1, B2 :");
+                    Console.WriteLine("Please insert your license type by typing one of the following options:");
+                    Console.WriteLine("1.A");
+                    Console.WriteLine("2.A1");
+                    Console.WriteLine("3.B1");
+                    Console.WriteLine("4.B2");
                     input = Console.ReadLine();
                     o_LicenseType = convertStringToLicenseType(input);
                     parseSucceeded = true;
                 }
-                catch(FormatException e)
+                catch (FormatException e)
                 {
                     Console.WriteLine(e.Message);
                     parseSucceeded = false;
                 }
-                
-            } while (!parseSucceeded); 
-            
+
+            } while (!parseSucceeded);
+
         }
 
         private LicenseTypes convertStringToLicenseType(string i_Input)
         {
-            LicenseTypes licenseType;
-            switch (i_Input)
+            int choice;
+            LicenseTypes licenseType = LicenseTypes.None;
+
+            if (!int.TryParse(i_Input, out choice))
             {
-                case "A": licenseType = LicenseTypes.A;
-                    break;
-                case "A1": licenseType = LicenseTypes.A1;
-                    break;
-                case "B1": licenseType = LicenseTypes.B1;
-                    break;
-                case "B2": licenseType = LicenseTypes.B2;
-                    break;
-                default:
-                    {
-                        throw new FormatException("Invalid license type");
-                    }
+                throw new FormatException("Invalid Input Format");
+            }
+            else if (!Enum.IsDefined(typeof(LicenseTypes), i_Input))
+            {
+                throw new ArgumentException("Invalid LicenseType choice");
+            }
+            else
+            {
+                licenseType = (LicenseTypes)choice;
             }
 
             return licenseType;
         }
 
-        private void getValidLicenseNumber(out string  o_LicenseNumber)
+        private void getValidLicenseNumber(out string o_LicenseNumber)
         {
             string input;
             int LicensenUmberAsInt;
@@ -438,25 +554,230 @@ namespace Ex03.ConsoleUI
 
         }
 
-        private void getDataForFuelMotorcycle()
+        private Motorcycle getDataForFuelMotorcycle(string i_LicenseNumber)
         {
+            string model;
+            int engineVolume;  //define in factory as int but neet float ? 
+            float currentEnergyState;
+            int wheelsCurrentAirPressure;
+            LicenseTypes licenseType;
+            string wheelsManufacturer;
+            Motorcycle FuelMotorcycle;
 
+
+            FuelMotorcycle = getDataForCreateMotorycle(eEngineTypes.FuelVehicle, out model, i_LicenseNumber, out engineVolume, out wheelsManufacturer, out licenseType);
+            getCurrentEngineState(FuelMotorcycle, out currentEnergyState);
+            getWheelsCurrentPressure(FuelMotorcycle, out wheelsCurrentAirPressure);
+
+            return FuelMotorcycle;
+        }
+
+        private Car getDataForElectricCar(string i_LicenseNumber)
+        {
+            string model;
+            string wheelsManufacturer;
+            int numberOfDoors;
+            float currentEnergyState;
+            int wheelsCurrentAirPressure;
+            eVehicleColors color;
+            Car electricCar;
+
+            electricCar = getDataForCreateCar(eEngineTypes.ElectricVehicle, out model, i_LicenseNumber, out numberOfDoors, out color, out wheelsManufacturer);
+            getCurrentEngineState(electricCar, out currentEnergyState);
+            getWheelsCurrentPressure(electricCar, out wheelsCurrentAirPressure);
+
+            return electricCar;
+        }
+
+        private Car getDataForFuelCar(string i_LicenseNumber)
+        {
+            string model;
+            string wheelsManufacturer;
+            int numberOfDoors;
+            float currentEnergyState;
+            int wheelsCurrentAirPressure;
+            eVehicleColors color;
+            Car fuelCar;
+
+            fuelCar = getDataForCreateCar(eEngineTypes.FuelVehicle, out model, i_LicenseNumber, out numberOfDoors, out color, out wheelsManufacturer);
+            getCurrentEngineState(fuelCar, out currentEnergyState);
+            getWheelsCurrentPressure(fuelCar, out wheelsCurrentAirPressure);
+
+            return fuelCar;
+        }
+
+        private Truck getDataForTruck(string i_LicenseNumber)
+        {
+            string model;
+            string wheelsManufacturer;
+            bool isTrunkCold;
+            float currentEnergyState;
+            int wheelsCurrentAirPressure;
+            Truck truck;
+
+            truck = getDataForCreateTruck(out model, i_LicenseNumber, out isTrunkCold, out wheelsManufacturer);
+            getCurrentEngineState(truck, out currentEnergyState);
+            getWheelsCurrentPressure(truck, out wheelsCurrentAirPressure);
+
+            return truck;
+        }
+
+        private Truck getDataForCreateTruck(out string o_Model, string i_LicenseNumber, out bool o_IsTrunkCold, out string o_WheelsManufacturer)
+        {
+            getModel(out o_Model);
+            getWheelsManufacturer(out o_WheelsManufacturer);
+            getIsTruckCold(out o_IsTrunkCold);
+
+            return VehicleFactory.CreateTruck(o_Model, i_LicenseNumber, o_IsTrunkCold, o_WheelsManufacturer);
+        }
+
+        private void getIsTruckCold(out bool o_IsTruckCold)
+        {
+            string input;
+            bool parseSucceeded = false;
+
+            o_IsTruckCold = false;
+
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Is Your Truck cold? type Y/N :");
+                    input = Console.ReadLine();
+                    o_IsTruckCold = ConvertStringToIsColdBool(input);
+                    parseSucceeded = true;
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            } while (!parseSucceeded);
 
         }
 
-        private void getDataForElectricCar()
+        private void getWheelsCurrentPressure(GarageLogic.VehicleBasics.Vehicle i_Vehicle, out int o_CurrentPressure)
         {
+            string input;
+            bool parseSucceeded = false;
+            o_CurrentPressure = 0;
 
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Please enter your current wheels' air pressure: ");
+                    input = Console.ReadLine();
+                    o_CurrentPressure = ConvertStringToInt(input);
+                    //here we need to call the function in logic for check validation.
+                    parseSucceeded = true;
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch(IndexOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            } while (!parseSucceeded);
         }
 
-        private void getDataForFuelCar()
+        private void getCurrentEngineState(GarageLogic.VehicleBasics.Vehicle i_Vehicle, out float o_CurrentState)
         {
+            string input;
+            bool parseSucceeded = false;
+            o_CurrentState = 0;
 
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Please enter your current engine state: ");
+                    input = Console.ReadLine();
+                    o_CurrentState = ConvertStringToFloat(input);
+                    //here we need to call the function in logic for check validation.
+                    parseSucceeded = true;
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            } while (!parseSucceeded);
         }
 
-        private void getDataForTruck()
+        private float ConvertStringToFloat(string input)
         {
+            float inputAsFloat;
 
+            if(float.TryParse(input, out inputAsFloat))
+            {
+                throw new FormatException("Invalid input Format");
+            }
+
+            return inputAsFloat;
+        }
+
+        private void getSpecialIntDataFromUser(string i_Message, out int o_CurrentEnergyState)
+        {
+            string input;
+            bool parseSucceeded = false;
+            o_CurrentEnergyState = 0;
+
+            do
+            {
+                try
+                {
+                    Console.WriteLine(i_Message);
+                    input = Console.ReadLine();
+                    o_CurrentEnergyState = ConvertStringToInt(input);
+                    parseSucceeded = true;
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            } while (!parseSucceeded);
+        }
+
+        
+
+        private int ConvertStringToInt(string input)
+        {
+            int inputAsInt;
+
+            if (!int.TryParse(input, out inputAsInt))
+            {
+                throw new FormatException("Invalid input format");
+            }
+
+            return inputAsInt;
+        }
+
+        private bool ConvertStringToIsColdBool(string input)
+        {
+            bool isCold;
+
+            if (input == "Y" || input == "y")
+            {
+                isCold = true;
+            }
+            else if (input == "N" || input == "n")
+            {
+                isCold = false;
+            }
+            else
+            {
+                throw new ArgumentException("Invalid Option");
+            }
+
+            return isCold;
         }
 
         private eVehicleTypeOptions convertInputToVehicleTypeOption(string i_Input)
