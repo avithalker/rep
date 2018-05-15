@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationManager.cs" />
+    <Compile Include="ApplicationManager.PartialManager.cs" />
     <Compile Include="Enums\MainMenuEnums.cs" />
     <Compile Include="Enums\VehicleTypeOptions.cs" />
     <Compile Include="Program.cs" />
