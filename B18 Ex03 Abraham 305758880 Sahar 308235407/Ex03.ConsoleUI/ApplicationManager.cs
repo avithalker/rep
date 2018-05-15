@@ -979,6 +979,7 @@ namespace Ex03.ConsoleUI
             try
             {
                 m_GarageManager.ChargeVehicle(requestedLicenseNumber, timeToCharge);
+                Console.WriteLine("Successfuly charged vehicle with license number:{0}", requestedLicenseNumber);
             }
             catch (ArgumentException e)
             {

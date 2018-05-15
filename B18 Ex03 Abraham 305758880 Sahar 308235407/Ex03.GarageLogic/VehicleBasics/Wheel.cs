@@ -25,6 +25,20 @@ namespace Ex03.GarageLogic.VehicleBasics
         public float AirPressure
         {
             get { return m_AirPressure; }
+            set
+            {
+                if (value < 0)
+                {
+                    string errorMsg = string.Format("'Air to fill' value must be positive!");
+
+                    throw new ArgumentException(errorMsg);
+                }
+
+                if (value > m_AirPressure)
+                {
+                    Inflate(value - m_AirPressure);
+                }
+            }
         }
 
         public string Manufacturer

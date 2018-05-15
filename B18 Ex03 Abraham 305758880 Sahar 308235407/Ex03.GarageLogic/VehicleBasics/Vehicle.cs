@@ -63,6 +63,19 @@ namespace Ex03.GarageLogic.VehicleBasics
             }
         }
 
+        public void SetCurrentEnergyAmount(float i_EnergyAmount)
+        {
+            m_Engine.EnergyLeft = i_EnergyAmount;
+        }
+
+        public void SetCurrentWheelsAir(float i_AirPressure)
+        {
+            foreach (Wheel wheel in m_Wheels)
+            {
+                wheel.AirPressure = i_AirPressure;
+            }
+        }
+
         public eEngineTypes GetEngineType()
         {
             eEngineTypes engineType;

@@ -43,6 +43,17 @@ namespace Ex03.GarageLogic.Garage
             return requestedLisences;
         }
 
+        public List<string> GetAllLisencesInGarage()
+        {
+            List<string> requestedLicenses = new List<string>();
+            foreach(eVehicleStatuses vehicleStatus in Enum.GetValues(typeof(eVehicleStatuses)))
+            {
+                requestedLicenses.AddRange(GetLisenceByVehicleStatus(vehicleStatus));
+            }
+
+            return requestedLicenses;
+        }
+
         public void InflateWheels(string i_LisenceNumber)
         {
             Vehicle requestedVehicle = null;

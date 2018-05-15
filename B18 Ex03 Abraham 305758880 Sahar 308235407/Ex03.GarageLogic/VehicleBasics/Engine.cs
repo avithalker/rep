@@ -22,6 +22,20 @@ namespace Ex03.GarageLogic.VehicleBasics
         public float EnergyLeft
         {
             get { return m_EnergyLeft; }
+            set
+            {
+                if (value < 0)
+                {
+                    string errorMsg = string.Format("'Energy to fill' value must be positive!");
+
+                    throw new ArgumentException(errorMsg);
+                }
+
+                if (value > m_EnergyLeft)
+                {
+                    FillEnergy(value - m_EnergyLeft);
+                }
+            }
         }
 
         protected void FillEnergy(float i_EnergyAmount)
