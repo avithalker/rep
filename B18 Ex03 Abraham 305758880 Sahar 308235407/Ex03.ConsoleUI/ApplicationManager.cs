@@ -131,7 +131,7 @@ namespace Ex03.ConsoleUI
                     break;
                 case eMainMenuOptions.AddAirToWheels: addAirToWheelsOp();
                     break;
-                case eMainMenuOptions.AddFuelToVehicle: AddFuelToVehicleOp();
+                case eMainMenuOptions.AddFuelToVehicle: AddFuelToVehicleOp2();
                     break;
                 case eMainMenuOptions.ChargeVehicle: charageVehicleOp();
                     break;

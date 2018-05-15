@@ -46,6 +46,7 @@
     <Compile Include="ApplicationManager.PartialManager.cs" />
     <Compile Include="Enums\MainMenuEnums.cs" />
     <Compile Include="Enums\VehicleTypeOptions.cs" />
+    <Compile Include="MenusPrinter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

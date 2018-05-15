@@ -42,7 +42,7 @@ namespace Ex03.ConsoleUI
                 try
                 {
                     Console.WriteLine("Please choose the requested fuel type:");
-                    printFuelTypesMenu();
+                    MenusPrinter.printFuelTypesMenu();
                     isValid = int.TryParse(Console.ReadLine(), out choice);
                     if (!isValid)
                     {
@@ -72,17 +72,6 @@ namespace Ex03.ConsoleUI
             } while (!isValid);
 
             return fuelType;
-        }
-
-        private void printFuelTypesMenu()
-        {
-            foreach (eFuelTypes fuelType in Enum.GetValues(typeof(eFuelTypes)))
-            {
-                if (fuelType != eFuelTypes.None)
-                {
-                    Console.WriteLine(string.Format("{0}. {1}", (int)fuelType, fuelType));
-                }
-            }
         }
     }
 }
