@@ -307,14 +307,14 @@ namespace Ex03.ConsoleUI
             int engineVolume;  //define in factory as int but neet float ? 
             LicenseTypes licenseType;
             string wheelsManufacturer;
-            int wheelsCurrentAirPressure;
+            float wheelsCurrentAirPressure;
             float currentEnergyState;
             OwnerInfo ownerInfo;
             Motorcycle ElectricMotorcycle;
             
 
             ElectricMotorcycle = getDataForCreateMotorycle(eEngineTypes.ElectricVehicle, out model, i_LicenseNumber, out engineVolume, out wheelsManufacturer, out licenseType);
-            getCurrentEngineState(ElectricMotorcycle, out currentEnergyState);
+            getCurrentEnergyState(ElectricMotorcycle, out currentEnergyState);
             getWheelsCurrentPressure(ElectricMotorcycle, out wheelsCurrentAirPressure);
 
             return ElectricMotorcycle;
@@ -578,14 +578,14 @@ namespace Ex03.ConsoleUI
             string model;
             int engineVolume;  //define in factory as int but neet float ? 
             float currentEnergyState;
-            int wheelsCurrentAirPressure;
+            float wheelsCurrentAirPressure;
             LicenseTypes licenseType;
             string wheelsManufacturer;
             Motorcycle FuelMotorcycle;
 
 
             FuelMotorcycle = getDataForCreateMotorycle(eEngineTypes.FuelVehicle, out model, i_LicenseNumber, out engineVolume, out wheelsManufacturer, out licenseType);
-            getCurrentEngineState(FuelMotorcycle, out currentEnergyState);
+            getCurrentEnergyState(FuelMotorcycle, out currentEnergyState);
             getWheelsCurrentPressure(FuelMotorcycle, out wheelsCurrentAirPressure);
 
             return FuelMotorcycle;
@@ -597,12 +597,12 @@ namespace Ex03.ConsoleUI
             string wheelsManufacturer;
             int numberOfDoors;
             float currentEnergyState;
-            int wheelsCurrentAirPressure;
+            float wheelsCurrentAirPressure;
             eVehicleColors color;
             Car electricCar;
 
             electricCar = getDataForCreateCar(eEngineTypes.ElectricVehicle, out model, i_LicenseNumber, out numberOfDoors, out color, out wheelsManufacturer);
-            getCurrentEngineState(electricCar, out currentEnergyState);
+            getCurrentEnergyState(electricCar, out currentEnergyState);
             getWheelsCurrentPressure(electricCar, out wheelsCurrentAirPressure);
 
             return electricCar;
@@ -614,12 +614,12 @@ namespace Ex03.ConsoleUI
             string wheelsManufacturer;
             int numberOfDoors;
             float currentEnergyState;
-            int wheelsCurrentAirPressure;
+            float wheelsCurrentAirPressure;
             eVehicleColors color;
             Car fuelCar;
 
             fuelCar = getDataForCreateCar(eEngineTypes.FuelVehicle, out model, i_LicenseNumber, out numberOfDoors, out color, out wheelsManufacturer);
-            getCurrentEngineState(fuelCar, out currentEnergyState);
+            getCurrentEnergyState(fuelCar, out currentEnergyState);
             getWheelsCurrentPressure(fuelCar, out wheelsCurrentAirPressure);
 
             return fuelCar;
@@ -631,11 +631,11 @@ namespace Ex03.ConsoleUI
             string wheelsManufacturer;
             bool isTrunkCold;
             float currentEnergyState;
-            int wheelsCurrentAirPressure;
+            float wheelsCurrentAirPressure;
             Truck truck;
 
             truck = getDataForCreateTruck(out model, i_LicenseNumber, out isTrunkCold, out wheelsManufacturer);
-            getCurrentEngineState(truck, out currentEnergyState);
+            getCurrentEnergyState(truck, out currentEnergyState);
             getWheelsCurrentPressure(truck, out wheelsCurrentAirPressure);
 
             return truck;
@@ -674,7 +674,7 @@ namespace Ex03.ConsoleUI
 
         }
 
-        private void getWheelsCurrentPressure(GarageLogic.VehicleBasics.Vehicle i_Vehicle, out int o_CurrentPressure)
+        private void getWheelsCurrentPressure(GarageLogic.VehicleBasics.Vehicle i_Vehicle, out float o_CurrentPressure)
         {
             string input;
             bool parseSucceeded = false;
@@ -686,8 +686,8 @@ namespace Ex03.ConsoleUI
                 {
                     Console.WriteLine("Please enter your current wheels' air pressure: ");
                     input = Console.ReadLine();
-                    o_CurrentPressure = ConvertStringToInt(input);
-                    //here we need to call the function in logic for check validation.
+                    o_CurrentPressure = ConvertStringToFloat(input);
+                    i_Vehicle.SetCurrentWheelsAir(o_CurrentPressure);
                     parseSucceeded = true;
                 }
                 catch (FormatException e)
@@ -698,11 +698,15 @@ namespace Ex03.ConsoleUI
                 {
                     Console.WriteLine(e.Message);
                 }
+                catch(ArgumentException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
 
             } while (!parseSucceeded);
         }
 
-        private void getCurrentEngineState(GarageLogic.VehicleBasics.Vehicle i_Vehicle, out float o_CurrentState)
+        private void getCurrentEnergyState(GarageLogic.VehicleBasics.Vehicle i_Vehicle, out float o_CurrentState)
         {
             string input;
             bool parseSucceeded = true;
@@ -715,7 +719,7 @@ namespace Ex03.ConsoleUI
                     Console.WriteLine("Please enter your current energy amount: ");
                     input = Console.ReadLine();
                     o_CurrentState = ConvertStringToFloat(input);
-                    //here we need to call the function in logic for check validation.
+                    i_Vehicle.SetCurrentEnergyAmount(o_CurrentState);
                     parseSucceeded = true;
                 }
                 catch (FormatException e)
@@ -726,21 +730,26 @@ namespace Ex03.ConsoleUI
                 {
                     Console.WriteLine(e.Message);
                 }
+                catch(ArgumentException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
 
             } while (!parseSucceeded);
         }
 
-        private float ConvertStringToFloat(string input)
+        private int ConvertStringToInt(string input)
         {
-            float inputAsFloat;
+            int inputAsInt;
 
-            if(float.TryParse(input, out inputAsFloat))
+            if(int.TryParse(input, out inputAsInt))
             {
                 throw new FormatException("Invalid input Format");
             }
 
-            return inputAsFloat;
+            return inputAsInt;
         }
+
 
         private void getSpecialIntDataFromUser(string i_Message, out int o_CurrentEnergyState)
         {
@@ -767,16 +776,16 @@ namespace Ex03.ConsoleUI
 
         
 
-        private int ConvertStringToInt(string input)
+        private float ConvertStringToFloat(string input)
         {
-            int inputAsInt;
+            float inputAsFloat;
 
-            if (!int.TryParse(input, out inputAsInt))
+            if (!float.TryParse(input, out inputAsFloat))
             {
                 throw new FormatException("Invalid input format");
             }
 
-            return inputAsInt;
+            return inputAsFloat;
         }
 
         private bool ConvertStringToIsColdBool(string input)
@@ -904,7 +913,7 @@ namespace Ex03.ConsoleUI
 
             if(i_VehicleStatus == eVehicleStatuses.None)
             {
-                //call functon from logic
+                licenseNumbers = m_GarageManager.GetAllLisencesInGarage();
             }   
 
             else
@@ -941,7 +950,58 @@ namespace Ex03.ConsoleUI
         
         private void ChangeVehicleStateOp()
         {
+            string requestedLicenseNumber;
+            bool parseSucceded = false;
+            string input;
+            eVehicleStatuses status;
 
+            Console.Clear();
+            getValidLicenseNumber(out requestedLicenseNumber);
+            Console.Clear();
+
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Please choose the status you would like to set:");
+                    Console.WriteLine("1.InFix");
+                    Console.WriteLine("2.Fixed");
+                    Console.WriteLine("3.Paid");
+                    input = Console.ReadLine();
+                    status = ConvertStringToStatus(input);
+                    m_GarageManager.ChangeVehicleStatus(requestedLicenseNumber, status);
+                    parseSucceded = true;
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch(ArgumentException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (ValueOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            } while (!parseSucceded);
+              
+        }
+
+        private eVehicleStatuses ConvertStringToStatus(string i_Input)
+        {
+            int choice;
+
+            if(!int.TryParse(i_Input, out choice))
+            {
+                throw new FormatException("Invalid Format");
+            }
+            if(!Enum.IsDefined(typeof(eVehicleStatuses),choice))
+            {
+                throw new ArgumentException("Invalid option");
+            }
+
+            return (eVehicleStatuses)choice;
         }
 
         private void addAirToWheelsOp()
