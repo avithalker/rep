@@ -249,6 +249,7 @@ namespace Ex03.ConsoleUI
                 catch (ArgumentException e)
                 {
                     Console.WriteLine(e.Message);
+                    parseSucceeded = false;
                 }
             } while (!parseSucceeded);
 
@@ -441,6 +442,7 @@ namespace Ex03.ConsoleUI
                 try
                 {
                     getIntegerStringInputToInt(input, out o_EngineVolume);
+                    parseSucceeded = true;
                 }
                 catch (FormatException e)
                 {
@@ -491,6 +493,11 @@ namespace Ex03.ConsoleUI
                     Console.WriteLine(e.Message);
                     parseSucceeded = false;
                 }
+                catch(ArgumentException e)
+                {
+                    Console.WriteLine(e.Message);
+                    parseSucceeded = false;
+                }
 
             } while (!parseSucceeded);
 
@@ -505,7 +512,7 @@ namespace Ex03.ConsoleUI
             {
                 throw new FormatException("Invalid Input Format");
             }
-            else if (!Enum.IsDefined(typeof(LicenseTypes), i_Input))
+            else if (!Enum.IsDefined(typeof(LicenseTypes), choice))
             {
                 throw new ArgumentException("Invalid LicenseType choice");
             }
@@ -785,7 +792,7 @@ namespace Ex03.ConsoleUI
             int inputAsInteger;
             eVehicleTypeOptions vehicleTypeOption = eVehicleTypeOptions.InvalidType;
 
-            if(int.TryParse(i_Input, out inputAsInteger))
+            if(!int.TryParse(i_Input, out inputAsInteger))
             {
                 throw new FormatException("Invalid format input choice");
             }
