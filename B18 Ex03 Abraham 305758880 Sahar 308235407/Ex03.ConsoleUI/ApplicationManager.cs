@@ -156,7 +156,8 @@ namespace Ex03.ConsoleUI
             {
                 vehicle = getDataForCreateNewVehicle(licenseNumber);
                 ownerInfo = CreateOwnerInfoFromUser();
-                m_GarageManager.InsertVehicleToGarage(vehicle, ownerInfo); 
+                m_GarageManager.InsertVehicleToGarage(vehicle, ownerInfo);
+                Console.WriteLine("The vehicle was added to the garage successfully!!");
             }
 
         }
@@ -175,13 +176,22 @@ namespace Ex03.ConsoleUI
         private void getValidPhoneNumberFromUser(out string o_PhoneNumber)
         {
             bool parseSucceeded = false;
-            string input;
+            string input = "";
 
             do
             {
-                Console.WriteLine("Please insert the owner's phone number: ");
-                input = Console.ReadLine();
-                ConvertStringToInt(input);
+              try
+                {
+                    Console.WriteLine("Please insert the owner's phone number: ");
+                    input = Console.ReadLine();
+                    ConvertStringToInt(input);
+                    parseSucceeded = true;
+                }
+                catch(FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                    parseSucceeded = false;
+                }
             } while (!parseSucceeded);
 
 
@@ -217,7 +227,7 @@ namespace Ex03.ConsoleUI
         {
             foreach (char Char in i_Input)
             {
-                if (!(Char >= 'A' && Char <= 'Z') || (Char>='a' && Char<='z'))
+                if (!((Char >= 'A' && Char <= 'Z') || (Char>='a' && Char<='z')))
                 {
                     throw new FormatException("Invalid owner name. name has to contain letters only");
                 }
@@ -350,7 +360,7 @@ namespace Ex03.ConsoleUI
                 input = Console.ReadLine();
                 try
                 {
-                    CheckNumberOfDoorsValidation(input);
+                    ConvertToValidNumberOfDoors(input, out o_NumberOfDoors);
                     parseSuceeded = true;
                 }
                 catch (FormatException e)
@@ -364,17 +374,16 @@ namespace Ex03.ConsoleUI
             } while (!parseSuceeded);
         }
 
-        private void CheckNumberOfDoorsValidation(string i_NumberOfDoors)
+        private void ConvertToValidNumberOfDoors(string i_NumberOfDoors, out int o_NumberOfDoors)
         {
-            int numberOfDoors;
 
-            if (!(int.TryParse(i_NumberOfDoors, out numberOfDoors)))
+            if (!(int.TryParse(i_NumberOfDoors, out o_NumberOfDoors)))
             {
                 throw new FormatException("Invalid Choice");
             }
             else
             {
-                if (numberOfDoors != 2 && numberOfDoors != 3 && numberOfDoors != 4 && numberOfDoors != 5)
+                if (o_NumberOfDoors != 2 && o_NumberOfDoors != 3 && o_NumberOfDoors != 4 && o_NumberOfDoors != 5)
                 {
                     throw new ArgumentException("Invalid number of Doors");
                 }
@@ -417,7 +426,7 @@ namespace Ex03.ConsoleUI
                 throw new FormatException("Invalid Option Format");
             }
 
-            if (Enum.IsDefined(typeof(eVehicleColors), colorOption))
+            if (!Enum.IsDefined(typeof(eVehicleColors), colorOption))
             {
                 throw new ArgumentException("Invalid Color Choice");
             }
@@ -695,14 +704,14 @@ namespace Ex03.ConsoleUI
         private void getCurrentEngineState(GarageLogic.VehicleBasics.Vehicle i_Vehicle, out float o_CurrentState)
         {
             string input;
-            bool parseSucceeded = false;
+            bool parseSucceeded = true;
             o_CurrentState = 0;
 
             do
             {
                 try
                 {
-                    Console.WriteLine("Please enter your current engine state: ");
+                    Console.WriteLine("Please enter your current energy amount: ");
                     input = Console.ReadLine();
                     o_CurrentState = ConvertStringToFloat(input);
                     //here we need to call the function in logic for check validation.
@@ -902,7 +911,8 @@ namespace Ex03.ConsoleUI
             Console.Clear();
             try
             {
-                m_GarageManager.GetVehicleInformationForm(requestedLicenseNumber);
+                Console.WriteLine(m_GarageManager.GetVehicleInformationForm(requestedLicenseNumber));
+                
             }
             catch (ArgumentException e)
             {
