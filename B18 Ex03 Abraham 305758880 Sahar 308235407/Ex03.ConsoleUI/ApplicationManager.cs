@@ -4,6 +4,8 @@ using Ex03.ConsoleUI.Enums;
 using Ex03.GarageLogic.Enums;
 using Ex03.GarageLogic.ConcreteVehicles;
 using Ex03.GarageLogic;
+using Ex03.GarageLogic.CustomErrors;
+
 namespace Ex03.ConsoleUI
 {
     public partial class ApplicationManager
@@ -126,13 +128,13 @@ namespace Ex03.ConsoleUI
                     break;
                 case eMainMenuOptions.ChangeVehicleState: ChangeVehicleStateOp();
                     break;
-                case eMainMenuOptions.AddAirToWheels: addAirToWheelsOp2();
+                case eMainMenuOptions.AddAirToWheels: addAirToWheelsOp();
                     break;
                 case eMainMenuOptions.AddFuelToVehicle: AddFuelToVehicleOp();
                     break;
-                case eMainMenuOptions.ChargeVehicle: charageVehicleOp2();
+                case eMainMenuOptions.ChargeVehicle: charageVehicleOp();
                     break;
-                case eMainMenuOptions.ShowVehiclesData: showVehiclesDataOp2();
+                case eMainMenuOptions.ShowVehiclesData: showVehiclesDataOp();
                     break;
             }
         }
@@ -838,9 +840,22 @@ namespace Ex03.ConsoleUI
 
         }
 
-        private void AddAirToWheelsOp()
+        private void addAirToWheelsOp()
         {
+            string requestedLicenseNumber;
 
+            Console.Clear();
+            getValidLicenseNumber(out requestedLicenseNumber);
+            Console.Clear();
+            try
+            {
+                m_GarageManager.InflateWheels(requestedLicenseNumber);
+                Console.WriteLine("Successfuly inflated the wheels of vehicle with license number:{0}", requestedLicenseNumber);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(string.Format("Error has occured!{0}{1}", Environment.NewLine, e.Message));
+            }
         }
 
         private void AddFuelToVehicleOp()
@@ -848,14 +863,70 @@ namespace Ex03.ConsoleUI
 
         }
 
-        private void CharageVehicleOp()
+        private void charageVehicleOp()
         {
+            string requestedLicenseNumber;
+            float timeToCharge;
 
+            Console.Clear();
+            getValidLicenseNumber(out requestedLicenseNumber);
+            timeToCharge = getEnergyAmountToFill();
+            Console.Clear();
+            try
+            {
+                m_GarageManager.ChargeVehicle(requestedLicenseNumber, timeToCharge);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(string.Format("Error has occured!{0}{1}", Environment.NewLine, e.Message));
+            }
+            catch (ValueOutOfRangeException e)
+            {
+                Console.WriteLine(string.Format("Error has occured!{0}{1}", Environment.NewLine, e.Message));
+            }
         }
 
-        private void ShowVehiclesDataOp()
+        private void showVehiclesDataOp()
         {
+            string requestedLicenseNumber;
 
+            Console.Clear();
+            getValidLicenseNumber(out requestedLicenseNumber);
+            Console.Clear();
+            try
+            {
+                m_GarageManager.GetVehicleInformationForm(requestedLicenseNumber);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(string.Format("Error has occured!{0}{1}", Environment.NewLine, e.Message));
+            }
+        }
+
+        private float getEnergyAmountToFill()
+        {
+            float energyToAdd = 0;
+            bool isValid;
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Please enter the amount of energy to add:");
+                    isValid = float.TryParse(Console.ReadLine(), out energyToAdd);
+                    if (!isValid)
+                    {
+                        throw new FormatException("Invalid energy value. Input must be a number");
+                    }
+                }
+                catch (FormatException e)
+                {
+                    isValid = false;
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Please try again");
+                }
+            } while (!isValid);
+
+            return energyToAdd;
         }
     }
 }
