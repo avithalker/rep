@@ -1,6 +1,7 @@
 ﻿using System;
 using Ex03.ConsoleUI.Enums;
 using Ex03.GarageLogic.Enums;
+using Ex03.GarageLogic.CustomErrors;
 
 namespace Ex03.ConsoleUI
 {
@@ -26,7 +27,7 @@ namespace Ex03.ConsoleUI
             return isCold;
         }
 
-        public static float ConvertStringToFloat(string i_Input)
+        public static float ConvertStringToPositiveFloat(string i_Input)
         {
             float inputAsFloat;
 
@@ -35,16 +36,26 @@ namespace Ex03.ConsoleUI
                 throw new FormatException("Invalid input format");
             }
 
+            if(inputAsFloat < 0)
+            {
+                throw new ValueOutOfRangeException(0, float.MaxValue);
+            }
+
             return inputAsFloat;
         }
 
-        public static int ConvertStringToInt(string i_Input)
+        public static int ConvertStringToPositiveInt(string i_Input)
         {
             int inputAsInt;
 
             if (!int.TryParse(i_Input, out inputAsInt))
             {
                 throw new FormatException("Invalid input Format");
+            }
+
+            if (inputAsInt < 0)
+            {
+                throw new ValueOutOfRangeException(0, float.MaxValue);
             }
 
             return inputAsInt;

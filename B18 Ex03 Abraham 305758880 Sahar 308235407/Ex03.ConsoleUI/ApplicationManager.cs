@@ -137,10 +137,15 @@ namespace Ex03.ConsoleUI
                 {
                     Console.WriteLine("Please insert the owner's phone number: ");
                     input = Console.ReadLine();
-                    CustomConverter.ConvertStringToInt(input);
+                    CustomConverter.ConvertStringToPositiveInt(input);
                     parseSucceeded = true;
                 }
                 catch (FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                    parseSucceeded = false;
+                }
+                catch(ValueOutOfRangeException e)
                 {
                     Console.WriteLine(e.Message);
                     parseSucceeded = false;
@@ -357,10 +362,15 @@ namespace Ex03.ConsoleUI
                 input = Console.ReadLine();
                 try
                 {
-                    o_EngineVolume = CustomConverter.ConvertStringToInt(input);
+                    o_EngineVolume = CustomConverter.ConvertStringToPositiveInt(input);
                     parseSucceeded = true;
                 }
                 catch (FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                    parseSucceeded = false;
+                }
+                catch (ValueOutOfRangeException e)
                 {
                     Console.WriteLine(e.Message);
                     parseSucceeded = false;
@@ -433,11 +443,16 @@ namespace Ex03.ConsoleUI
 
                 try
                 {
-                    licensenNumberAsInt = CustomConverter.ConvertStringToInt(input);
+                    licensenNumberAsInt = CustomConverter.ConvertStringToPositiveInt(input);
                     parseSucceeded = true;
                     o_LicenseNumber = input;
                 }
                 catch (FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                    parseSucceeded = false;
+                }
+                catch (ValueOutOfRangeException e)
                 {
                     Console.WriteLine(e.Message);
                     parseSucceeded = false;
@@ -518,7 +533,37 @@ namespace Ex03.ConsoleUI
             getWheelsManufacturer(out o_WheelsManufacturer);
             getIsTruckCold(out o_IsTrunkCold);
 
-            return VehicleFactory.CreateTruck(o_Model, i_LicenseNumber, o_IsTrunkCold, o_WheelsManufacturer);
+            return VehicleFactory.CreateTruck(o_Model, i_LicenseNumber, o_IsTrunkCold, o_WheelsManufacturer, getTrunkVolume());
+        }
+
+        private float getTrunkVolume()
+        {
+            bool isInputValid = false;
+            float trunkVolume = 0;
+
+            Console.Clear();
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Please enter your tunk volume:");
+                    trunkVolume= CustomConverter.ConvertStringToPositiveFloat(Console.ReadLine());
+                    isInputValid = true;
+                }
+                catch(FormatException e)
+                {
+                    isInputValid = false;
+                    Console.WriteLine(e.Message);
+                }
+                catch (ValueOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                    isInputValid = false;
+                }
+            }
+            while (!isInputValid);
+
+            return trunkVolume;
         }
 
         private void getIsTruckCold(out bool o_IsTruckCold)
@@ -537,11 +582,6 @@ namespace Ex03.ConsoleUI
                     input = Console.ReadLine();
                     o_IsTruckCold = CustomConverter.ConvertStringToIsColdBool(input);
                     parseSucceeded = true;
-                }
-                catch (FormatException e)
-                {
-                    parseSucceeded = false;
-                    Console.WriteLine(e.Message);
                 }
                 catch(ArgumentException e)
                 {
@@ -565,7 +605,7 @@ namespace Ex03.ConsoleUI
                 {
                     Console.WriteLine("Please enter your current wheels' air pressure: ");
                     input = Console.ReadLine();
-                    o_CurrentPressure = CustomConverter.ConvertStringToFloat(input);
+                    o_CurrentPressure = CustomConverter.ConvertStringToPositiveFloat(input);
                     i_Vehicle.SetCurrentWheelsAir(o_CurrentPressure);
                     parseSucceeded = true;
                 }
@@ -598,7 +638,7 @@ namespace Ex03.ConsoleUI
                 {
                     Console.WriteLine("Please enter your current energy amount: ");
                     input = Console.ReadLine();
-                    o_CurrentState = CustomConverter.ConvertStringToFloat(input);
+                    o_CurrentState = CustomConverter.ConvertStringToPositiveFloat(input);
                     i_Vehicle.SetCurrentEnergyAmount(o_CurrentState);
                     parseSucceeded = true;
                 }

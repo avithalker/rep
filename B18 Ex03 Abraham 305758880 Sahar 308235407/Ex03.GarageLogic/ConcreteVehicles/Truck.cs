@@ -6,14 +6,15 @@ namespace Ex03.GarageLogic.ConcreteVehicles
     public class Truck:Vehicle
     {
         private bool m_IsTrunkCold;
-        private double m_TrunkVolume;
+        private float m_TrunkVolume;
 
-        public Truck(Engine i_Engine, string i_Model, string i_LicenseNumber, bool i_IsTrunkCold) : base(i_Engine, i_Model, i_LicenseNumber)
+        public Truck(Engine i_Engine, string i_Model, string i_LicenseNumber, bool i_IsTrunkCold, float i_TrunkVolume) : base(i_Engine, i_Model, i_LicenseNumber)
         {
             m_IsTrunkCold = i_IsTrunkCold;
+            m_TrunkVolume = i_TrunkVolume;
         }
 
-        public double TrunkVolume
+        public float TrunkVolume
         {
             get { return m_TrunkVolume; }
             set { m_TrunkVolume = value; }
