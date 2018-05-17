@@ -260,39 +260,43 @@ namespace Ex03.ConsoleUI
 
         private Motorcycle getDataForElectricMotorcycle(string i_LicenseNumber)
         {
-            string model;
-            int engineVolume;
-            eLicenseTypes licenseType;
-            string wheelsManufacturer;
-            float wheelsCurrentAirPressure;
-            float currentEnergyState;
             Motorcycle ElectricMotorcycle;
 
-            ElectricMotorcycle = getDataForCreateMotorycle(eEngineTypes.ElectricVehicle, out model, i_LicenseNumber, out engineVolume, out wheelsManufacturer, out licenseType);
-            getCurrentEnergyState(ElectricMotorcycle, out currentEnergyState);
-            getWheelsCurrentPressure(ElectricMotorcycle, out wheelsCurrentAirPressure);
+            ElectricMotorcycle = getDataForCreateMotorycle(eEngineTypes.ElectricVehicle, i_LicenseNumber); 
+            getCurrentEnergyState(ElectricMotorcycle);
+            getWheelsCurrentPressure(ElectricMotorcycle);
 
             return ElectricMotorcycle;
         }
 
-        private Motorcycle getDataForCreateMotorycle(eEngineTypes i_EngineType, out string o_Model, string i_LicenseNumber, out int o_EngineVolume, out string o_WheelsManufacturer, out eLicenseTypes o_LicenseType)
+        private Motorcycle getDataForCreateMotorycle(eEngineTypes i_EngineType, string i_LicenseNumber)
         {
-            getModel(out o_Model);
-            getValidEngineVolume(out o_EngineVolume);
-            getWheelsManufacturer(out o_WheelsManufacturer);
-            getLicenseType(out o_LicenseType);
+            string model;
+            int engineVolume;
+            eLicenseTypes licenseType;
+            string wheelsManufacturer;
 
-            return VehicleFactory.CreateMotorCycle(i_EngineType, o_Model, i_LicenseNumber, o_EngineVolume, o_LicenseType, o_WheelsManufacturer);
+            getModel(out model);
+            getValidEngineVolume(out engineVolume);
+            getWheelsManufacturer(out wheelsManufacturer);
+            getLicenseType(out licenseType);
+
+            return VehicleFactory.CreateMotorCycle(i_EngineType, model, i_LicenseNumber, engineVolume, licenseType, wheelsManufacturer);
         }
 
-        private Car getDataForCreateCar(eEngineTypes i_EngineType, out string o_Model, string i_LicenseNumber, out int o_NumberOfDoors, out eVehicleColors o_Color, out string o_WheelsManufacturer)
+        private Car getDataForCreateCar(eEngineTypes i_EngineType, string i_LicenseNumber)
         {
-            getModel(out o_Model);
-            getWheelsManufacturer(out o_WheelsManufacturer);
-            getValidNumberOfDoors(out o_NumberOfDoors);
-            getValidColor(out o_Color);
+            string model;
+            int numberOfDoors;
+            eVehicleColors color;
+            string wheelsManufacturer;
 
-            return VehicleFactory.CreateCar(i_EngineType, o_Model, i_LicenseNumber, o_NumberOfDoors, o_Color, o_WheelsManufacturer);
+            getModel(out model);
+            getWheelsManufacturer(out wheelsManufacturer);
+            getValidNumberOfDoors(out numberOfDoors);
+            getValidColor(out color);
+
+            return VehicleFactory.CreateCar(i_EngineType, model, i_LicenseNumber, numberOfDoors, color, wheelsManufacturer);
         }
 
         private void getValidNumberOfDoors(out int o_NumberOfDoors)
@@ -463,77 +467,58 @@ namespace Ex03.ConsoleUI
 
         private Motorcycle getDataForFuelMotorcycle(string i_LicenseNumber)
         {
-            string model;
-            int engineVolume;
-            float currentEnergyState;
-            float wheelsCurrentAirPressure;
-            eLicenseTypes licenseType;
-            string wheelsManufacturer;
             Motorcycle FuelMotorcycle;
 
-            FuelMotorcycle = getDataForCreateMotorycle(eEngineTypes.FuelVehicle, out model, i_LicenseNumber, out engineVolume, out wheelsManufacturer, out licenseType);
-            getCurrentEnergyState(FuelMotorcycle, out currentEnergyState);
-            getWheelsCurrentPressure(FuelMotorcycle, out wheelsCurrentAirPressure);
+            FuelMotorcycle = getDataForCreateMotorycle(eEngineTypes.FuelVehicle, i_LicenseNumber);
+            getCurrentEnergyState(FuelMotorcycle);
+            getWheelsCurrentPressure(FuelMotorcycle);
             return FuelMotorcycle;
         }
 
         private Car getDataForElectricCar(string i_LicenseNumber)
-        {
-            string model;
-            string wheelsManufacturer;
-            int numberOfDoors;
-            float currentEnergyState;
-            float wheelsCurrentAirPressure;
-            eVehicleColors color;
+        { 
             Car electricCar;
 
-            electricCar = getDataForCreateCar(eEngineTypes.ElectricVehicle, out model, i_LicenseNumber, out numberOfDoors, out color, out wheelsManufacturer);
-            getCurrentEnergyState(electricCar, out currentEnergyState);
-            getWheelsCurrentPressure(electricCar, out wheelsCurrentAirPressure);
+            electricCar = getDataForCreateCar(eEngineTypes.ElectricVehicle, i_LicenseNumber);
+            getCurrentEnergyState(electricCar);
+            getWheelsCurrentPressure(electricCar);
 
             return electricCar;
         }
 
         private Car getDataForFuelCar(string i_LicenseNumber)
         {
-            string model;
-            string wheelsManufacturer;
-            int numberOfDoors;
-            float currentEnergyState;
-            float wheelsCurrentAirPressure;
-            eVehicleColors color;
             Car fuelCar;
 
-            fuelCar = getDataForCreateCar(eEngineTypes.FuelVehicle, out model, i_LicenseNumber, out numberOfDoors, out color, out wheelsManufacturer);
-            getCurrentEnergyState(fuelCar, out currentEnergyState);
-            getWheelsCurrentPressure(fuelCar, out wheelsCurrentAirPressure);
+            fuelCar = getDataForCreateCar(eEngineTypes.FuelVehicle, i_LicenseNumber);
+            getCurrentEnergyState(fuelCar);
+            getWheelsCurrentPressure(fuelCar);
 
             return fuelCar;
         }
 
         private Truck getDataForTruck(string i_LicenseNumber)
         {
-            string model;
-            string wheelsManufacturer;
-            bool isTrunkCold;
-            float currentEnergyState;
-            float wheelsCurrentAirPressure;
             Truck truck;
 
-            truck = getDataForCreateTruck(out model, i_LicenseNumber, out isTrunkCold, out wheelsManufacturer);
-            getCurrentEnergyState(truck, out currentEnergyState);
-            getWheelsCurrentPressure(truck, out wheelsCurrentAirPressure);
+            truck = getDataForCreateTruck(i_LicenseNumber);
+            getCurrentEnergyState(truck);
+            getWheelsCurrentPressure(truck);
 
             return truck;
         }
 
-        private Truck getDataForCreateTruck(out string o_Model, string i_LicenseNumber, out bool o_IsTrunkCold, out string o_WheelsManufacturer)
+        private Truck getDataForCreateTruck(string i_LicenseNumber)
         {
-            getModel(out o_Model);
-            getWheelsManufacturer(out o_WheelsManufacturer);
-            getIsTruckCold(out o_IsTrunkCold);
+            string model;
+            bool isTrunkCold;
+            string wheelsManufacturer;
 
-            return VehicleFactory.CreateTruck(o_Model, i_LicenseNumber, o_IsTrunkCold, o_WheelsManufacturer, getTrunkVolume());
+            getModel(out model);
+            getWheelsManufacturer(out wheelsManufacturer);
+            getIsTruckCold(out isTrunkCold);
+
+            return VehicleFactory.CreateTruck(model, i_LicenseNumber, isTrunkCold, wheelsManufacturer, getTrunkVolume());
         }
 
         private float getTrunkVolume()
@@ -592,11 +577,11 @@ namespace Ex03.ConsoleUI
             while (!parseSucceeded);
         }
 
-        private void getWheelsCurrentPressure(Vehicle i_Vehicle, out float o_CurrentPressure)
+        private void getWheelsCurrentPressure(Vehicle i_Vehicle)
         {
             string input;
             bool parseSucceeded = false;
-            o_CurrentPressure = 0;
+            float currentPressure = 0;
 
             Console.Clear();
             do
@@ -605,8 +590,8 @@ namespace Ex03.ConsoleUI
                 {
                     Console.WriteLine("Please enter your current wheels' air pressure: ");
                     input = Console.ReadLine();
-                    o_CurrentPressure = CustomConverter.ConvertStringToPositiveFloat(input);
-                    i_Vehicle.SetCurrentWheelsAir(o_CurrentPressure);
+                    currentPressure = CustomConverter.ConvertStringToPositiveFloat(input);
+                    i_Vehicle.SetCurrentWheelsAir(currentPressure);
                     parseSucceeded = true;
                 }
                 catch (FormatException e)
@@ -625,11 +610,11 @@ namespace Ex03.ConsoleUI
             while (!parseSucceeded);
         }
 
-        private void getCurrentEnergyState(Vehicle i_Vehicle, out float o_CurrentState)
+        private void getCurrentEnergyState(Vehicle i_Vehicle)
         {
             string input;
             bool parseSucceeded = true;
-            o_CurrentState = 0;
+            float currentState = 0;
 
             Console.Clear();
             do
@@ -638,8 +623,8 @@ namespace Ex03.ConsoleUI
                 {
                     Console.WriteLine("Please enter your current energy amount: ");
                     input = Console.ReadLine();
-                    o_CurrentState = CustomConverter.ConvertStringToPositiveFloat(input);
-                    i_Vehicle.SetCurrentEnergyAmount(o_CurrentState);
+                    currentState = CustomConverter.ConvertStringToPositiveFloat(input);
+                    i_Vehicle.SetCurrentEnergyAmount(currentState);
                     parseSucceeded = true;
                 }
                 catch (FormatException e)
