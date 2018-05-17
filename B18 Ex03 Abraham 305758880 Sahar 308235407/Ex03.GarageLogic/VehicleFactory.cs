@@ -75,7 +75,7 @@ namespace Ex03.GarageLogic
             float k_WheelMaxAirPressure = 28;
             int k_AmountOfWheels = 12;
             Engine newEngine = EngineFactory.CreateEngine(eEngineTypes.FuelVehicle, k_EnergyCapacity, eFuelTypes.Soler);
-            Truck newTruck = new Truck(newEngine, i_Model, i_LicenseNumber, i_IsTrunkCold,i_TrunkVolume);
+            Truck newTruck = new Truck(newEngine, i_Model, i_LicenseNumber, i_IsTrunkCold, i_TrunkVolume);
 
             newTruck.Wheels = WheelsFactory.CreateWheels(k_AmountOfWheels, k_WheelMaxAirPressure, i_WheelManufacturer);
             return newTruck;

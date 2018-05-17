@@ -428,37 +428,34 @@ namespace Ex03.ConsoleUI
             while (!parseSucceeded);
         }
 
-        private void getValidLicenseNumber(out string o_LicenseNumber)
+        private void getValidLicenseNumber(out string o_LisenceNumber)
         {
-            string input;
-            int licensenNumberAsInt;
-            bool parseSucceeded = false;
+            bool isValid = false;
+            o_LisenceNumber = string.Empty;
 
-            o_LicenseNumber = string.Empty;
             Console.Clear();
             do
             {
-                Console.WriteLine("Please enter your License Number");
-                input = Console.ReadLine();
-
                 try
                 {
-                    licensenNumberAsInt = CustomConverter.ConvertStringToPositiveInt(input);
-                    parseSucceeded = true;
-                    o_LicenseNumber = input;
+                    Console.WriteLine("Please enter your License Number");
+                    o_LisenceNumber = Console.ReadLine();
+                    string[] lisenceNumberParts = o_LisenceNumber.Split('-');
+
+                    if (lisenceNumberParts.Length != 3 || lisenceNumberParts[0].Length != 2 || lisenceNumberParts[1].Length != 3 || lisenceNumberParts[2].Length != 2)
+                    {
+                        throw new FormatException("Invalid format. xx-xxx-xx");
+                    }
+
+                    isValid = true;
                 }
-                catch (FormatException e)
+                catch(FormatException e)
                 {
+                    isValid = false;
                     Console.WriteLine(e.Message);
-                    parseSucceeded = false;
-                }
-                catch (ValueOutOfRangeException e)
-                {
-                    Console.WriteLine(e.Message);
-                    parseSucceeded = false;
                 }
             }
-            while (!parseSucceeded);
+            while (!isValid);
         }
 
         private Motorcycle getDataForFuelMotorcycle(string i_LicenseNumber)
@@ -546,7 +543,7 @@ namespace Ex03.ConsoleUI
             {
                 try
                 {
-                    Console.WriteLine("Please enter your tunk volume:");
+                    Console.WriteLine("Please enter your trunk volume:");
                     trunkVolume= CustomConverter.ConvertStringToPositiveFloat(Console.ReadLine());
                     isInputValid = true;
                 }

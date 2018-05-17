@@ -97,6 +97,7 @@ namespace Ex03.GarageLogic.VehicleBasics
             StringBuilder infoString = new StringBuilder();
 
             infoString.AppendLine(string.Format("Vehicle lisence number: {0}", m_LicenseNumber));
+            infoString.AppendLine(string.Format("Vehicle model: {0}", m_Model));
             infoString.AppendLine(string.Format("Number of wheels: {0}", m_Wheels.Count));
             infoString.AppendLine(Wheels[0].ToString());
             infoString.Append(m_Engine.ToString());
