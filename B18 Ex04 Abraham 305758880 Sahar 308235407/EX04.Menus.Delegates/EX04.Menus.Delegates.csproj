@@ -40,6 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MenuItems\ActionItem.cs" />
+    <Compile Include="MenuItems\ActionItems\CapitalLetterCounter.cs" />
+    <Compile Include="MenuItems\ActionItems\DatePrinter.cs" />
+    <Compile Include="MenuItems\ActionItems\TimePrinter.cs" />
+    <Compile Include="MenuItems\ActionItems\VersionPrinter.cs" />
+    <Compile Include="MenuItems\MainMenu.cs" />
+    <Compile Include="MenuItems\MenuItem.cs" />
+    <Compile Include="MenuItems\SubMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

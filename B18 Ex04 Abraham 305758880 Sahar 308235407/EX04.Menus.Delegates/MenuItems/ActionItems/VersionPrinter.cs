@@ -1,14 +1,14 @@
 ﻿using System;
 
-namespace EX04.Menus.Interfaces.MenuItems.ActionItems
+namespace EX04.Menus.Delegates.MenuItems
 {
-    public class VersionPrinter : MenuItem
+    public class VersionPrinter : ActionItem
     {
         public VersionPrinter(string i_Title) : base(i_Title)
         {
         }
 
-        public override void HandleItem()
+        public override void DoAction()
         {
             Console.WriteLine("Version: 18.2.4.0");
         }
