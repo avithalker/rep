@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EX04.Menus.Delegates.MenuItems
+﻿namespace EX04.Menus.Delegates.MenuItems
 {
     public delegate void ItemWasChosen(MenuItem i_MenuItem);
 

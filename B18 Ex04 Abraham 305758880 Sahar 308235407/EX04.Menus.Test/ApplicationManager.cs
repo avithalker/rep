@@ -1,6 +1,4 @@
 ﻿using EX04.Menus.Interfaces;
-using EX04.Menus.Interfaces.MenuItems;
-using EX04.Menus.Interfaces.MenuItems.ActionItems;
 using EX04.Menus.Delegates.MenuItems;
 
 namespace EX04.Menus.Test
@@ -22,13 +20,15 @@ namespace EX04.Menus.Test
             Interfaces.MenuItems.ActionItems.DatePrinter datePrinterAction = new Interfaces.MenuItems.ActionItems.DatePrinter("Show Date");
             Interfaces.MenuItems.ActionItems.CapitalLetterCounter counterAction = new Interfaces.MenuItems.ActionItems.CapitalLetterCounter("Count Capitals");
             Interfaces.MenuItems.ActionItems.VersionPrinter versionAction = new Interfaces.MenuItems.ActionItems.VersionPrinter("Show Version");
+            Interfaces.MenuItems.SubMenuItem dateAndTimeMenu = new Interfaces.MenuItems.SubMenuItem("Show Date/Time");
             Interfaces.MenuItems.SubMenuItem versionAndCapitalMenu = new Interfaces.MenuItems.SubMenuItem("Version and Capitals");
-            Interfaces.MenuItems.SubMenuItem root = new Interfaces.MenuItems.SubMenuItem("Main menu");
+            Interfaces.MenuItems.SubMenuItem root = new Interfaces.MenuItems.SubMenuItem("Main menu with interface mode");
 
-            versionAndCapitalMenu.AddNewMenuItem(versionAction);
             versionAndCapitalMenu.AddNewMenuItem(counterAction);
-            root.AddNewMenuItem(timePrinterAction);
-            root.AddNewMenuItem(datePrinterAction);
+            versionAndCapitalMenu.AddNewMenuItem(versionAction);
+            dateAndTimeMenu.AddNewMenuItem(timePrinterAction);
+            dateAndTimeMenu.AddNewMenuItem(datePrinterAction);
+            root.AddNewMenuItem(dateAndTimeMenu);
             root.AddNewMenuItem(versionAndCapitalMenu);
 
             return root;
@@ -36,13 +36,13 @@ namespace EX04.Menus.Test
 
         private MainMenu BuildMenuWithDelegateNotificationMode()
         {
-            MainMenu mainMenu = new MainMenu("Main Menu");
-            Delegates.MenuItems.SubMenuItem dateAndTimeMenu = new Delegates.MenuItems.SubMenuItem("Show Date/Time");
-            Delegates.MenuItems.SubMenuItem versionsAndCapitalsMenu = new Delegates.MenuItems.SubMenuItem("Versions and Capitals");
-            Delegates.MenuItems.TimePrinter timeAction = new Delegates.MenuItems.TimePrinter("Show Time");
-            Delegates.MenuItems.DatePrinter dateAction = new Delegates.MenuItems.DatePrinter("Show Date");
-            Delegates.MenuItems.CapitalLetterCounter capitalLetterCounterAction = new Delegates.MenuItems.CapitalLetterCounter("Count Capitals");
-            Delegates.MenuItems.VersionPrinter versionPrinterAction = new Delegates.MenuItems.VersionPrinter("Show Version");
+            MainMenu mainMenu = new MainMenu("Main Menu with delegates mode");
+            SubMenuItem dateAndTimeMenu = new SubMenuItem("Show Date/Time");
+            SubMenuItem versionsAndCapitalsMenu = new SubMenuItem("Versions and Capitals");
+            TimePrinter timeAction = new TimePrinter("Show Time");
+            DatePrinter dateAction = new DatePrinter("Show Date");
+            CapitalLetterCounter capitalLetterCounterAction = new CapitalLetterCounter("Count Capitals");
+            VersionPrinter versionPrinterAction = new VersionPrinter("Show Version");
 
             dateAndTimeMenu.AddMenuItem(timeAction);
             dateAndTimeMenu.AddMenuItem(dateAction);
