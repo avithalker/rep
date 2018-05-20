@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace EX04.Menus.Delegates.MenuItems
 {
-
     public class SubMenuItem : MenuItem
     {
         private List<MenuItem> m_MenuItems;
         protected string m_BackItemUniqueTitle = "Back";
-        
-
-        public SubMenuItem(string i_Title): base(i_Title) 
+       
+        public SubMenuItem(string i_Title) : base(i_Title) 
         {
         }
 
@@ -29,7 +27,7 @@ namespace EX04.Menus.Delegates.MenuItems
             i_ActionItem.m_ItemWasChosen += new ItemWasChosen(ExecuteItem);
         }
 
-        public void ExecuteItem(MenuItem menuItem) //execute a subMenuitems in the list....
+        public void ExecuteItem(MenuItem menuItem) ////execute a subMenuitems in the list....
         {
             menuItem.HandleMenuItem();
         }
@@ -92,7 +90,8 @@ namespace EX04.Menus.Delegates.MenuItems
 
             Console.Clear();
 
-            if (userChoice == null)  //it means the user chose 'exit';
+            ////it means the user chose 'exit';
+            if (userChoice == null)  
             {
                 Console.WriteLine("Bye Bye....");
             }
@@ -107,7 +106,6 @@ namespace EX04.Menus.Delegates.MenuItems
                     userChoice.SetIwasChosenEvent();
                 }
             }
-            
         }
 
         private void showSubMenu()

@@ -13,7 +13,7 @@ namespace EX04.Menus.Delegates.MenuItems
         protected string m_Title;
         protected MenuItem m_BackItem;
 
-        public event ItemWasChosen m_ItemWasChosen; //event happanes when this MenuItem is chosen.
+        public event ItemWasChosen m_ItemWasChosen; ////event happanes when this MenuItem is chosen.
 
         public MenuItem BackItem
         {
@@ -34,7 +34,6 @@ namespace EX04.Menus.Delegates.MenuItems
 
         public void SetIwasChosenEvent()
         { 
-
             if (m_ItemWasChosen != null)
             {
                 m_ItemWasChosen(this);
@@ -42,6 +41,5 @@ namespace EX04.Menus.Delegates.MenuItems
         }
 
         public abstract void HandleMenuItem();
-        
     }
 }

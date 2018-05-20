@@ -10,7 +10,7 @@ namespace EX04.Menus.Test
         public void Run()
         {
             MenuActivator InterfaceMenuActivator = new MenuActivator(BuildMenuWithInterfaceNotificationMode());
-            MainMenu DelegateMainMenu = BuildMenuWithDelegateNotificationMode(); //by delegates
+            MainMenu DelegateMainMenu = BuildMenuWithDelegateNotificationMode(); ////by delegates
 
             InterfaceMenuActivator.ActiveMenu();
             DelegateMainMenu.Show();
@@ -52,7 +52,6 @@ namespace EX04.Menus.Test
             mainMenu.AddMenuItem(versionsAndCapitalsMenu);
 
             return mainMenu;
-
         }
     }
 }

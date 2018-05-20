@@ -17,7 +17,7 @@ namespace EX04.Menus.Interfaces.MenuItems.ActionItems
             input = Console.ReadLine();
             foreach(char letter in input)
             {
-                if(letter>='A' && letter <='Z')
+                if(letter >= 'A' && letter <= 'Z')
                 {
                     capitalLetterCounter++;
                 }
