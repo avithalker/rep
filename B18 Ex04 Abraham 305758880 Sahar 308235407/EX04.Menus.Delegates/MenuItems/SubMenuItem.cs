@@ -15,19 +15,19 @@ namespace EX04.Menus.Delegates.MenuItems
         {
         }
 
-        public void AddMenuItem(MenuItem i_ActionItem)
+        public void AddMenuItem(MenuItem i_MenuItem)
         {
             if(m_MenuItems == null)
             {
                 m_MenuItems = new List<MenuItem>();
             }
 
-            m_MenuItems.Add(i_ActionItem);
-            i_ActionItem.BackItem = this;
-            i_ActionItem.m_ItemWasChosen += new ItemWasChosen(ExecuteItem);
+            m_MenuItems.Add(i_MenuItem);
+            i_MenuItem.BackItem = this;
+            i_MenuItem.ItemWasChosen += new ItemWasChosenDelegate(MenuItem_ItemWasChosen);
         }
 
-        public void ExecuteItem(MenuItem menuItem) ////execute a subMenuitems in the list....
+        public void MenuItem_ItemWasChosen(MenuItem menuItem) ////execute a subMenuitems in the list....
         {
             menuItem.HandleMenuItem();
         }
@@ -103,7 +103,7 @@ namespace EX04.Menus.Delegates.MenuItems
                 }
                 else
                 {
-                    userChoice.SetIwasChosenEvent();
+                    userChoice.OnFileWasChosen();
                 }
             }
         }

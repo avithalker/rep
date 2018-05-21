@@ -1,13 +1,13 @@
 ﻿namespace EX04.Menus.Delegates.MenuItems
 {
-    public delegate void ItemWasChosen(MenuItem i_MenuItem);
+    public delegate void ItemWasChosenDelegate(MenuItem i_MenuItem);
 
     public abstract class MenuItem
     {
         protected string m_Title;
         protected MenuItem m_BackItem;
 
-        public event ItemWasChosen m_ItemWasChosen; ////event happanes when this MenuItem is chosen.
+        public event ItemWasChosenDelegate ItemWasChosen; ////event happanes when this MenuItem is chosen.
 
         public MenuItem BackItem
         {
@@ -26,11 +26,11 @@
             m_Title = i_Title;
         }
 
-        public void SetIwasChosenEvent()
+        public void OnFileWasChosen()
         { 
-            if (m_ItemWasChosen != null)
+            if (ItemWasChosen != null)
             {
-                m_ItemWasChosen(this);
+                ItemWasChosen(this);
             }
         }
 

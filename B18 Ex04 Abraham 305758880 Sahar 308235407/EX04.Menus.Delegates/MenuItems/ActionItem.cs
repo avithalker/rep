@@ -11,7 +11,7 @@
         public override void HandleMenuItem()
         {
             DoAction();
-            BackItem.SetIwasChosenEvent();
+            BackItem.OnFileWasChosen();
         } 
     }
 }
