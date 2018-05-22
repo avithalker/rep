@@ -16,14 +16,19 @@ namespace EX04.Menus.Test
 
         private Interfaces.MenuItems.SubMenuItem BuildMenuWithInterfaceNotificationMode()
         {
-            Interfaces.MenuItems.ActionItems.TimePrinter timePrinterAction = new Interfaces.MenuItems.ActionItems.TimePrinter("Show Time");
-            Interfaces.MenuItems.ActionItems.DatePrinter datePrinterAction = new Interfaces.MenuItems.ActionItems.DatePrinter("Show Date");
-            Interfaces.MenuItems.ActionItems.CapitalLetterCounter counterAction = new Interfaces.MenuItems.ActionItems.CapitalLetterCounter("Count Capitals");
-            Interfaces.MenuItems.ActionItems.VersionPrinter versionAction = new Interfaces.MenuItems.ActionItems.VersionPrinter("Show Version");
+            InterfaceActions.InterfaceActionManager actionManager = new InterfaceActions.InterfaceActionManager();
+            Interfaces.MenuItems.ActionItem timePrinterAction = new Interfaces.MenuItems.ActionItem("Show Time");
+            Interfaces.MenuItems.ActionItem datePrinterAction = new Interfaces.MenuItems.ActionItem("Show Date");
+            Interfaces.MenuItems.ActionItem counterAction = new Interfaces.MenuItems.ActionItem("Count Capitals");
+            Interfaces.MenuItems.ActionItem versionAction = new Interfaces.MenuItems.ActionItem("Show Version");
             Interfaces.MenuItems.SubMenuItem dateAndTimeMenu = new Interfaces.MenuItems.SubMenuItem("Show Date/Time");
             Interfaces.MenuItems.SubMenuItem versionAndCapitalMenu = new Interfaces.MenuItems.SubMenuItem("Version and Capitals");
             Interfaces.MenuItems.SubMenuItem root = new Interfaces.MenuItems.SubMenuItem("Main menu with interface mode");
 
+            datePrinterAction.AddNewObserver(actionManager.DatePrinter);
+            timePrinterAction.AddNewObserver(actionManager.TimePrinter);
+            versionAction.AddNewObserver(actionManager.VersionPrinter);
+            counterAction.AddNewObserver(actionManager.CapitalLetterCounter);
             versionAndCapitalMenu.AddNewMenuItem(counterAction);
             versionAndCapitalMenu.AddNewMenuItem(versionAction);
             dateAndTimeMenu.AddNewMenuItem(timePrinterAction);

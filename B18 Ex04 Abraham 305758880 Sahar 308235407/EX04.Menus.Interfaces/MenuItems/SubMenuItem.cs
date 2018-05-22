@@ -1,27 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using EX04.Menus.Interfaces.Listeners;
 
 namespace EX04.Menus.Interfaces.MenuItems
 {
-    public class SubMenuItem : MenuItem, IItemChosenListener
+    public class SubMenuItem : MenuItem
     {
         private List<MenuItem> m_MenuItems;
-        private MenuItem m_BackItem;
         private string m_BackItemUniqueTitle;
-        private List<IItemChosenListener> m_ItemChosenListener;
 
         public SubMenuItem(string i_Title) : base(i_Title)
         {
             m_BackItem = null;
             m_MenuItems = new List<MenuItem>();
-            m_ItemChosenListener = new List<IItemChosenListener>();
-        }
-
-        public MenuItem BackItem
-        {
-            get { return m_BackItem; }
-            set { m_BackItem = value; }
         }
 
         public string BackItemUniqueTitle
@@ -35,44 +25,25 @@ namespace EX04.Menus.Interfaces.MenuItems
             get { return m_MenuItems; }
         }
 
-        internal void AddItemListner(IItemChosenListener i_Listener)
-        {
-            m_ItemChosenListener.Add(i_Listener);
-        }
-
-        internal void RemoveItemListner(IItemChosenListener i_Listener)
-        {
-            m_ItemChosenListener.Remove(i_Listener);
-        }
-
         public void AddNewMenuItem(MenuItem i_menuItem)
         {
+            i_menuItem.BackItem = this;
             if (i_menuItem is SubMenuItem)
             {
                 SubMenuItem subMenuItem = i_menuItem as SubMenuItem;
-                subMenuItem.BackItem = this;
                 subMenuItem.BackItemUniqueTitle = "Back";
-                subMenuItem.AddItemListner(this);
             }
 
             m_MenuItems.Add(i_menuItem);
         }
 
-        public override void HandleItem()
+        public MenuItem HandleSubMenuItem()
         {
             MenuItem userChoice;
 
             showSubMenu();
             userChoice = getUserChoice();
-            ((IItemChosenListener)this).NotifyChosenItem(userChoice);
-        }
-
-        void IItemChosenListener.NotifyChosenItem(MenuItem i_ChosenItem)
-        {
-            foreach (IItemChosenListener listener in m_ItemChosenListener)
-            {
-                listener.NotifyChosenItem(i_ChosenItem);
-            }
+            return userChoice;
         }
 
         private void showSubMenu()

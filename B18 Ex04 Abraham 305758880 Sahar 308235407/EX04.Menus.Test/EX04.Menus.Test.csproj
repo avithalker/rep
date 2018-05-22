@@ -43,6 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationManager.cs" />
+    <Compile Include="InterfaceActions\CapitalLetterCounter.cs" />
+    <Compile Include="InterfaceActions\DatePrinter.cs" />
+    <Compile Include="InterfaceActions\InterfaceActionManager.cs" />
+    <Compile Include="InterfaceActions\TimePrinter.cs" />
+    <Compile Include="InterfaceActions\VersionPrinter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

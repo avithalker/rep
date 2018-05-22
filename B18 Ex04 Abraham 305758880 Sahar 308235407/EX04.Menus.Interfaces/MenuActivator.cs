@@ -1,10 +1,9 @@
 ﻿using System;
-using EX04.Menus.Interfaces.Listeners;
 using EX04.Menus.Interfaces.MenuItems;
 
 namespace EX04.Menus.Interfaces
 {
-    public class MenuActivator : IItemChosenListener
+    public class MenuActivator
     {
         private SubMenuItem m_MenuRoot;
         private MenuItem m_CurrentItem;
@@ -14,7 +13,6 @@ namespace EX04.Menus.Interfaces
         public MenuActivator(SubMenuItem i_MenuRoot)
         {
             m_MenuRoot = i_MenuRoot;
-            m_MenuRoot.AddItemListner(this);
             setExitItem();
         }
 
@@ -25,7 +23,25 @@ namespace EX04.Menus.Interfaces
 
             while (m_IsMenuRuning)
             {
-                m_CurrentItem.HandleItem();
+                if(m_CurrentItem is SubMenuItem)
+                {
+                    SubMenuItem subMenu = m_CurrentItem as SubMenuItem;
+                    MenuItem userMenuChoice = subMenu.HandleSubMenuItem();
+
+                    m_CurrentItem = userMenuChoice;
+                    if(m_CurrentItem == m_ExitItem)
+                    {
+                        exitMenu();
+                    }
+                }
+                else
+                {
+                    ActionItem actionItem = m_CurrentItem as ActionItem;
+
+                    Console.Clear();
+                    actionItem.HandleActionItem();
+                    m_CurrentItem = actionItem.BackItem;
+                }
             }
         }
 
@@ -39,24 +55,6 @@ namespace EX04.Menus.Interfaces
         private void exitMenu()
         {
             m_IsMenuRuning = false;
-        }
-
-        void IItemChosenListener.NotifyChosenItem(MenuItem i_ChosenItem)
-        {
-            if (i_ChosenItem == m_ExitItem)
-            {
-                exitMenu();
-            }
-            else if (i_ChosenItem is SubMenuItem)
-            {
-                Console.Clear();
-                m_CurrentItem = i_ChosenItem;
-            }
-            else
-            {
-                Console.Clear();
-                i_ChosenItem.HandleItem();
-            }
         }
     }
 }

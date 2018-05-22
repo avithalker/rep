@@ -1,23 +1,20 @@
 ﻿using System;
+using EX04.Menus.Interfaces.MenuItems;
 
-namespace EX04.Menus.Interfaces.MenuItems.ActionItems
+namespace EX04.Menus.Test.InterfaceActions
 {
-    public class CapitalLetterCounter : MenuItem
+    public class CapitalLetterCounter : IActionObserver
     {
-        public CapitalLetterCounter(string i_Title) : base(i_Title)
-        {
-        }
-
-        public override void HandleItem()
+        public void DoAction()
         {
             string input;
             int capitalLetterCounter = 0;
 
             Console.WriteLine("Please enter a string:");
             input = Console.ReadLine();
-            foreach(char letter in input)
+            foreach (char letter in input)
             {
-                if(letter >= 'A' && letter <= 'Z')
+                if (letter >= 'A' && letter <= 'Z')
                 {
                     capitalLetterCounter++;
                 }

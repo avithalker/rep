@@ -40,14 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Listeners\IItemChosenListener.cs" />
     <Compile Include="MenuActivator.cs" />
-    <Compile Include="MenuItems\ActionItems\CapitalLetterCounter.cs" />
-    <Compile Include="MenuItems\ActionItems\DatePrinter.cs" />
-    <Compile Include="MenuItems\ActionItems\TimePrinter.cs" />
+    <Compile Include="MenuItems\ActionItem.cs" />
+    <Compile Include="MenuItems\IActionObserver.cs" />
     <Compile Include="MenuItems\MenuItem.cs" />
     <Compile Include="MenuItems\SubMenuItem.cs" />
-    <Compile Include="MenuItems\ActionItems\VersionPrinter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
