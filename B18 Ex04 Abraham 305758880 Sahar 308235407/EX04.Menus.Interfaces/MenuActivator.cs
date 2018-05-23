@@ -33,6 +33,8 @@ namespace EX04.Menus.Interfaces
                     {
                         exitMenu();
                     }
+
+                    Console.Clear();
                 }
                 else
                 {

@@ -1,4 +1,5 @@
-﻿using EX04.Menus.Interfaces;
+﻿using System;
+using EX04.Menus.Interfaces;
 using EX04.Menus.Delegates.MenuItems;
 
 namespace EX04.Menus.Test
@@ -10,7 +11,9 @@ namespace EX04.Menus.Test
             MenuActivator InterfaceMenuActivator = new MenuActivator(BuildMenuWithInterfaceNotificationMode());
             MainMenu DelegateMainMenu = BuildMenuWithDelegateNotificationMode(); ////by delegates
 
+            Console.WriteLine("Starting first menu (inteface mode)");
             InterfaceMenuActivator.ActiveMenu();
+            Console.WriteLine("Starting second menu (delegate mode)");
             DelegateMainMenu.Show();
         }
 

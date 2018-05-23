@@ -26,7 +26,7 @@
             m_Title = i_Title;
         }
 
-        public void OnFileWasChosen()
+        public void OnItemWasChosen()
         { 
             if (ItemWasChosen != null)
             {

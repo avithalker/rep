@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EX04.Menus.Delegates", "EX0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EX04.Menus.Test", "EX04.Menus.Test\EX04.Menus.Test.csproj", "{08F3F8C1-EE5C-45D5-A22D-EB664786E48D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{159ADD94-1BF1-4980-B492-F2132BF53C53}"
+	ProjectSection(SolutionItems) = preProject
+		B18 Ex04 Abraham 305758880 Sahar 308235407.txt = B18 Ex04 Abraham 305758880 Sahar 308235407.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
