@@ -10,22 +10,20 @@ namespace Program.Forms
 {
     class GameSettingsForm : Form
     {
-        Label m_LabelBoardSizeTitle = new Label();
-        Label m_LabelBoardSizeOpOne = new Label();
-        Label m_LabelBoardSizeOpTwo = new Label();
-        Label m_LabelBoardSizeOpThree = new Label();
-        Label m_LabelPlayersTitle = new Label();
-        Label m_LabelPlayerOne = new Label();
-        Label m_LabelPlayerTwo = new Label();
-        RadioButton m_RadioButtonBoardSizeOpOne = new RadioButton();
-        RadioButton m_RadioButtonBoardSizeOpTwo = new RadioButton();
-        RadioButton m_RadioButtonBoardSizeOpThree = new RadioButton();
-        TextBox m_TextBoxPlayerOne = new TextBox();
-        CheckBox m_CheckBoxPlayerTwo = new CheckBox();
+        private Button m_ButtonDone = new Button();
+        private Label m_LabelBoardSizeTitle = new Label();
+        private RadioButton m_RadioButtonOpOne = new RadioButton();
+        private RadioButton m_RadioButtonOpTwo = new RadioButton();
+        private RadioButton m_RadioButtonOpThree = new RadioButton();
+        private Label m_LabelPlayersTitle = new Label();
+        private Label m_LabelPlayerOneTitle = new Label();
+        private TextBox m_TextBoxPlayerOne = new TextBox();
+        private CheckBox m_CheckBoxPlayerTwo = new CheckBox();
+        private TextBox m_TextBoxPlayerTwo = new TextBox();
 
         public GameSettingsForm()
         {
-            this.Size = new Size(500, 500);
+            this.Size = new Size(470, 344);
             this.Text = "Game Settings";
             initComponents();
         }
@@ -45,31 +43,53 @@ namespace Program.Forms
 
         private void initComponents()
         {
-            m_LabelBoardSizeTitle.Text = "Board size:";
-            m_LabelBoardSizeTitle.Location = new Point(10, 20);
+            m_ButtonDone.Location = new Point(316, 275);
+            m_ButtonDone.Size = new Size(144, 49);
+            m_ButtonDone.Text = "Done";
 
-            m_RadioButtonBoardSizeOpOne.Location = new Point(15, 22);
-            m_LabelBoardSizeOpOne.Text = "6 x 6";
-            m_LabelBoardSizeOpOne.Location = new Point(15, 24);
+            m_LabelBoardSizeTitle.Location = new Point(20, 13);
+            m_LabelBoardSizeTitle.Size = new Size(123, 25);
+            m_LabelBoardSizeTitle.Text = "Board Size:";
 
-            m_RadioButtonBoardSizeOpTwo.Location = new Point(15, 28);
-            m_LabelBoardSizeOpTwo.Text = "8 x 8";
-            m_LabelBoardSizeOpOne.Location = new Point(15, 30);
+            m_RadioButtonOpOne.Location = new Point(32, 50);
+            m_RadioButtonOpOne.Size = new Size(90, 29);
+            m_RadioButtonOpOne.Text = "6 x 6";
 
-            m_RadioButtonBoardSizeOpOne.Location = new Point(15, 32);
-            m_LabelBoardSizeOpThree.Text = "10 x 10";
-            m_LabelBoardSizeOpOne.Location = new Point(15, 36);
+            m_RadioButtonOpTwo.Location = new Point(128, 50);
+            m_RadioButtonOpTwo.Size = new Size(96, 29);
+            m_RadioButtonOpTwo.Text = "8 x 8";
 
+            m_RadioButtonOpThree.Location = new Point(219, 50);
+            m_RadioButtonOpThree.Size = new Size(120, 29);
+            m_RadioButtonOpThree.Text = "10 x 10";
+
+            m_LabelPlayersTitle.Location = new Point(20, 100);
+            m_LabelPlayersTitle.Size = new Size(90, 25);
             m_LabelPlayersTitle.Text = "Players:";
-            m_LabelPlayersTitle.Location = new Point(18, 20);
-            m_LabelPlayerOne.Text = "Player 1:";
-            m_LabelPlayerOne.Location = new Point(20, 22);
-            m_TextBoxPlayerOne.Location = new Point(20, 25);
-            m_CheckBoxPlayerTwo.Location = new Point(22, 22);
-            m_LabelPlayerTwo.Text = "Player 2:";
-            
-            
 
+            m_LabelPlayerOneTitle.Location = new Point(58, 145);
+            m_LabelPlayerOneTitle.Size = new Size(97, 25);
+            m_LabelPlayerOneTitle.Text = "Player 1:";
+
+            m_TextBoxPlayerOne.Location = new Point(198, 145);
+            m_TextBoxPlayerOne.Size = new Size(157, 31);
+
+            m_CheckBoxPlayerTwo.Location = new Point(63, 210);
+            m_CheckBoxPlayerTwo.Size = new Size(129, 29);
+            m_CheckBoxPlayerTwo.Text = "Player 2:";
+
+            m_TextBoxPlayerTwo.Location = new Point(198, 208);
+            m_TextBoxPlayerTwo.Size = new Size(157, 31);
+            m_TextBoxPlayerTwo.Text = "[Computer]";
+            m_TextBoxPlayerTwo.Enabled = false;
+
+            AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(470, 344);
+
+            this.Controls.AddRange(new Control[] {m_ButtonDone, m_CheckBoxPlayerTwo, m_LabelBoardSizeTitle,
+                                    m_LabelPlayerOneTitle, m_LabelPlayersTitle, m_RadioButtonOpOne,
+                m_RadioButtonOpTwo, m_RadioButtonOpThree, m_TextBoxPlayerOne, m_TextBoxPlayerTwo, m_LabelPlayerOneTitle});
 
         }
     }
