@@ -23,7 +23,7 @@ namespace Program.Forms
 
         public GameSettingsForm()
         {
-            InitializeComponent();
+            initializeComponent();
         }
 
         protected override void OnShown(EventArgs e)
@@ -36,7 +36,7 @@ namespace Program.Forms
             base.OnLoad(e);
         }   
 
-        private void InitializeComponent()
+        private void initializeComponent()
         {
             m_ButtonDone.Location = new Point(316, 275);
             m_ButtonDone.Size = new Size(120, 49);
@@ -89,10 +89,6 @@ namespace Program.Forms
                                     m_LabelPlayerOneTitle, m_LabelPlayersTitle, m_RadioButtonOpOne,
                 m_RadioButtonOpTwo, m_RadioButtonOpThree, m_TextBoxPlayerOne, m_TextBoxPlayerTwo, m_LabelPlayerOneTitle});
 
-        }
-
-        private void InitializeComponent()
-        {
             this.SuspendLayout();
             // 
             // GameSettingsForm
@@ -101,7 +97,6 @@ namespace Program.Forms
             this.Name = "GameSettingsForm";
             this.Load += new System.EventHandler(this.GameSettingsForm_Load);
             this.ResumeLayout(false);
-
         }
 
         private void GameSettingsForm_Load(object sender, EventArgs e)
