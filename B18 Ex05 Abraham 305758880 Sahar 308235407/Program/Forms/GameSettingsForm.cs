@@ -23,28 +23,23 @@ namespace Program.Forms
 
         public GameSettingsForm()
         {
-            this.Size = new Size(470, 344);
-            this.Text = "Game Settings";
-            initComponents();
+            InitializeComponent();
         }
 
         protected override void OnShown(EventArgs e)
         {
-            base.OnShown(e);
-
-           
+            base.OnShown(e);  
         }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-           
         }   
 
-        private void initComponents()
+        private void InitializeComponent()
         {
             m_ButtonDone.Location = new Point(316, 275);
-            m_ButtonDone.Size = new Size(144, 49);
+            m_ButtonDone.Size = new Size(120, 49);
             m_ButtonDone.Text = "Done";
 
             m_LabelBoardSizeTitle.Location = new Point(20, 13);
@@ -56,11 +51,11 @@ namespace Program.Forms
             m_RadioButtonOpOne.Text = "6 x 6";
 
             m_RadioButtonOpTwo.Location = new Point(128, 50);
-            m_RadioButtonOpTwo.Size = new Size(96, 29);
+            m_RadioButtonOpTwo.Size = new Size(90, 29);
             m_RadioButtonOpTwo.Text = "8 x 8";
 
             m_RadioButtonOpThree.Location = new Point(219, 50);
-            m_RadioButtonOpThree.Size = new Size(120, 29);
+            m_RadioButtonOpThree.Size = new Size(90, 29);
             m_RadioButtonOpThree.Text = "10 x 10";
 
             m_LabelPlayersTitle.Location = new Point(20, 100);
@@ -83,9 +78,12 @@ namespace Program.Forms
             m_TextBoxPlayerTwo.Text = "[Computer]";
             m_TextBoxPlayerTwo.Enabled = false;
 
-            AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(470, 344);
+            AutoScaleDimensions = new SizeF(12F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+
+            ClientSize = new Size(470, 400);
+            Size = new Size(470, 400);
+            Text = "Game Settings";
 
             this.Controls.AddRange(new Control[] {m_ButtonDone, m_CheckBoxPlayerTwo, m_LabelBoardSizeTitle,
                                     m_LabelPlayerOneTitle, m_LabelPlayersTitle, m_RadioButtonOpOne,
