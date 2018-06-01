@@ -33,6 +33,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BusinessLogic">
+      <HintPath>..\..\B18 Ex02 Abraham 305758880 Sahar 308235407\BusinessLogic\bin\Debug\BusinessLogic.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />

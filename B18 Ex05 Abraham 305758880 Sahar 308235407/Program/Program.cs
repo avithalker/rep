@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Program.Forms;
+using CheckersWindowApp.Forms;
+using CheckersWindowApp;
 
 namespace Program
 {
@@ -11,8 +12,8 @@ namespace Program
     {
         public static void Main()
         {
-            GameSettingsForm gameSettingsform = new GameSettingsForm();
-            gameSettingsform.ShowDialog();
+            GameSettingsForm gameSettingsForm = new GameSettingsForm();
+            gameSettingsForm.ShowDialog();
         }
       
     }
