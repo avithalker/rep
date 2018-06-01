@@ -1,6 +1,7 @@
 ﻿using BusinessLogic;
 using BusinessLogic.Configuration;
 using BusinessLogic.GameBoard;
+using CheckersWindowApp.Forms;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
