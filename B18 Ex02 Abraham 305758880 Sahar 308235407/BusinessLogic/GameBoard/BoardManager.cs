@@ -156,12 +156,23 @@ namespace BusinessLogic.GameBoard
 
         private void setCellsStatus()
         {
-            bool isEnabled = false;
-
-            foreach (Cell cell in m_Board)
+            bool isEnabled;
+            for (int i = 0; i < BoardSize; i++)
             {
-                cell.IsEnabled = isEnabled;
-                isEnabled = !isEnabled;
+                if(i%2 == 0)
+                {
+                    isEnabled = false;
+                }
+                else
+                {
+                    isEnabled = true;
+                }
+
+                for (int j = 0; j < BoardSize; j++)
+                {
+                    m_Board[i, j].IsEnabled = isEnabled;
+                    isEnabled = !isEnabled;
+                }
             }
         }
 

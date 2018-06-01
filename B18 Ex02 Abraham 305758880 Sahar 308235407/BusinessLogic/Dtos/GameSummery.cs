@@ -7,6 +7,13 @@ namespace BusinessLogic.Dtos
         private eGameStatus m_endGameState;
         private string m_WinnerName;
         private int m_Score;
+        private ePlayerTitles m_WinnerTitle;
+
+        public ePlayerTitles WinnerTitle
+        {
+            get { return m_WinnerTitle; }
+            set { m_WinnerTitle = value; }
+        }
 
         public eGameStatus EndGameState
         {

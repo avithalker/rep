@@ -9,10 +9,9 @@ using BusinessLogic.Configuration;
 using BusinessLogic.Enums;
 using CheckersWindowApp.Exceptions;
 
-
 namespace CheckersWindowApp.Forms
 {
-    class GameSettingsForm : Form
+    public class GameSettingsForm : Form
     {
         private Button m_ButtonDone = new Button();
         private Label m_LabelBoardSizeTitle = new Label();
@@ -205,6 +204,24 @@ namespace CheckersWindowApp.Forms
             }
 
             return gameConfiguration;
+
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // GameSettingsForm
+            // 
+            this.ClientSize = new System.Drawing.Size(282, 253);
+            this.Name = "GameSettingsForm";
+            this.Load += new System.EventHandler(this.GameSettingsForm_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void GameSettingsForm_Load(object sender, EventArgs e)
+        {
 
         }
     }

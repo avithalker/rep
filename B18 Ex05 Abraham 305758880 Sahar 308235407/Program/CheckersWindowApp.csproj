@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomControllers\CellButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\CheckersMainForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -11,7 +11,6 @@
             set { m_IsEnabled = value; }
         }
 
-
         public Soldier Soldier
         {
             get { return m_Soldier; }
