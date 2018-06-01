@@ -8,6 +8,14 @@ namespace BusinessLogic
 {
     public class GameManager
     {
+        public delegate void BoardChangedEventHandler();
+
+        public delegate void GameEndedEventHandler();
+
+        public event BoardChangedEventHandler BoardChanged;
+
+        public event GameEndedEventHandler GameEnded;
+
         private BoardManager m_BoardManager;
         private List<Player> m_Players;
         private CheckerMoveInfo m_LastMove;
@@ -78,6 +86,13 @@ namespace BusinessLogic
                 if (move != null)
                 {
                     actionResult = moveChecker(move);
+                    if (actionResult.IsSucceed)
+                    {
+                        if (BoardChanged != null)
+                        {
+                            BoardChanged();
+                        }
+                    }
                 }
                 else
                 {
@@ -96,7 +111,12 @@ namespace BusinessLogic
             if (m_GameStatus == eGameStatus.Winner)
             {
                 gameSummery.WinnerName = m_LastWinner.PlayerName;
+                gameSummery.WinnerTitle = m_LastWinner.PlayerTitle;
                 gameSummery.Score = m_LastWinner.Score;
+            }
+            else
+            {
+                gameSummery.WinnerTitle = ePlayerTitles.None;
             }
 
             return gameSummery;
@@ -237,6 +257,17 @@ namespace BusinessLogic
                 if (m_Players[m_CurrentPlayerIndex].PlayerType == ePlayerTypes.Computer)
                 {
                     playComputerMove();
+                    if (BoardChanged != null)
+                    {
+                        BoardChanged();
+                    }
+                }
+            }
+            else
+            {
+                if (GameEnded != null)
+                {
+                    GameEnded();
                 }
             }
         }

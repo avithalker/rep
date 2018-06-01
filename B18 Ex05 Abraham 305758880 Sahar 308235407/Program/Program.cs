@@ -12,8 +12,11 @@ namespace Program
     {
         public static void Main()
         {
-            GameSettingsForm gameSettingsForm = new GameSettingsForm();
-            gameSettingsForm.ShowDialog();
+            // GameSettingsForm gameSettingsForm = new GameSettingsForm();
+            //gameSettingsForm.ShowDialog();
+
+            CheckersMainForm checkersMainForm = new CheckersMainForm();
+            checkersMainForm.ShowDialog();
         }
       
     }
