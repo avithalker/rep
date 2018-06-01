@@ -46,6 +46,7 @@ namespace BusinessLogic.GameBoard
             initializeSoldiersLocationInBoard(0, ePlayerTitles.PlayerOne, false);
             initializeEmptyCells(k_NumRowsForPlayer);
             initializeSoldiersLocationInBoard(k_NumRowsForPlayer + 2, ePlayerTitles.PlayerTwo, m_StartRowWithSoldier);
+            setCellsStatus();
         }
 
         public ActionResult MoveChecker(Move i_Move, Player i_CurrentPlayer, out bool o_IsDoubleEatMove)
@@ -151,6 +152,17 @@ namespace BusinessLogic.GameBoard
             }
 
             m_StartRowWithSoldier = i_SetSoldierInStartOfRow;
+        }
+
+        private void setCellsStatus()
+        {
+            bool isEnabled = false;
+
+            foreach (Cell cell in m_Board)
+            {
+                cell.IsEnabled = isEnabled;
+                isEnabled = !isEnabled;
+            }
         }
 
         private Soldier createNewSoldier(int i_Row, int i_Col, ePlayerTitles i_PlayerTitle)

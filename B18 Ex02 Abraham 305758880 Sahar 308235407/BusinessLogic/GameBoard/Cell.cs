@@ -3,7 +3,15 @@
     public class Cell
     {
         private Soldier m_Soldier = null;
- 
+        private bool m_IsEnabled;
+
+        public bool IsEnabled
+        {
+            get { return m_IsEnabled; }
+            set { m_IsEnabled = value; }
+        }
+
+
         public Soldier Soldier
         {
             get { return m_Soldier; }
