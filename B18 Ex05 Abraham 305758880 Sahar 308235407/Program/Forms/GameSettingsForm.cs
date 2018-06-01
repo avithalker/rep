@@ -92,5 +92,23 @@ namespace Program.Forms
                 m_RadioButtonOpTwo, m_RadioButtonOpThree, m_TextBoxPlayerOne, m_TextBoxPlayerTwo, m_LabelPlayerOneTitle});
 
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // GameSettingsForm
+            // 
+            this.ClientSize = new System.Drawing.Size(282, 253);
+            this.Name = "GameSettingsForm";
+            this.Load += new System.EventHandler(this.GameSettingsForm_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void GameSettingsForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
