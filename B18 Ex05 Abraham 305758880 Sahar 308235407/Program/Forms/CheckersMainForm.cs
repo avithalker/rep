@@ -98,15 +98,10 @@ namespace CheckersWindowApp.Forms
         private void CheckersMainForm_Load(object sender, EventArgs e)
         {
             GameSettingsForm gameSettingsForm = new GameSettingsForm();
+            GameConfiguration config = null;
 
             gameSettingsForm.ShowDialog();
-            //todo: get the game configuration from the game settings form
-
-            GameConfiguration config = new GameConfiguration();
-            config.BoardSize = 10;
-            config.GameMode = BusinessLogic.Enums.eGameModes.TwoPlayersGame;
-            config.AddPlayerConfiguration(new PlayerConfiguration { PlayerName = "avi", PlayerType = BusinessLogic.Enums.ePlayerTypes.Human });
-            config.AddPlayerConfiguration(new PlayerConfiguration { PlayerName = "sahar", PlayerType = BusinessLogic.Enums.ePlayerTypes.Computer });
+            config = gameSettingsForm.GameConfiguration;
             initializeGameSettings(config);
             setPlayersNames(config);
         }
