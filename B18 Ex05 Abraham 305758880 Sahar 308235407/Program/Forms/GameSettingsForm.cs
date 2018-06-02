@@ -23,25 +23,11 @@ namespace CheckersWindowApp.Forms
         private CheckBox m_CheckBoxPlayerTwo = new CheckBox();
         private TextBox m_TextBoxPlayerTwo = new TextBox();
         private GameConfiguration m_GameConfiguration;
-        private PlayerConfiguration m_PlayerOneConfiguration;
-        private PlayerConfiguration m_PlayerTwoConfiguration;
-        private int m_BoardSize = 6;
-      
-
+   
         public GameSettingsForm()
         {
             initializeComponents();
         }
-
-        protected override void OnShown(EventArgs e)
-        {
-            base.OnShown(e);  
-        }
-
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-        }   
 
         public GameConfiguration GameConfiguration
         {
@@ -54,7 +40,7 @@ namespace CheckersWindowApp.Forms
             m_ButtonDone.Location = new Point(316, 275);
             m_ButtonDone.Size = new Size(120, 49);
             m_ButtonDone.Text = "Done";
-            m_ButtonDone.Click += m_ButtonDone_Clicked;
+            m_ButtonDone.Click += buttonDone_Clicked;
 
             m_LabelBoardSizeTitle.Location = new Point(20, 13);
             m_LabelBoardSizeTitle.Size = new Size(123, 25);
@@ -63,20 +49,16 @@ namespace CheckersWindowApp.Forms
             m_RadioButtonOpOne.Location = new Point(32, 50);
             m_RadioButtonOpOne.Size = new Size(90, 29);
             m_RadioButtonOpOne.Text = "6 x 6";
-            m_RadioButtonOpOne.Click += m_RadioButtonOpOne_Checked;
             m_RadioButtonOpOne.Checked = true;
 
             m_RadioButtonOpTwo.Location = new Point(128, 50);
             m_RadioButtonOpTwo.Size = new Size(90, 29);
             m_RadioButtonOpTwo.Text = "8 x 8";
-            m_RadioButtonOpTwo.Click += m_RadioButtonOpTwo_Checked;
 
             m_RadioButtonOpThree.Location = new Point(219, 50);
             m_RadioButtonOpThree.Size = new Size(90, 29);
             m_RadioButtonOpThree.Text = "10 x 10";
-            m_RadioButtonOpThree.Click += m_RadioButtonOpThree_Checked;
-
-
+         
             m_LabelPlayersTitle.Location = new Point(20, 100);
             m_LabelPlayersTitle.Size = new Size(90, 25);
             m_LabelPlayersTitle.Text = "Players:";
@@ -87,19 +69,16 @@ namespace CheckersWindowApp.Forms
 
             m_TextBoxPlayerOne.Location = new Point(198, 145);
             m_TextBoxPlayerOne.Size = new Size(157, 31);
-            m_TextBoxPlayerOne.TextChanged += m_TextBoxPlayerOne_TextChanged;
 
             m_CheckBoxPlayerTwo.Location = new Point(63, 210);
             m_CheckBoxPlayerTwo.Size = new Size(129, 29);
             m_CheckBoxPlayerTwo.Text = "Player 2:";
-            m_CheckBoxPlayerTwo.CheckedChanged += m_CheckBoxPlayerTwo_Checked;
+            m_CheckBoxPlayerTwo.CheckedChanged += checkBoxPlayerTwo_Checked;
 
             m_TextBoxPlayerTwo.Location = new Point(198, 208);
             m_TextBoxPlayerTwo.Size = new Size(157, 31);
             m_TextBoxPlayerTwo.Text = "[Computer]";
             m_TextBoxPlayerTwo.Enabled = false;
-            m_TextBoxPlayerTwo.TextChanged += m_TextBoxPlayerTwo_TextChanged;
-
 
             AutoScaleDimensions = new SizeF(12F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -109,89 +88,51 @@ namespace CheckersWindowApp.Forms
 
             FormClosed += GameSettingsForm_Closed;
 
-            Controls.AddRange(new Control[] {m_ButtonDone, m_CheckBoxPlayerTwo, m_LabelBoardSizeTitle,
-                                    m_LabelPlayerOneTitle, m_LabelPlayersTitle, m_RadioButtonOpOne,
-            m_RadioButtonOpTwo, m_RadioButtonOpThree, m_TextBoxPlayerOne, m_TextBoxPlayerTwo, m_LabelPlayerOneTitle});
+            Controls.AddRange(new Control[]
+            {
+              m_ButtonDone, m_CheckBoxPlayerTwo, m_LabelBoardSizeTitle,
+              m_LabelPlayerOneTitle, m_LabelPlayersTitle, m_RadioButtonOpOne,
+              m_RadioButtonOpTwo, m_RadioButtonOpThree, m_TextBoxPlayerOne, m_TextBoxPlayerTwo, m_LabelPlayerOneTitle
+            });
         }
 
-        private void GameSettingsForm_Closed(Object sender, EventArgs e)
+        private void GameSettingsForm_Closed(object sender, EventArgs e)
         {
-            if(m_GameConfiguration == null)
+            if (m_GameConfiguration == null)
             {
-               setDefaultGameConfiguration();
+                setDefaultGameConfiguration();
             }
         }
 
         private void setDefaultGameConfiguration()
         {
-            m_GameConfiguration = new GameConfiguration();
+            PlayerConfiguration playerOneConfiguration = new PlayerConfiguration();
 
-            m_PlayerOneConfiguration = new PlayerConfiguration();
-            m_PlayerOneConfiguration.PlayerType = ePlayerTypes.Human;
-            m_PlayerOneConfiguration.PlayerName = "Player 1";
-            m_GameConfiguration.AddPlayerConfiguration(m_PlayerOneConfiguration);
+            m_GameConfiguration = new GameConfiguration();
+            playerOneConfiguration.PlayerType = ePlayerTypes.Human;
+            playerOneConfiguration.PlayerName = "Player 1";
+            m_GameConfiguration.AddPlayerConfiguration(playerOneConfiguration);
             m_GameConfiguration.GameMode = eGameModes.OnePlayerGame;
             m_GameConfiguration.BoardSize = 6;
-
         }
 
-        private void m_RadioButtonOpOne_Checked(Object sender,EventArgs e)
-        {
-            m_BoardSize = BusinessLogic.GlobalDefines.Rs_AllowedBoardSizes[0];
-        }
-
-        private void m_RadioButtonOpTwo_Checked(Object sender, EventArgs e)
-        {
-            m_BoardSize = m_GameConfiguration.BoardSize = BusinessLogic.GlobalDefines.Rs_AllowedBoardSizes[1];
-        }
-
-        private void m_RadioButtonOpThree_Checked(Object sender, EventArgs e)
-        {
-            m_BoardSize = m_GameConfiguration.BoardSize = BusinessLogic.GlobalDefines.Rs_AllowedBoardSizes[2];
-        }
-
-        private void m_TextBoxPlayerOne_TextChanged(Object sender, EventArgs e)
-        {
-            if(m_PlayerOneConfiguration == null)
-            {
-                m_PlayerOneConfiguration = new PlayerConfiguration();
-                m_PlayerOneConfiguration.PlayerType = ePlayerTypes.Human;
-                
-            }
-
-            m_PlayerOneConfiguration.PlayerName = (sender as TextBox).Text;
-        }
-
-        private void m_CheckBoxPlayerTwo_Checked(Object sender, EventArgs e)
+        private void checkBoxPlayerTwo_Checked(object sender, EventArgs e)
         {
             if ((sender as CheckBox).Checked)
-            { 
+            {
                 m_TextBoxPlayerTwo.Enabled = true;
             }
             else
             {
                 m_TextBoxPlayerTwo.Enabled = false;
-                m_PlayerTwoConfiguration = null;
             }
         }
 
-        private void m_TextBoxPlayerTwo_TextChanged(Object sender, EventArgs e)
-        {
-            if(m_PlayerTwoConfiguration == null)
-            {
-                m_PlayerTwoConfiguration = new PlayerConfiguration();
-            }
-
-            m_PlayerTwoConfiguration.PlayerName = (sender as TextBox).Text;
-            m_PlayerTwoConfiguration.PlayerType = ePlayerTypes.Human;
-
-        }
-
-        private void m_ButtonDone_Clicked(Object sender, EventArgs e)
+        private void buttonDone_Clicked(object sender, EventArgs e)
         {
             m_GameConfiguration = createGameConfiguration();
 
-            if(m_GameConfiguration != null)
+            if (m_GameConfiguration != null)
             {
                 Close();
             }
@@ -200,72 +141,78 @@ namespace CheckersWindowApp.Forms
         private GameConfiguration createGameConfiguration()
         {
             GameConfiguration gameConfiguration = new GameConfiguration();
+            PlayerConfiguration playerOneConfiguration = getPlayerOneConfiguration();
+            PlayerConfiguration playerTwoConfiguration;
 
-            if(m_PlayerOneConfiguration == null)
+            gameConfiguration.AddPlayerConfiguration(playerOneConfiguration);
+            gameConfiguration.BoardSize = getBoardSize();
+            
+            if(m_CheckBoxPlayerTwo.Checked == true)
             {
-                m_PlayerOneConfiguration = new PlayerConfiguration();
-                m_PlayerOneConfiguration.PlayerName = "Player 1";
-                m_PlayerOneConfiguration.PlayerType = ePlayerTypes.Human;
-            }
-
-            else if(m_PlayerOneConfiguration.PlayerName == "")
-            {
-                MessageBox.Show("Invalid Player's name for Player No. 1: please insert name for this player...");
-                gameConfiguration = null;
-            }
-
-            if(m_PlayerTwoConfiguration != null && m_PlayerTwoConfiguration.PlayerName == "")
-            {
-                MessageBox.Show("Invalid Player's name for Player No. 2: please insert name for this player...");
-                gameConfiguration = null;
+                playerTwoConfiguration = getPlayerTwoConfiguration();
+                gameConfiguration.AddPlayerConfiguration(playerTwoConfiguration);
+                gameConfiguration.GameMode = eGameModes.TwoPlayersGame;
             }
             else
             {
-                gameConfiguration = new GameConfiguration();
-                gameConfiguration.AddPlayerConfiguration(m_PlayerOneConfiguration);
-                gameConfiguration.GameMode = setGameMode(); //add computer player if the game mode is OnePlayerMode
-                if (gameConfiguration.GameMode == eGameModes.TwoPlayersGame)
-                {
-                    gameConfiguration.AddPlayerConfiguration(m_PlayerTwoConfiguration);
-                }
-                gameConfiguration.BoardSize = m_BoardSize;
+                gameConfiguration.GameMode = eGameModes.OnePlayerGame; ////add a second player as a computer. 
             }
 
             return gameConfiguration;
         }
 
-        private eGameModes setGameMode()
+        private PlayerConfiguration getPlayerTwoConfiguration()
         {
-            eGameModes gameMode;
-            
-            if(m_PlayerTwoConfiguration == null)
+            PlayerConfiguration playerConfiguration = new PlayerConfiguration();
+
+            if(m_TextBoxPlayerTwo.Text == string.Empty)
             {
-                gameMode = eGameModes.OnePlayerGame;
+                MessageBox.Show("Invalid name for Player 2. Please type his name");
             }
             else
             {
-                gameMode = eGameModes.TwoPlayersGame;
+                playerConfiguration.PlayerName = m_TextBoxPlayerTwo.Text;
+                playerConfiguration.PlayerType = ePlayerTypes.Human;
             }
 
-            return gameMode;
+            return playerConfiguration;
         }
 
-        private void InitializeComponent()
+        private PlayerConfiguration getPlayerOneConfiguration()
         {
-            this.SuspendLayout();
-            // 
-            // GameSettingsForm
-            // 
-            this.ClientSize = new System.Drawing.Size(282, 253);
-            this.Name = "GameSettingsForm";
-            this.Load += new System.EventHandler(this.GameSettingsForm_Load);
-            this.ResumeLayout(false);
+            PlayerConfiguration playerConfiguration = new PlayerConfiguration();
 
+            if(m_TextBoxPlayerOne.Text == string.Empty)
+            {
+                MessageBox.Show("Invalid name for player No. 1. please type his name");
+            }
+            else
+            {
+                playerConfiguration.PlayerName = m_TextBoxPlayerOne.Text;
+                playerConfiguration.PlayerType = ePlayerTypes.Human;
+            }
+
+            return playerConfiguration;
         }
 
-        private void GameSettingsForm_Load(object sender, EventArgs e)
+        private int getBoardSize()
         {
+            int boardSize;
 
+            if(m_RadioButtonOpOne.Checked == true)
+            {
+                boardSize = 6;
+            }
+            else if (m_RadioButtonOpTwo.Checked == true)
+            {
+                boardSize = 8;
+            }
+            else
+            {
+                boardSize = 10;
+            }
+
+            return boardSize;
         }
     }
 }

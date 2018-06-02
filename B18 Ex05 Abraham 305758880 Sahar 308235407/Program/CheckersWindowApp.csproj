@@ -54,6 +54,9 @@
     <Compile Include="Forms\CheckersMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\GameSettingsForm_old.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\GameSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,8 +67,8 @@
     <EmbeddedResource Include="Forms\CheckersMainForm.resx">
       <DependentUpon>CheckersMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\GameSettingsForm.resx">
-      <DependentUpon>GameSettingsForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\GameSettingsForm_old.resx">
+      <DependentUpon>GameSettingsForm_old.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
