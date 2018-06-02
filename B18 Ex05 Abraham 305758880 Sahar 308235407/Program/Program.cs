@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CheckersWindowApp.Forms;
-using CheckersWindowApp;
+﻿using CheckersWindowApp.Forms;
 
 namespace Program
 {
@@ -12,12 +6,8 @@ namespace Program
     {
         public static void Main()
         {
-            // GameSettingsForm gameSettingsForm = new GameSettingsForm();
-            //gameSettingsForm.ShowDialog();
-
             CheckersMainForm checkersMainForm = new CheckersMainForm();
             checkersMainForm.ShowDialog();
-        }
-      
+        } 
     }
 }

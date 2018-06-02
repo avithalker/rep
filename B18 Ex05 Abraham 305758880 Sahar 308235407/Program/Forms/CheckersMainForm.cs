@@ -7,6 +7,7 @@ using BusinessLogic.Configuration;
 using BusinessLogic.GameBoard;
 using Program.CustomControllers;
 using BusinessLogic.Dtos;
+using BusinessLogic.Enums;
 
 namespace CheckersWindowApp.Forms
 {
@@ -65,7 +66,7 @@ namespace CheckersWindowApp.Forms
             // 
             this.Player1Score.AutoSize = true;
             this.Player1Score.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.Player1Score.Location = new System.Drawing.Point(117, 13);
+            this.Player1Score.Location = new System.Drawing.Point(142, 13);
             this.Player1Score.Name = "Player1Score";
             this.Player1Score.Size = new System.Drawing.Size(23, 25);
             this.Player1Score.TabIndex = 2;
@@ -75,7 +76,7 @@ namespace CheckersWindowApp.Forms
             // 
             this.Player2Score.AutoSize = true;
             this.Player2Score.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.Player2Score.Location = new System.Drawing.Point(117, 51);
+            this.Player2Score.Location = new System.Drawing.Point(142, 51);
             this.Player2Score.Name = "Player2Score";
             this.Player2Score.Size = new System.Drawing.Size(23, 25);
             this.Player2Score.TabIndex = 3;
@@ -93,6 +94,7 @@ namespace CheckersWindowApp.Forms
             this.Shown += new System.EventHandler(this.CheckersMainForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private void CheckersMainForm_Load(object sender, EventArgs e)
@@ -145,8 +147,8 @@ namespace CheckersWindowApp.Forms
 
         private void setPlayersNames(GameConfiguration i_GameConfiguration)
         {
-            Player1Name.Text = i_GameConfiguration.PlayerConfigurations[0].PlayerName + ":";
-            Player2Name.Text = i_GameConfiguration.PlayerConfigurations[1].PlayerName + ":";
+            Player1Name.Text = string.Format("{0} ({1}):", i_GameConfiguration.PlayerConfigurations[0].PlayerName, GlobalDefines.GetSoldierSign(ePlayerTitles.PlayerOne, eSoldierTypes.Regular));
+            Player2Name.Text = string.Format("{0} ({1}):", i_GameConfiguration.PlayerConfigurations[1].PlayerName, GlobalDefines.GetSoldierSign(ePlayerTitles.PlayerTwo, eSoldierTypes.Regular));
         }
 
         public void updateBoard()
@@ -293,11 +295,11 @@ namespace CheckersWindowApp.Forms
 
         private void updatePlayerScore(GameSummery i_GameSummery)
         {
-            if (i_GameSummery.WinnerTitle == BusinessLogic.Enums.ePlayerTitles.PlayerOne)
+            if (i_GameSummery.WinnerTitle == ePlayerTitles.PlayerOne)
             {
                 Player1Score.Text = i_GameSummery.Score.ToString();
             }
-            else if (i_GameSummery.WinnerTitle == BusinessLogic.Enums.ePlayerTitles.PlayerTwo)
+            else if (i_GameSummery.WinnerTitle == ePlayerTitles.PlayerTwo)
             {
                 Player2Score.Text = i_GameSummery.Score.ToString();
             }
@@ -322,7 +324,7 @@ namespace CheckersWindowApp.Forms
             StringBuilder msgBuilder = new StringBuilder();
 
             updatePlayerScore(gameSummery);
-            if (gameSummery.EndGameState == BusinessLogic.Enums.eGameStatus.Tie)
+            if (gameSummery.EndGameState == eGameStatus.Tie)
             {
                 msgBuilder.Append(string.Format("Tie! {0}", Environment.NewLine));
             }
@@ -333,7 +335,6 @@ namespace CheckersWindowApp.Forms
 
             msgBuilder.Append("Another round?");
             dialogResult = MessageBox.Show(msgBuilder.ToString(), "Damka", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
             if (dialogResult == DialogResult.Yes)
             {
                 restartGame();
