@@ -1,0 +1,12 @@
+==========================Exercise Checking Report==========================
+Exercise No...........: 5
+First Student Details.: 305758880 - Abraham Thalker
+Second Student Details: 308235407 - Sahar Haltzi
+Delivery Date.........: 06.06.18
+Delivered In Delay....: No
+Delay Reason..........: 
+Visual Studio Version.: 2017
+Comments..............: 
+1. we used events in our business logic component in order to notify the UI component on gameEnded and BoardChanged.
+2. we use the business logic component from ex2 as a dll. the folder with the original code can be found under the root folder.
+=======================End Exercise Checking Report=========================

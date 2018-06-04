@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Program.CustomControllers
+namespace CheckersWindowApp.CustomControllers
 {
     public class CellButton : Button
     {

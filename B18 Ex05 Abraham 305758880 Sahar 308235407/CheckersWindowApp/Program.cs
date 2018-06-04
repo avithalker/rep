@@ -1,6 +1,6 @@
 ﻿using CheckersWindowApp.Forms;
 
-namespace Program
+namespace CheckersWindowApp
 {
     public class Program
     {

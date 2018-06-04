@@ -7,8 +7,8 @@
     <ProjectGuid>{9D3A527C-E577-473C-BD5B-BDE704A564E0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Program</RootNamespace>
-    <AssemblyName>Program</AssemblyName>
+    <RootNamespace>CheckersWindowApp</RootNamespace>
+    <AssemblyName>CheckersWindowApp</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,9 +33,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BusinessLogic">
-      <HintPath>..\..\B18 Ex02 Abraham 305758880 Sahar 308235407\BusinessLogic\bin\Debug\BusinessLogic.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -54,9 +51,6 @@
     <Compile Include="Forms\CheckersMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\GameSettingsForm_old.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\GameSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,9 +61,12 @@
     <EmbeddedResource Include="Forms\CheckersMainForm.resx">
       <DependentUpon>CheckersMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\GameSettingsForm_old.resx">
-      <DependentUpon>GameSettingsForm_old.cs</DependentUpon>
-    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{1b141421-a68e-46f3-8c16-cd63925902db}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

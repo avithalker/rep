@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using BusinessLogic;
 using BusinessLogic.Configuration;
 using BusinessLogic.GameBoard;
-using Program.CustomControllers;
+using CheckersWindowApp.CustomControllers;
 using BusinessLogic.Dtos;
 using BusinessLogic.Enums;
 
