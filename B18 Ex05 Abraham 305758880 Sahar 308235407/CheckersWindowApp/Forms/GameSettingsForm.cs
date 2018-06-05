@@ -174,8 +174,7 @@ namespace CheckersWindowApp.Forms
             else
             {
                 playerConfiguration.PlayerName = textBoxPlayerTwo.Text;
-                playerConfiguration.PlayerType = ePlayerTypes.Human;
-                
+                playerConfiguration.PlayerType = ePlayerTypes.Human;        
             }
 
             return playerConfiguration;
@@ -194,7 +193,6 @@ namespace CheckersWindowApp.Forms
             {
                 playerConfiguration.PlayerName = textBoxPlayerOne.Text;
                 playerConfiguration.PlayerType = ePlayerTypes.Human;
-               
             }
 
             return playerConfiguration;
