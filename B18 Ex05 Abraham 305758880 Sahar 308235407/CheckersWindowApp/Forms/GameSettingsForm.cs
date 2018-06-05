@@ -20,6 +20,7 @@ namespace CheckersWindowApp.Forms
         private TextBox textBoxPlayerTwo = new TextBox();
         private GameConfiguration m_GameConfiguration;
         private bool m_InvalidIName = false;
+        private bool m_DoneButtonClicked = false;
    
         public GameSettingsForm()
         {
@@ -95,7 +96,7 @@ namespace CheckersWindowApp.Forms
 
         private void GameSettingsForm_Closed(object sender, EventArgs e)
         {
-            if (m_GameConfiguration == null)
+            if (m_GameConfiguration == null || m_DoneButtonClicked == true)
             {
                 setDefaultGameConfiguration();
             }
@@ -128,6 +129,7 @@ namespace CheckersWindowApp.Forms
         private void buttonDone_Clicked(object sender, EventArgs e)
         {
             m_GameConfiguration = createGameConfiguration();
+            m_DoneButtonClicked = true;
 
             if (m_GameConfiguration != null && m_InvalidIName == false)
             {
@@ -170,6 +172,7 @@ namespace CheckersWindowApp.Forms
             {
                 MessageBox.Show("Invalid name for Player 2. Please type his name");
                 m_InvalidIName = true;
+               
             }
             else
             {
