@@ -177,8 +177,6 @@ namespace CheckersWindowApp.Forms
             {
                 MessageBox.Show("Invalid name for Player 2. Please type his name");
                 m_InvalidIName = true;
-              
-               
             }
             else
             {
@@ -196,8 +194,7 @@ namespace CheckersWindowApp.Forms
             if(textBoxPlayerOne.Text == string.Empty)
             {
                 MessageBox.Show("Invalid name for player No. 1. please type his name");
-                m_InvalidIName = true;
-                
+                m_InvalidIName = true;   
             }
             else
             {
