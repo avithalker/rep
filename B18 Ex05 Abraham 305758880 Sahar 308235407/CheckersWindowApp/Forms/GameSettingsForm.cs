@@ -96,10 +96,15 @@ namespace CheckersWindowApp.Forms
 
         private void GameSettingsForm_Closed(object sender, EventArgs e)
         {
-            if (m_GameConfiguration == null || m_DoneButtonClicked == true)
+            if (m_DoneButtonClicked == false || invalidGameConfiguration(m_GameConfiguration))
             {
                 setDefaultGameConfiguration();
             }
+        }
+
+        private bool invalidGameConfiguration(GameConfiguration gameConfiguration)
+        {
+            return gameConfiguration.PlayerConfigurations[0].PlayerName == null || gameConfiguration.PlayerConfigurations[1].PlayerName == null;
         }
 
         private void setDefaultGameConfiguration()
@@ -172,6 +177,7 @@ namespace CheckersWindowApp.Forms
             {
                 MessageBox.Show("Invalid name for Player 2. Please type his name");
                 m_InvalidIName = true;
+              
                
             }
             else
@@ -191,6 +197,7 @@ namespace CheckersWindowApp.Forms
             {
                 MessageBox.Show("Invalid name for player No. 1. please type his name");
                 m_InvalidIName = true;
+                
             }
             else
             {
