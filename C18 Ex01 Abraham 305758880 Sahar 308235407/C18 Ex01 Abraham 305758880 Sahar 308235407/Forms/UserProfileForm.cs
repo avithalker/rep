@@ -48,5 +48,6 @@ namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
            FriendsTab.Controls.Add(friendsPicture);
             FriendsTab.Controls.Add(friendsName);
         }
+         
     }
 }

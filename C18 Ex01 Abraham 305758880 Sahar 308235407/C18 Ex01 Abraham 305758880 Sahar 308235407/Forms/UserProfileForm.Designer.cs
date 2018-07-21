@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.UserProfilePicture = new System.Windows.Forms.PictureBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserProfileForm));
             this.NameLabel = new System.Windows.Forms.Label();
             this.GenderLabel = new System.Windows.Forms.Label();
             this.RelationshipLabel = new System.Windows.Forms.Label();
@@ -42,17 +42,17 @@
             this.RecentPostsTab = new System.Windows.Forms.TabPage();
             this.AlbumsTab = new System.Windows.Forms.TabPage();
             this.CheckInsTab = new System.Windows.Forms.TabPage();
-            ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).BeginInit();
+            this.UserActionsTab = new System.Windows.Forms.TabPage();
+            this.PostTextBox = new System.Windows.Forms.TextBox();
+            this.PostButton = new System.Windows.Forms.Button();
+            this.UserProfilePicture = new System.Windows.Forms.PictureBox();
+            this.SendMessageButton = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.FriendList = new System.Windows.Forms.ListBox();
             this.UsersDetailsControlTab.SuspendLayout();
+            this.UserActionsTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).BeginInit();
             this.SuspendLayout();
-            // 
-            // UserProfilePicture
-            // 
-            this.UserProfilePicture.Location = new System.Drawing.Point(12, 12);
-            this.UserProfilePicture.Name = "UserProfilePicture";
-            this.UserProfilePicture.Size = new System.Drawing.Size(421, 391);
-            this.UserProfilePicture.TabIndex = 0;
-            this.UserProfilePicture.TabStop = false;
             // 
             // NameLabel
             // 
@@ -128,6 +128,7 @@
             this.UsersDetailsControlTab.Controls.Add(this.RecentPostsTab);
             this.UsersDetailsControlTab.Controls.Add(this.AlbumsTab);
             this.UsersDetailsControlTab.Controls.Add(this.CheckInsTab);
+            this.UsersDetailsControlTab.Controls.Add(this.UserActionsTab);
             this.UsersDetailsControlTab.Location = new System.Drawing.Point(439, 3);
             this.UsersDetailsControlTab.Name = "UsersDetailsControlTab";
             this.UsersDetailsControlTab.SelectedIndex = 0;
@@ -172,6 +173,70 @@
             this.CheckInsTab.Text = "CheckIns";
             this.CheckInsTab.UseVisualStyleBackColor = true;
             // 
+            // UserActionsTab
+            // 
+            this.UserActionsTab.Controls.Add(this.FriendList);
+            this.UserActionsTab.Controls.Add(this.textBox1);
+            this.UserActionsTab.Controls.Add(this.SendMessageButton);
+            this.UserActionsTab.Controls.Add(this.PostTextBox);
+            this.UserActionsTab.Controls.Add(this.PostButton);
+            this.UserActionsTab.Location = new System.Drawing.Point(8, 39);
+            this.UserActionsTab.Name = "UserActionsTab";
+            this.UserActionsTab.Size = new System.Drawing.Size(1407, 929);
+            this.UserActionsTab.TabIndex = 4;
+            this.UserActionsTab.Text = "User Actions";
+            this.UserActionsTab.UseVisualStyleBackColor = true;
+            // 
+            // PostTextBox
+            // 
+            this.PostTextBox.Location = new System.Drawing.Point(274, 94);
+            this.PostTextBox.Multiline = true;
+            this.PostTextBox.Name = "PostTextBox";
+            this.PostTextBox.Size = new System.Drawing.Size(328, 31);
+            this.PostTextBox.TabIndex = 1;
+            // 
+            // PostButton
+            // 
+            this.PostButton.Location = new System.Drawing.Point(42, 82);
+            this.PostButton.Name = "PostButton";
+            this.PostButton.Size = new System.Drawing.Size(204, 43);
+            this.PostButton.TabIndex = 0;
+            this.PostButton.Text = "Post";
+            this.PostButton.UseVisualStyleBackColor = true;
+            // 
+            // UserProfilePicture
+            // 
+            this.UserProfilePicture.Location = new System.Drawing.Point(12, 12);
+            this.UserProfilePicture.Name = "UserProfilePicture";
+            this.UserProfilePicture.Size = new System.Drawing.Size(421, 391);
+            this.UserProfilePicture.TabIndex = 0;
+            this.UserProfilePicture.TabStop = false;
+            // 
+            // SendMessageButton
+            // 
+            this.SendMessageButton.Location = new System.Drawing.Point(42, 861);
+            this.SendMessageButton.Name = "SendMessageButton";
+            this.SendMessageButton.Size = new System.Drawing.Size(237, 44);
+            this.SendMessageButton.TabIndex = 2;
+            this.SendMessageButton.Text = "Send a Message";
+            this.SendMessageButton.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(303, 874);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(942, 31);
+            this.textBox1.TabIndex = 3;
+            // 
+            // FriendList
+            // 
+            this.FriendList.FormattingEnabled = true;
+            this.FriendList.ItemHeight = 25;
+            this.FriendList.Location = new System.Drawing.Point(42, 183);
+            this.FriendList.Name = "FriendList";
+            this.FriendList.Size = new System.Drawing.Size(600, 629);
+            this.FriendList.TabIndex = 4;
+            // 
             // UserProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -187,10 +252,13 @@
             this.Controls.Add(this.GenderLabel);
             this.Controls.Add(this.NameLabel);
             this.Controls.Add(this.UserProfilePicture);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UserProfileForm";
             this.Text = "UserProfileForm";
-            ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).EndInit();
             this.UsersDetailsControlTab.ResumeLayout(false);
+            this.UserActionsTab.ResumeLayout(false);
+            this.UserActionsTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,5 +280,11 @@
         private System.Windows.Forms.TabPage RecentPostsTab;
         private System.Windows.Forms.TabPage AlbumsTab;
         private System.Windows.Forms.TabPage CheckInsTab;
+        private System.Windows.Forms.TabPage UserActionsTab;
+        private System.Windows.Forms.Button PostButton;
+        private System.Windows.Forms.TextBox PostTextBox;
+        private System.Windows.Forms.Button SendMessageButton;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ListBox FriendList;
     }
 }
