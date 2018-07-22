@@ -39,7 +39,7 @@
             this.UsersBirthdate = new System.Windows.Forms.Label();
             this.UsersDetailsControlTab = new System.Windows.Forms.TabControl();
             this.FriendsTab = new System.Windows.Forms.TabPage();
-            this.RecentPostsTab = new System.Windows.Forms.TabPage();
+            this.PostsTab = new System.Windows.Forms.TabPage();
             this.AlbumsTab = new System.Windows.Forms.TabPage();
             this.CheckInsTab = new System.Windows.Forms.TabPage();
             this.UserActionsTab = new System.Windows.Forms.TabPage();
@@ -49,7 +49,14 @@
             this.SendMessageButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.FriendList = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.TopFivePostsListBox = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.RecentPostsListBox = new System.Windows.Forms.ListBox();
+            this.TopFiveLink = new System.Windows.Forms.LinkLabel();
+            this.RecentPostsLink = new System.Windows.Forms.LinkLabel();
             this.UsersDetailsControlTab.SuspendLayout();
+            this.PostsTab.SuspendLayout();
             this.UserActionsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).BeginInit();
             this.SuspendLayout();
@@ -125,7 +132,7 @@
             // UsersDetailsControlTab
             // 
             this.UsersDetailsControlTab.Controls.Add(this.FriendsTab);
-            this.UsersDetailsControlTab.Controls.Add(this.RecentPostsTab);
+            this.UsersDetailsControlTab.Controls.Add(this.PostsTab);
             this.UsersDetailsControlTab.Controls.Add(this.AlbumsTab);
             this.UsersDetailsControlTab.Controls.Add(this.CheckInsTab);
             this.UsersDetailsControlTab.Controls.Add(this.UserActionsTab);
@@ -145,15 +152,21 @@
             this.FriendsTab.Text = "Friends";
             this.FriendsTab.UseVisualStyleBackColor = true;
             // 
-            // RecentPostsTab
+            // PostsTab
             // 
-            this.RecentPostsTab.Location = new System.Drawing.Point(8, 39);
-            this.RecentPostsTab.Name = "RecentPostsTab";
-            this.RecentPostsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.RecentPostsTab.Size = new System.Drawing.Size(1407, 929);
-            this.RecentPostsTab.TabIndex = 1;
-            this.RecentPostsTab.Text = "RecentPosts";
-            this.RecentPostsTab.UseVisualStyleBackColor = true;
+            this.PostsTab.Controls.Add(this.RecentPostsLink);
+            this.PostsTab.Controls.Add(this.TopFiveLink);
+            this.PostsTab.Controls.Add(this.RecentPostsListBox);
+            this.PostsTab.Controls.Add(this.label2);
+            this.PostsTab.Controls.Add(this.TopFivePostsListBox);
+            this.PostsTab.Controls.Add(this.label1);
+            this.PostsTab.Location = new System.Drawing.Point(8, 39);
+            this.PostsTab.Name = "PostsTab";
+            this.PostsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.PostsTab.Size = new System.Drawing.Size(1407, 929);
+            this.PostsTab.TabIndex = 1;
+            this.PostsTab.Text = "Posts";
+            this.PostsTab.UseVisualStyleBackColor = true;
             // 
             // AlbumsTab
             // 
@@ -203,6 +216,7 @@
             this.PostButton.TabIndex = 0;
             this.PostButton.Text = "Post";
             this.PostButton.UseVisualStyleBackColor = true;
+            this.PostButton.Click += new System.EventHandler(this.PostButton_Click);
             // 
             // UserProfilePicture
             // 
@@ -237,11 +251,69 @@
             this.FriendList.Size = new System.Drawing.Size(600, 629);
             this.FriendList.TabIndex = 4;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(40, 37);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(133, 25);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Top 5 Posts:";
+            // 
+            // TopFivePostsListBox
+            // 
+            this.TopFivePostsListBox.FormattingEnabled = true;
+            this.TopFivePostsListBox.ItemHeight = 25;
+            this.TopFivePostsListBox.Location = new System.Drawing.Point(34, 85);
+            this.TopFivePostsListBox.Name = "TopFivePostsListBox";
+            this.TopFivePostsListBox.Size = new System.Drawing.Size(466, 304);
+            this.TopFivePostsListBox.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(612, 37);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(140, 25);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Recent Posts";
+            // 
+            // RecentPostsListBox
+            // 
+            this.RecentPostsListBox.FormattingEnabled = true;
+            this.RecentPostsListBox.ItemHeight = 25;
+            this.RecentPostsListBox.Location = new System.Drawing.Point(617, 85);
+            this.RecentPostsListBox.Name = "RecentPostsListBox";
+            this.RecentPostsListBox.Size = new System.Drawing.Size(529, 304);
+            this.RecentPostsListBox.TabIndex = 3;
+            // 
+            // TopFiveLink
+            // 
+            this.TopFiveLink.AutoSize = true;
+            this.TopFiveLink.Location = new System.Drawing.Point(300, 57);
+            this.TopFiveLink.Name = "TopFiveLink";
+            this.TopFiveLink.Size = new System.Drawing.Size(200, 25);
+            this.TopFiveLink.TabIndex = 4;
+            this.TopFiveLink.TabStop = true;
+            this.TopFiveLink.Text = "Fetch top five posts";
+            this.TopFiveLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.TopFiveLink_LinkClicked);
+            // 
+            // RecentPostsLink
+            // 
+            this.RecentPostsLink.AutoSize = true;
+            this.RecentPostsLink.Location = new System.Drawing.Point(956, 57);
+            this.RecentPostsLink.Name = "RecentPostsLink";
+            this.RecentPostsLink.Size = new System.Drawing.Size(190, 25);
+            this.RecentPostsLink.TabIndex = 5;
+            this.RecentPostsLink.TabStop = true;
+            this.RecentPostsLink.Text = "Fetch recent posts";
+            this.RecentPostsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RecentPostsLink_LinkClicked);
+            // 
             // UserProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1857, 991);
+            this.ClientSize = new System.Drawing.Size(1895, 1002);
             this.Controls.Add(this.UsersDetailsControlTab);
             this.Controls.Add(this.UsersBirthdate);
             this.Controls.Add(this.UserRelationshipLabel);
@@ -256,6 +328,8 @@
             this.Name = "UserProfileForm";
             this.Text = "UserProfileForm";
             this.UsersDetailsControlTab.ResumeLayout(false);
+            this.PostsTab.ResumeLayout(false);
+            this.PostsTab.PerformLayout();
             this.UserActionsTab.ResumeLayout(false);
             this.UserActionsTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).EndInit();
@@ -277,7 +351,7 @@
         private System.Windows.Forms.Label UsersBirthdate;
         private System.Windows.Forms.TabControl UsersDetailsControlTab;
         private System.Windows.Forms.TabPage FriendsTab;
-        private System.Windows.Forms.TabPage RecentPostsTab;
+        private System.Windows.Forms.TabPage PostsTab;
         private System.Windows.Forms.TabPage AlbumsTab;
         private System.Windows.Forms.TabPage CheckInsTab;
         private System.Windows.Forms.TabPage UserActionsTab;
@@ -286,5 +360,11 @@
         private System.Windows.Forms.Button SendMessageButton;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ListBox FriendList;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListBox TopFivePostsListBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox RecentPostsListBox;
+        private System.Windows.Forms.LinkLabel RecentPostsLink;
+        private System.Windows.Forms.LinkLabel TopFiveLink;
     }
 }

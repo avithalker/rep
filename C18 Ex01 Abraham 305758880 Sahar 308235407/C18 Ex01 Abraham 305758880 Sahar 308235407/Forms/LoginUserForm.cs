@@ -23,7 +23,7 @@ namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
         private void LoginButton_Click(object sender, EventArgs e)
         {
             LoginResult result = FacebookService.Login("272862089537667", "user_likes",
-                                "user_photos", "user_posts", "user_tagged_places", "user_videos", "user_friends");
+                                "user_photos", "user_posts", "user_tagged_places", "user_videos", "user_friends", "publish_actions", "manage_pages");
 
             if (!string.IsNullOrEmpty(result.AccessToken))
             {
