@@ -33,20 +33,48 @@ namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
 
         private void fetchUsersFriends()
         {
-            foreach(User friend in m_user.Friends)
+            int x = FriendsTab.Bounds.Left;
+            int y = FriendsTab.Bounds.Top;
+            int lastPicturewidth = 0;
+            int lastHeight = 0;
+            for(int i = 0; i < 10; i++)
             {
-                createFriendsForm(friend);
+                foreach (User friend in m_user.Friends)
+                {
+                    createFriendsForm(friend, x, y, ref lastPicturewidth, ref lastHeight);
+                    updateLocation(ref x, ref y, lastPicturewidth, lastHeight);
+                }
             }
         }
 
-        private void createFriendsForm(User i_friend)
+        private void updateLocation(ref int x, ref int y, int i_lastPictureWidth, int i_lastHeight)
         {
-           PictureBox friendsPicture = new PictureBox();
-           Label friendsName = new Label();
-           friendsPicture.LoadAsync(i_friend.PictureSmallURL);
-           friendsName.Text = i_friend.FirstName + "" + i_friend.LastName;
-           FriendsTab.Controls.Add(friendsPicture);
+            if(FriendsTab.ClientSize.Width < x + 20)
+            {
+                x = FriendsTab.Bounds.Left;
+                y += i_lastHeight + 20;
+            }
+            else
+            {
+                x += i_lastPictureWidth + 20;
+            }
+        }
+
+        private void createFriendsForm(User i_friend, int x, int y, ref int io_lastPictureWidth, ref int io_LastHeight)
+        {
+            PictureBox friendsPicture = new PictureBox();
+            Label friendsName = new Label();
+            ////friendsName.Size = new Size(30, 30);
+            friendsPicture.Load(i_friend.PictureNormalURL);
+            friendsPicture.SizeMode = PictureBoxSizeMode.AutoSize;
+            friendsPicture.Location = new Point(x, y);
+            friendsName.Text = i_friend.FirstName + " " + i_friend.LastName;
+            ////friendsName.Text = "Sahar Haltzi";
+            friendsName.Location = new Point(x, y + friendsPicture.ClientSize.Height + 5);
+            FriendsTab.Controls.Add(friendsPicture);
             FriendsTab.Controls.Add(friendsName);
+            io_lastPictureWidth = friendsPicture.ClientSize.Width;
+            io_LastHeight = friendsPicture.ClientSize.Height + friendsName.Size.Height;
         }
 
         private void PostButton_Click(object sender, EventArgs e)
@@ -82,6 +110,7 @@ namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
                         RecentPostsListBox.Items.Add(string.Format("[{0}]", post.Type));
                     }
                 }
+
                 counter++;
             }
         }
@@ -90,8 +119,7 @@ namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
         {
             FacebookObjectCollection<Post> posts = m_user.Posts;
             Post mostPopular;
-
-            for( int i = 0; i < 5; i++)
+            for(int i = 0; i < 5; i++)
             {
                 mostPopular = getMostPopularPost(posts);
                 TopFivePostsListBox.Items.Add(mostPopular);

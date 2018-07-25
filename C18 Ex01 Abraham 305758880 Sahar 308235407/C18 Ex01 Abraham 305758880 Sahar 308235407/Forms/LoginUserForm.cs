@@ -1,5 +1,5 @@
-﻿using FacebookWrapper;
-using System;
+﻿using System;
+using System.Windows.Forms;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,13 +7,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using FacebookWrapper;
 
 namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
 {
     public partial class LoginUserForm : Form
     {
-        UserProfileForm m_UserProfileForm;
+        private UserProfileForm m_UserProfileForm;
 
         public LoginUserForm()
         {
@@ -22,9 +22,9 @@ namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            LoginResult result = FacebookService.Login("272862089537667", "user_likes",
-                                "user_photos", "user_posts", "user_tagged_places", "user_videos", "user_friends", "publish_actions", "manage_pages");
+            LoginResult result = FacebookService.Login("193793304621904", "public_profile", "user_birthday", "user_friends");
 
+            ////FacebookService.Logout(() => { });
             if (!string.IsNullOrEmpty(result.AccessToken))
             {
                 m_UserProfileForm = new UserProfileForm(result.LoggedInUser);

@@ -1,6 +1,6 @@
 ﻿namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
 {
-    partial class LoginUserForm
+    public partial class LoginUserForm
     {
         /// <summary>
         /// Required designer variable.
@@ -17,6 +17,7 @@
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
