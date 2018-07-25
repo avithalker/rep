@@ -56,8 +56,14 @@
             this.PostTextBox = new System.Windows.Forms.TextBox();
             this.PostButton = new System.Windows.Forms.Button();
             this.UserProfilePicture = new System.Windows.Forms.PictureBox();
+            this.CheckinsListBox = new System.Windows.Forms.ListBox();
+            this.FetchCheckinsLink = new System.Windows.Forms.LinkLabel();
+            this.FetchAlbumsLink = new System.Windows.Forms.LinkLabel();
+            this.AlbumsPanel = new System.Windows.Forms.Panel();
             this.UsersDetailsControlTab.SuspendLayout();
             this.PostsTab.SuspendLayout();
+            this.AlbumsTab.SuspendLayout();
+            this.CheckInsTab.SuspendLayout();
             this.UserActionsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).BeginInit();
             this.SuspendLayout();
@@ -230,6 +236,8 @@
             // 
             // AlbumsTab
             // 
+            this.AlbumsTab.Controls.Add(this.AlbumsPanel);
+            this.AlbumsTab.Controls.Add(this.FetchAlbumsLink);
             this.AlbumsTab.Location = new System.Drawing.Point(8, 39);
             this.AlbumsTab.Name = "AlbumsTab";
             this.AlbumsTab.Size = new System.Drawing.Size(1407, 929);
@@ -239,6 +247,8 @@
             // 
             // CheckInsTab
             // 
+            this.CheckInsTab.Controls.Add(this.FetchCheckinsLink);
+            this.CheckInsTab.Controls.Add(this.CheckinsListBox);
             this.CheckInsTab.Location = new System.Drawing.Point(8, 39);
             this.CheckInsTab.Name = "CheckInsTab";
             this.CheckInsTab.Size = new System.Drawing.Size(1407, 929);
@@ -311,6 +321,44 @@
             this.UserProfilePicture.TabIndex = 0;
             this.UserProfilePicture.TabStop = false;
             // 
+            // CheckinsListBox
+            // 
+            this.CheckinsListBox.FormattingEnabled = true;
+            this.CheckinsListBox.ItemHeight = 25;
+            this.CheckinsListBox.Location = new System.Drawing.Point(51, 107);
+            this.CheckinsListBox.Name = "CheckinsListBox";
+            this.CheckinsListBox.Size = new System.Drawing.Size(468, 254);
+            this.CheckinsListBox.TabIndex = 0;
+            // 
+            // FetchCheckinsLink
+            // 
+            this.FetchCheckinsLink.AutoSize = true;
+            this.FetchCheckinsLink.Location = new System.Drawing.Point(46, 57);
+            this.FetchCheckinsLink.Name = "FetchCheckinsLink";
+            this.FetchCheckinsLink.Size = new System.Drawing.Size(161, 25);
+            this.FetchCheckinsLink.TabIndex = 1;
+            this.FetchCheckinsLink.TabStop = true;
+            this.FetchCheckinsLink.Text = "Fetch Checkins";
+            this.FetchCheckinsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FetchCheckinsLink_LinkClicked);
+            // 
+            // FetchAlbumsLink
+            // 
+            this.FetchAlbumsLink.AutoSize = true;
+            this.FetchAlbumsLink.Location = new System.Drawing.Point(40, 52);
+            this.FetchAlbumsLink.Name = "FetchAlbumsLink";
+            this.FetchAlbumsLink.Size = new System.Drawing.Size(143, 25);
+            this.FetchAlbumsLink.TabIndex = 0;
+            this.FetchAlbumsLink.TabStop = true;
+            this.FetchAlbumsLink.Text = "Fetch Albums";
+            this.FetchAlbumsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FetchAlbumsLink_LinkClicked);
+            // 
+            // AlbumsPanel
+            // 
+            this.AlbumsPanel.Location = new System.Drawing.Point(20, 123);
+            this.AlbumsPanel.Name = "AlbumsPanel";
+            this.AlbumsPanel.Size = new System.Drawing.Size(1185, 803);
+            this.AlbumsPanel.TabIndex = 1;
+            // 
             // UserProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -332,6 +380,10 @@
             this.UsersDetailsControlTab.ResumeLayout(false);
             this.PostsTab.ResumeLayout(false);
             this.PostsTab.PerformLayout();
+            this.AlbumsTab.ResumeLayout(false);
+            this.AlbumsTab.PerformLayout();
+            this.CheckInsTab.ResumeLayout(false);
+            this.CheckInsTab.PerformLayout();
             this.UserActionsTab.ResumeLayout(false);
             this.UserActionsTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).EndInit();
@@ -368,5 +420,9 @@
         private System.Windows.Forms.ListBox RecentPostsListBox;
         private System.Windows.Forms.LinkLabel RecentPostsLink;
         private System.Windows.Forms.LinkLabel TopFiveLink;
+        private System.Windows.Forms.LinkLabel FetchCheckinsLink;
+        private System.Windows.Forms.ListBox CheckinsListBox;
+        private System.Windows.Forms.LinkLabel FetchAlbumsLink;
+        private System.Windows.Forms.Panel AlbumsPanel;
     }
 }

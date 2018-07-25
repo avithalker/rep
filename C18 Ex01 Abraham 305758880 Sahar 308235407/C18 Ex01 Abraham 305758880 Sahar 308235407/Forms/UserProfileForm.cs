@@ -37,6 +37,7 @@ namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
             int y = FriendsTab.Bounds.Top;
             int lastPicturewidth = 0;
             int lastHeight = 0;
+
             for(int i = 0; i < 10; i++)
             {
                 foreach (User friend in m_user.Friends)
@@ -47,30 +48,30 @@ namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
             }
         }
 
-        private void updateLocation(ref int x, ref int y, int i_lastPictureWidth, int i_lastHeight)
+        private void updateLocation(ref int io_x, ref int io_y, int i_lastPictureWidth, int i_lastHeight)
         {
-            if(FriendsTab.ClientSize.Width < x + 20)
+            if(FriendsTab.ClientSize.Width < io_x + 20)
             {
-                x = FriendsTab.Bounds.Left;
-                y += i_lastHeight + 20;
+                io_x = FriendsTab.Bounds.Left;
+                io_y += i_lastHeight + 20;
             }
             else
             {
-                x += i_lastPictureWidth + 20;
+                io_x += i_lastPictureWidth + 20;
             }
         }
 
-        private void createFriendsForm(User i_friend, int x, int y, ref int io_lastPictureWidth, ref int io_LastHeight)
+        private void createFriendsForm(User i_friend, int i_x, int i_y, ref int io_lastPictureWidth, ref int io_LastHeight)
         {
             PictureBox friendsPicture = new PictureBox();
             Label friendsName = new Label();
             ////friendsName.Size = new Size(30, 30);
             friendsPicture.Load(i_friend.PictureNormalURL);
             friendsPicture.SizeMode = PictureBoxSizeMode.AutoSize;
-            friendsPicture.Location = new Point(x, y);
+            friendsPicture.Location = new Point(i_x, i_y);
             friendsName.Text = i_friend.FirstName + " " + i_friend.LastName;
             ////friendsName.Text = "Sahar Haltzi";
-            friendsName.Location = new Point(x, y + friendsPicture.ClientSize.Height + 5);
+            friendsName.Location = new Point(i_x, i_y + friendsPicture.ClientSize.Height + 5);
             FriendsTab.Controls.Add(friendsPicture);
             FriendsTab.Controls.Add(friendsName);
             io_lastPictureWidth = friendsPicture.ClientSize.Width;
@@ -140,6 +141,45 @@ namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
             }
 
             return mostPopular;
+        }
+
+        private void FetchCheckinsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            foreach(Checkin checkin in m_user.Checkins)
+            {
+                CheckinsListBox.Items.Add(checkin.ToString());
+            }
+        }
+
+        private void FetchAlbumsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            int x = AlbumsPanel.Bounds.Left;
+            int y = AlbumsPanel.Bounds.Top;
+            int lastPictureWidth = 0;
+            int lastHeight = 0;
+
+            foreach (Album album in m_user.Albums)
+            {
+                addAlbumDataToPanel(album, x, y, ref lastPictureWidth, ref lastHeight);
+                updateLocation(ref x, ref y, lastPictureWidth, lastHeight);
+            }
+        }
+
+        private void addAlbumDataToPanel(Album i_album, int i_x, int i_y, ref int o_lastPictureWidth, ref int o_lastHeight)
+        {
+            PictureBox albumPictureBox = new PictureBox();
+            Label albumsName = new Label();
+            albumPictureBox.Load(i_album.CoverPhoto.URL);
+            albumPictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            albumPictureBox.Location = new Point(i_x, i_y);
+            albumsName.Text = i_album.Name;
+            albumsName.Location = new Point(i_x, i_y + albumPictureBox.ClientSize.Height + 5);
+            o_lastPictureWidth = albumPictureBox.ClientSize.Width;
+            o_lastHeight = albumPictureBox.ClientSize.Height + albumsName.Width;
+
+            AlbumsPanel.Controls.Add(albumPictureBox);
+            albumPictureBox.Controls.Add(albumsName);
+              
         }
     }
 }
