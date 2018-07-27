@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D6600215-8921-4D5E-8E15-75F9BE2B3057}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>C18_Ex01_Abraham_305758880_Sahar_308235407</RootNamespace>
-    <AssemblyName>C18 Ex01 Abraham 305758880 Sahar 308235407</AssemblyName>
+    <RootNamespace>DesktopFacebook</RootNamespace>
+    <AssemblyName>DesktopFacebook</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,11 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Facebook">
-      <HintPath>..\..\..\..\..\..\..\Users\SAHAR\Downloads\01_FB01_BasicFacebookFeatures.V6.8.0.17\01_FB01_BasicFacebookFeatures.V6.8.0.17\FBApi\Facebook.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\FaceBookAPI\Facebook.dll</HintPath>
     </Reference>
-    <Reference Include="FbGraphApiWrapper, Version=6.8.0.17, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Users\SAHAR\Downloads\01_FB01_BasicFacebookFeatures.V6.8.0.17\01_FB01_BasicFacebookFeatures.V6.8.0.17\FBApi\FbGraphApiWrapper.dll</HintPath>
+    <Reference Include="FbGraphApiWrapper">
+      <HintPath>..\..\..\..\..\..\..\FaceBookAPI\FbGraphApiWrapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\UserControls\WallPostControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\UserControls\WallPostControl.Designer.cs">
+      <DependentUpon>WallPostControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\LoginUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +71,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Components\UserControls\WallPostControl.resx">
+      <DependentUpon>WallPostControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginUserForm.resx">
       <DependentUpon>LoginUserForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -74,18 +82,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -96,10 +104,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Consts\" />
+    <ProjectReference Include="..\DesktopFacebook.Business\DesktopFacebook.Business.csproj">
+      <Project>{21382d00-ef99-4392-ad1b-5091e01d6433}</Project>
+      <Name>DesktopFacebook.Business</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Components\Resources\Facebook-Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Components\Resources\Clear.png" />
+    <Content Include="Components\Resources\Delete.png" />
+    <Content Include="Components\Resources\ImagePlaceHolder.png" />
+    <Content Include="Components\Resources\Like.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

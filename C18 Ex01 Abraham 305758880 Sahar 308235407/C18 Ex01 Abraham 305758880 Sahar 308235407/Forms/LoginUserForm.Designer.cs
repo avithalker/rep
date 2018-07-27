@@ -1,4 +1,4 @@
-﻿namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
+﻿namespace DesktopFacebook.Forms
 {
     public partial class LoginUserForm
     {
@@ -49,7 +49,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
-            this.BackgroundImage = global::C18_Ex01_Abraham_305758880_Sahar_308235407.Properties.Resources.Facebook_Background;
+            this.BackgroundImage = global::DesktopFacebook.Properties.Resources.Facebook_Background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.LoginButton);

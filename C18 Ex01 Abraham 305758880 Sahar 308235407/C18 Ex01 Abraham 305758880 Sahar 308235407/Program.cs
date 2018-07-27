@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using FacebookWrapper;
-using C18_Ex01_Abraham_305758880_Sahar_308235407.Forms;
+using DesktopFacebook.Forms;
 
-namespace C18_Ex01_Abraham_305758880_Sahar_308235407
+namespace DesktopFacebook
 {
     public static class Program
     {

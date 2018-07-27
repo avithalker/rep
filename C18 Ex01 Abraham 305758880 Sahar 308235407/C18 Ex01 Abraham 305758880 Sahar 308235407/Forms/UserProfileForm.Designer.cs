@@ -1,4 +1,4 @@
-﻿namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
+﻿namespace DesktopFacebook.Forms
 {
     public partial class UserProfileForm
     {
@@ -30,7 +30,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserProfileForm));
-            this.NameLabel = new System.Windows.Forms.Label();
             this.GenderLabel = new System.Windows.Forms.Label();
             this.RelationshipLabel = new System.Windows.Forms.Label();
             this.BirthDateLabel = new System.Windows.Forms.Label();
@@ -48,92 +47,110 @@
             this.TopFivePostsListBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.AlbumsTab = new System.Windows.Forms.TabPage();
-            this.CheckInsTab = new System.Windows.Forms.TabPage();
-            this.UserActionsTab = new System.Windows.Forms.TabPage();
-            this.FriendList = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.SendMessageButton = new System.Windows.Forms.Button();
-            this.PostTextBox = new System.Windows.Forms.TextBox();
-            this.PostButton = new System.Windows.Forms.Button();
-            this.UserProfilePicture = new System.Windows.Forms.PictureBox();
-            this.CheckinsListBox = new System.Windows.Forms.ListBox();
-            this.FetchCheckinsLink = new System.Windows.Forms.LinkLabel();
-            this.FetchAlbumsLink = new System.Windows.Forms.LinkLabel();
             this.AlbumsPanel = new System.Windows.Forms.Panel();
+            this.FetchAlbumsLink = new System.Windows.Forms.LinkLabel();
+            this.CheckInsTab = new System.Windows.Forms.TabPage();
+            this.FetchCheckinsLink = new System.Windows.Forms.LinkLabel();
+            this.CheckinsListBox = new System.Windows.Forms.ListBox();
+            this.UserWallTab = new System.Windows.Forms.TabPage();
+            this.ClearImagePictureBox = new System.Windows.Forms.PictureBox();
+            this.PreviewPhotoPictureBox = new System.Windows.Forms.PictureBox();
+            this.AttachPhotoPictureBox = new System.Windows.Forms.PictureBox();
+            this.PostTextBox = new System.Windows.Forms.RichTextBox();
+            this.PostButton = new System.Windows.Forms.Button();
+            this.HomeTownLable = new System.Windows.Forms.Label();
+            this.CurrentCityLabel = new System.Windows.Forms.Label();
+            this.UserHomeTownLabel = new System.Windows.Forms.Label();
+            this.UserCurrentCityLabel = new System.Windows.Forms.Label();
+            this.PictureFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.UserProfilePicture = new System.Windows.Forms.PictureBox();
             this.UsersDetailsControlTab.SuspendLayout();
             this.PostsTab.SuspendLayout();
             this.AlbumsTab.SuspendLayout();
             this.CheckInsTab.SuspendLayout();
-            this.UserActionsTab.SuspendLayout();
+            this.UserWallTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ClearImagePictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PreviewPhotoPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AttachPhotoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).BeginInit();
             this.SuspendLayout();
-            // 
-            // NameLabel
-            // 
-            this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(28, 444);
-            this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(74, 25);
-            this.NameLabel.TabIndex = 1;
-            this.NameLabel.Text = "Name:";
             // 
             // GenderLabel
             // 
             this.GenderLabel.AutoSize = true;
-            this.GenderLabel.Location = new System.Drawing.Point(28, 501);
+            this.GenderLabel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GenderLabel.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.GenderLabel.Location = new System.Drawing.Point(2, 279);
+            this.GenderLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.GenderLabel.Name = "GenderLabel";
-            this.GenderLabel.Size = new System.Drawing.Size(89, 25);
+            this.GenderLabel.Size = new System.Drawing.Size(66, 19);
             this.GenderLabel.TabIndex = 2;
             this.GenderLabel.Text = "Gender:";
             // 
             // RelationshipLabel
             // 
             this.RelationshipLabel.AutoSize = true;
-            this.RelationshipLabel.Location = new System.Drawing.Point(32, 554);
+            this.RelationshipLabel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RelationshipLabel.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.RelationshipLabel.Location = new System.Drawing.Point(2, 321);
+            this.RelationshipLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.RelationshipLabel.Name = "RelationshipLabel";
-            this.RelationshipLabel.Size = new System.Drawing.Size(170, 25);
+            this.RelationshipLabel.Size = new System.Drawing.Size(147, 19);
             this.RelationshipLabel.TabIndex = 3;
-            this.RelationshipLabel.Text = "In a relationship:";
+            this.RelationshipLabel.Text = "Relationship status:";
             // 
             // BirthDateLabel
             // 
             this.BirthDateLabel.AutoSize = true;
-            this.BirthDateLabel.Location = new System.Drawing.Point(32, 611);
+            this.BirthDateLabel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BirthDateLabel.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.BirthDateLabel.Location = new System.Drawing.Point(2, 361);
+            this.BirthDateLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.BirthDateLabel.Name = "BirthDateLabel";
-            this.BirthDateLabel.Size = new System.Drawing.Size(113, 25);
+            this.BirthDateLabel.Size = new System.Drawing.Size(85, 19);
             this.BirthDateLabel.TabIndex = 4;
             this.BirthDateLabel.Text = "Birth Date:";
             // 
             // UserNameLabel
             // 
             this.UserNameLabel.AutoSize = true;
-            this.UserNameLabel.Location = new System.Drawing.Point(108, 444);
+            this.UserNameLabel.Font = new System.Drawing.Font("Tahoma", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserNameLabel.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.UserNameLabel.Location = new System.Drawing.Point(9, 211);
+            this.UserNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.UserNameLabel.Name = "UserNameLabel";
-            this.UserNameLabel.Size = new System.Drawing.Size(0, 25);
+            this.UserNameLabel.Size = new System.Drawing.Size(0, 33);
             this.UserNameLabel.TabIndex = 5;
             // 
             // UserGenderLabel
             // 
             this.UserGenderLabel.AutoSize = true;
-            this.UserGenderLabel.Location = new System.Drawing.Point(132, 501);
+            this.UserGenderLabel.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserGenderLabel.Location = new System.Drawing.Point(164, 282);
+            this.UserGenderLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.UserGenderLabel.Name = "UserGenderLabel";
-            this.UserGenderLabel.Size = new System.Drawing.Size(0, 25);
+            this.UserGenderLabel.Size = new System.Drawing.Size(0, 17);
             this.UserGenderLabel.TabIndex = 6;
             // 
             // UserRelationshipLabel
             // 
             this.UserRelationshipLabel.AutoSize = true;
-            this.UserRelationshipLabel.Location = new System.Drawing.Point(220, 554);
+            this.UserRelationshipLabel.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserRelationshipLabel.Location = new System.Drawing.Point(164, 323);
+            this.UserRelationshipLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.UserRelationshipLabel.Name = "UserRelationshipLabel";
-            this.UserRelationshipLabel.Size = new System.Drawing.Size(0, 25);
+            this.UserRelationshipLabel.Size = new System.Drawing.Size(66, 17);
             this.UserRelationshipLabel.TabIndex = 7;
+            this.UserRelationshipLabel.Text = "Unknown";
             // 
             // UsersBirthdate
             // 
             this.UsersBirthdate.AutoSize = true;
-            this.UsersBirthdate.Location = new System.Drawing.Point(163, 611);
+            this.UsersBirthdate.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsersBirthdate.Location = new System.Drawing.Point(164, 364);
+            this.UsersBirthdate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.UsersBirthdate.Name = "UsersBirthdate";
-            this.UsersBirthdate.Size = new System.Drawing.Size(0, 25);
+            this.UsersBirthdate.Size = new System.Drawing.Size(0, 17);
             this.UsersBirthdate.TabIndex = 8;
             // 
             // UsersDetailsControlTab
@@ -142,20 +159,22 @@
             this.UsersDetailsControlTab.Controls.Add(this.PostsTab);
             this.UsersDetailsControlTab.Controls.Add(this.AlbumsTab);
             this.UsersDetailsControlTab.Controls.Add(this.CheckInsTab);
-            this.UsersDetailsControlTab.Controls.Add(this.UserActionsTab);
-            this.UsersDetailsControlTab.Location = new System.Drawing.Point(439, 3);
+            this.UsersDetailsControlTab.Controls.Add(this.UserWallTab);
+            this.UsersDetailsControlTab.Location = new System.Drawing.Point(305, 6);
+            this.UsersDetailsControlTab.Margin = new System.Windows.Forms.Padding(2);
             this.UsersDetailsControlTab.Name = "UsersDetailsControlTab";
             this.UsersDetailsControlTab.SelectedIndex = 0;
-            this.UsersDetailsControlTab.Size = new System.Drawing.Size(1423, 976);
+            this.UsersDetailsControlTab.Size = new System.Drawing.Size(712, 508);
             this.UsersDetailsControlTab.TabIndex = 9;
             // 
             // FriendsTab
             // 
             this.FriendsTab.AutoScroll = true;
-            this.FriendsTab.Location = new System.Drawing.Point(8, 39);
+            this.FriendsTab.Location = new System.Drawing.Point(4, 22);
+            this.FriendsTab.Margin = new System.Windows.Forms.Padding(2);
             this.FriendsTab.Name = "FriendsTab";
-            this.FriendsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.FriendsTab.Size = new System.Drawing.Size(1407, 929);
+            this.FriendsTab.Padding = new System.Windows.Forms.Padding(2);
+            this.FriendsTab.Size = new System.Drawing.Size(704, 482);
             this.FriendsTab.TabIndex = 0;
             this.FriendsTab.Text = "Friends";
             this.FriendsTab.UseVisualStyleBackColor = true;
@@ -168,10 +187,11 @@
             this.PostsTab.Controls.Add(this.label2);
             this.PostsTab.Controls.Add(this.TopFivePostsListBox);
             this.PostsTab.Controls.Add(this.label1);
-            this.PostsTab.Location = new System.Drawing.Point(8, 39);
+            this.PostsTab.Location = new System.Drawing.Point(4, 22);
+            this.PostsTab.Margin = new System.Windows.Forms.Padding(2);
             this.PostsTab.Name = "PostsTab";
-            this.PostsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.PostsTab.Size = new System.Drawing.Size(1407, 929);
+            this.PostsTab.Padding = new System.Windows.Forms.Padding(2);
+            this.PostsTab.Size = new System.Drawing.Size(704, 482);
             this.PostsTab.TabIndex = 1;
             this.PostsTab.Text = "Posts";
             this.PostsTab.UseVisualStyleBackColor = true;
@@ -179,9 +199,10 @@
             // RecentPostsLink
             // 
             this.RecentPostsLink.AutoSize = true;
-            this.RecentPostsLink.Location = new System.Drawing.Point(956, 57);
+            this.RecentPostsLink.Location = new System.Drawing.Point(478, 30);
+            this.RecentPostsLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.RecentPostsLink.Name = "RecentPostsLink";
-            this.RecentPostsLink.Size = new System.Drawing.Size(190, 25);
+            this.RecentPostsLink.Size = new System.Drawing.Size(95, 13);
             this.RecentPostsLink.TabIndex = 5;
             this.RecentPostsLink.TabStop = true;
             this.RecentPostsLink.Text = "Fetch recent posts";
@@ -190,9 +211,10 @@
             // TopFiveLink
             // 
             this.TopFiveLink.AutoSize = true;
-            this.TopFiveLink.Location = new System.Drawing.Point(300, 57);
+            this.TopFiveLink.Location = new System.Drawing.Point(150, 30);
+            this.TopFiveLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TopFiveLink.Name = "TopFiveLink";
-            this.TopFiveLink.Size = new System.Drawing.Size(200, 25);
+            this.TopFiveLink.Size = new System.Drawing.Size(100, 13);
             this.TopFiveLink.TabIndex = 4;
             this.TopFiveLink.TabStop = true;
             this.TopFiveLink.Text = "Fetch top five posts";
@@ -201,36 +223,38 @@
             // RecentPostsListBox
             // 
             this.RecentPostsListBox.FormattingEnabled = true;
-            this.RecentPostsListBox.ItemHeight = 25;
-            this.RecentPostsListBox.Location = new System.Drawing.Point(617, 85);
+            this.RecentPostsListBox.Location = new System.Drawing.Point(308, 44);
+            this.RecentPostsListBox.Margin = new System.Windows.Forms.Padding(2);
             this.RecentPostsListBox.Name = "RecentPostsListBox";
-            this.RecentPostsListBox.Size = new System.Drawing.Size(529, 304);
+            this.RecentPostsListBox.Size = new System.Drawing.Size(266, 160);
             this.RecentPostsListBox.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(612, 37);
+            this.label2.Location = new System.Drawing.Point(306, 19);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(140, 25);
+            this.label2.Size = new System.Drawing.Size(71, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Recent Posts";
             // 
             // TopFivePostsListBox
             // 
             this.TopFivePostsListBox.FormattingEnabled = true;
-            this.TopFivePostsListBox.ItemHeight = 25;
-            this.TopFivePostsListBox.Location = new System.Drawing.Point(34, 85);
+            this.TopFivePostsListBox.Location = new System.Drawing.Point(17, 44);
+            this.TopFivePostsListBox.Margin = new System.Windows.Forms.Padding(2);
             this.TopFivePostsListBox.Name = "TopFivePostsListBox";
-            this.TopFivePostsListBox.Size = new System.Drawing.Size(466, 304);
+            this.TopFivePostsListBox.Size = new System.Drawing.Size(235, 160);
             this.TopFivePostsListBox.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 37);
+            this.label1.Location = new System.Drawing.Point(20, 19);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 25);
+            this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Top 5 Posts:";
             // 
@@ -238,132 +262,210 @@
             // 
             this.AlbumsTab.Controls.Add(this.AlbumsPanel);
             this.AlbumsTab.Controls.Add(this.FetchAlbumsLink);
-            this.AlbumsTab.Location = new System.Drawing.Point(8, 39);
+            this.AlbumsTab.Location = new System.Drawing.Point(4, 22);
+            this.AlbumsTab.Margin = new System.Windows.Forms.Padding(2);
             this.AlbumsTab.Name = "AlbumsTab";
-            this.AlbumsTab.Size = new System.Drawing.Size(1407, 929);
+            this.AlbumsTab.Size = new System.Drawing.Size(704, 482);
             this.AlbumsTab.TabIndex = 2;
             this.AlbumsTab.Text = "Albums";
             this.AlbumsTab.UseVisualStyleBackColor = true;
             // 
-            // CheckInsTab
+            // AlbumsPanel
             // 
-            this.CheckInsTab.Controls.Add(this.FetchCheckinsLink);
-            this.CheckInsTab.Controls.Add(this.CheckinsListBox);
-            this.CheckInsTab.Location = new System.Drawing.Point(8, 39);
-            this.CheckInsTab.Name = "CheckInsTab";
-            this.CheckInsTab.Size = new System.Drawing.Size(1407, 929);
-            this.CheckInsTab.TabIndex = 3;
-            this.CheckInsTab.Text = "CheckIns";
-            this.CheckInsTab.UseVisualStyleBackColor = true;
-            // 
-            // UserActionsTab
-            // 
-            this.UserActionsTab.Controls.Add(this.FriendList);
-            this.UserActionsTab.Controls.Add(this.textBox1);
-            this.UserActionsTab.Controls.Add(this.SendMessageButton);
-            this.UserActionsTab.Controls.Add(this.PostTextBox);
-            this.UserActionsTab.Controls.Add(this.PostButton);
-            this.UserActionsTab.Location = new System.Drawing.Point(8, 39);
-            this.UserActionsTab.Name = "UserActionsTab";
-            this.UserActionsTab.Size = new System.Drawing.Size(1407, 929);
-            this.UserActionsTab.TabIndex = 4;
-            this.UserActionsTab.Text = "User Actions";
-            this.UserActionsTab.UseVisualStyleBackColor = true;
-            // 
-            // FriendList
-            // 
-            this.FriendList.FormattingEnabled = true;
-            this.FriendList.ItemHeight = 25;
-            this.FriendList.Location = new System.Drawing.Point(42, 183);
-            this.FriendList.Name = "FriendList";
-            this.FriendList.Size = new System.Drawing.Size(600, 629);
-            this.FriendList.TabIndex = 4;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(303, 874);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(942, 31);
-            this.textBox1.TabIndex = 3;
-            // 
-            // SendMessageButton
-            // 
-            this.SendMessageButton.Location = new System.Drawing.Point(42, 861);
-            this.SendMessageButton.Name = "SendMessageButton";
-            this.SendMessageButton.Size = new System.Drawing.Size(237, 44);
-            this.SendMessageButton.TabIndex = 2;
-            this.SendMessageButton.Text = "Send a Message";
-            this.SendMessageButton.UseVisualStyleBackColor = true;
-            // 
-            // PostTextBox
-            // 
-            this.PostTextBox.Location = new System.Drawing.Point(274, 94);
-            this.PostTextBox.Multiline = true;
-            this.PostTextBox.Name = "PostTextBox";
-            this.PostTextBox.Size = new System.Drawing.Size(328, 31);
-            this.PostTextBox.TabIndex = 1;
-            // 
-            // PostButton
-            // 
-            this.PostButton.Location = new System.Drawing.Point(42, 82);
-            this.PostButton.Name = "PostButton";
-            this.PostButton.Size = new System.Drawing.Size(204, 43);
-            this.PostButton.TabIndex = 0;
-            this.PostButton.Text = "Post";
-            this.PostButton.UseVisualStyleBackColor = true;
-            this.PostButton.Click += new System.EventHandler(this.PostButton_Click);
-            // 
-            // UserProfilePicture
-            // 
-            this.UserProfilePicture.Location = new System.Drawing.Point(12, 12);
-            this.UserProfilePicture.Name = "UserProfilePicture";
-            this.UserProfilePicture.Size = new System.Drawing.Size(421, 391);
-            this.UserProfilePicture.TabIndex = 0;
-            this.UserProfilePicture.TabStop = false;
-            // 
-            // CheckinsListBox
-            // 
-            this.CheckinsListBox.FormattingEnabled = true;
-            this.CheckinsListBox.ItemHeight = 25;
-            this.CheckinsListBox.Location = new System.Drawing.Point(51, 107);
-            this.CheckinsListBox.Name = "CheckinsListBox";
-            this.CheckinsListBox.Size = new System.Drawing.Size(468, 254);
-            this.CheckinsListBox.TabIndex = 0;
-            // 
-            // FetchCheckinsLink
-            // 
-            this.FetchCheckinsLink.AutoSize = true;
-            this.FetchCheckinsLink.Location = new System.Drawing.Point(46, 57);
-            this.FetchCheckinsLink.Name = "FetchCheckinsLink";
-            this.FetchCheckinsLink.Size = new System.Drawing.Size(161, 25);
-            this.FetchCheckinsLink.TabIndex = 1;
-            this.FetchCheckinsLink.TabStop = true;
-            this.FetchCheckinsLink.Text = "Fetch Checkins";
-            this.FetchCheckinsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FetchCheckinsLink_LinkClicked);
+            this.AlbumsPanel.Location = new System.Drawing.Point(10, 64);
+            this.AlbumsPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.AlbumsPanel.Name = "AlbumsPanel";
+            this.AlbumsPanel.Size = new System.Drawing.Size(592, 418);
+            this.AlbumsPanel.TabIndex = 1;
             // 
             // FetchAlbumsLink
             // 
             this.FetchAlbumsLink.AutoSize = true;
-            this.FetchAlbumsLink.Location = new System.Drawing.Point(40, 52);
+            this.FetchAlbumsLink.Location = new System.Drawing.Point(20, 27);
+            this.FetchAlbumsLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.FetchAlbumsLink.Name = "FetchAlbumsLink";
-            this.FetchAlbumsLink.Size = new System.Drawing.Size(143, 25);
+            this.FetchAlbumsLink.Size = new System.Drawing.Size(71, 13);
             this.FetchAlbumsLink.TabIndex = 0;
             this.FetchAlbumsLink.TabStop = true;
             this.FetchAlbumsLink.Text = "Fetch Albums";
             this.FetchAlbumsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FetchAlbumsLink_LinkClicked);
             // 
-            // AlbumsPanel
+            // CheckInsTab
             // 
-            this.AlbumsPanel.Location = new System.Drawing.Point(20, 123);
-            this.AlbumsPanel.Name = "AlbumsPanel";
-            this.AlbumsPanel.Size = new System.Drawing.Size(1185, 803);
-            this.AlbumsPanel.TabIndex = 1;
+            this.CheckInsTab.Controls.Add(this.FetchCheckinsLink);
+            this.CheckInsTab.Controls.Add(this.CheckinsListBox);
+            this.CheckInsTab.Location = new System.Drawing.Point(4, 22);
+            this.CheckInsTab.Margin = new System.Windows.Forms.Padding(2);
+            this.CheckInsTab.Name = "CheckInsTab";
+            this.CheckInsTab.Size = new System.Drawing.Size(704, 482);
+            this.CheckInsTab.TabIndex = 3;
+            this.CheckInsTab.Text = "CheckIns";
+            this.CheckInsTab.UseVisualStyleBackColor = true;
+            // 
+            // FetchCheckinsLink
+            // 
+            this.FetchCheckinsLink.AutoSize = true;
+            this.FetchCheckinsLink.Location = new System.Drawing.Point(23, 30);
+            this.FetchCheckinsLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.FetchCheckinsLink.Name = "FetchCheckinsLink";
+            this.FetchCheckinsLink.Size = new System.Drawing.Size(81, 13);
+            this.FetchCheckinsLink.TabIndex = 1;
+            this.FetchCheckinsLink.TabStop = true;
+            this.FetchCheckinsLink.Text = "Fetch Checkins";
+            this.FetchCheckinsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FetchCheckinsLink_LinkClicked);
+            // 
+            // CheckinsListBox
+            // 
+            this.CheckinsListBox.FormattingEnabled = true;
+            this.CheckinsListBox.Location = new System.Drawing.Point(26, 56);
+            this.CheckinsListBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CheckinsListBox.Name = "CheckinsListBox";
+            this.CheckinsListBox.Size = new System.Drawing.Size(236, 134);
+            this.CheckinsListBox.TabIndex = 0;
+            // 
+            // UserWallTab
+            // 
+            this.UserWallTab.AutoScroll = true;
+            this.UserWallTab.Controls.Add(this.ClearImagePictureBox);
+            this.UserWallTab.Controls.Add(this.PreviewPhotoPictureBox);
+            this.UserWallTab.Controls.Add(this.AttachPhotoPictureBox);
+            this.UserWallTab.Controls.Add(this.PostTextBox);
+            this.UserWallTab.Controls.Add(this.PostButton);
+            this.UserWallTab.Location = new System.Drawing.Point(4, 22);
+            this.UserWallTab.Margin = new System.Windows.Forms.Padding(2);
+            this.UserWallTab.Name = "UserWallTab";
+            this.UserWallTab.Size = new System.Drawing.Size(704, 482);
+            this.UserWallTab.TabIndex = 4;
+            this.UserWallTab.Text = "My wall";
+            this.UserWallTab.UseVisualStyleBackColor = true;
+            // 
+            // ClearImagePictureBox
+            // 
+            this.ClearImagePictureBox.Image = global::DesktopFacebook.Properties.Resources.Clear;
+            this.ClearImagePictureBox.Location = new System.Drawing.Point(545, 15);
+            this.ClearImagePictureBox.Name = "ClearImagePictureBox";
+            this.ClearImagePictureBox.Size = new System.Drawing.Size(25, 25);
+            this.ClearImagePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ClearImagePictureBox.TabIndex = 5;
+            this.ClearImagePictureBox.TabStop = false;
+            this.ClearImagePictureBox.Visible = false;
+            this.ClearImagePictureBox.Click += new System.EventHandler(this.ClearImagePictureBox_Click);
+            this.ClearImagePictureBox.MouseLeave += new System.EventHandler(this.ClickableControl_MouseLeave);
+            this.ClearImagePictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ClickableControl_MouseMove);
+            // 
+            // PreviewPhotoPictureBox
+            // 
+            this.PreviewPhotoPictureBox.Location = new System.Drawing.Point(545, 15);
+            this.PreviewPhotoPictureBox.Name = "PreviewPhotoPictureBox";
+            this.PreviewPhotoPictureBox.Size = new System.Drawing.Size(140, 140);
+            this.PreviewPhotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PreviewPhotoPictureBox.TabIndex = 4;
+            this.PreviewPhotoPictureBox.TabStop = false;
+            // 
+            // AttachPhotoPictureBox
+            // 
+            this.AttachPhotoPictureBox.Image = global::DesktopFacebook.Properties.Resources.ImagePlaceHolder;
+            this.AttachPhotoPictureBox.Location = new System.Drawing.Point(15, 102);
+            this.AttachPhotoPictureBox.Name = "AttachPhotoPictureBox";
+            this.AttachPhotoPictureBox.Size = new System.Drawing.Size(42, 35);
+            this.AttachPhotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.AttachPhotoPictureBox.TabIndex = 3;
+            this.AttachPhotoPictureBox.TabStop = false;
+            this.AttachPhotoPictureBox.Click += new System.EventHandler(this.AttachPhotoPictureBox_Click);
+            this.AttachPhotoPictureBox.MouseLeave += new System.EventHandler(this.ClickableControl_MouseLeave);
+            this.AttachPhotoPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ClickableControl_MouseMove);
+            // 
+            // PostTextBox
+            // 
+            this.PostTextBox.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PostTextBox.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.PostTextBox.Location = new System.Drawing.Point(15, 15);
+            this.PostTextBox.Name = "PostTextBox";
+            this.PostTextBox.Size = new System.Drawing.Size(524, 81);
+            this.PostTextBox.TabIndex = 2;
+            this.PostTextBox.Text = "What\'s on your mind?";
+            this.PostTextBox.MouseEnter += new System.EventHandler(this.PostTextBox_MouseEnter);
+            this.PostTextBox.MouseLeave += new System.EventHandler(this.PostTextBox_MouseLeave);
+            // 
+            // PostButton
+            // 
+            this.PostButton.Location = new System.Drawing.Point(94, 115);
+            this.PostButton.Margin = new System.Windows.Forms.Padding(2);
+            this.PostButton.Name = "PostButton";
+            this.PostButton.Size = new System.Drawing.Size(102, 22);
+            this.PostButton.TabIndex = 0;
+            this.PostButton.Text = "Post";
+            this.PostButton.UseVisualStyleBackColor = true;
+            this.PostButton.Click += new System.EventHandler(this.PostButton_Click);
+            // 
+            // HomeTownLable
+            // 
+            this.HomeTownLable.AutoSize = true;
+            this.HomeTownLable.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HomeTownLable.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.HomeTownLable.Location = new System.Drawing.Point(2, 400);
+            this.HomeTownLable.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.HomeTownLable.Name = "HomeTownLable";
+            this.HomeTownLable.Size = new System.Drawing.Size(97, 19);
+            this.HomeTownLable.TabIndex = 10;
+            this.HomeTownLable.Text = "HomeTown:";
+            // 
+            // CurrentCityLabel
+            // 
+            this.CurrentCityLabel.AutoSize = true;
+            this.CurrentCityLabel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CurrentCityLabel.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.CurrentCityLabel.Location = new System.Drawing.Point(2, 436);
+            this.CurrentCityLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.CurrentCityLabel.Name = "CurrentCityLabel";
+            this.CurrentCityLabel.Size = new System.Drawing.Size(97, 19);
+            this.CurrentCityLabel.TabIndex = 11;
+            this.CurrentCityLabel.Text = "Current city:";
+            // 
+            // UserHomeTownLabel
+            // 
+            this.UserHomeTownLabel.AutoSize = true;
+            this.UserHomeTownLabel.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserHomeTownLabel.Location = new System.Drawing.Point(164, 403);
+            this.UserHomeTownLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.UserHomeTownLabel.Name = "UserHomeTownLabel";
+            this.UserHomeTownLabel.Size = new System.Drawing.Size(66, 17);
+            this.UserHomeTownLabel.TabIndex = 12;
+            this.UserHomeTownLabel.Text = "Unknown";
+            // 
+            // UserCurrentCityLabel
+            // 
+            this.UserCurrentCityLabel.AutoSize = true;
+            this.UserCurrentCityLabel.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserCurrentCityLabel.Location = new System.Drawing.Point(164, 436);
+            this.UserCurrentCityLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.UserCurrentCityLabel.Name = "UserCurrentCityLabel";
+            this.UserCurrentCityLabel.Size = new System.Drawing.Size(66, 17);
+            this.UserCurrentCityLabel.TabIndex = 13;
+            this.UserCurrentCityLabel.Text = "Unknown";
+            // 
+            // PictureFileDialog
+            // 
+            this.PictureFileDialog.FileName = "openFileDialog1";
+            // 
+            // UserProfilePicture
+            // 
+            this.UserProfilePicture.Location = new System.Drawing.Point(6, 6);
+            this.UserProfilePicture.Margin = new System.Windows.Forms.Padding(2);
+            this.UserProfilePicture.Name = "UserProfilePicture";
+            this.UserProfilePicture.Size = new System.Drawing.Size(210, 203);
+            this.UserProfilePicture.TabIndex = 0;
+            this.UserProfilePicture.TabStop = false;
             // 
             // UserProfileForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1895, 1002);
+            this.ClientSize = new System.Drawing.Size(1096, 585);
+            this.Controls.Add(this.UserCurrentCityLabel);
+            this.Controls.Add(this.UserHomeTownLabel);
+            this.Controls.Add(this.CurrentCityLabel);
+            this.Controls.Add(this.HomeTownLable);
             this.Controls.Add(this.UsersDetailsControlTab);
             this.Controls.Add(this.UsersBirthdate);
             this.Controls.Add(this.UserRelationshipLabel);
@@ -372,9 +474,9 @@
             this.Controls.Add(this.BirthDateLabel);
             this.Controls.Add(this.RelationshipLabel);
             this.Controls.Add(this.GenderLabel);
-            this.Controls.Add(this.NameLabel);
             this.Controls.Add(this.UserProfilePicture);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UserProfileForm";
             this.Text = "UserProfileForm";
             this.UsersDetailsControlTab.ResumeLayout(false);
@@ -384,8 +486,10 @@
             this.AlbumsTab.PerformLayout();
             this.CheckInsTab.ResumeLayout(false);
             this.CheckInsTab.PerformLayout();
-            this.UserActionsTab.ResumeLayout(false);
-            this.UserActionsTab.PerformLayout();
+            this.UserWallTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ClearImagePictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PreviewPhotoPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AttachPhotoPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -395,7 +499,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox UserProfilePicture;
-        private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Label GenderLabel;
         private System.Windows.Forms.Label RelationshipLabel;
         private System.Windows.Forms.Label BirthDateLabel;
@@ -408,12 +511,8 @@
         private System.Windows.Forms.TabPage PostsTab;
         private System.Windows.Forms.TabPage AlbumsTab;
         private System.Windows.Forms.TabPage CheckInsTab;
-        private System.Windows.Forms.TabPage UserActionsTab;
+        private System.Windows.Forms.TabPage UserWallTab;
         private System.Windows.Forms.Button PostButton;
-        private System.Windows.Forms.TextBox PostTextBox;
-        private System.Windows.Forms.Button SendMessageButton;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ListBox FriendList;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox TopFivePostsListBox;
         private System.Windows.Forms.Label label1;
@@ -424,5 +523,14 @@
         private System.Windows.Forms.ListBox CheckinsListBox;
         private System.Windows.Forms.LinkLabel FetchAlbumsLink;
         private System.Windows.Forms.Panel AlbumsPanel;
+        private System.Windows.Forms.Label HomeTownLable;
+        private System.Windows.Forms.Label CurrentCityLabel;
+        private System.Windows.Forms.Label UserHomeTownLabel;
+        private System.Windows.Forms.Label UserCurrentCityLabel;
+        private System.Windows.Forms.RichTextBox PostTextBox;
+        private System.Windows.Forms.OpenFileDialog PictureFileDialog;
+        private System.Windows.Forms.PictureBox AttachPhotoPictureBox;
+        private System.Windows.Forms.PictureBox PreviewPhotoPictureBox;
+        private System.Windows.Forms.PictureBox ClearImagePictureBox;
     }
 }

@@ -1,34 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using DesktopFacebook.Business;
+using DesktopFacebook.Components.UserControls;
 using FacebookWrapper.ObjectModel;
 
-namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
+namespace DesktopFacebook.Forms
 {
     public partial class UserProfileForm : Form
     {
-        private User m_user;
+        private FacebookUserManager m_UserManager;
+        private User m_FacebookUser;
 
-        public UserProfileForm(User i_user)
+        public UserProfileForm(FacebookUserManager i_UserManager)
         {
             InitializeComponent();
-            m_user = i_user;
-            initializeUserInfo();
+            m_UserManager = i_UserManager;
+            m_FacebookUser = m_UserManager.NativeClient;
+            initializeUserGeneralInfo();
         }
 
-        private void initializeUserInfo()
+        private void initializeUserGeneralInfo()
         {
-            UserProfilePicture.LoadAsync(m_user.PictureNormalURL);
-            UserNameLabel.Text = m_user.FirstName + " " + m_user.LastName;
-            UserGenderLabel.Text = m_user.Gender.ToString();
-            UsersBirthdate.Text = m_user.Birthday;
-            fetchUsersFriends();
+            UserProfilePicture.LoadAsync(m_FacebookUser.PictureLargeURL);
+            UserNameLabel.Text = m_FacebookUser.Name;
+            UserGenderLabel.Text = m_FacebookUser.Gender.ToString();
+            UsersBirthdate.Text = m_FacebookUser.Birthday;
+            if (m_FacebookUser.Hometown != null)
+            {
+                UserHomeTownLabel.Text = m_FacebookUser.Hometown.Name;
+            }
+
+            if(m_FacebookUser.Location!=null)
+            {
+                UserCurrentCityLabel.Text = m_FacebookUser.Location.Name;
+            }
+          
+            if (m_FacebookUser.RelationshipStatus.HasValue)
+            {
+                UserRelationshipLabel.Text = m_FacebookUser.RelationshipStatus.Value.ToString();
+            }
+         //   fetchUsersFriends();
+            fetchUserPosts();
         }
 
         private void fetchUsersFriends()
@@ -38,14 +51,54 @@ namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
             int lastPicturewidth = 0;
             int lastHeight = 0;
 
-            for(int i = 0; i < 10; i++)
+            foreach (User friend in m_FacebookUser.Friends)
             {
-                foreach (User friend in m_user.Friends)
+                AddFriendComponent(friend, x, y, ref lastPicturewidth, ref lastHeight);
+                updateLocation(ref x, ref y, lastPicturewidth, lastHeight);
+            }
+        }
+
+        private void fetchUserPosts()
+        {
+            int wallPostXLocation = AttachPhotoPictureBox.Location.X;
+            int wallPostYLocation = AttachPhotoPictureBox.Location.Y + AttachPhotoPictureBox.Height + 40;
+            WallPostControl wallPostControl;
+
+            foreach (Post wallPost in m_FacebookUser.WallPosts)
+            {
+                wallPostControl = AddWallPostComponent(wallPost, wallPostXLocation, wallPostYLocation);
+                wallPostYLocation += wallPostControl.Height + 10;
+            }
+        }
+
+        private WallPostControl AddWallPostComponent(Post i_wallPost,int i_X,int i_Y)
+        {
+            WallPostControl wallPostControl = new WallPostControl(m_UserManager, i_wallPost);
+            wallPostControl.Location = new Point(i_X, i_Y);
+            UserWallTab.Controls.Add(wallPostControl);
+            return wallPostControl;
+        }
+
+        private void AddNewWallPostToExistWall(Post i_wallPost, int i_X, int i_Y)
+        {
+            bool isFirstWallPost = true;
+            int marginTop = 10;
+
+            foreach (Control control in UserWallTab.Controls)
+            {
+                if(!isFirstWallPost)
                 {
-                    createFriendsForm(friend, x, y, ref lastPicturewidth, ref lastHeight);
-                    updateLocation(ref x, ref y, lastPicturewidth, lastHeight);
+                    marginTop = 0;
+                }
+
+                if (control is WallPostControl)
+                {
+                    control.Location = new Point(control.Location.X, control.Location.Y + control.Height + marginTop);
+                    isFirstWallPost = false;
                 }
             }
+
+            AddWallPostComponent(i_wallPost, i_X, i_Y);
         }
 
         private void updateLocation(ref int io_x, ref int io_y, int i_lastPictureWidth, int i_lastHeight)
@@ -61,28 +114,57 @@ namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
             }
         }
 
-        private void createFriendsForm(User i_friend, int i_x, int i_y, ref int io_lastPictureWidth, ref int io_LastHeight)
+        private void AddFriendComponent(User i_friend, int i_x, int i_y, ref int io_lastPictureWidth, ref int io_LastHeight)
         {
             PictureBox friendsPicture = new PictureBox();
+            friendsPicture.Name = i_friend.Id;
             Label friendsName = new Label();
-            ////friendsName.Size = new Size(30, 30);
             friendsPicture.Load(i_friend.PictureNormalURL);
             friendsPicture.SizeMode = PictureBoxSizeMode.AutoSize;
             friendsPicture.Location = new Point(i_x, i_y);
             friendsName.Text = i_friend.FirstName + " " + i_friend.LastName;
-            ////friendsName.Text = "Sahar Haltzi";
             friendsName.Location = new Point(i_x, i_y + friendsPicture.ClientSize.Height + 5);
+            friendsPicture.Click += FriendsPicture_Click;
+            friendsPicture.MouseLeave += ClickableControl_MouseLeave;
+            friendsPicture.MouseMove += ClickableControl_MouseMove; 
             FriendsTab.Controls.Add(friendsPicture);
             FriendsTab.Controls.Add(friendsName);
             io_lastPictureWidth = friendsPicture.ClientSize.Width;
             io_LastHeight = friendsPicture.ClientSize.Height + friendsName.Size.Height;
         }
 
+        private void FriendsPicture_Click(object sender, EventArgs e)
+        {
+            PictureBox friendPrictureBox = sender as PictureBox;
+            string friendId = friendPrictureBox.Name;
+            User friend = m_UserManager.FindFriendById(friendId);
+            if (string.IsNullOrEmpty(friend.Link))
+            {
+                MessageBox.Show(string.Format("Sorry, the facebook page of {0} is not avilabe right now.", friend.Name));
+            }
+            else
+            {
+                System.Diagnostics.Process.Start(friend.Link);
+            }
+        }
+
         private void PostButton_Click(object sender, EventArgs e)
         {
             try
             {
-                Status postedStatus = m_user.PostStatus(PostTextBox.Text);
+                if (PreviewPhotoPictureBox.Image == null)
+                {
+                    int wallPostXLocation = AttachPhotoPictureBox.Location.X;
+                    int wallPostYLocation = AttachPhotoPictureBox.Location.Y + AttachPhotoPictureBox.Height + 40;
+                    Status postedStatus = m_FacebookUser.PostStatus(PostTextBox.Text);
+                    AddNewWallPostToExistWall(m_FacebookUser.Posts[0], wallPostXLocation, wallPostYLocation);
+                }
+                else
+                {
+                    m_FacebookUser.PostPhoto(PreviewPhotoPictureBox.ImageLocation, PostTextBox.Text);
+                }
+
+                CleanPostControls();
             }
             catch(Exception ex)
             {
@@ -94,7 +176,7 @@ namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
         {
             int counter = 1;
 
-            foreach(Post post in m_user.Posts)
+            foreach(Post post in m_FacebookUser.Posts)
             {
                 while(counter <= 5)
                 {
@@ -118,7 +200,7 @@ namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
 
         private void TopFiveLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FacebookObjectCollection<Post> posts = m_user.Posts;
+            FacebookObjectCollection<Post> posts = m_FacebookUser.Posts;
             Post mostPopular;
             for(int i = 0; i < 5; i++)
             {
@@ -145,7 +227,7 @@ namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
 
         private void FetchCheckinsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            foreach(Checkin checkin in m_user.Checkins)
+            foreach(Checkin checkin in m_FacebookUser.Checkins)
             {
                 CheckinsListBox.Items.Add(checkin.ToString());
             }
@@ -158,7 +240,7 @@ namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
             int lastPictureWidth = 0;
             int lastHeight = 0;
 
-            foreach (Album album in m_user.Albums)
+            foreach (Album album in m_FacebookUser.Albums)
             {
                 addAlbumDataToPanel(album, x, y, ref lastPictureWidth, ref lastHeight);
                 updateLocation(ref x, ref y, lastPictureWidth, lastHeight);
@@ -180,6 +262,60 @@ namespace C18_Ex01_Abraham_305758880_Sahar_308235407.Forms
             AlbumsPanel.Controls.Add(albumPictureBox);
             albumPictureBox.Controls.Add(albumsName);
               
+        }
+
+        private void PostTextBox_MouseEnter(object sender, EventArgs e)
+        {
+            RichTextBox postRichTextBox = sender as RichTextBox;
+            if (string.Compare(postRichTextBox.Text, "What's on your mind?") == 0)
+            {
+                postRichTextBox.Text = "";
+                postRichTextBox.ForeColor = SystemColors.WindowText;
+            }
+        }
+
+        private void PostTextBox_MouseLeave(object sender, EventArgs e)
+        {
+            RichTextBox postRichTextBox = sender as RichTextBox;
+            if ((string.IsNullOrEmpty(postRichTextBox.Text)))
+            {
+                postRichTextBox.Text = "What's on your mind?";
+                postRichTextBox.ForeColor = SystemColors.GrayText;
+            }
+        }
+
+        private void CleanPostControls()
+        {
+            PreviewPhotoPictureBox.Image = null;
+            PostTextBox.Clear();
+            ClearImagePictureBox.Hide();
+        }
+
+        private void ClickableControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            Cursor.Current = Cursors.Hand;
+        }
+
+        private void ClickableControl_MouseLeave(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void AttachPhotoPictureBox_Click(object sender, EventArgs e)
+        {
+            if (PictureFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                PreviewPhotoPictureBox.Load(PictureFileDialog.FileName);
+                ClearImagePictureBox.Show();
+            }
+
+            PictureFileDialog.FileName = string.Empty;
+        }
+
+        private void ClearImagePictureBox_Click(object sender, EventArgs e)
+        {
+            PreviewPhotoPictureBox.Image = null;
+            ClearImagePictureBox.Hide();
         }
     }
 }
