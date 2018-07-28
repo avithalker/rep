@@ -22,7 +22,11 @@ namespace DesktopFacebook.Components.UserControls
         {
             PostLabel.Text = m_WallPost.Message;
             updateLikeCounter();
-            PosterNameLabel.Text = m_WallPost.From.Name;
+            if(m_WallPost.From!=null)
+            {
+                PosterNameLabel.Text = m_WallPost.From.Name;
+            }
+            
             if (m_WallPost.CreatedTime.HasValue)
             {
                 PostDateLabel.Text = m_WallPost.CreatedTime.Value.ToString("dd/MM/yyyy HH:mm:ss");
