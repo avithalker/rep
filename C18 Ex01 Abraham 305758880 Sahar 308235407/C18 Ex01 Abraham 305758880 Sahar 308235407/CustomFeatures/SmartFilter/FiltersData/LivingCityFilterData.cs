@@ -12,7 +12,6 @@
 
         public LivingCityFilterData() : base(eFilterType.LivingCityFilter)
         {
-
         }
     }
 }

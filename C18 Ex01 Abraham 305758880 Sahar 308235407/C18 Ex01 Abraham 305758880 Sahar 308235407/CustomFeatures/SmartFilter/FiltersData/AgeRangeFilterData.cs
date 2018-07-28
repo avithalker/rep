@@ -1,6 +1,6 @@
 ﻿namespace DesktopFacebook.CustomFeatures.SmartFilter.FiltersData
 {
-    public class AgeRangeFilterData:FilterData
+    public class AgeRangeFilterData : FilterData
     {
         private bool m_IsUnder18;
 
@@ -10,9 +10,8 @@
             set { m_IsUnder18 = value; }
         }
 
-        public AgeRangeFilterData():base(eFilterType.AgeRangeFilter)
+        public AgeRangeFilterData() : base(eFilterType.AgeRangeFilter)
         {
-            
         }
     }
 }

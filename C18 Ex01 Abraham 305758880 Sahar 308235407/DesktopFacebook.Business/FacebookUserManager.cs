@@ -1,8 +1,8 @@
-﻿using DesktopFacebook.Business.Settings;
+﻿using System;
+using System.Collections.Generic;
+using DesktopFacebook.Business.Settings;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
-using System;
-using System.Collections.Generic;
 
 namespace DesktopFacebook.Business
 {
@@ -107,15 +107,15 @@ namespace DesktopFacebook.Business
         {
             Event.eRsvpType eventRsvp;
 
-            if(isEventExistInCollection(i_EventId,m_NativeClient.EventsCreated))
+            if (isEventExistInCollection(i_EventId, m_NativeClient.EventsCreated))
             {
                 eventRsvp = Event.eRsvpType.Attending;
             }
-            else if(isEventExistInCollection(i_EventId, m_NativeClient.EventsDeclined))
+            else if (isEventExistInCollection(i_EventId, m_NativeClient.EventsDeclined))
             {
                 eventRsvp = Event.eRsvpType.Declined;
             }
-            else if(isEventExistInCollection(i_EventId, m_NativeClient.EventsMaybe))
+            else if (isEventExistInCollection(i_EventId, m_NativeClient.EventsMaybe))
             {
                 eventRsvp = Event.eRsvpType.Maybe;
             }
@@ -146,7 +146,7 @@ namespace DesktopFacebook.Business
         {
             List<User> friendList = new List<User>();
 
-            foreach(User friend in m_NativeClient.Friends)
+            foreach (User friend in m_NativeClient.Friends)
             {
                 friendList.Add(friend);
             }
@@ -154,5 +154,4 @@ namespace DesktopFacebook.Business
             return friendList;
         }
     }
-
 }

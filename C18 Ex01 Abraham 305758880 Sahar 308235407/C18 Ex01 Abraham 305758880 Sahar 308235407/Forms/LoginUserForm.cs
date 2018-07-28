@@ -18,7 +18,7 @@ namespace DesktopFacebook.Forms
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            //todo: change the appid!!!! to the original!!
+            // todo: change the appid!!!! to the original!!
             LoginResult result= m_UserManager.Login();
 
            // FacebookService.Logout(() => { });

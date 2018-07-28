@@ -2,7 +2,7 @@
 
 namespace DesktopFacebook.CustomFeatures.SmartFilter.FiltersData
 {
-    public class RelationshipFitlerData:FilterData
+    public class RelationshipFitlerData : FilterData
     {
         private eRelationshipStatus m_RelationshipStatus;
 
@@ -12,9 +12,8 @@ namespace DesktopFacebook.CustomFeatures.SmartFilter.FiltersData
             set { m_RelationshipStatus = value; }
         }
 
-        public RelationshipFitlerData():base(eFilterType.RelationshipFilter)
+        public RelationshipFitlerData() : base(eFilterType.RelationshipFilter)
         {
-
         }
     }
 }

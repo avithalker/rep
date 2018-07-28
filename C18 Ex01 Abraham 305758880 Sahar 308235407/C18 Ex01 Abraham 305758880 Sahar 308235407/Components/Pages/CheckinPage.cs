@@ -11,7 +11,7 @@ namespace DesktopFacebook.Components.Pages
         private FacebookUserManager m_FacebookUserManager;
         private DataFetchIndicator m_DataFetchIndicator;
 
-        public CheckinPage(FacebookUserManager i_FacebookUserManager,DataFetchIndicator i_DataFetchIndicator)
+        public CheckinPage(FacebookUserManager i_FacebookUserManager, DataFetchIndicator i_DataFetchIndicator)
         {
             InitializeComponent();
             m_FacebookUserManager = i_FacebookUserManager;

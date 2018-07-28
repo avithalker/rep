@@ -12,16 +12,16 @@ namespace DesktopFacebook.CustomFeatures.SmartFilter.Filters
             List<User> filteredList = new List<User>();
             AgeRangeFilterData ageFilterData = i_FilterData as AgeRangeFilterData;
 
-            foreach(User friend in i_FriendList)
+            foreach (User friend in i_FriendList)
             {
-                if(string.IsNullOrEmpty(friend.Birthday))
+                if (string.IsNullOrEmpty(friend.Birthday))
                 {
                     continue;
                 }
 
                 int age = DateTime.Now.Year - DateTime.Parse(friend.Birthday).Year;
 
-                if(age < 18 && ageFilterData.IsUnder18 || age>=18 && !ageFilterData.IsUnder18)
+                if ((age < 18 && ageFilterData.IsUnder18) || (age >= 18 && !ageFilterData.IsUnder18))
                 {
                     filteredList.Add(friend);
                 }

@@ -2,7 +2,7 @@
 
 namespace DesktopFacebook.CustomFeatures.SmartFilter.FiltersData
 {
-    public class GenderFilterData:FilterData
+    public class GenderFilterData : FilterData
     {
         private eGender m_Gender;
 
@@ -12,9 +12,8 @@ namespace DesktopFacebook.CustomFeatures.SmartFilter.FiltersData
             set { m_Gender = value; }
         }
 
-        public GenderFilterData():base(eFilterType.GenderFilter)
+        public GenderFilterData() : base(eFilterType.GenderFilter)
         {
-
         }
     }
 }

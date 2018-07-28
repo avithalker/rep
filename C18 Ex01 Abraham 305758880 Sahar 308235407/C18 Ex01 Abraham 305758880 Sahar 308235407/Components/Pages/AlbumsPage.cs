@@ -1,9 +1,9 @@
-﻿using DesktopFacebook.Business;
-using DesktopFacebook.Components.UserControls;
-using FacebookWrapper.ObjectModel;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using DesktopFacebook.Business;
+using DesktopFacebook.Components.UserControls;
+using FacebookWrapper.ObjectModel;
 
 namespace DesktopFacebook.Components.Pages
 {

@@ -12,12 +12,12 @@ namespace DesktopFacebook.Components.UserControls
             set { m_Id = value; }
         }
 
-        public TitledPictureControl(string i_ImageUrl,string i_Title,string i_Id)
+        public TitledPictureControl(string i_ImageUrl, string i_Title, string i_Id)
         {
             InitializeComponent();
             m_Id = i_Id;
             TitleLabel.Text = i_Title;
-            if(!string.IsNullOrEmpty(i_ImageUrl))
+            if (!string.IsNullOrEmpty(i_ImageUrl))
             {
                 PhotoPictureBox.LoadAsync(i_ImageUrl);
             }

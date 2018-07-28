@@ -19,7 +19,6 @@ namespace DesktopFacebook.Forms
         private AlbumsPage m_AlbumPage;
         private SmartPostPage m_SmartPostPage;
 
-
         public UserProfileForm(FacebookUserManager i_UserManager)
         {
             InitializeComponent();
@@ -194,7 +193,7 @@ namespace DesktopFacebook.Forms
 
             if (string.Compare(postRichTextBox.Text, "What's on your mind?") == 0)
             {
-                postRichTextBox.Text = "";
+                postRichTextBox.Text = string.Empty;
                 postRichTextBox.ForeColor = SystemColors.WindowText;
             }
         }
@@ -202,7 +201,7 @@ namespace DesktopFacebook.Forms
         private void PostTextBox_MouseLeave(object sender, EventArgs e)
         {
             RichTextBox postRichTextBox = sender as RichTextBox;
-            if ((string.IsNullOrEmpty(postRichTextBox.Text)))
+            if (string.IsNullOrEmpty(postRichTextBox.Text))
             {
                 postRichTextBox.Text = "What's on your mind?";
                 postRichTextBox.ForeColor = SystemColors.GrayText;
@@ -253,30 +252,37 @@ namespace DesktopFacebook.Forms
                         {
                             fetchUserPosts();
                         }
+
                         break;
                     }
+
                 case (int)eTabPageType.FriendsPage:
                     {
                         if (!m_DataFetchIndicator.AreFriendsWereFetch)
                         {
                             m_FriendsPage.fetchUsersFriends();
                         }
+
                         break;
                     }
+
                 case (int)eTabPageType.AlbumPage:
                     {
                         if (!m_DataFetchIndicator.AreAlbumsWereFetch)
                         {
                             m_AlbumPage.FetchUserAlbums();
                         }
+
                         break;
                     }
+
                 case (int)eTabPageType.CheckinPage:
                     {
                         if (!m_DataFetchIndicator.AreCheckinWereFetch)
                         {
                             m_checkinPage.FetchCheckins();
                         }
+
                         break;
                     }
             }

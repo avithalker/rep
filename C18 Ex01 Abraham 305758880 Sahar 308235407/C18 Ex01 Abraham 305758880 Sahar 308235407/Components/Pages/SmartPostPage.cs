@@ -1,17 +1,17 @@
-﻿using DesktopFacebook.Business;
-using DesktopFacebook.CustomFeatures.SmartFilter;
-using DesktopFacebook.CustomFeatures.SmartFilter.FiltersData;
-using FacebookWrapper.ObjectModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Linq;
+using DesktopFacebook.Business;
+using DesktopFacebook.CustomFeatures.SmartFilter;
+using DesktopFacebook.CustomFeatures.SmartFilter.FiltersData;
+using FacebookWrapper.ObjectModel;
 
 namespace DesktopFacebook.Components.Pages
 {
     public partial class SmartPostPage : UserControl
     {
-        FacebookUserManager m_FacebookUserManager;
+        private FacebookUserManager m_FacebookUserManager;
 
         public SmartPostPage(FacebookUserManager i_FacebookUserManager)
         {
@@ -29,7 +29,6 @@ namespace DesktopFacebook.Components.Pages
 
         private void RealtionshipCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-
             MarriedRadioButton.Enabled = RealtionshipCheckbox.Checked;
             DivorcedRadioButton.Enabled = RealtionshipCheckbox.Checked;
             SingleRadioButton.Enabled = RealtionshipCheckbox.Checked;
@@ -94,7 +93,6 @@ namespace DesktopFacebook.Components.Pages
             return filterToUse;
         }
             
-
         private FilterData getGenderFilterData()
         {
             GenderFilterData filterData = new GenderFilterData();

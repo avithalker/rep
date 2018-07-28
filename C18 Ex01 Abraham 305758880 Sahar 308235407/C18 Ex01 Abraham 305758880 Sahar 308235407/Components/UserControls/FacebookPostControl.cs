@@ -1,14 +1,14 @@
-﻿using DesktopFacebook.Business;
-using FacebookWrapper.ObjectModel;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using DesktopFacebook.Business;
+using FacebookWrapper.ObjectModel;
 
 namespace DesktopFacebook.Components.UserControls
 {
     public partial class FacebookPostControl : UserControl
     {
-        FacebookUserManager m_FacebookUserManager;
+        private FacebookUserManager m_FacebookUserManager;
         private string m_TaggedFriends;
 
         public FacebookPostControl()
@@ -29,7 +29,7 @@ namespace DesktopFacebook.Components.UserControls
                 m_FacebookUserManager = value;
             }
         }
-            
+
         private void CleanPostControls()
         {
             PreviewPhotoPictureBox.Image = null;
@@ -45,8 +45,9 @@ namespace DesktopFacebook.Components.UserControls
                 {
                     int wallPostXLocation = AttachPhotoPictureBox1.Location.X;
                     int wallPostYLocation = AttachPhotoPictureBox1.Location.Y + AttachPhotoPictureBox1.Height + 40;
-                    Status postedStatus = m_FacebookUserManager.NativeClient.PostStatus(PostTextBox.Text,i_TaggedFriendIDs:m_TaggedFriends);
-                //    AddNewWallPostToExistWall(m_FacebookUser.Posts[0], wallPostXLocation, wallPostYLocation);
+                    Status postedStatus = m_FacebookUserManager.NativeClient.PostStatus(PostTextBox.Text, i_TaggedFriendIDs: m_TaggedFriends);
+                    
+                    // AddNewWallPostToExistWall(m_FacebookUser.Posts[0], wallPostXLocation, wallPostYLocation);
                 }
                 else
                 {
@@ -91,7 +92,7 @@ namespace DesktopFacebook.Components.UserControls
 
             if (string.Compare(postRichTextBox.Text, "What's on your mind?") == 0)
             {
-                postRichTextBox.Text = "";
+                postRichTextBox.Text = string.Empty;
                 postRichTextBox.ForeColor = SystemColors.WindowText;
             }
         }
@@ -99,12 +100,11 @@ namespace DesktopFacebook.Components.UserControls
         private void PostTextBox_MouseLeave(object sender, EventArgs e)
         {
             RichTextBox postRichTextBox = sender as RichTextBox;
-            if ((string.IsNullOrEmpty(postRichTextBox.Text)))
+            if (string.IsNullOrEmpty(postRichTextBox.Text))
             {
                 postRichTextBox.Text = "What's on your mind?";
                 postRichTextBox.ForeColor = SystemColors.GrayText;
             }
         }
-
     }
 }
