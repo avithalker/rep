@@ -21,7 +21,7 @@ namespace DesktopFacebook.Business
 
             LoginResult result;
 
-            if(string.IsNullOrEmpty(i_AccessToken))
+            if (string.IsNullOrEmpty(i_AccessToken))
             {
                 result = FacebookService.Login(ApplicationSettings.k_ApplicationId, ApplicationSettings.sr_ApplicationPermissions);
             }
@@ -53,13 +53,13 @@ namespace DesktopFacebook.Business
             return requestedFriend;
         }
 
-        public bool IsFriendLikedPost(Post i_Post, string i_FriendId )
+        public bool IsFriendLikedPost(Post i_Post, string i_FriendId)
         {
             bool result = false;
 
-            foreach(User friend in  i_Post.LikedBy)
+            foreach (User friend in i_Post.LikedBy)
             {
-                if(friend.Id == i_FriendId)
+                if (friend.Id == i_FriendId)
                 {
                     result = true;
                     break;
@@ -89,18 +89,57 @@ namespace DesktopFacebook.Business
         {
             List<Event> events = new List<Event>();
 
-            foreach(Event userEvent in m_NativeClient.Events)
+            foreach (Event userEvent in m_NativeClient.Events)
             {
-                if(userEvent.StartTime.HasValue)
+                if (userEvent.StartTime.HasValue)
                 {
-                    if(userEvent.StartTime.Value.Date == i_EventDate.Date)
+                    if (userEvent.StartTime.Value.Date == i_EventDate.Date)
                     {
                         events.Add(userEvent);
                     }
                 }
             }
 
-            return events;        
+            return events;
+        }
+
+        public Event.eRsvpType GetRsvpForEvent(string i_EventId)
+        {
+            Event.eRsvpType eventRsvp;
+
+            if(isEventExistInCollection(i_EventId,m_NativeClient.EventsCreated))
+            {
+                eventRsvp = Event.eRsvpType.Attending;
+            }
+            else if(isEventExistInCollection(i_EventId, m_NativeClient.EventsDeclined))
+            {
+                eventRsvp = Event.eRsvpType.Declined;
+            }
+            else if(isEventExistInCollection(i_EventId, m_NativeClient.EventsMaybe))
+            {
+                eventRsvp = Event.eRsvpType.Maybe;
+            }
+            else
+            {
+                throw new Exception("Rsvp unknown!");
+            }
+
+            return eventRsvp;
+        }
+
+        private bool isEventExistInCollection(string i_EventId, FacebookObjectCollection<Event> i_Events)
+        {
+            bool isExist = false;
+            foreach (Event userEvent in m_NativeClient.EventsCreated)
+            {
+                if (string.Compare(userEvent.Id, i_EventId) == 0)
+                {
+                    isExist = true;
+                    break;
+                }
+            }
+
+            return isExist;
         }
     }
 }

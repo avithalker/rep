@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.EventExtendedGroupBox = new System.Windows.Forms.GroupBox();
+            this.StatusOutputLabel = new System.Windows.Forms.Label();
+            this.EndDateOutputLabel = new System.Windows.Forms.Label();
+            this.StartDateOutputLabel = new System.Windows.Forms.Label();
+            this.DescriptionOutputLabel = new System.Windows.Forms.Label();
+            this.LocationOutputLabel = new System.Windows.Forms.Label();
+            this.EventNameOutputLabel = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -44,6 +50,12 @@
             // 
             // EventExtendedGroupBox
             // 
+            this.EventExtendedGroupBox.Controls.Add(this.StatusOutputLabel);
+            this.EventExtendedGroupBox.Controls.Add(this.EndDateOutputLabel);
+            this.EventExtendedGroupBox.Controls.Add(this.StartDateOutputLabel);
+            this.EventExtendedGroupBox.Controls.Add(this.DescriptionOutputLabel);
+            this.EventExtendedGroupBox.Controls.Add(this.LocationOutputLabel);
+            this.EventExtendedGroupBox.Controls.Add(this.EventNameOutputLabel);
             this.EventExtendedGroupBox.Controls.Add(this.label8);
             this.EventExtendedGroupBox.Controls.Add(this.label7);
             this.EventExtendedGroupBox.Controls.Add(this.label6);
@@ -58,57 +70,117 @@
             this.EventExtendedGroupBox.TabStop = false;
             this.EventExtendedGroupBox.Text = "Event details";
             // 
+            // StatusOutputLabel
+            // 
+            this.StatusOutputLabel.AutoSize = true;
+            this.StatusOutputLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusOutputLabel.Location = new System.Drawing.Point(470, 136);
+            this.StatusOutputLabel.Name = "StatusOutputLabel";
+            this.StatusOutputLabel.Size = new System.Drawing.Size(0, 16);
+            this.StatusOutputLabel.TabIndex = 11;
+            // 
+            // EndDateOutputLabel
+            // 
+            this.EndDateOutputLabel.AutoSize = true;
+            this.EndDateOutputLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EndDateOutputLabel.Location = new System.Drawing.Point(470, 84);
+            this.EndDateOutputLabel.Name = "EndDateOutputLabel";
+            this.EndDateOutputLabel.Size = new System.Drawing.Size(0, 16);
+            this.EndDateOutputLabel.TabIndex = 10;
+            // 
+            // StartDateOutputLabel
+            // 
+            this.StartDateOutputLabel.AutoSize = true;
+            this.StartDateOutputLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StartDateOutputLabel.Location = new System.Drawing.Point(470, 37);
+            this.StartDateOutputLabel.Name = "StartDateOutputLabel";
+            this.StartDateOutputLabel.Size = new System.Drawing.Size(0, 16);
+            this.StartDateOutputLabel.TabIndex = 9;
+            // 
+            // DescriptionOutputLabel
+            // 
+            this.DescriptionOutputLabel.AutoSize = true;
+            this.DescriptionOutputLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DescriptionOutputLabel.Location = new System.Drawing.Point(121, 136);
+            this.DescriptionOutputLabel.Name = "DescriptionOutputLabel";
+            this.DescriptionOutputLabel.Size = new System.Drawing.Size(0, 16);
+            this.DescriptionOutputLabel.TabIndex = 8;
+            // 
+            // LocationOutputLabel
+            // 
+            this.LocationOutputLabel.AutoSize = true;
+            this.LocationOutputLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LocationOutputLabel.Location = new System.Drawing.Point(121, 84);
+            this.LocationOutputLabel.Name = "LocationOutputLabel";
+            this.LocationOutputLabel.Size = new System.Drawing.Size(0, 16);
+            this.LocationOutputLabel.TabIndex = 7;
+            // 
+            // EventNameOutputLabel
+            // 
+            this.EventNameOutputLabel.AutoSize = true;
+            this.EventNameOutputLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EventNameOutputLabel.Location = new System.Drawing.Point(121, 37);
+            this.EventNameOutputLabel.Name = "EventNameOutputLabel";
+            this.EventNameOutputLabel.Size = new System.Drawing.Size(0, 16);
+            this.EventNameOutputLabel.TabIndex = 6;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(343, 136);
+            this.label8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(343, 133);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 16);
+            this.label8.Size = new System.Drawing.Size(45, 16);
             this.label8.TabIndex = 5;
-            this.label8.Text = "Status:";
+            this.label8.Text = "Rsvp:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(343, 84);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 16);
+            this.label7.Size = new System.Drawing.Size(70, 16);
             this.label7.TabIndex = 4;
             this.label7.Text = "End date:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(343, 37);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(70, 16);
+            this.label6.Size = new System.Drawing.Size(81, 16);
             this.label6.TabIndex = 3;
             this.label6.Text = "Start date:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(7, 133);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 16);
+            this.label5.Size = new System.Drawing.Size(86, 16);
             this.label5.TabIndex = 2;
             this.label5.Text = "Description:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(7, 84);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 16);
+            this.label4.Size = new System.Drawing.Size(68, 16);
             this.label4.TabIndex = 1;
             this.label4.Text = "Location:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(7, 37);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 16);
+            this.label3.Size = new System.Drawing.Size(89, 16);
             this.label3.TabIndex = 0;
             this.label3.Text = "Event name:";
             // 
@@ -187,5 +259,11 @@
         private System.Windows.Forms.Label ThisDayEventLabel;
         private System.Windows.Forms.ListBox EventsListBox;
         private System.Windows.Forms.DateTimePicker EventDatePicker;
+        private System.Windows.Forms.Label StatusOutputLabel;
+        private System.Windows.Forms.Label EndDateOutputLabel;
+        private System.Windows.Forms.Label StartDateOutputLabel;
+        private System.Windows.Forms.Label DescriptionOutputLabel;
+        private System.Windows.Forms.Label LocationOutputLabel;
+        private System.Windows.Forms.Label EventNameOutputLabel;
     }
 }
