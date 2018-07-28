@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using DesktopFacebook.Business;
@@ -227,12 +228,15 @@ namespace DesktopFacebook.Forms
             return mostPopular;
         }
 
-        private void FetchCheckinsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void FetchCheckins()
         {
+            CheckinsListBox.DisplayMember = "Description";
             foreach (Checkin checkin in m_FacebookUser.Checkins)
             {
-                CheckinsListBox.Items.Add(checkin.ToString());
+                CheckinsListBox.Items.Add(checkin);
             }
+
+            m_DataFetchIndicator.AreCheckinWereFetch = true;
         }
 
         private void FetchUserAlbums()
@@ -377,7 +381,43 @@ namespace DesktopFacebook.Forms
                         }
                         break;
                     }
+                case (int)eTabPageType.CheckinPage:
+                    {
+                        if (!m_DataFetchIndicator.AreCheckinWereFetch)
+                        {
+                            FetchCheckins();
+                        }
+                        break;
+                    }
             }
+        }
+
+        private void CheckinsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Checkin selectedCheckin = CheckinsListBox.SelectedItem as Checkin;
+            fillExtendedChekinData(selectedCheckin);
+        }
+
+        private void fillExtendedChekinData(Checkin selectedCheckin)
+        {
+            CheckinMessgeOutputLabel.Text = selectedCheckin.Message;
+            CheckinLocationOutputLabel.Text = selectedCheckin.Description;
+            if (selectedCheckin.CreatedTime.HasValue)
+            {
+                CheckinDateOutputLbel.Text = selectedCheckin.CreatedTime.Value.ToString("dd/MM/yyyy hh:mm");
+            }
+            else
+            {
+                CheckinDateOutputLbel.Text = string.Empty;
+            }
+
+            List<string> friendsName = new List<string>();
+            foreach(User friend in selectedCheckin.WithUsers)
+            {
+                friendsName.Add(friend.Name);
+            }
+
+            CheckinFriendsOutputLabel.Text = string.Join(", ", friendsName);      
         }
     }
 }

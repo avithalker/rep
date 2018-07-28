@@ -4,6 +4,7 @@
     {
         WallPage,
         FriendsPage,
-        AlbumPage
+        AlbumPage,
+        CheckinPage
     }
 }
