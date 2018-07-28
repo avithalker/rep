@@ -49,17 +49,7 @@ namespace DesktopFacebook.Components.UserControls
             }
         }
 
-        private void ClickableControl_MouseMove(object sender, MouseEventArgs e)
-        {
-            Cursor.Current = Cursors.Hand;
-        }
-
-        private void ClickableControl_MouseLeave(object sender, EventArgs e)
-        {
-            Cursor.Current = Cursors.Default;
-        }
-
-        private void WallPostLikeButton_Click(object sender, EventArgs e)
+        private void WallPostLikeButton1_Click(object sender, EventArgs e)
         {
             try
             {
@@ -93,14 +83,14 @@ namespace DesktopFacebook.Components.UserControls
             TotalLikesLabel.Text = m_WallPost.LikedBy.Count.ToString();
         }
 
-        private void DeletePostButton_Click(object sender, EventArgs e)
+        private void DeletePostButton1_Click(object sender, EventArgs e)
         {
             try
             {
                 m_WallPost.Delete();
                 this.Hide();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(string.Format("Unable to delete post. Info: {0}", ex.Message));
             }

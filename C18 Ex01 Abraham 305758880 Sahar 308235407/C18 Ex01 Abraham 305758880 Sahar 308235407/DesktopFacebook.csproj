@@ -51,12 +51,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonDefines\eTabPageType.cs" />
+    <Compile Include="Components\UserControls\ClickablePictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\UserControls\TitledPictureControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\UserControls\TitledPictureControl.Designer.cs">
+      <DependentUpon>TitledPictureControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\UserControls\WallPostControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Components\UserControls\WallPostControl.Designer.cs">
       <DependentUpon>WallPostControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataFetchIndicator.cs" />
     <Compile Include="Forms\LoginUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +82,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Components\UserControls\TitledPictureControl.resx">
+      <DependentUpon>TitledPictureControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\UserControls\WallPostControl.resx">
       <DependentUpon>WallPostControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,6 +130,7 @@
     <Content Include="Components\Resources\Clear.png" />
     <Content Include="Components\Resources\Delete.png" />
     <Content Include="Components\Resources\ImagePlaceHolder.png" />
+    <None Include="Components\Resources\ImagePlaceHolder2.png" />
     <Content Include="Components\Resources\Like.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

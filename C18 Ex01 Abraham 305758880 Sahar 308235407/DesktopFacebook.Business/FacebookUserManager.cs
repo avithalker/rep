@@ -71,5 +71,21 @@ namespace DesktopFacebook.Business
 
             return result;
         }
+
+        public Album FindAlbumById(string i_Id)
+        {
+            Album requestedAlbum = null;
+
+            foreach (Album album in m_NativeClient.Albums)
+            {
+                if (string.Compare(album.Id, i_Id) == 0)
+                {
+                    requestedAlbum = album;
+                    break;
+                }
+            }
+
+            return requestedAlbum;
+        }
     }
 }

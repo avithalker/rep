@@ -38,7 +38,17 @@
             this.UserRelationshipLabel = new System.Windows.Forms.Label();
             this.UsersBirthdate = new System.Windows.Forms.Label();
             this.UsersDetailsControlTab = new System.Windows.Forms.TabControl();
+            this.UserWallTab = new System.Windows.Forms.TabPage();
+            this.ClearImagePictureBox1 = new DesktopFacebook.Components.UserControls.ClickablePictureBox();
+            this.AttachPhotoPictureBox1 = new DesktopFacebook.Components.UserControls.ClickablePictureBox();
+            this.PreviewPhotoPictureBox = new System.Windows.Forms.PictureBox();
+            this.PostTextBox = new System.Windows.Forms.RichTextBox();
+            this.PostButton = new System.Windows.Forms.Button();
             this.FriendsTab = new System.Windows.Forms.TabPage();
+            this.AlbumsTab = new System.Windows.Forms.TabPage();
+            this.SelectedAlbumNameLabel = new System.Windows.Forms.Label();
+            this.AlbumPicturesPanel = new System.Windows.Forms.Panel();
+            this.AlbumsPanel = new System.Windows.Forms.Panel();
             this.PostsTab = new System.Windows.Forms.TabPage();
             this.RecentPostsLink = new System.Windows.Forms.LinkLabel();
             this.TopFiveLink = new System.Windows.Forms.LinkLabel();
@@ -46,18 +56,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TopFivePostsListBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.AlbumsTab = new System.Windows.Forms.TabPage();
-            this.AlbumsPanel = new System.Windows.Forms.Panel();
-            this.FetchAlbumsLink = new System.Windows.Forms.LinkLabel();
             this.CheckInsTab = new System.Windows.Forms.TabPage();
             this.FetchCheckinsLink = new System.Windows.Forms.LinkLabel();
             this.CheckinsListBox = new System.Windows.Forms.ListBox();
-            this.UserWallTab = new System.Windows.Forms.TabPage();
-            this.ClearImagePictureBox = new System.Windows.Forms.PictureBox();
-            this.PreviewPhotoPictureBox = new System.Windows.Forms.PictureBox();
-            this.AttachPhotoPictureBox = new System.Windows.Forms.PictureBox();
-            this.PostTextBox = new System.Windows.Forms.RichTextBox();
-            this.PostButton = new System.Windows.Forms.Button();
             this.HomeTownLable = new System.Windows.Forms.Label();
             this.CurrentCityLabel = new System.Windows.Forms.Label();
             this.UserHomeTownLabel = new System.Windows.Forms.Label();
@@ -65,13 +66,13 @@
             this.PictureFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.UserProfilePicture = new System.Windows.Forms.PictureBox();
             this.UsersDetailsControlTab.SuspendLayout();
-            this.PostsTab.SuspendLayout();
-            this.AlbumsTab.SuspendLayout();
-            this.CheckInsTab.SuspendLayout();
             this.UserWallTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ClearImagePictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ClearImagePictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AttachPhotoPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PreviewPhotoPictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AttachPhotoPictureBox)).BeginInit();
+            this.AlbumsTab.SuspendLayout();
+            this.PostsTab.SuspendLayout();
+            this.CheckInsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -155,17 +156,90 @@
             // 
             // UsersDetailsControlTab
             // 
-            this.UsersDetailsControlTab.Controls.Add(this.FriendsTab);
-            this.UsersDetailsControlTab.Controls.Add(this.PostsTab);
-            this.UsersDetailsControlTab.Controls.Add(this.AlbumsTab);
-            this.UsersDetailsControlTab.Controls.Add(this.CheckInsTab);
             this.UsersDetailsControlTab.Controls.Add(this.UserWallTab);
+            this.UsersDetailsControlTab.Controls.Add(this.FriendsTab);
+            this.UsersDetailsControlTab.Controls.Add(this.AlbumsTab);
+            this.UsersDetailsControlTab.Controls.Add(this.PostsTab);
+            this.UsersDetailsControlTab.Controls.Add(this.CheckInsTab);
             this.UsersDetailsControlTab.Location = new System.Drawing.Point(305, 6);
             this.UsersDetailsControlTab.Margin = new System.Windows.Forms.Padding(2);
             this.UsersDetailsControlTab.Name = "UsersDetailsControlTab";
             this.UsersDetailsControlTab.SelectedIndex = 0;
             this.UsersDetailsControlTab.Size = new System.Drawing.Size(712, 508);
             this.UsersDetailsControlTab.TabIndex = 9;
+            this.UsersDetailsControlTab.Selected += new System.Windows.Forms.TabControlEventHandler(this.UsersDetailsControlTab_Selected);
+            // 
+            // UserWallTab
+            // 
+            this.UserWallTab.AutoScroll = true;
+            this.UserWallTab.Controls.Add(this.ClearImagePictureBox1);
+            this.UserWallTab.Controls.Add(this.AttachPhotoPictureBox1);
+            this.UserWallTab.Controls.Add(this.PreviewPhotoPictureBox);
+            this.UserWallTab.Controls.Add(this.PostTextBox);
+            this.UserWallTab.Controls.Add(this.PostButton);
+            this.UserWallTab.Location = new System.Drawing.Point(4, 22);
+            this.UserWallTab.Margin = new System.Windows.Forms.Padding(2);
+            this.UserWallTab.Name = "UserWallTab";
+            this.UserWallTab.Size = new System.Drawing.Size(704, 482);
+            this.UserWallTab.TabIndex = 4;
+            this.UserWallTab.Text = "My wall";
+            this.UserWallTab.UseVisualStyleBackColor = true;
+            // 
+            // ClearImagePictureBox1
+            // 
+            this.ClearImagePictureBox1.Image = global::DesktopFacebook.Properties.Resources.Clear;
+            this.ClearImagePictureBox1.Location = new System.Drawing.Point(545, 15);
+            this.ClearImagePictureBox1.Name = "ClearImagePictureBox1";
+            this.ClearImagePictureBox1.Size = new System.Drawing.Size(25, 25);
+            this.ClearImagePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ClearImagePictureBox1.TabIndex = 7;
+            this.ClearImagePictureBox1.TabStop = false;
+            this.ClearImagePictureBox1.Visible = false;
+            this.ClearImagePictureBox1.Click += new System.EventHandler(this.ClearImagePictureBox1_Click);
+            // 
+            // AttachPhotoPictureBox1
+            // 
+            this.AttachPhotoPictureBox1.ErrorImage = null;
+            this.AttachPhotoPictureBox1.Image = global::DesktopFacebook.Properties.Resources.ImagePlaceHolder;
+            this.AttachPhotoPictureBox1.Location = new System.Drawing.Point(15, 102);
+            this.AttachPhotoPictureBox1.Name = "AttachPhotoPictureBox1";
+            this.AttachPhotoPictureBox1.Size = new System.Drawing.Size(42, 35);
+            this.AttachPhotoPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.AttachPhotoPictureBox1.TabIndex = 6;
+            this.AttachPhotoPictureBox1.TabStop = false;
+            this.AttachPhotoPictureBox1.Click += new System.EventHandler(this.AttachPhotoPictureBox1_Click);
+            // 
+            // PreviewPhotoPictureBox
+            // 
+            this.PreviewPhotoPictureBox.Location = new System.Drawing.Point(545, 15);
+            this.PreviewPhotoPictureBox.Name = "PreviewPhotoPictureBox";
+            this.PreviewPhotoPictureBox.Size = new System.Drawing.Size(140, 140);
+            this.PreviewPhotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PreviewPhotoPictureBox.TabIndex = 4;
+            this.PreviewPhotoPictureBox.TabStop = false;
+            // 
+            // PostTextBox
+            // 
+            this.PostTextBox.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PostTextBox.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.PostTextBox.Location = new System.Drawing.Point(15, 15);
+            this.PostTextBox.Name = "PostTextBox";
+            this.PostTextBox.Size = new System.Drawing.Size(524, 81);
+            this.PostTextBox.TabIndex = 2;
+            this.PostTextBox.Text = "What\'s on your mind?";
+            this.PostTextBox.MouseEnter += new System.EventHandler(this.PostTextBox_MouseEnter);
+            this.PostTextBox.MouseLeave += new System.EventHandler(this.PostTextBox_MouseLeave);
+            // 
+            // PostButton
+            // 
+            this.PostButton.Location = new System.Drawing.Point(94, 115);
+            this.PostButton.Margin = new System.Windows.Forms.Padding(2);
+            this.PostButton.Name = "PostButton";
+            this.PostButton.Size = new System.Drawing.Size(102, 22);
+            this.PostButton.TabIndex = 0;
+            this.PostButton.Text = "Post";
+            this.PostButton.UseVisualStyleBackColor = true;
+            this.PostButton.Click += new System.EventHandler(this.PostButton_Click);
             // 
             // FriendsTab
             // 
@@ -178,6 +252,46 @@
             this.FriendsTab.TabIndex = 0;
             this.FriendsTab.Text = "Friends";
             this.FriendsTab.UseVisualStyleBackColor = true;
+            // 
+            // AlbumsTab
+            // 
+            this.AlbumsTab.Controls.Add(this.SelectedAlbumNameLabel);
+            this.AlbumsTab.Controls.Add(this.AlbumPicturesPanel);
+            this.AlbumsTab.Controls.Add(this.AlbumsPanel);
+            this.AlbumsTab.Location = new System.Drawing.Point(4, 22);
+            this.AlbumsTab.Margin = new System.Windows.Forms.Padding(2);
+            this.AlbumsTab.Name = "AlbumsTab";
+            this.AlbumsTab.Size = new System.Drawing.Size(704, 482);
+            this.AlbumsTab.TabIndex = 2;
+            this.AlbumsTab.Text = "Albums";
+            this.AlbumsTab.UseVisualStyleBackColor = true;
+            // 
+            // SelectedAlbumNameLabel
+            // 
+            this.SelectedAlbumNameLabel.AutoSize = true;
+            this.SelectedAlbumNameLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SelectedAlbumNameLabel.Location = new System.Drawing.Point(222, 13);
+            this.SelectedAlbumNameLabel.Name = "SelectedAlbumNameLabel";
+            this.SelectedAlbumNameLabel.Size = new System.Drawing.Size(163, 16);
+            this.SelectedAlbumNameLabel.TabIndex = 3;
+            this.SelectedAlbumNameLabel.Text = "Non album was selected";
+            // 
+            // AlbumPicturesPanel
+            // 
+            this.AlbumPicturesPanel.AutoScroll = true;
+            this.AlbumPicturesPanel.Location = new System.Drawing.Point(222, 42);
+            this.AlbumPicturesPanel.Name = "AlbumPicturesPanel";
+            this.AlbumPicturesPanel.Size = new System.Drawing.Size(465, 428);
+            this.AlbumPicturesPanel.TabIndex = 2;
+            // 
+            // AlbumsPanel
+            // 
+            this.AlbumsPanel.AutoScroll = true;
+            this.AlbumsPanel.Location = new System.Drawing.Point(2, 2);
+            this.AlbumsPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.AlbumsPanel.Name = "AlbumsPanel";
+            this.AlbumsPanel.Size = new System.Drawing.Size(207, 480);
+            this.AlbumsPanel.TabIndex = 1;
             // 
             // PostsTab
             // 
@@ -258,38 +372,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Top 5 Posts:";
             // 
-            // AlbumsTab
-            // 
-            this.AlbumsTab.Controls.Add(this.AlbumsPanel);
-            this.AlbumsTab.Controls.Add(this.FetchAlbumsLink);
-            this.AlbumsTab.Location = new System.Drawing.Point(4, 22);
-            this.AlbumsTab.Margin = new System.Windows.Forms.Padding(2);
-            this.AlbumsTab.Name = "AlbumsTab";
-            this.AlbumsTab.Size = new System.Drawing.Size(704, 482);
-            this.AlbumsTab.TabIndex = 2;
-            this.AlbumsTab.Text = "Albums";
-            this.AlbumsTab.UseVisualStyleBackColor = true;
-            // 
-            // AlbumsPanel
-            // 
-            this.AlbumsPanel.Location = new System.Drawing.Point(10, 64);
-            this.AlbumsPanel.Margin = new System.Windows.Forms.Padding(2);
-            this.AlbumsPanel.Name = "AlbumsPanel";
-            this.AlbumsPanel.Size = new System.Drawing.Size(592, 418);
-            this.AlbumsPanel.TabIndex = 1;
-            // 
-            // FetchAlbumsLink
-            // 
-            this.FetchAlbumsLink.AutoSize = true;
-            this.FetchAlbumsLink.Location = new System.Drawing.Point(20, 27);
-            this.FetchAlbumsLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.FetchAlbumsLink.Name = "FetchAlbumsLink";
-            this.FetchAlbumsLink.Size = new System.Drawing.Size(71, 13);
-            this.FetchAlbumsLink.TabIndex = 0;
-            this.FetchAlbumsLink.TabStop = true;
-            this.FetchAlbumsLink.Text = "Fetch Albums";
-            this.FetchAlbumsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FetchAlbumsLink_LinkClicked);
-            // 
             // CheckInsTab
             // 
             this.CheckInsTab.Controls.Add(this.FetchCheckinsLink);
@@ -322,81 +404,6 @@
             this.CheckinsListBox.Name = "CheckinsListBox";
             this.CheckinsListBox.Size = new System.Drawing.Size(236, 134);
             this.CheckinsListBox.TabIndex = 0;
-            // 
-            // UserWallTab
-            // 
-            this.UserWallTab.AutoScroll = true;
-            this.UserWallTab.Controls.Add(this.ClearImagePictureBox);
-            this.UserWallTab.Controls.Add(this.PreviewPhotoPictureBox);
-            this.UserWallTab.Controls.Add(this.AttachPhotoPictureBox);
-            this.UserWallTab.Controls.Add(this.PostTextBox);
-            this.UserWallTab.Controls.Add(this.PostButton);
-            this.UserWallTab.Location = new System.Drawing.Point(4, 22);
-            this.UserWallTab.Margin = new System.Windows.Forms.Padding(2);
-            this.UserWallTab.Name = "UserWallTab";
-            this.UserWallTab.Size = new System.Drawing.Size(704, 482);
-            this.UserWallTab.TabIndex = 4;
-            this.UserWallTab.Text = "My wall";
-            this.UserWallTab.UseVisualStyleBackColor = true;
-            // 
-            // ClearImagePictureBox
-            // 
-            this.ClearImagePictureBox.Image = global::DesktopFacebook.Properties.Resources.Clear;
-            this.ClearImagePictureBox.Location = new System.Drawing.Point(545, 15);
-            this.ClearImagePictureBox.Name = "ClearImagePictureBox";
-            this.ClearImagePictureBox.Size = new System.Drawing.Size(25, 25);
-            this.ClearImagePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ClearImagePictureBox.TabIndex = 5;
-            this.ClearImagePictureBox.TabStop = false;
-            this.ClearImagePictureBox.Visible = false;
-            this.ClearImagePictureBox.Click += new System.EventHandler(this.ClearImagePictureBox_Click);
-            this.ClearImagePictureBox.MouseLeave += new System.EventHandler(this.ClickableControl_MouseLeave);
-            this.ClearImagePictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ClickableControl_MouseMove);
-            // 
-            // PreviewPhotoPictureBox
-            // 
-            this.PreviewPhotoPictureBox.Location = new System.Drawing.Point(545, 15);
-            this.PreviewPhotoPictureBox.Name = "PreviewPhotoPictureBox";
-            this.PreviewPhotoPictureBox.Size = new System.Drawing.Size(140, 140);
-            this.PreviewPhotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PreviewPhotoPictureBox.TabIndex = 4;
-            this.PreviewPhotoPictureBox.TabStop = false;
-            // 
-            // AttachPhotoPictureBox
-            // 
-            this.AttachPhotoPictureBox.Image = global::DesktopFacebook.Properties.Resources.ImagePlaceHolder;
-            this.AttachPhotoPictureBox.Location = new System.Drawing.Point(15, 102);
-            this.AttachPhotoPictureBox.Name = "AttachPhotoPictureBox";
-            this.AttachPhotoPictureBox.Size = new System.Drawing.Size(42, 35);
-            this.AttachPhotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.AttachPhotoPictureBox.TabIndex = 3;
-            this.AttachPhotoPictureBox.TabStop = false;
-            this.AttachPhotoPictureBox.Click += new System.EventHandler(this.AttachPhotoPictureBox_Click);
-            this.AttachPhotoPictureBox.MouseLeave += new System.EventHandler(this.ClickableControl_MouseLeave);
-            this.AttachPhotoPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ClickableControl_MouseMove);
-            // 
-            // PostTextBox
-            // 
-            this.PostTextBox.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PostTextBox.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.PostTextBox.Location = new System.Drawing.Point(15, 15);
-            this.PostTextBox.Name = "PostTextBox";
-            this.PostTextBox.Size = new System.Drawing.Size(524, 81);
-            this.PostTextBox.TabIndex = 2;
-            this.PostTextBox.Text = "What\'s on your mind?";
-            this.PostTextBox.MouseEnter += new System.EventHandler(this.PostTextBox_MouseEnter);
-            this.PostTextBox.MouseLeave += new System.EventHandler(this.PostTextBox_MouseLeave);
-            // 
-            // PostButton
-            // 
-            this.PostButton.Location = new System.Drawing.Point(94, 115);
-            this.PostButton.Margin = new System.Windows.Forms.Padding(2);
-            this.PostButton.Name = "PostButton";
-            this.PostButton.Size = new System.Drawing.Size(102, 22);
-            this.PostButton.TabIndex = 0;
-            this.PostButton.Text = "Post";
-            this.PostButton.UseVisualStyleBackColor = true;
-            this.PostButton.Click += new System.EventHandler(this.PostButton_Click);
             // 
             // HomeTownLable
             // 
@@ -461,6 +468,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1096, 585);
             this.Controls.Add(this.UserCurrentCityLabel);
             this.Controls.Add(this.UserHomeTownLabel);
@@ -479,17 +487,18 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UserProfileForm";
             this.Text = "UserProfileForm";
+            this.Shown += new System.EventHandler(this.UserProfileForm_Shown);
             this.UsersDetailsControlTab.ResumeLayout(false);
-            this.PostsTab.ResumeLayout(false);
-            this.PostsTab.PerformLayout();
+            this.UserWallTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ClearImagePictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AttachPhotoPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PreviewPhotoPictureBox)).EndInit();
             this.AlbumsTab.ResumeLayout(false);
             this.AlbumsTab.PerformLayout();
+            this.PostsTab.ResumeLayout(false);
+            this.PostsTab.PerformLayout();
             this.CheckInsTab.ResumeLayout(false);
             this.CheckInsTab.PerformLayout();
-            this.UserWallTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ClearImagePictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PreviewPhotoPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AttachPhotoPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -521,7 +530,6 @@
         private System.Windows.Forms.LinkLabel TopFiveLink;
         private System.Windows.Forms.LinkLabel FetchCheckinsLink;
         private System.Windows.Forms.ListBox CheckinsListBox;
-        private System.Windows.Forms.LinkLabel FetchAlbumsLink;
         private System.Windows.Forms.Panel AlbumsPanel;
         private System.Windows.Forms.Label HomeTownLable;
         private System.Windows.Forms.Label CurrentCityLabel;
@@ -529,8 +537,10 @@
         private System.Windows.Forms.Label UserCurrentCityLabel;
         private System.Windows.Forms.RichTextBox PostTextBox;
         private System.Windows.Forms.OpenFileDialog PictureFileDialog;
-        private System.Windows.Forms.PictureBox AttachPhotoPictureBox;
         private System.Windows.Forms.PictureBox PreviewPhotoPictureBox;
-        private System.Windows.Forms.PictureBox ClearImagePictureBox;
+        private Components.UserControls.ClickablePictureBox AttachPhotoPictureBox1;
+        private Components.UserControls.ClickablePictureBox ClearImagePictureBox1;
+        private System.Windows.Forms.Panel AlbumPicturesPanel;
+        private System.Windows.Forms.Label SelectedAlbumNameLabel;
     }
 }

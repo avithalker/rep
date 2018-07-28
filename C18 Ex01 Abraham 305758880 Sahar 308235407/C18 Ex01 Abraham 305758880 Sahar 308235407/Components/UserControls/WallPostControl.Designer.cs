@@ -34,10 +34,10 @@
             this.PosterNameLabel = new System.Windows.Forms.Label();
             this.PostDateLabel = new System.Windows.Forms.Label();
             this.TotalLikesLabel = new System.Windows.Forms.Label();
-            this.DeletePostButton = new System.Windows.Forms.PictureBox();
-            this.WallPostLikeButton = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.DeletePostButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.WallPostLikeButton)).BeginInit();
+            this.DeletePostButton1 = new DesktopFacebook.Components.UserControls.ClickablePictureBox();
+            this.WallPostLikeButton1 = new DesktopFacebook.Components.UserControls.ClickablePictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.DeletePostButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WallPostLikeButton1)).BeginInit();
             this.SuspendLayout();
             // 
             // PostLabel
@@ -99,42 +99,37 @@
             this.TotalLikesLabel.TabIndex = 6;
             this.TotalLikesLabel.Text = "0";
             // 
-            // DeletePostButton
+            // DeletePostButton1
             // 
-            this.DeletePostButton.BackColor = System.Drawing.Color.Transparent;
-            this.DeletePostButton.Image = global::DesktopFacebook.Properties.Resources.Delete;
-            this.DeletePostButton.Location = new System.Drawing.Point(3, 3);
-            this.DeletePostButton.Name = "DeletePostButton";
-            this.DeletePostButton.Size = new System.Drawing.Size(30, 30);
-            this.DeletePostButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.DeletePostButton.TabIndex = 8;
-            this.DeletePostButton.TabStop = false;
-            this.DeletePostButton.Click += new System.EventHandler(this.DeletePostButton_Click);
-            this.DeletePostButton.MouseLeave += new System.EventHandler(this.ClickableControl_MouseLeave);
-            this.DeletePostButton.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ClickableControl_MouseMove);
+            this.DeletePostButton1.Image = global::DesktopFacebook.Properties.Resources.Delete;
+            this.DeletePostButton1.Location = new System.Drawing.Point(3, 0);
+            this.DeletePostButton1.Name = "DeletePostButton1";
+            this.DeletePostButton1.Size = new System.Drawing.Size(30, 30);
+            this.DeletePostButton1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.DeletePostButton1.TabIndex = 9;
+            this.DeletePostButton1.TabStop = false;
+            this.DeletePostButton1.Click += new System.EventHandler(this.DeletePostButton1_Click);
             // 
-            // WallPostLikeButton
+            // WallPostLikeButton1
             // 
-            this.WallPostLikeButton.BackColor = System.Drawing.Color.Transparent;
-            this.WallPostLikeButton.Image = global::DesktopFacebook.Properties.Resources.Like;
-            this.WallPostLikeButton.Location = new System.Drawing.Point(22, 129);
-            this.WallPostLikeButton.Name = "WallPostLikeButton";
-            this.WallPostLikeButton.Size = new System.Drawing.Size(30, 30);
-            this.WallPostLikeButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.WallPostLikeButton.TabIndex = 5;
-            this.WallPostLikeButton.TabStop = false;
-            this.WallPostLikeButton.Click += new System.EventHandler(this.WallPostLikeButton_Click);
-            this.WallPostLikeButton.MouseLeave += new System.EventHandler(this.ClickableControl_MouseLeave);
-            this.WallPostLikeButton.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ClickableControl_MouseMove);
+            this.WallPostLikeButton1.BackColor = System.Drawing.Color.Transparent;
+            this.WallPostLikeButton1.Image = global::DesktopFacebook.Properties.Resources.Like;
+            this.WallPostLikeButton1.Location = new System.Drawing.Point(22, 128);
+            this.WallPostLikeButton1.Name = "WallPostLikeButton1";
+            this.WallPostLikeButton1.Size = new System.Drawing.Size(30, 30);
+            this.WallPostLikeButton1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.WallPostLikeButton1.TabIndex = 10;
+            this.WallPostLikeButton1.TabStop = false;
+            this.WallPostLikeButton1.Click += new System.EventHandler(this.WallPostLikeButton1_Click);
             // 
             // WallPostControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.Controls.Add(this.DeletePostButton);
+            this.Controls.Add(this.WallPostLikeButton1);
+            this.Controls.Add(this.DeletePostButton1);
             this.Controls.Add(this.TotalLikesLabel);
-            this.Controls.Add(this.WallPostLikeButton);
             this.Controls.Add(this.PostDateLabel);
             this.Controls.Add(this.PosterNameLabel);
             this.Controls.Add(this.label1);
@@ -142,9 +137,8 @@
             this.Controls.Add(this.PostLabel);
             this.Name = "WallPostControl";
             this.Size = new System.Drawing.Size(618, 176);
-            this.MouseLeave += new System.EventHandler(this.ClickableControl_MouseLeave);
-            ((System.ComponentModel.ISupportInitialize)(this.DeletePostButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.WallPostLikeButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeletePostButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WallPostLikeButton1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,8 +151,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label PosterNameLabel;
         private System.Windows.Forms.Label PostDateLabel;
-        private System.Windows.Forms.PictureBox WallPostLikeButton;
         private System.Windows.Forms.Label TotalLikesLabel;
-        private System.Windows.Forms.PictureBox DeletePostButton;
+        private ClickablePictureBox DeletePostButton1;
+        private ClickablePictureBox WallPostLikeButton1;
     }
 }
