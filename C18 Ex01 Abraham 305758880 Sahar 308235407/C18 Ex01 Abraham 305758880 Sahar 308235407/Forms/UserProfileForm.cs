@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using DesktopFacebook.Business;
 using DesktopFacebook.CommonDefines;
+using DesktopFacebook.Components.Pages;
 using DesktopFacebook.Components.UserControls;
 using FacebookWrapper.ObjectModel;
 
@@ -14,6 +15,9 @@ namespace DesktopFacebook.Forms
         private FacebookUserManager m_UserManager;
         private User m_FacebookUser;
         private DataFetchIndicator m_DataFetchIndicator;
+        private CheckinPage m_checkinPage;
+        private FriendsPage m_FriendsPage;
+
 
         public UserProfileForm(FacebookUserManager i_UserManager)
         {
@@ -21,7 +25,18 @@ namespace DesktopFacebook.Forms
             m_UserManager = i_UserManager;
             m_FacebookUser = m_UserManager.NativeClient;
             m_DataFetchIndicator = new DataFetchIndicator();
+            addTabsPages();
             initializeUserGeneralInfo();
+        }
+
+        private void addTabsPages()
+        {
+            m_checkinPage = new CheckinPage(m_UserManager, m_DataFetchIndicator);
+            m_FriendsPage = new FriendsPage(m_UserManager, m_DataFetchIndicator);
+
+            EventsTab.Controls.Add(new EventsPage(m_UserManager));
+            CheckInsTab.Controls.Add(m_checkinPage);
+            FriendsTab.Controls.Add(m_FriendsPage);
         }
 
         private void initializeUserGeneralInfo()
@@ -44,22 +59,6 @@ namespace DesktopFacebook.Forms
             {
                 UserRelationshipLabel.Text = m_FacebookUser.RelationshipStatus.Value.ToString();
             }
-        }
-
-        private void fetchUsersFriends()
-        {
-            int x = FriendsTab.Bounds.Left;
-            int y = FriendsTab.Bounds.Top;
-            int lastPicturewidth = 0;
-            int lastHeight = 0;
-
-            foreach (User friend in m_FacebookUser.Friends)
-            {
-                AddFriendComponent(friend, x, y, ref lastPicturewidth, ref lastHeight);
-                updateLocation(ref x, ref y, lastPicturewidth, lastHeight);
-            }
-
-            m_DataFetchIndicator.AreFriendsWereFetch = true;
         }
 
         private void fetchUserPosts()
@@ -105,50 +104,6 @@ namespace DesktopFacebook.Forms
             }
 
             AddWallPostComponent(i_wallPost, i_X, i_Y);
-        }
-
-        private void updateLocation(ref int io_x, ref int io_y, int i_lastPictureWidth, int i_lastHeight)
-        {
-            io_x += i_lastPictureWidth + 20;
-
-            if (FriendsTab.Width - i_lastPictureWidth <= io_x)
-            {
-                io_x = FriendsTab.Bounds.Left;
-                io_y += i_lastHeight + 20;
-            }
-        }
-
-        private void AddFriendComponent(User i_friend, int i_x, int i_y, ref int io_lastPictureWidth, ref int io_LastHeight)
-        {
-            ClickablePictureBox friendsPicture = new ClickablePictureBox();
-            friendsPicture.Size = new Size(100, 100);
-            friendsPicture.Name = i_friend.Id;
-            Label friendsName = new Label();
-            friendsPicture.LoadAsync(i_friend.PictureNormalURL);
-            friendsPicture.SizeMode = PictureBoxSizeMode.StretchImage;
-            friendsPicture.Location = new Point(i_x, i_y);
-            friendsName.Text = i_friend.FirstName + " " + i_friend.LastName;
-            friendsName.Location = new Point(i_x, i_y + friendsPicture.ClientSize.Height + 5);
-            friendsPicture.Click += FriendsPicture_Click;
-            FriendsTab.Controls.Add(friendsPicture);
-            FriendsTab.Controls.Add(friendsName);
-            io_lastPictureWidth = friendsPicture.ClientSize.Width;
-            io_LastHeight = friendsPicture.ClientSize.Height + friendsName.Size.Height;
-        }
-
-        private void FriendsPicture_Click(object sender, EventArgs e)
-        {
-            PictureBox friendPrictureBox = sender as PictureBox;
-            string friendId = friendPrictureBox.Name;
-            User friend = m_UserManager.FindFriendById(friendId);
-            if (string.IsNullOrEmpty(friend.Link))
-            {
-                MessageBox.Show(string.Format("Sorry, the facebook page of {0} is not avilabe right now.", friend.Name));
-            }
-            else
-            {
-                System.Diagnostics.Process.Start(friend.Link);
-            }
         }
 
         private void PostButton_Click(object sender, EventArgs e)
@@ -226,17 +181,6 @@ namespace DesktopFacebook.Forms
             }
 
             return mostPopular;
-        }
-
-        private void FetchCheckins()
-        {
-            CheckinsListBox.DisplayMember = "Description";
-            foreach (Checkin checkin in m_FacebookUser.Checkins)
-            {
-                CheckinsListBox.Items.Add(checkin);
-            }
-
-            m_DataFetchIndicator.AreCheckinWereFetch = true;
         }
 
         private void FetchUserAlbums()
@@ -369,7 +313,7 @@ namespace DesktopFacebook.Forms
                     {
                         if (!m_DataFetchIndicator.AreFriendsWereFetch)
                         {
-                            fetchUsersFriends();
+                            m_FriendsPage.fetchUsersFriends();
                         }
                         break;
                     }
@@ -385,39 +329,11 @@ namespace DesktopFacebook.Forms
                     {
                         if (!m_DataFetchIndicator.AreCheckinWereFetch)
                         {
-                            FetchCheckins();
+                            m_checkinPage.FetchCheckins();
                         }
                         break;
                     }
             }
-        }
-
-        private void CheckinsListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Checkin selectedCheckin = CheckinsListBox.SelectedItem as Checkin;
-            fillExtendedChekinData(selectedCheckin);
-        }
-
-        private void fillExtendedChekinData(Checkin selectedCheckin)
-        {
-            CheckinMessgeOutputLabel.Text = selectedCheckin.Message;
-            CheckinLocationOutputLabel.Text = selectedCheckin.Description;
-            if (selectedCheckin.CreatedTime.HasValue)
-            {
-                CheckinDateOutputLbel.Text = selectedCheckin.CreatedTime.Value.ToString("dd/MM/yyyy hh:mm");
-            }
-            else
-            {
-                CheckinDateOutputLbel.Text = string.Empty;
-            }
-
-            List<string> friendsName = new List<string>();
-            foreach(User friend in selectedCheckin.WithUsers)
-            {
-                friendsName.Add(friend.Name);
-            }
-
-            CheckinFriendsOutputLabel.Text = string.Join(", ", friendsName);      
         }
     }
 }

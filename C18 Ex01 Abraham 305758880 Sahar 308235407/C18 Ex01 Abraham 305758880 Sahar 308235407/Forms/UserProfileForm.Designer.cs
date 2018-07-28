@@ -49,6 +49,7 @@
             this.SelectedAlbumNameLabel = new System.Windows.Forms.Label();
             this.AlbumPicturesPanel = new System.Windows.Forms.Panel();
             this.AlbumsPanel = new System.Windows.Forms.Panel();
+            this.CheckInsTab = new System.Windows.Forms.TabPage();
             this.PostsTab = new System.Windows.Forms.TabPage();
             this.RecentPostsLink = new System.Windows.Forms.LinkLabel();
             this.TopFiveLink = new System.Windows.Forms.LinkLabel();
@@ -56,18 +57,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TopFivePostsListBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.CheckInsTab = new System.Windows.Forms.TabPage();
-            this.CheckinGroupBox = new System.Windows.Forms.GroupBox();
-            this.CheckinFriendsOutputLabel = new System.Windows.Forms.Label();
-            this.CheckinDateOutputLbel = new System.Windows.Forms.Label();
-            this.CheckinLocationOutputLabel = new System.Windows.Forms.Label();
-            this.CheckinMessgeOutputLabel = new System.Windows.Forms.Label();
-            this.CheckinFriendsLbael = new System.Windows.Forms.Label();
-            this.CheckinDateLabel = new System.Windows.Forms.Label();
-            this.CheckinMessageLabel = new System.Windows.Forms.Label();
-            this.CheckinLocationLabel = new System.Windows.Forms.Label();
-            this.CheckinListLabel = new System.Windows.Forms.Label();
-            this.CheckinsListBox = new System.Windows.Forms.ListBox();
+            this.EventsTab = new System.Windows.Forms.TabPage();
             this.HomeTownLable = new System.Windows.Forms.Label();
             this.CurrentCityLabel = new System.Windows.Forms.Label();
             this.UserHomeTownLabel = new System.Windows.Forms.Label();
@@ -81,8 +71,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.PreviewPhotoPictureBox)).BeginInit();
             this.AlbumsTab.SuspendLayout();
             this.PostsTab.SuspendLayout();
-            this.CheckInsTab.SuspendLayout();
-            this.CheckinGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -171,6 +159,7 @@
             this.UsersDetailsControlTab.Controls.Add(this.AlbumsTab);
             this.UsersDetailsControlTab.Controls.Add(this.CheckInsTab);
             this.UsersDetailsControlTab.Controls.Add(this.PostsTab);
+            this.UsersDetailsControlTab.Controls.Add(this.EventsTab);
             this.UsersDetailsControlTab.Location = new System.Drawing.Point(305, 6);
             this.UsersDetailsControlTab.Margin = new System.Windows.Forms.Padding(2);
             this.UsersDetailsControlTab.Name = "UsersDetailsControlTab";
@@ -303,6 +292,16 @@
             this.AlbumsPanel.Size = new System.Drawing.Size(207, 480);
             this.AlbumsPanel.TabIndex = 1;
             // 
+            // CheckInsTab
+            // 
+            this.CheckInsTab.Location = new System.Drawing.Point(4, 22);
+            this.CheckInsTab.Margin = new System.Windows.Forms.Padding(2);
+            this.CheckInsTab.Name = "CheckInsTab";
+            this.CheckInsTab.Size = new System.Drawing.Size(704, 482);
+            this.CheckInsTab.TabIndex = 3;
+            this.CheckInsTab.Text = "CheckIns";
+            this.CheckInsTab.UseVisualStyleBackColor = true;
+            // 
             // PostsTab
             // 
             this.PostsTab.Controls.Add(this.RecentPostsLink);
@@ -382,131 +381,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Top 5 Posts:";
             // 
-            // CheckInsTab
+            // EventsTab
             // 
-            this.CheckInsTab.Controls.Add(this.CheckinGroupBox);
-            this.CheckInsTab.Controls.Add(this.CheckinListLabel);
-            this.CheckInsTab.Controls.Add(this.CheckinsListBox);
-            this.CheckInsTab.Location = new System.Drawing.Point(4, 22);
-            this.CheckInsTab.Margin = new System.Windows.Forms.Padding(2);
-            this.CheckInsTab.Name = "CheckInsTab";
-            this.CheckInsTab.Size = new System.Drawing.Size(704, 482);
-            this.CheckInsTab.TabIndex = 3;
-            this.CheckInsTab.Text = "CheckIns";
-            this.CheckInsTab.UseVisualStyleBackColor = true;
-            // 
-            // CheckinGroupBox
-            // 
-            this.CheckinGroupBox.Controls.Add(this.CheckinFriendsOutputLabel);
-            this.CheckinGroupBox.Controls.Add(this.CheckinDateOutputLbel);
-            this.CheckinGroupBox.Controls.Add(this.CheckinLocationOutputLabel);
-            this.CheckinGroupBox.Controls.Add(this.CheckinMessgeOutputLabel);
-            this.CheckinGroupBox.Controls.Add(this.CheckinFriendsLbael);
-            this.CheckinGroupBox.Controls.Add(this.CheckinDateLabel);
-            this.CheckinGroupBox.Controls.Add(this.CheckinMessageLabel);
-            this.CheckinGroupBox.Controls.Add(this.CheckinLocationLabel);
-            this.CheckinGroupBox.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckinGroupBox.Location = new System.Drawing.Point(331, 69);
-            this.CheckinGroupBox.Name = "CheckinGroupBox";
-            this.CheckinGroupBox.Size = new System.Drawing.Size(334, 244);
-            this.CheckinGroupBox.TabIndex = 3;
-            this.CheckinGroupBox.TabStop = false;
-            this.CheckinGroupBox.Text = "Extended information";
-            // 
-            // CheckinFriendsOutputLabel
-            // 
-            this.CheckinFriendsOutputLabel.AutoSize = true;
-            this.CheckinFriendsOutputLabel.Location = new System.Drawing.Point(114, 162);
-            this.CheckinFriendsOutputLabel.Name = "CheckinFriendsOutputLabel";
-            this.CheckinFriendsOutputLabel.Size = new System.Drawing.Size(0, 16);
-            this.CheckinFriendsOutputLabel.TabIndex = 6;
-            // 
-            // CheckinDateOutputLbel
-            // 
-            this.CheckinDateOutputLbel.AutoSize = true;
-            this.CheckinDateOutputLbel.Location = new System.Drawing.Point(114, 122);
-            this.CheckinDateOutputLbel.Name = "CheckinDateOutputLbel";
-            this.CheckinDateOutputLbel.Size = new System.Drawing.Size(0, 16);
-            this.CheckinDateOutputLbel.TabIndex = 4;
-            // 
-            // CheckinLocationOutputLabel
-            // 
-            this.CheckinLocationOutputLabel.AutoSize = true;
-            this.CheckinLocationOutputLabel.Location = new System.Drawing.Point(114, 81);
-            this.CheckinLocationOutputLabel.Name = "CheckinLocationOutputLabel";
-            this.CheckinLocationOutputLabel.Size = new System.Drawing.Size(0, 16);
-            this.CheckinLocationOutputLabel.TabIndex = 5;
-            // 
-            // CheckinMessgeOutputLabel
-            // 
-            this.CheckinMessgeOutputLabel.AutoSize = true;
-            this.CheckinMessgeOutputLabel.Location = new System.Drawing.Point(114, 41);
-            this.CheckinMessgeOutputLabel.Name = "CheckinMessgeOutputLabel";
-            this.CheckinMessgeOutputLabel.Size = new System.Drawing.Size(0, 16);
-            this.CheckinMessgeOutputLabel.TabIndex = 4;
-            // 
-            // CheckinFriendsLbael
-            // 
-            this.CheckinFriendsLbael.AutoSize = true;
-            this.CheckinFriendsLbael.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckinFriendsLbael.Location = new System.Drawing.Point(6, 162);
-            this.CheckinFriendsLbael.Name = "CheckinFriendsLbael";
-            this.CheckinFriendsLbael.Size = new System.Drawing.Size(59, 16);
-            this.CheckinFriendsLbael.TabIndex = 3;
-            this.CheckinFriendsLbael.Text = "Friends:";
-            // 
-            // CheckinDateLabel
-            // 
-            this.CheckinDateLabel.AutoSize = true;
-            this.CheckinDateLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckinDateLabel.Location = new System.Drawing.Point(6, 122);
-            this.CheckinDateLabel.Name = "CheckinDateLabel";
-            this.CheckinDateLabel.Size = new System.Drawing.Size(44, 16);
-            this.CheckinDateLabel.TabIndex = 2;
-            this.CheckinDateLabel.Text = "Date:";
-            // 
-            // CheckinMessageLabel
-            // 
-            this.CheckinMessageLabel.AutoSize = true;
-            this.CheckinMessageLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckinMessageLabel.Location = new System.Drawing.Point(6, 41);
-            this.CheckinMessageLabel.Name = "CheckinMessageLabel";
-            this.CheckinMessageLabel.Size = new System.Drawing.Size(70, 16);
-            this.CheckinMessageLabel.TabIndex = 1;
-            this.CheckinMessageLabel.Text = "Message:";
-            // 
-            // CheckinLocationLabel
-            // 
-            this.CheckinLocationLabel.AutoSize = true;
-            this.CheckinLocationLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckinLocationLabel.Location = new System.Drawing.Point(6, 81);
-            this.CheckinLocationLabel.Name = "CheckinLocationLabel";
-            this.CheckinLocationLabel.Size = new System.Drawing.Size(68, 16);
-            this.CheckinLocationLabel.TabIndex = 0;
-            this.CheckinLocationLabel.Text = "Location:";
-            // 
-            // CheckinListLabel
-            // 
-            this.CheckinListLabel.AutoSize = true;
-            this.CheckinListLabel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckinListLabel.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.CheckinListLabel.Location = new System.Drawing.Point(23, 24);
-            this.CheckinListLabel.Name = "CheckinListLabel";
-            this.CheckinListLabel.Size = new System.Drawing.Size(109, 19);
-            this.CheckinListLabel.TabIndex = 2;
-            this.CheckinListLabel.Text = "Checkin list:";
-            // 
-            // CheckinsListBox
-            // 
-            this.CheckinsListBox.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckinsListBox.FormattingEnabled = true;
-            this.CheckinsListBox.ItemHeight = 16;
-            this.CheckinsListBox.Location = new System.Drawing.Point(27, 69);
-            this.CheckinsListBox.Margin = new System.Windows.Forms.Padding(2);
-            this.CheckinsListBox.Name = "CheckinsListBox";
-            this.CheckinsListBox.Size = new System.Drawing.Size(236, 244);
-            this.CheckinsListBox.TabIndex = 0;
-            this.CheckinsListBox.SelectedIndexChanged += new System.EventHandler(this.CheckinsListBox_SelectedIndexChanged);
+            this.EventsTab.Location = new System.Drawing.Point(4, 22);
+            this.EventsTab.Name = "EventsTab";
+            this.EventsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.EventsTab.Size = new System.Drawing.Size(704, 482);
+            this.EventsTab.TabIndex = 5;
+            this.EventsTab.Text = "Events";
+            this.EventsTab.UseVisualStyleBackColor = true;
             // 
             // HomeTownLable
             // 
@@ -600,10 +483,6 @@
             this.AlbumsTab.PerformLayout();
             this.PostsTab.ResumeLayout(false);
             this.PostsTab.PerformLayout();
-            this.CheckInsTab.ResumeLayout(false);
-            this.CheckInsTab.PerformLayout();
-            this.CheckinGroupBox.ResumeLayout(false);
-            this.CheckinGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -633,7 +512,6 @@
         private System.Windows.Forms.ListBox RecentPostsListBox;
         private System.Windows.Forms.LinkLabel RecentPostsLink;
         private System.Windows.Forms.LinkLabel TopFiveLink;
-        private System.Windows.Forms.ListBox CheckinsListBox;
         private System.Windows.Forms.Panel AlbumsPanel;
         private System.Windows.Forms.Label HomeTownLable;
         private System.Windows.Forms.Label CurrentCityLabel;
@@ -646,15 +524,6 @@
         private Components.UserControls.ClickablePictureBox ClearImagePictureBox1;
         private System.Windows.Forms.Panel AlbumPicturesPanel;
         private System.Windows.Forms.Label SelectedAlbumNameLabel;
-        private System.Windows.Forms.GroupBox CheckinGroupBox;
-        private System.Windows.Forms.Label CheckinFriendsOutputLabel;
-        private System.Windows.Forms.Label CheckinDateOutputLbel;
-        private System.Windows.Forms.Label CheckinLocationOutputLabel;
-        private System.Windows.Forms.Label CheckinMessgeOutputLabel;
-        private System.Windows.Forms.Label CheckinFriendsLbael;
-        private System.Windows.Forms.Label CheckinDateLabel;
-        private System.Windows.Forms.Label CheckinMessageLabel;
-        private System.Windows.Forms.Label CheckinLocationLabel;
-        private System.Windows.Forms.Label CheckinListLabel;
+        private System.Windows.Forms.TabPage EventsTab;
     }
 }

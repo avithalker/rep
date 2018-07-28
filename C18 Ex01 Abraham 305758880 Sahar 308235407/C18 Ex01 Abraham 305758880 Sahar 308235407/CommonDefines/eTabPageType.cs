@@ -5,6 +5,7 @@
         WallPage,
         FriendsPage,
         AlbumPage,
-        CheckinPage
+        CheckinPage,
+        EventsPage
     }
 }

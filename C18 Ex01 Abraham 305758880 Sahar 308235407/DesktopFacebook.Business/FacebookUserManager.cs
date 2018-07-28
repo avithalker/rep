@@ -3,9 +3,6 @@ using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesktopFacebook.Business
 {
@@ -86,6 +83,24 @@ namespace DesktopFacebook.Business
             }
 
             return requestedAlbum;
+        }
+
+        public List<Event> FindEventsByDate(DateTime i_EventDate)
+        {
+            List<Event> events = new List<Event>();
+
+            foreach(Event userEvent in m_NativeClient.Events)
+            {
+                if(userEvent.StartTime.HasValue)
+                {
+                    if(userEvent.StartTime.Value.Date == i_EventDate.Date)
+                    {
+                        events.Add(userEvent);
+                    }
+                }
+            }
+
+            return events;        
         }
     }
 }

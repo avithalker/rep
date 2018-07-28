@@ -52,6 +52,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonDefines\eTabPageType.cs" />
+    <Compile Include="Components\Pages\CheckinPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Pages\CheckinPage.Designer.cs">
+      <DependentUpon>CheckinPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Pages\EventsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Pages\EventsPage.Designer.cs">
+      <DependentUpon>EventsPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Pages\FriendsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Pages\FriendsPage.Designer.cs">
+      <DependentUpon>FriendsPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\UserControls\ClickablePictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -82,6 +100,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Components\Pages\CheckinPage.resx">
+      <DependentUpon>CheckinPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Pages\EventsPage.resx">
+      <DependentUpon>EventsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Pages\FriendsPage.resx">
+      <DependentUpon>FriendsPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\UserControls\TitledPictureControl.resx">
       <DependentUpon>TitledPictureControl.cs</DependentUpon>
     </EmbeddedResource>
