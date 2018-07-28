@@ -17,6 +17,7 @@ namespace DesktopFacebook.Forms
         private DataFetchIndicator m_DataFetchIndicator;
         private CheckinPage m_checkinPage;
         private FriendsPage m_FriendsPage;
+        private AlbumsPage m_AlbumPage;
 
 
         public UserProfileForm(FacebookUserManager i_UserManager)
@@ -33,10 +34,12 @@ namespace DesktopFacebook.Forms
         {
             m_checkinPage = new CheckinPage(m_UserManager, m_DataFetchIndicator);
             m_FriendsPage = new FriendsPage(m_UserManager, m_DataFetchIndicator);
+            m_AlbumPage = new AlbumsPage(m_UserManager, m_DataFetchIndicator);
 
             EventsTab.Controls.Add(new EventsPage(m_UserManager));
             CheckInsTab.Controls.Add(m_checkinPage);
             FriendsTab.Controls.Add(m_FriendsPage);
+            AlbumsTab.Controls.Add(m_AlbumPage);
         }
 
         private void initializeUserGeneralInfo()
@@ -183,65 +186,6 @@ namespace DesktopFacebook.Forms
             return mostPopular;
         }
 
-        private void FetchUserAlbums()
-        {
-            int k_x = AlbumsPanel.Bounds.Left;
-            int y = AlbumsPanel.Bounds.Top;
-            TitledPictureControl albumControl = null;
-
-            foreach (Album album in m_FacebookUser.Albums)
-            {
-                albumControl = addAlbumComponent(album, k_x, y);
-                y += albumControl.Height + 10;
-            }
-
-            m_DataFetchIndicator.AreAlbumsWereFetch = true;
-        }
-
-        private TitledPictureControl addAlbumComponent(Album i_album, int i_x, int i_y)
-        {
-            TitledPictureControl albumControl = new TitledPictureControl(i_album.PictureAlbumURL, i_album.Name, i_album.Id);
-
-            albumControl.Location = new Point(i_x, i_y);
-            albumControl.Click += AlbumControl_Click;
-            AlbumsPanel.Controls.Add(albumControl);
-            return albumControl;
-        }
-
-        private void AlbumControl_Click(object sender, EventArgs e)
-        {
-            TitledPictureControl albumControl = sender as TitledPictureControl;
-            Album album = m_UserManager.FindAlbumById(albumControl.Id);
-
-            SelectedAlbumNameLabel.Text = album.Name;
-            fillAlbumPicturePanel(album.Photos);
-        }
-
-        private void fillAlbumPicturePanel(FacebookObjectCollection<Photo> i_AlbumPhotos)
-        {
-            int xLocation = 0;
-            int yLocation = 0;
-            int marginSpace = 10;
-
-            AlbumPicturesPanel.Controls.Clear();
-            foreach (Photo albumPhoto in i_AlbumPhotos)
-            {
-                PictureBox photoPictureBox = new PictureBox();
-                photoPictureBox.Size = new Size(120, 120);
-                photoPictureBox.LoadAsync(albumPhoto.PictureNormalURL);
-                photoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                photoPictureBox.Location = new Point(xLocation, yLocation);
-                AlbumPicturesPanel.Controls.Add(photoPictureBox);
-
-                xLocation += photoPictureBox.Width + marginSpace;
-                if (xLocation >= AlbumPicturesPanel.Width - photoPictureBox.Width)
-                {
-                    xLocation = 0;
-                    yLocation += photoPictureBox.Height + marginSpace;
-                }
-            }
-        }
-
         private void PostTextBox_MouseEnter(object sender, EventArgs e)
         {
             RichTextBox postRichTextBox = sender as RichTextBox;
@@ -321,7 +265,7 @@ namespace DesktopFacebook.Forms
                     {
                         if (!m_DataFetchIndicator.AreAlbumsWereFetch)
                         {
-                            FetchUserAlbums();
+                            m_AlbumPage.FetchUserAlbums();
                         }
                         break;
                     }

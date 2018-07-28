@@ -46,9 +46,6 @@
             this.PostButton = new System.Windows.Forms.Button();
             this.FriendsTab = new System.Windows.Forms.TabPage();
             this.AlbumsTab = new System.Windows.Forms.TabPage();
-            this.SelectedAlbumNameLabel = new System.Windows.Forms.Label();
-            this.AlbumPicturesPanel = new System.Windows.Forms.Panel();
-            this.AlbumsPanel = new System.Windows.Forms.Panel();
             this.CheckInsTab = new System.Windows.Forms.TabPage();
             this.PostsTab = new System.Windows.Forms.TabPage();
             this.RecentPostsLink = new System.Windows.Forms.LinkLabel();
@@ -69,7 +66,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ClearImagePictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AttachPhotoPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PreviewPhotoPictureBox)).BeginInit();
-            this.AlbumsTab.SuspendLayout();
             this.PostsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).BeginInit();
             this.SuspendLayout();
@@ -254,9 +250,6 @@
             // 
             // AlbumsTab
             // 
-            this.AlbumsTab.Controls.Add(this.SelectedAlbumNameLabel);
-            this.AlbumsTab.Controls.Add(this.AlbumPicturesPanel);
-            this.AlbumsTab.Controls.Add(this.AlbumsPanel);
             this.AlbumsTab.Location = new System.Drawing.Point(4, 22);
             this.AlbumsTab.Margin = new System.Windows.Forms.Padding(2);
             this.AlbumsTab.Name = "AlbumsTab";
@@ -264,33 +257,6 @@
             this.AlbumsTab.TabIndex = 2;
             this.AlbumsTab.Text = "Albums";
             this.AlbumsTab.UseVisualStyleBackColor = true;
-            // 
-            // SelectedAlbumNameLabel
-            // 
-            this.SelectedAlbumNameLabel.AutoSize = true;
-            this.SelectedAlbumNameLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SelectedAlbumNameLabel.Location = new System.Drawing.Point(222, 13);
-            this.SelectedAlbumNameLabel.Name = "SelectedAlbumNameLabel";
-            this.SelectedAlbumNameLabel.Size = new System.Drawing.Size(163, 16);
-            this.SelectedAlbumNameLabel.TabIndex = 3;
-            this.SelectedAlbumNameLabel.Text = "Non album was selected";
-            // 
-            // AlbumPicturesPanel
-            // 
-            this.AlbumPicturesPanel.AutoScroll = true;
-            this.AlbumPicturesPanel.Location = new System.Drawing.Point(222, 42);
-            this.AlbumPicturesPanel.Name = "AlbumPicturesPanel";
-            this.AlbumPicturesPanel.Size = new System.Drawing.Size(465, 428);
-            this.AlbumPicturesPanel.TabIndex = 2;
-            // 
-            // AlbumsPanel
-            // 
-            this.AlbumsPanel.AutoScroll = true;
-            this.AlbumsPanel.Location = new System.Drawing.Point(2, 2);
-            this.AlbumsPanel.Margin = new System.Windows.Forms.Padding(2);
-            this.AlbumsPanel.Name = "AlbumsPanel";
-            this.AlbumsPanel.Size = new System.Drawing.Size(207, 480);
-            this.AlbumsPanel.TabIndex = 1;
             // 
             // CheckInsTab
             // 
@@ -479,8 +445,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ClearImagePictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AttachPhotoPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PreviewPhotoPictureBox)).EndInit();
-            this.AlbumsTab.ResumeLayout(false);
-            this.AlbumsTab.PerformLayout();
             this.PostsTab.ResumeLayout(false);
             this.PostsTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).EndInit();
@@ -512,7 +476,6 @@
         private System.Windows.Forms.ListBox RecentPostsListBox;
         private System.Windows.Forms.LinkLabel RecentPostsLink;
         private System.Windows.Forms.LinkLabel TopFiveLink;
-        private System.Windows.Forms.Panel AlbumsPanel;
         private System.Windows.Forms.Label HomeTownLable;
         private System.Windows.Forms.Label CurrentCityLabel;
         private System.Windows.Forms.Label UserHomeTownLabel;
@@ -522,8 +485,6 @@
         private System.Windows.Forms.PictureBox PreviewPhotoPictureBox;
         private Components.UserControls.ClickablePictureBox AttachPhotoPictureBox1;
         private Components.UserControls.ClickablePictureBox ClearImagePictureBox1;
-        private System.Windows.Forms.Panel AlbumPicturesPanel;
-        private System.Windows.Forms.Label SelectedAlbumNameLabel;
         private System.Windows.Forms.TabPage EventsTab;
     }
 }

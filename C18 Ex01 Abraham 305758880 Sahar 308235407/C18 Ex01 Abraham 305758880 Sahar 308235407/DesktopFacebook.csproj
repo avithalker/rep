@@ -52,6 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonDefines\eTabPageType.cs" />
+    <Compile Include="Components\Pages\AlbumsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Pages\AlbumsPage.Designer.cs">
+      <DependentUpon>AlbumsPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\Pages\CheckinPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -100,6 +106,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Components\Pages\AlbumsPage.resx">
+      <DependentUpon>AlbumsPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\Pages\CheckinPage.resx">
       <DependentUpon>CheckinPage.cs</DependentUpon>
     </EmbeddedResource>
