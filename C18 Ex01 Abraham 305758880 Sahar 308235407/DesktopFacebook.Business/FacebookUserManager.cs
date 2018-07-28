@@ -141,5 +141,18 @@ namespace DesktopFacebook.Business
 
             return isExist;
         }
+
+        public List<User> GetFriendsAsList()
+        {
+            List<User> friendList = new List<User>();
+
+            foreach(User friend in m_NativeClient.Friends)
+            {
+                friendList.Add(friend);
+            }
+
+            return friendList;
+        }
     }
+
 }

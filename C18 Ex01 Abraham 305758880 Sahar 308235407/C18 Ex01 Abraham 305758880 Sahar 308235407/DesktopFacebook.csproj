@@ -76,8 +76,20 @@
     <Compile Include="Components\Pages\FriendsPage.Designer.cs">
       <DependentUpon>FriendsPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\Pages\SmartPostPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Pages\SmartPostPage.Designer.cs">
+      <DependentUpon>SmartPostPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\UserControls\ClickablePictureBox.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\UserControls\FacebookPostControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\UserControls\FacebookPostControl.Designer.cs">
+      <DependentUpon>FacebookPostControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Components\UserControls\TitledPictureControl.cs">
       <SubType>UserControl</SubType>
@@ -91,6 +103,18 @@
     <Compile Include="Components\UserControls\WallPostControl.Designer.cs">
       <DependentUpon>WallPostControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomFeatures\SmartFilter\eFilterType.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\FilterActivator.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\FiltersData\AgeRangeFilterData.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\FiltersData\FilterData.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\FiltersData\GenderFilterData.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\FiltersData\LivingCityFilterData.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\FiltersData\RelationshipFitlerData.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\Filters\AgeFilter.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\Filters\GenderFilter.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\Filters\IFriendsFilter.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\Filters\LivingCityFilter.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\Filters\RelationshipFilter.cs" />
     <Compile Include="DataFetchIndicator.cs" />
     <Compile Include="Forms\LoginUserForm.cs">
       <SubType>Form</SubType>
@@ -117,6 +141,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Pages\FriendsPage.resx">
       <DependentUpon>FriendsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Pages\SmartPostPage.resx">
+      <DependentUpon>SmartPostPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\UserControls\FacebookPostControl.resx">
+      <DependentUpon>FacebookPostControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\UserControls\TitledPictureControl.resx">
       <DependentUpon>TitledPictureControl.cs</DependentUpon>

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using DesktopFacebook.Business;
@@ -18,6 +17,7 @@ namespace DesktopFacebook.Forms
         private CheckinPage m_checkinPage;
         private FriendsPage m_FriendsPage;
         private AlbumsPage m_AlbumPage;
+        private SmartPostPage m_SmartPostPage;
 
 
         public UserProfileForm(FacebookUserManager i_UserManager)
@@ -35,11 +35,13 @@ namespace DesktopFacebook.Forms
             m_checkinPage = new CheckinPage(m_UserManager, m_DataFetchIndicator);
             m_FriendsPage = new FriendsPage(m_UserManager, m_DataFetchIndicator);
             m_AlbumPage = new AlbumsPage(m_UserManager, m_DataFetchIndicator);
+            m_SmartPostPage = new SmartPostPage(m_UserManager);
 
             EventsTab.Controls.Add(new EventsPage(m_UserManager));
             CheckInsTab.Controls.Add(m_checkinPage);
             FriendsTab.Controls.Add(m_FriendsPage);
             AlbumsTab.Controls.Add(m_AlbumPage);
+            SmartPostTab.Controls.Add(m_SmartPostPage);
         }
 
         private void initializeUserGeneralInfo()

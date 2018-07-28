@@ -39,9 +39,6 @@
             this.UsersBirthdate = new System.Windows.Forms.Label();
             this.UsersDetailsControlTab = new System.Windows.Forms.TabControl();
             this.UserWallTab = new System.Windows.Forms.TabPage();
-            this.ClearImagePictureBox1 = new DesktopFacebook.Components.UserControls.ClickablePictureBox();
-            this.AttachPhotoPictureBox1 = new DesktopFacebook.Components.UserControls.ClickablePictureBox();
-            this.PreviewPhotoPictureBox = new System.Windows.Forms.PictureBox();
             this.PostTextBox = new System.Windows.Forms.RichTextBox();
             this.PostButton = new System.Windows.Forms.Button();
             this.FriendsTab = new System.Windows.Forms.TabPage();
@@ -60,14 +57,20 @@
             this.UserHomeTownLabel = new System.Windows.Forms.Label();
             this.UserCurrentCityLabel = new System.Windows.Forms.Label();
             this.PictureFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.PreviewPhotoPictureBox = new System.Windows.Forms.PictureBox();
             this.UserProfilePicture = new System.Windows.Forms.PictureBox();
+            this.ClearImagePictureBox1 = new DesktopFacebook.Components.UserControls.ClickablePictureBox();
+            this.AttachPhotoPictureBox1 = new DesktopFacebook.Components.UserControls.ClickablePictureBox();
+            this.SmartPostTab = new System.Windows.Forms.TabPage();
             this.UsersDetailsControlTab.SuspendLayout();
             this.UserWallTab.SuspendLayout();
+            this.PostsTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PreviewPhotoPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ClearImagePictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AttachPhotoPictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PreviewPhotoPictureBox)).BeginInit();
-            this.PostsTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).BeginInit();
             this.SuspendLayout();
             // 
             // GenderLabel
@@ -156,6 +159,7 @@
             this.UsersDetailsControlTab.Controls.Add(this.CheckInsTab);
             this.UsersDetailsControlTab.Controls.Add(this.PostsTab);
             this.UsersDetailsControlTab.Controls.Add(this.EventsTab);
+            this.UsersDetailsControlTab.Controls.Add(this.SmartPostTab);
             this.UsersDetailsControlTab.Location = new System.Drawing.Point(305, 6);
             this.UsersDetailsControlTab.Margin = new System.Windows.Forms.Padding(2);
             this.UsersDetailsControlTab.Name = "UsersDetailsControlTab";
@@ -179,39 +183,6 @@
             this.UserWallTab.TabIndex = 4;
             this.UserWallTab.Text = "My wall";
             this.UserWallTab.UseVisualStyleBackColor = true;
-            // 
-            // ClearImagePictureBox1
-            // 
-            this.ClearImagePictureBox1.Image = global::DesktopFacebook.Properties.Resources.Clear;
-            this.ClearImagePictureBox1.Location = new System.Drawing.Point(545, 15);
-            this.ClearImagePictureBox1.Name = "ClearImagePictureBox1";
-            this.ClearImagePictureBox1.Size = new System.Drawing.Size(25, 25);
-            this.ClearImagePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ClearImagePictureBox1.TabIndex = 7;
-            this.ClearImagePictureBox1.TabStop = false;
-            this.ClearImagePictureBox1.Visible = false;
-            this.ClearImagePictureBox1.Click += new System.EventHandler(this.ClearImagePictureBox1_Click);
-            // 
-            // AttachPhotoPictureBox1
-            // 
-            this.AttachPhotoPictureBox1.ErrorImage = null;
-            this.AttachPhotoPictureBox1.Image = global::DesktopFacebook.Properties.Resources.ImagePlaceHolder;
-            this.AttachPhotoPictureBox1.Location = new System.Drawing.Point(15, 102);
-            this.AttachPhotoPictureBox1.Name = "AttachPhotoPictureBox1";
-            this.AttachPhotoPictureBox1.Size = new System.Drawing.Size(42, 35);
-            this.AttachPhotoPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.AttachPhotoPictureBox1.TabIndex = 6;
-            this.AttachPhotoPictureBox1.TabStop = false;
-            this.AttachPhotoPictureBox1.Click += new System.EventHandler(this.AttachPhotoPictureBox1_Click);
-            // 
-            // PreviewPhotoPictureBox
-            // 
-            this.PreviewPhotoPictureBox.Location = new System.Drawing.Point(545, 15);
-            this.PreviewPhotoPictureBox.Name = "PreviewPhotoPictureBox";
-            this.PreviewPhotoPictureBox.Size = new System.Drawing.Size(140, 140);
-            this.PreviewPhotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PreviewPhotoPictureBox.TabIndex = 4;
-            this.PreviewPhotoPictureBox.TabStop = false;
             // 
             // PostTextBox
             // 
@@ -407,6 +378,20 @@
             // 
             this.PictureFileDialog.FileName = "openFileDialog1";
             // 
+            // fileSystemWatcher1
+            // 
+            this.fileSystemWatcher1.EnableRaisingEvents = true;
+            this.fileSystemWatcher1.SynchronizingObject = this;
+            // 
+            // PreviewPhotoPictureBox
+            // 
+            this.PreviewPhotoPictureBox.Location = new System.Drawing.Point(545, 15);
+            this.PreviewPhotoPictureBox.Name = "PreviewPhotoPictureBox";
+            this.PreviewPhotoPictureBox.Size = new System.Drawing.Size(140, 140);
+            this.PreviewPhotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PreviewPhotoPictureBox.TabIndex = 4;
+            this.PreviewPhotoPictureBox.TabStop = false;
+            // 
             // UserProfilePicture
             // 
             this.UserProfilePicture.Location = new System.Drawing.Point(6, 6);
@@ -415,6 +400,40 @@
             this.UserProfilePicture.Size = new System.Drawing.Size(210, 203);
             this.UserProfilePicture.TabIndex = 0;
             this.UserProfilePicture.TabStop = false;
+            // 
+            // ClearImagePictureBox1
+            // 
+            this.ClearImagePictureBox1.Image = global::DesktopFacebook.Properties.Resources.Clear;
+            this.ClearImagePictureBox1.Location = new System.Drawing.Point(545, 15);
+            this.ClearImagePictureBox1.Name = "ClearImagePictureBox1";
+            this.ClearImagePictureBox1.Size = new System.Drawing.Size(25, 25);
+            this.ClearImagePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ClearImagePictureBox1.TabIndex = 7;
+            this.ClearImagePictureBox1.TabStop = false;
+            this.ClearImagePictureBox1.Visible = false;
+            this.ClearImagePictureBox1.Click += new System.EventHandler(this.ClearImagePictureBox1_Click);
+            // 
+            // AttachPhotoPictureBox1
+            // 
+            this.AttachPhotoPictureBox1.ErrorImage = null;
+            this.AttachPhotoPictureBox1.Image = global::DesktopFacebook.Properties.Resources.ImagePlaceHolder;
+            this.AttachPhotoPictureBox1.Location = new System.Drawing.Point(15, 102);
+            this.AttachPhotoPictureBox1.Name = "AttachPhotoPictureBox1";
+            this.AttachPhotoPictureBox1.Size = new System.Drawing.Size(42, 35);
+            this.AttachPhotoPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.AttachPhotoPictureBox1.TabIndex = 6;
+            this.AttachPhotoPictureBox1.TabStop = false;
+            this.AttachPhotoPictureBox1.Click += new System.EventHandler(this.AttachPhotoPictureBox1_Click);
+            // 
+            // SmartPostTab
+            // 
+            this.SmartPostTab.Location = new System.Drawing.Point(4, 22);
+            this.SmartPostTab.Name = "SmartPostTab";
+            this.SmartPostTab.Padding = new System.Windows.Forms.Padding(3);
+            this.SmartPostTab.Size = new System.Drawing.Size(704, 482);
+            this.SmartPostTab.TabIndex = 6;
+            this.SmartPostTab.Text = "Smart post";
+            this.SmartPostTab.UseVisualStyleBackColor = true;
             // 
             // UserProfileForm
             // 
@@ -442,12 +461,13 @@
             this.Shown += new System.EventHandler(this.UserProfileForm_Shown);
             this.UsersDetailsControlTab.ResumeLayout(false);
             this.UserWallTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ClearImagePictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AttachPhotoPictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PreviewPhotoPictureBox)).EndInit();
             this.PostsTab.ResumeLayout(false);
             this.PostsTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PreviewPhotoPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ClearImagePictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AttachPhotoPictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -486,5 +506,7 @@
         private Components.UserControls.ClickablePictureBox AttachPhotoPictureBox1;
         private Components.UserControls.ClickablePictureBox ClearImagePictureBox1;
         private System.Windows.Forms.TabPage EventsTab;
+        private System.IO.FileSystemWatcher fileSystemWatcher1;
+        private System.Windows.Forms.TabPage SmartPostTab;
     }
 }
