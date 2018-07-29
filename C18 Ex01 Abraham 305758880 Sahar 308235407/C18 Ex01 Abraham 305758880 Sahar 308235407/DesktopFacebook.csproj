@@ -32,11 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Facebook">
-      <HintPath>..\..\..\..\..\..\..\FacebookAPI\Facebook.dll</HintPath>
-    </Reference>
-    <Reference Include="FbGraphApiWrapper">
-      <HintPath>..\..\..\..\..\..\..\FacebookAPI\FbGraphApiWrapper.dll</HintPath>
+    <Reference Include="FbGraphApiWrapper, Version=6.8.0.17, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Users\SAHAR\Downloads\01_FB01_BasicFacebookFeatures.V6.8.0.17\01_FB01_BasicFacebookFeatures.V6.8.0.17\FBApi\FbGraphApiWrapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -82,6 +80,12 @@
     <Compile Include="Components\Pages\SmartPostPage.Designer.cs">
       <DependentUpon>SmartPostPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\Pages\CheckFriendsMatchScale.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Pages\CheckFriendsMatchScale.Designer.cs">
+      <DependentUpon>CheckFriendsMatchScale.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\UserControls\ClickablePictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -103,6 +107,7 @@
     <Compile Include="Components\UserControls\WallPostControl.Designer.cs">
       <DependentUpon>WallPostControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomFeatures\FriendshipMatchScale\FriendshipMatchScaleCalculator.cs" />
     <Compile Include="CustomFeatures\SmartFilter\eFilterType.cs" />
     <Compile Include="CustomFeatures\SmartFilter\FilterActivator.cs" />
     <Compile Include="CustomFeatures\SmartFilter\FiltersData\AgeRangeFilterData.cs" />
@@ -144,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Pages\SmartPostPage.resx">
       <DependentUpon>SmartPostPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Pages\CheckFriendsMatchScale.resx">
+      <DependentUpon>CheckFriendsMatchScale.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\UserControls\FacebookPostControl.resx">
       <DependentUpon>FacebookPostControl.cs</DependentUpon>
@@ -198,6 +206,17 @@
     <Content Include="Components\Resources\ImagePlaceHolder.png" />
     <None Include="Components\Resources\ImagePlaceHolder2.png" />
     <Content Include="Components\Resources\Like.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="QuartzTypeLib">
+      <Guid>{56A868B0-0AD4-11CE-B03A-0020AF0BA770}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
