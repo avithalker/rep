@@ -207,16 +207,5 @@
     <None Include="Components\Resources\ImagePlaceHolder2.png" />
     <Content Include="Components\Resources\Like.png" />
   </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="QuartzTypeLib">
-      <Guid>{56A868B0-0AD4-11CE-B03A-0020AF0BA770}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
