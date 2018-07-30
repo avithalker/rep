@@ -1,6 +1,6 @@
 ﻿namespace DesktopFacebook.Components.Pages
 {
-    partial class CheckFriendsMatchScale
+    partial class FriendshipMatchScalePage
     {
         /// <summary> 
         /// Required designer variable.
@@ -50,6 +50,7 @@
             this.FriendsListBox.Name = "FriendsListBox";
             this.FriendsListBox.Size = new System.Drawing.Size(417, 342);
             this.FriendsListBox.TabIndex = 1;
+            this.FriendsListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.FriendsListBox_ItemCheck);
             // 
             // label2
             // 
@@ -68,7 +69,7 @@
             this.FriendshipMatchValue.Size = new System.Drawing.Size(0, 25);
             this.FriendshipMatchValue.TabIndex = 3;
             // 
-            // CheckFriendsMatchScale
+            // FriendshipMatchScalePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -76,7 +77,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.FriendsListBox);
             this.Controls.Add(this.label1);
-            this.Name = "CheckFriendsMatchScale";
+            this.Name = "FriendshipMatchScalePage";
             this.Size = new System.Drawing.Size(1198, 836);
             this.ResumeLayout(false);
             this.PerformLayout();

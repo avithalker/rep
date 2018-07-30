@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DesktopFacebook.Components.Pages
+namespace DesktopFacebook.Components.UserControls
 {
-    public partial class CheckFriendsMatchScale : UserControl
+    public partial class FriendshipMatchScaleControl : UserControl
     {
-        public CheckFriendsMatchScale()
+        public FriendshipMatchScaleControl()
         {
             InitializeComponent();
         }

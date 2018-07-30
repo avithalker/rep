@@ -80,11 +80,11 @@
     <Compile Include="Components\Pages\SmartPostPage.Designer.cs">
       <DependentUpon>SmartPostPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\Pages\CheckFriendsMatchScale.cs">
+    <Compile Include="Components\Pages\FriendshipMatchScalePage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\Pages\CheckFriendsMatchScale.Designer.cs">
-      <DependentUpon>CheckFriendsMatchScale.cs</DependentUpon>
+    <Compile Include="Components\Pages\FriendshipMatchScalePage.Designer.cs">
+      <DependentUpon>FriendshipMatchScalePage.cs</DependentUpon>
     </Compile>
     <Compile Include="Components\UserControls\ClickablePictureBox.cs">
       <SubType>Component</SubType>
@@ -94,6 +94,12 @@
     </Compile>
     <Compile Include="Components\UserControls\FacebookPostControl.Designer.cs">
       <DependentUpon>FacebookPostControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\UserControls\FriendshipMatchScaleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\UserControls\FriendshipMatchScaleControl.Designer.cs">
+      <DependentUpon>FriendshipMatchScaleControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Components\UserControls\TitledPictureControl.cs">
       <SubType>UserControl</SubType>
@@ -150,8 +156,8 @@
     <EmbeddedResource Include="Components\Pages\SmartPostPage.resx">
       <DependentUpon>SmartPostPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\Pages\CheckFriendsMatchScale.resx">
-      <DependentUpon>CheckFriendsMatchScale.cs</DependentUpon>
+    <EmbeddedResource Include="Components\Pages\FriendshipMatchScalePage.resx">
+      <DependentUpon>FriendshipMatchScalePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\UserControls\FacebookPostControl.resx">
       <DependentUpon>FacebookPostControl.cs</DependentUpon>
