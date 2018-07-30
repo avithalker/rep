@@ -12,7 +12,6 @@ namespace DesktopFacebook.Forms
     public partial class UserProfileForm : Form
     {
         private FacebookUserManager m_UserManager;
-        private User m_FacebookUser;
         private DataFetchIndicator m_DataFetchIndicator;
         private CheckinPage m_checkinPage;
         private FriendsPage m_FriendsPage;
@@ -24,7 +23,6 @@ namespace DesktopFacebook.Forms
         {
             InitializeComponent();
             m_UserManager = i_UserManager;
-            m_FacebookUser = m_UserManager.NativeClient;
             m_DataFetchIndicator = new DataFetchIndicator();
             addTabsPages();
             initializeUserGeneralInfo();
@@ -36,7 +34,7 @@ namespace DesktopFacebook.Forms
             m_FriendsPage = new FriendsPage(m_UserManager, m_DataFetchIndicator);
             m_AlbumPage = new AlbumsPage(m_UserManager, m_DataFetchIndicator);
             m_SmartPostPage = new SmartPostPage(m_UserManager);
-            m_FriendshipMatchScalePage = new FriendshipMatchScalePage(m_FacebookUser);
+            m_FriendshipMatchScalePage = new FriendshipMatchScalePage(m_UserManager.NativeClient);
             EventsTab.Controls.Add(new EventsPage(m_UserManager));
             CheckInsTab.Controls.Add(m_checkinPage);
             FriendsTab.Controls.Add(m_FriendsPage);
@@ -47,23 +45,23 @@ namespace DesktopFacebook.Forms
 
         private void initializeUserGeneralInfo()
         {
-            UserProfilePicture.LoadAsync(m_FacebookUser.PictureLargeURL);
-            UserNameLabel.Text = m_FacebookUser.Name;
-            UserGenderLabel.Text = m_FacebookUser.Gender.ToString();
-            UsersBirthdate.Text = m_FacebookUser.Birthday;
-            if (m_FacebookUser.Hometown != null)
+            UserProfilePicture.LoadAsync(m_UserManager.NativeClient.PictureLargeURL);
+            UserNameLabel.Text = m_UserManager.NativeClient.Name;
+            UserGenderLabel.Text = m_UserManager.NativeClient.Gender.ToString();
+            UsersBirthdate.Text = m_UserManager.NativeClient.Birthday;
+            if (m_UserManager.NativeClient.Hometown != null)
             {
-                UserHomeTownLabel.Text = m_FacebookUser.Hometown.Name;
+                UserHomeTownLabel.Text = m_UserManager.NativeClient.Hometown.Name;
             }
 
-            if (m_FacebookUser.Location != null)
+            if (m_UserManager.NativeClient.Location != null)
             {
-                UserCurrentCityLabel.Text = m_FacebookUser.Location.Name;
+                UserCurrentCityLabel.Text = m_UserManager.NativeClient.Location.Name;
             }
 
-            if (m_FacebookUser.RelationshipStatus.HasValue)
+            if (m_UserManager.NativeClient.RelationshipStatus.HasValue)
             {
-                UserRelationshipLabel.Text = m_FacebookUser.RelationshipStatus.Value.ToString();
+                UserRelationshipLabel.Text = m_UserManager.NativeClient.RelationshipStatus.Value.ToString();
             }
         }
 
@@ -73,7 +71,7 @@ namespace DesktopFacebook.Forms
             int wallPostYLocation = AttachPhotoPictureBox1.Location.Y + AttachPhotoPictureBox1.Height + 40;
             WallPostControl wallPostControl;
 
-            foreach (Post wallPost in m_FacebookUser.WallPosts)
+            foreach (Post wallPost in m_UserManager.NativeClient.WallPosts)
             {
                 wallPostControl = AddWallPostComponent(wallPost, wallPostXLocation, wallPostYLocation);
                 wallPostYLocation += wallPostControl.Height + 10;
@@ -120,12 +118,12 @@ namespace DesktopFacebook.Forms
                 {
                     int wallPostXLocation = AttachPhotoPictureBox1.Location.X;
                     int wallPostYLocation = AttachPhotoPictureBox1.Location.Y + AttachPhotoPictureBox1.Height + 40;
-                    Status postedStatus = m_FacebookUser.PostStatus(PostTextBox.Text);
-                    AddNewWallPostToExistWall(m_FacebookUser.Posts[0], wallPostXLocation, wallPostYLocation);
+                    Status postedStatus = m_UserManager.NativeClient.PostStatus(PostTextBox.Text);
+                    AddNewWallPostToExistWall(m_UserManager.NativeClient.Posts[0], wallPostXLocation, wallPostYLocation);
                 }
                 else
                 {
-                    m_FacebookUser.PostPhoto(PreviewPhotoPictureBox.ImageLocation, PostTextBox.Text);
+                    m_UserManager.NativeClient.PostPhoto(PreviewPhotoPictureBox.ImageLocation, PostTextBox.Text);
                 }
 
                 CleanPostControls();
@@ -140,7 +138,7 @@ namespace DesktopFacebook.Forms
         {
             int counter = 1;
 
-            foreach (Post post in m_FacebookUser.Posts)
+            foreach (Post post in m_UserManager.NativeClient.Posts)
             {
                 while (counter <= 5)
                 {
@@ -164,7 +162,7 @@ namespace DesktopFacebook.Forms
 
         private void TopFiveLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FacebookObjectCollection<Post> posts = m_FacebookUser.Posts;
+            FacebookObjectCollection<Post> posts = m_UserManager.NativeClient.Posts;
             Post mostPopular;
             for (int i = 0; i < 5; i++)
             {
@@ -289,7 +287,7 @@ namespace DesktopFacebook.Forms
                     }
                 case (int)eTabPageType.FriendshipMatchScalePage:
                     {
-                        m_FriendshipMatchScalePage.FetchFriendsToChecklist(m_FacebookUser);
+                        m_FriendshipMatchScalePage.FetchFriendsToChecklist(m_UserManager.NativeClient);
                         break;
                     }
             }
