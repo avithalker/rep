@@ -6,6 +6,7 @@
         FriendsPage,
         AlbumPage,
         CheckinPage,
-        EventsPage
+        EventsPage,
+        FriendshipMatchScalePage
     }
 }

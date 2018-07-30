@@ -11,18 +11,17 @@ namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
     {
         private int m_matchScaleValue;
         private User m_loginUser;
-        private User m_usersFriend;
+        
 
-        public FriendshipMatchScaleCalculator(User i_loginUser, User i_usersFriend)
+        public FriendshipMatchScaleCalculator(User i_loginUser)
         {
             m_loginUser = i_loginUser;
-            m_usersFriend = i_usersFriend;
         }
 
-        public int CalculateMusicMatchPercentValue()
+        public int CalculateMusicMatchPercentValue(User i_friend)
         {
             List<Page> MusicPageListOfLoginUser = getUsersMusicPageLIst(m_loginUser);
-            List<Page> MusicPageListOfUsersFriend = getUsersMusicPageLIst(m_usersFriend);
+            List<Page> MusicPageListOfUsersFriend = getUsersMusicPageLIst(i_friend);
             int numOfMatches = 0;
             
             foreach(Page page in MusicPageListOfUsersFriend)
@@ -54,11 +53,11 @@ namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
             return MusicPageList;
         }
 
-        public int CalculateEntertainmentPlacesMatch()
+        public int CalculateEntertainmentPlacesMatch(User i_friend)
         {
             int numOfMatches = 0;
 
-            foreach (Checkin checkin in m_usersFriend.Checkins)
+            foreach (Checkin checkin in i_friend.Checkins)
             {
                foreach(Checkin friendsCheckin in m_loginUser.Checkins)
                 {
@@ -69,22 +68,22 @@ namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
                 }
             }
 
-            return (numOfMatches / m_usersFriend.Checkins.Count) * 100;
+            return (numOfMatches / i_friend.Checkins.Count) * 100;
         }
 
-        public int CalculatePrivateInfoMatch()
+        public int CalculatePrivateInfoMatch(User i_friend)
         {
             int numOfMatches = 0;
 
-            if(m_loginUser.Hometown == m_usersFriend.Hometown)
+            if(m_loginUser.Hometown == i_friend.Hometown)
             {
                 numOfMatches++;
             }
-            if(m_loginUser.RelationshipStatus == m_usersFriend.RelationshipStatus)
+            if(m_loginUser.RelationshipStatus == i_friend.RelationshipStatus)
             {
                 numOfMatches++;
             }
-            if(getUsersCurrentWork(m_loginUser).Position == getUsersCurrentWork(m_usersFriend).Position)
+            if(getUsersCurrentWork(m_loginUser).Position == getUsersCurrentWork(i_friend).Position)
             {
                 numOfMatches++;
             }
@@ -105,11 +104,11 @@ namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
             return null;
         }
 
-        public int Calculate()
+        public int Calculate(User i_friend)
         {
-            int entertainmentPercentMatch = CalculateEntertainmentPlacesMatch() * 1 / 3;
-            int privateInfoMatch = CalculatePrivateInfoMatch() * 1 / 3;
-            int musicMatch = CalculateMusicMatchPercentValue() * 1 / 3;
+            int entertainmentPercentMatch = CalculateEntertainmentPlacesMatch(i_friend) * 1 / 3;
+            int privateInfoMatch = CalculatePrivateInfoMatch(i_friend) * 1 / 3;
+            int musicMatch = CalculateMusicMatchPercentValue(i_friend) * 1 / 3;
 
             return (musicMatch + privateInfoMatch + entertainmentPercentMatch);
         }

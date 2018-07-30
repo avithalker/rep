@@ -18,6 +18,7 @@ namespace DesktopFacebook.Forms
         private FriendsPage m_FriendsPage;
         private AlbumsPage m_AlbumPage;
         private SmartPostPage m_SmartPostPage;
+        private FriendshipMatchScalePage m_FriendshipMatchScalePage;
 
         public UserProfileForm(FacebookUserManager i_UserManager)
         {
@@ -35,11 +36,12 @@ namespace DesktopFacebook.Forms
             m_FriendsPage = new FriendsPage(m_UserManager, m_DataFetchIndicator);
             m_AlbumPage = new AlbumsPage(m_UserManager, m_DataFetchIndicator);
             m_SmartPostPage = new SmartPostPage(m_UserManager);
-
+            m_FriendshipMatchScalePage = new FriendshipMatchScalePage(m_FacebookUser);
             EventsTab.Controls.Add(new EventsPage(m_UserManager));
             CheckInsTab.Controls.Add(m_checkinPage);
             FriendsTab.Controls.Add(m_FriendsPage);
             AlbumsTab.Controls.Add(m_AlbumPage);
+            FriendshipMatchTab.Controls.Add(m_FriendshipMatchScalePage);
             SmartPostTab.Controls.Add(m_SmartPostPage);
         }
 
@@ -285,7 +287,14 @@ namespace DesktopFacebook.Forms
 
                         break;
                     }
+                case (int)eTabPageType.FriendshipMatchScalePage:
+                    {
+                        m_FriendshipMatchScalePage.FetchFriendsToChecklist(m_FacebookUser);
+                        break;
+                    }
             }
         }
+
+        
     }
 }
