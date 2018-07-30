@@ -1,6 +1,6 @@
 ﻿namespace DesktopFacebook.Business.Settings
 {
-    public class ApplicationSettings
+    public static class ApplicationSettings
     {
         public const string k_ApplicationId = "1450160541956417";
         public static readonly string[] sr_ApplicationPermissions = new string[]

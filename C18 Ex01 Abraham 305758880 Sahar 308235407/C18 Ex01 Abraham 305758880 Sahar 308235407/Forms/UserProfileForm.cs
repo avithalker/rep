@@ -260,7 +260,7 @@ namespace DesktopFacebook.Forms
                     {
                         if (!m_DataFetchIndicator.AreFriendsWereFetch)
                         {
-                            m_FriendsPage.fetchUsersFriends();
+                            m_FriendsPage.FetchUsersFriends();
                         }
 
                         break;

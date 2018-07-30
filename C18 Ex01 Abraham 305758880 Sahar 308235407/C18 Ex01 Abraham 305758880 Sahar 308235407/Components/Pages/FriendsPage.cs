@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using DesktopFacebook.Business;
@@ -25,7 +19,7 @@ namespace DesktopFacebook.Components.Pages
             m_DataFetchIndicator = i_DataFetchIndicator;
         }
 
-        public void fetchUsersFriends()
+        public void FetchUsersFriends()
         {
             int x = 0;
             int y = 0;
@@ -34,14 +28,14 @@ namespace DesktopFacebook.Components.Pages
 
             foreach (User friend in m_FacebookUserManager.NativeClient.Friends)
             {
-                AddFriendComponent(friend, x, y, ref lastPicturewidth, ref lastHeight);
+                addFriendComponent(friend, x, y, ref lastPicturewidth, ref lastHeight);
                 updateLocation(ref x, ref y, lastPicturewidth, lastHeight);
             }
 
             m_DataFetchIndicator.AreFriendsWereFetch = true;
         }
 
-        private void AddFriendComponent(User i_friend, int i_x, int i_y, ref int io_lastPictureWidth, ref int io_LastHeight)
+        private void addFriendComponent(User i_friend, int i_x, int i_y, ref int io_lastPictureWidth, ref int io_LastHeight)
         {
             ClickablePictureBox friendsPicture = new ClickablePictureBox();
             friendsPicture.Size = new Size(100, 100);

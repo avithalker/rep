@@ -56,11 +56,11 @@ namespace DesktopFacebook.Components.Pages
             List<FilterData> filterToUse = getRelevantFilters();
             List<User> matchFriends = FilterActivator.FilterFriendList(m_FacebookUserManager.GetFriendsAsList(), filterToUse);
 
-            FillFilteredListBox(matchFriends);
+            fillFilteredListBox(matchFriends);
             facebookPostControl1.TaggedFriends = string.Join(",", matchFriends.Select(x => x.Id).ToList());
         }
 
-        private void FillFilteredListBox(List<User> i_Friends)
+        private void fillFilteredListBox(List<User> i_Friends)
         {
             FilteredFriendsListbox.DisplayMember = "Name";
             FilteredFriendsListbox.Items.AddRange(i_Friends.ToArray());
