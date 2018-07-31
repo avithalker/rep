@@ -285,14 +285,13 @@ namespace DesktopFacebook.Forms
 
                         break;
                     }
+
                 case (int)eTabPageType.FriendshipMatchScalePage:
                     {
-                        m_FriendshipMatchScalePage.FetchFriendsToChecklist(m_UserManager.NativeClient);
+                        m_FriendshipMatchScalePage.FetchFriendsToListBox(m_UserManager.NativeClient);
                         break;
                     }
             }
-        }
-
-        
+        }   
     }
 }

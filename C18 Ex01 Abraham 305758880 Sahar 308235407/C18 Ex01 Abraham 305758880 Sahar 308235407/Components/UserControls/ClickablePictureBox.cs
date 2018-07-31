@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace DesktopFacebook.Components.UserControls
 {
-    public class ClickablePictureBox:PictureBox
+    public class ClickablePictureBox : PictureBox
     {
         public ClickablePictureBox()
         {

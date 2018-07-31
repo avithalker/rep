@@ -153,6 +153,5 @@ namespace DesktopFacebook.Business
 
             return friendList;
         }
-
     }
 }

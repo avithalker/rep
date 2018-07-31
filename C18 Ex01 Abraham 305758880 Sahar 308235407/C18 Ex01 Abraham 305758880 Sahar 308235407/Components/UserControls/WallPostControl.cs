@@ -22,7 +22,7 @@ namespace DesktopFacebook.Components.UserControls
         {
             PostLabel.Text = m_WallPost.Message;
             updateLikeCounter();
-            if(m_WallPost.From!=null)
+            if(m_WallPost.From != null)
             {
                 PosterNameLabel.Text = m_WallPost.From.Name;
             }

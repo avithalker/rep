@@ -1,41 +1,42 @@
-﻿using FacebookWrapper.ObjectModel;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using FacebookWrapper.ObjectModel;
 
 namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
 {
     public class FriendshipMatchScaleCalculator
     {
-        private int m_matchScaleValue;
         private User m_loginUser;
-        
 
         public FriendshipMatchScaleCalculator(User i_loginUser)
         {
             m_loginUser = i_loginUser;
         }
 
-        public int CalculateMusicMatchPercentValue(User i_friend)
+        private int calculateMusicMatchPercentValue(User i_friend)
         {
             List<Page> MusicPageListOfLoginUser = getUsersMusicPageLIst(m_loginUser);
             List<Page> MusicPageListOfUsersFriend = getUsersMusicPageLIst(i_friend);
             int numOfMatches = 0;
-            
-            foreach(Page page in MusicPageListOfUsersFriend)
+            int matchValue = 0;
+
+            if (MusicPageListOfLoginUser.Count() != 0 && MusicPageListOfUsersFriend.Count() != 0)
             {
-                foreach(Page loginUserpage in MusicPageListOfLoginUser)
+                foreach (Page page in MusicPageListOfUsersFriend)
                 {
-                    if(page.Id == loginUserpage.Id)
+                    foreach (Page loginUserpage in MusicPageListOfLoginUser)
                     {
-                        numOfMatches++;
+                        if (page.Id == loginUserpage.Id)
+                        {
+                            numOfMatches++;
+                        }
                     }
                 }
+
+                matchValue = (numOfMatches / MusicPageListOfLoginUser.Count) * 100;
             }
 
-            return (numOfMatches / MusicPageListOfLoginUser.Count) * 100 ;
+            return matchValue;
         }
 
         private List<Page> getUsersMusicPageLIst(User i_user)
@@ -44,7 +45,7 @@ namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
 
             foreach (Page page in i_user.LikedPages.Where(isMusicPage))
             {
-                if(page.Category.ToString() == "Musician/Band")
+                if (page.Category.ToString() == "Musician/Band")
                 {
                     MusicPageList.Add(page);
                 }
@@ -53,37 +54,45 @@ namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
             return MusicPageList;
         }
 
-        public int CalculateEntertainmentPlacesMatch(User i_friend)
+        private int calculateEntertainmentPlacesMatch(User i_friend)
         {
             int numOfMatches = 0;
+            int matchResult = 0;
 
-            foreach (Checkin checkin in i_friend.Checkins)
+            if (i_friend.Checkins.Count != 0)
             {
-               foreach(Checkin friendsCheckin in m_loginUser.Checkins)
+                foreach (Checkin checkin in i_friend.Checkins)
                 {
-                    if(checkin.Place.Category == friendsCheckin.Place.Category)
+                    foreach (Checkin friendsCheckin in m_loginUser.Checkins)
                     {
-                        numOfMatches++;
+                        if (checkin.Place.Category == friendsCheckin.Place.Category)
+                        {
+                            numOfMatches++;
+                        }
                     }
                 }
+
+                matchResult = (numOfMatches / i_friend.Checkins.Count) * 100;
             }
 
-            return (numOfMatches / i_friend.Checkins.Count) * 100;
+            return matchResult;
         }
 
-        public int CalculatePrivateInfoMatch(User i_friend)
+        private int calculatePrivateInfoMatch(User i_friend)
         {
             int numOfMatches = 0;
 
-            if(m_loginUser.Hometown == i_friend.Hometown)
+            if ((i_friend.Hometown != null) && (m_loginUser.Hometown != null) && m_loginUser.Hometown == i_friend.Hometown)
             {
                 numOfMatches++;
             }
-            if(m_loginUser.RelationshipStatus == i_friend.RelationshipStatus)
+
+            if ((m_loginUser.RelationshipStatus != null) && (i_friend.RelationshipStatus != null) && (m_loginUser.RelationshipStatus == i_friend.RelationshipStatus))
             {
                 numOfMatches++;
             }
-            if(getUsersCurrentWork(m_loginUser).Position == getUsersCurrentWork(i_friend).Position)
+
+            if (getUsersLastPosition(m_loginUser) != null && getUsersLastPosition(i_friend) != null && getUsersCurrentWork(m_loginUser).Position == getUsersCurrentWork(i_friend).Position)
             {
                 numOfMatches++;
             }
@@ -91,26 +100,49 @@ namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
             return (numOfMatches / 3) * 100;
         }
 
+        private Page getUsersLastPosition(User i_user)
+        {
+            WorkExperience currentWork = null;
+            Page lastPosition = null;
+
+            if (i_user.WorkExperiences != null && i_user.WorkExperiences.Count() != 0)
+            {
+                currentWork = getUsersCurrentWork(i_user);
+            }
+
+            if (currentWork != null)
+            {
+                lastPosition = currentWork.Position;
+            }
+
+            return lastPosition;
+        }
+
         private WorkExperience getUsersCurrentWork(User i_user)
         {
-            foreach(WorkExperience work in i_user.WorkExperiences)
+            WorkExperience currentWork = null;
+
+            if (i_user.WorkExperiences != null && i_user.WorkExperiences.Count() != 0)
             {
-                if ((string.IsNullOrEmpty((work.EndDate.ToString()))))
+                foreach (WorkExperience work in i_user.WorkExperiences)
                 {
-                    return work;
+                    if (string.IsNullOrEmpty(work.EndDate.ToString()))
+                    {
+                        currentWork = work;
+                    }
                 }
             }
 
-            return null;
+            return currentWork;
         }
 
         public int Calculate(User i_friend)
         {
-            int entertainmentPercentMatch = CalculateEntertainmentPlacesMatch(i_friend) * 1 / 3;
-            int privateInfoMatch = CalculatePrivateInfoMatch(i_friend) * 1 / 3;
-            int musicMatch = CalculateMusicMatchPercentValue(i_friend) * 1 / 3;
+            int entertainmentPercentMatch = calculateEntertainmentPlacesMatch(i_friend) * 1 / 3;
+            int privateInfoMatch = calculatePrivateInfoMatch(i_friend) * 1 / 3;
+            int musicMatch = calculateMusicMatchPercentValue(i_friend) * 1 / 3;
 
-            return (musicMatch + privateInfoMatch + entertainmentPercentMatch);
+            return musicMatch + privateInfoMatch + entertainmentPercentMatch;
         }
 
         private bool isMusicPage(Page i_page)

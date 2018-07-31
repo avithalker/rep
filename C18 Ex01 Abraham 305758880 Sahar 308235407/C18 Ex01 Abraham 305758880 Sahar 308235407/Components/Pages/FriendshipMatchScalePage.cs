@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using DesktopFacebook.CustomFeatures.FriendshipMatchScale;
@@ -14,7 +7,7 @@ namespace DesktopFacebook.Components.Pages
 {
     public partial class FriendshipMatchScalePage : UserControl
     {
-        FriendshipMatchScaleCalculator m_FriendshipMatchScaleCalculator;
+        private FriendshipMatchScaleCalculator m_FriendshipMatchScaleCalculator;
 
         public FriendshipMatchScalePage(User i_facebookUser)
         {
@@ -22,23 +15,28 @@ namespace DesktopFacebook.Components.Pages
             m_FriendshipMatchScaleCalculator = new FriendshipMatchScaleCalculator(i_facebookUser);
         }
 
-        public void FetchFriendsToChecklist(User i_facebookUser)
+        public void FetchFriendsToListBox(User i_facebookUser)
         {
-            string friendsFullName;
-
+            FriendsListBox.DisplayMember = "Name";
             foreach (User friend in i_facebookUser.Friends)
             {
-                friendsFullName = friend.FirstName + " " + friend.LastName;
-                FriendsListBox.Items.Add(friendsFullName);
+                FriendsListBox.Items.Add(friend);
             }
         }
 
-        public void FriendsListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        private void FriendshipMatchButton_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < FriendsListBox.Items.Count; i++)
-                if (i != e.Index) FriendsListBox.SetItemChecked(i, false);
+            string valueInPercents;
+
+            if (FriendsListBox.SelectedItem == null)
+            {
+                MessageBox.Show("Please choose a friend from the list");
+            }
+            else
+            {
+                valueInPercents = m_FriendshipMatchScaleCalculator.Calculate((User)FriendsListBox.SelectedItem).ToString() + '%';
+                FriendshipMatchValue.Text = valueInPercents;
+            }
         }
     }
-
-   
 }
