@@ -47,13 +47,6 @@
             this.FriendsTab = new System.Windows.Forms.TabPage();
             this.AlbumsTab = new System.Windows.Forms.TabPage();
             this.CheckInsTab = new System.Windows.Forms.TabPage();
-            this.PostsTab = new System.Windows.Forms.TabPage();
-            this.RecentPostsLink = new System.Windows.Forms.LinkLabel();
-            this.TopFiveLink = new System.Windows.Forms.LinkLabel();
-            this.RecentPostsListBox = new System.Windows.Forms.ListBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.TopFivePostsListBox = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.EventsTab = new System.Windows.Forms.TabPage();
             this.SmartPostTab = new System.Windows.Forms.TabPage();
             this.FriendshipMatchTab = new System.Windows.Forms.TabPage();
@@ -69,7 +62,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ClearImagePictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AttachPhotoPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PreviewPhotoPictureBox)).BeginInit();
-            this.PostsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).BeginInit();
             this.SuspendLayout();
@@ -158,7 +150,6 @@
             this.UsersDetailsControlTab.Controls.Add(this.FriendsTab);
             this.UsersDetailsControlTab.Controls.Add(this.AlbumsTab);
             this.UsersDetailsControlTab.Controls.Add(this.CheckInsTab);
-            this.UsersDetailsControlTab.Controls.Add(this.PostsTab);
             this.UsersDetailsControlTab.Controls.Add(this.EventsTab);
             this.UsersDetailsControlTab.Controls.Add(this.SmartPostTab);
             this.UsersDetailsControlTab.Controls.Add(this.FriendshipMatchTab);
@@ -273,85 +264,6 @@
             this.CheckInsTab.TabIndex = 3;
             this.CheckInsTab.Text = "CheckIns";
             this.CheckInsTab.UseVisualStyleBackColor = true;
-            // 
-            // PostsTab
-            // 
-            this.PostsTab.Controls.Add(this.RecentPostsLink);
-            this.PostsTab.Controls.Add(this.TopFiveLink);
-            this.PostsTab.Controls.Add(this.RecentPostsListBox);
-            this.PostsTab.Controls.Add(this.label2);
-            this.PostsTab.Controls.Add(this.TopFivePostsListBox);
-            this.PostsTab.Controls.Add(this.label1);
-            this.PostsTab.Location = new System.Drawing.Point(4, 22);
-            this.PostsTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.PostsTab.Name = "PostsTab";
-            this.PostsTab.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.PostsTab.Size = new System.Drawing.Size(704, 482);
-            this.PostsTab.TabIndex = 1;
-            this.PostsTab.Text = "Posts";
-            this.PostsTab.UseVisualStyleBackColor = true;
-            // 
-            // RecentPostsLink
-            // 
-            this.RecentPostsLink.AutoSize = true;
-            this.RecentPostsLink.Location = new System.Drawing.Point(478, 30);
-            this.RecentPostsLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.RecentPostsLink.Name = "RecentPostsLink";
-            this.RecentPostsLink.Size = new System.Drawing.Size(95, 13);
-            this.RecentPostsLink.TabIndex = 5;
-            this.RecentPostsLink.TabStop = true;
-            this.RecentPostsLink.Text = "Fetch recent posts";
-            this.RecentPostsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RecentPostsLink_LinkClicked);
-            // 
-            // TopFiveLink
-            // 
-            this.TopFiveLink.AutoSize = true;
-            this.TopFiveLink.Location = new System.Drawing.Point(150, 30);
-            this.TopFiveLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.TopFiveLink.Name = "TopFiveLink";
-            this.TopFiveLink.Size = new System.Drawing.Size(100, 13);
-            this.TopFiveLink.TabIndex = 4;
-            this.TopFiveLink.TabStop = true;
-            this.TopFiveLink.Text = "Fetch top five posts";
-            this.TopFiveLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.TopFiveLink_LinkClicked);
-            // 
-            // RecentPostsListBox
-            // 
-            this.RecentPostsListBox.FormattingEnabled = true;
-            this.RecentPostsListBox.Location = new System.Drawing.Point(308, 44);
-            this.RecentPostsListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.RecentPostsListBox.Name = "RecentPostsListBox";
-            this.RecentPostsListBox.Size = new System.Drawing.Size(266, 160);
-            this.RecentPostsListBox.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(306, 19);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Recent Posts";
-            // 
-            // TopFivePostsListBox
-            // 
-            this.TopFivePostsListBox.FormattingEnabled = true;
-            this.TopFivePostsListBox.Location = new System.Drawing.Point(17, 44);
-            this.TopFivePostsListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.TopFivePostsListBox.Name = "TopFivePostsListBox";
-            this.TopFivePostsListBox.Size = new System.Drawing.Size(235, 160);
-            this.TopFivePostsListBox.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 19);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Top 5 Posts:";
             // 
             // EventsTab
             // 
@@ -477,8 +389,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ClearImagePictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AttachPhotoPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PreviewPhotoPictureBox)).EndInit();
-            this.PostsTab.ResumeLayout(false);
-            this.PostsTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).EndInit();
             this.ResumeLayout(false);
@@ -498,17 +408,10 @@
         private System.Windows.Forms.Label UsersBirthdate;
         private System.Windows.Forms.TabControl UsersDetailsControlTab;
         private System.Windows.Forms.TabPage FriendsTab;
-        private System.Windows.Forms.TabPage PostsTab;
         private System.Windows.Forms.TabPage AlbumsTab;
         private System.Windows.Forms.TabPage CheckInsTab;
         private System.Windows.Forms.TabPage UserWallTab;
         private System.Windows.Forms.Button PostButton;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox TopFivePostsListBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox RecentPostsListBox;
-        private System.Windows.Forms.LinkLabel RecentPostsLink;
-        private System.Windows.Forms.LinkLabel TopFiveLink;
         private System.Windows.Forms.Label HomeTownLable;
         private System.Windows.Forms.Label CurrentCityLabel;
         private System.Windows.Forms.Label UserHomeTownLabel;

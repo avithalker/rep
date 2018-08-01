@@ -7,6 +7,6 @@
         AlbumPage,
         CheckinPage,
         EventsPage,
-        FriendshipMatchScalePage = 7
+        FriendshipMatchScalePage = 6
     }
 }

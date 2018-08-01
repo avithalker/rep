@@ -134,59 +134,6 @@ namespace DesktopFacebook.Forms
             }
         }
 
-        private void RecentPostsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            int counter = 1;
-
-            foreach (Post post in m_UserManager.NativeClient.Posts)
-            {
-                while (counter <= 5)
-                {
-                    if (post.Message != null)
-                    {
-                        RecentPostsListBox.Items.Add(post.Message);
-                    }
-                    else if (post.Caption != null)
-                    {
-                        RecentPostsListBox.Items.Add(post.Caption);
-                    }
-                    else
-                    {
-                        RecentPostsListBox.Items.Add(string.Format("[{0}]", post.Type));
-                    }
-                }
-
-                counter++;
-            }
-        }
-
-        private void TopFiveLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            FacebookObjectCollection<Post> posts = m_UserManager.NativeClient.Posts;
-            Post mostPopular;
-            for (int i = 0; i < 5; i++)
-            {
-                mostPopular = getMostPopularPost(posts);
-                TopFivePostsListBox.Items.Add(mostPopular);
-                posts.Remove(mostPopular);
-            }
-        }
-
-        private Post getMostPopularPost(FacebookObjectCollection<Post> i_posts)
-        {
-            Post mostPopular = i_posts[0];
-
-            foreach (Post post in i_posts)
-            {
-                if (mostPopular.LikedBy.Count < post.LikedBy.Count)
-                {
-                    mostPopular = post;
-                }
-            }
-
-            return mostPopular;
-        }
-
         private void PostTextBox_MouseEnter(object sender, EventArgs e)
         {
             RichTextBox postRichTextBox = sender as RichTextBox;
