@@ -36,7 +36,6 @@ namespace DesktopFacebook.Components.Pages
             }
             catch(Exception)
             {
-
             }
 
             m_DataFetchIndicator.AreFriendsWereFetch = true;

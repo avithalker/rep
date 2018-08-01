@@ -7,6 +7,7 @@ namespace DesktopFacebook.Business.Settings
     public class UserSettings
     {
         private const string k_SettingsPath = "userSettings.xml";
+
         public string UserLastAccessToken { get; set; }
 
         private UserSettings()
@@ -23,7 +24,7 @@ namespace DesktopFacebook.Business.Settings
                 using (Stream fileStream = new FileStream(k_SettingsPath, FileMode.OpenOrCreate))
                 {
                     XmlSerializer xmlSerializer = new XmlSerializer(typeof(UserSettings));
-                    userSettings=xmlSerializer.Deserialize(fileStream) as UserSettings;
+                    userSettings = xmlSerializer.Deserialize(fileStream) as UserSettings;
                 }
             }
             catch (Exception)
@@ -44,9 +45,8 @@ namespace DesktopFacebook.Business.Settings
                     xmlSerializer.Serialize(fileStream, this);
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
-
             }
         }
     }
