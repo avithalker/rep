@@ -9,33 +9,55 @@ namespace DesktopFacebook.Business
     public class FacebookUserManager
     {
         private User m_NativeClient;
+        private UserSettings m_userSettings;
 
         public User NativeClient
         {
             get { return m_NativeClient; }
         }
 
-        public LoginResult Login(string i_AccessToken = null)
+        public FacebookUserManager()
         {
-            FacebookService.s_FbApiVersion = 2.8f;
+            LoadUserSettings();
+        }
 
+        public LoginResult Login(bool i_RememberUser = false)
+        {
+            FacebookService.s_FbApiVersion = ApplicationSettings.k_FacebookApiVersion;
             LoginResult result;
 
-            if (string.IsNullOrEmpty(i_AccessToken))
+            if (string.IsNullOrEmpty(m_userSettings.UserLastAccessToken))
             {
                 result = FacebookService.Login(ApplicationSettings.k_ApplicationId, ApplicationSettings.sr_ApplicationPermissions);
             }
             else
             {
-                result = FacebookService.Connect(i_AccessToken);
+                result = FacebookService.Connect(m_userSettings.UserLastAccessToken);
             }
 
             if (!string.IsNullOrEmpty(result.AccessToken))
             {
                 m_NativeClient = result.LoggedInUser;
+                m_userSettings.UserLastAccessToken = result.AccessToken;
+                if (i_RememberUser == true)
+                {
+                    m_userSettings.SaveSettings();
+                }
             }
 
             return result;
+        }
+
+        public void Logout()
+        {
+            m_userSettings.UserLastAccessToken = string.Empty;
+            m_userSettings.SaveSettings();
+            FacebookService.Logout(()=> { });
+        }
+
+        public bool IsRecognizedUser()
+        {
+            return !string.IsNullOrEmpty(m_userSettings.UserLastAccessToken);
         }
 
         public User FindFriendById(string i_FriendId)
@@ -127,6 +149,18 @@ namespace DesktopFacebook.Business
             return eventRsvp;
         }
 
+        public List<User> GetFriendsAsList()
+        {
+            List<User> friendList = new List<User>();
+
+            foreach (User friend in m_NativeClient.Friends)
+            {
+                friendList.Add(friend);
+            }
+
+            return friendList;
+        }
+
         private bool isEventExistInCollection(string i_EventId, FacebookObjectCollection<Event> i_Events)
         {
             bool isExist = false;
@@ -142,16 +176,9 @@ namespace DesktopFacebook.Business
             return isExist;
         }
 
-        public List<User> GetFriendsAsList()
+        private void LoadUserSettings()
         {
-            List<User> friendList = new List<User>();
-
-            foreach (User friend in m_NativeClient.Friends)
-            {
-                friendList.Add(friend);
-            }
-
-            return friendList;
+            m_userSettings = UserSettings.LoadSettings();
         }
     }
 }

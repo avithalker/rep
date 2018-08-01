@@ -18,20 +18,44 @@ namespace DesktopFacebook.Forms
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            // todo: change the appid!!!! to the original!!
-            LoginResult result = m_UserManager.Login();
+            Login();
+        }
 
-           // FacebookService.Logout(() => { });
-            if (!string.IsNullOrEmpty(result.AccessToken))
+        private void LoginUserForm_Load(object sender, EventArgs e)
+        {
+            if (m_UserManager.IsRecognizedUser())
             {
-                m_UserProfileForm = new UserProfileForm(m_UserManager);
-                m_UserProfileForm.Visible = false;
-                m_UserProfileForm.Show();
+                Login();
             }
-            else
+        }
+
+        private void Login()
+        {
+            try
             {
-                MessageBox.Show(result.ErrorMessage);
+                LoginResult result = m_UserManager.Login(RememberMeCheckBox.Checked);
+
+                if (!string.IsNullOrEmpty(result.AccessToken))
+                {
+                    showUserProfileForm();
+                }
+                else
+                {
+                    MessageBox.Show(result.ErrorMessage);
+                }
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show(string.Format("Failed to login. Info: {0}", ex.Message));
+            }
+        }
+
+        private void showUserProfileForm()
+        {
+            m_UserProfileForm = new UserProfileForm(m_UserManager);
+            Hide();
+            m_UserProfileForm.ShowDialog();
+            Show();
         }
     }
 }

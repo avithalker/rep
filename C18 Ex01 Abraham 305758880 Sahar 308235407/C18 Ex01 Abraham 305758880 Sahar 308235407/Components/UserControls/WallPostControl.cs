@@ -84,7 +84,14 @@ namespace DesktopFacebook.Components.UserControls
 
         private void updateLikeCounter()
         {
-            TotalLikesLabel.Text = m_WallPost.LikedBy.Count.ToString();
+            try
+            {
+                TotalLikesLabel.Text = m_WallPost.LikedBy.Count.ToString();
+            }
+            catch(Exception)
+            {
+                TotalLikesLabel.Text = "0";
+            }
         }
 
         private void DeletePostButton1_Click(object sender, EventArgs e)

@@ -26,10 +26,17 @@ namespace DesktopFacebook.Components.Pages
             int lastPicturewidth = 0;
             int lastHeight = 0;
 
-            foreach (User friend in m_FacebookUserManager.NativeClient.Friends)
+            try
             {
-                addFriendComponent(friend, x, y, ref lastPicturewidth, ref lastHeight);
-                updateLocation(ref x, ref y, lastPicturewidth, lastHeight);
+                foreach (User friend in m_FacebookUserManager.NativeClient.Friends)
+                {
+                    addFriendComponent(friend, x, y, ref lastPicturewidth, ref lastHeight);
+                    updateLocation(ref x, ref y, lastPicturewidth, lastHeight);
+                }
+            }
+            catch(Exception)
+            {
+
             }
 
             m_DataFetchIndicator.AreFriendsWereFetch = true;
