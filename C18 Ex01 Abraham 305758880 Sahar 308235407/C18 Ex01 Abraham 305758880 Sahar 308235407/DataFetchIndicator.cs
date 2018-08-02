@@ -6,7 +6,13 @@
         private bool m_AreFriendsWereFetch;
         private bool m_AreAlbumsWereFetch;
         private bool m_AreCheckinsWereFetch;
+        private bool m_AreFriendsInFriendshipMatcTabWereFetch;
 
+        public bool AreFriendsInFriendshipMatcTabWereFetch
+        {
+            get { return m_AreFriendsInFriendshipMatcTabWereFetch; }
+            set { m_AreFriendsInFriendshipMatcTabWereFetch = value; }
+        }
         public bool AreCheckinWereFetch
         {
             get { return m_AreCheckinsWereFetch; }

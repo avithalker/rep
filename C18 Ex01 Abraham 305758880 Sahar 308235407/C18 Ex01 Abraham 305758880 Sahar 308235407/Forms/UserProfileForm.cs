@@ -235,10 +235,21 @@ namespace DesktopFacebook.Forms
 
                 case (int)eTabPageType.FriendshipMatchScalePage:
                     {
-                        m_FriendshipMatchScalePage.FetchFriendsToListBox(m_UserManager.NativeClient);
+                        if (!m_DataFetchIndicator.AreFriendsInFriendshipMatcTabWereFetch)
+                        {
+                            m_FriendshipMatchScalePage.FetchFriendsToListBox(m_UserManager.NativeClient);
+                            m_DataFetchIndicator.AreFriendsInFriendshipMatcTabWereFetch = true;
+                        }
+
                         break;
                     }
             }
-        }   
+        }
+
+        private void LogoutButton_Click(object sender, EventArgs e)
+        {
+            m_UserManager.Logout();
+            Close();
+        }
     }
 }
