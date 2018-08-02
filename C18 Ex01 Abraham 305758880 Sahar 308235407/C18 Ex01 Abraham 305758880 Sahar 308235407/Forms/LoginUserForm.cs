@@ -34,7 +34,6 @@ namespace DesktopFacebook.Forms
             try
             {
                 LoginResult result = m_UserManager.Login(RememberMeCheckBox.Checked);
-
                 if (!string.IsNullOrEmpty(result.AccessToken))
                 {
                     showUserProfileForm();
