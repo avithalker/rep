@@ -13,6 +13,7 @@
             get { return m_AreFriendsInFriendshipMatcTabWereFetch; }
             set { m_AreFriendsInFriendshipMatcTabWereFetch = value; }
         }
+
         public bool AreCheckinWereFetch
         {
             get { return m_AreCheckinsWereFetch; }
