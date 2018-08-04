@@ -92,49 +92,8 @@ namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
                 numOfMatches++;
             }
 
-            //if (getUsersLastPosition(m_loginUser) != null && getUsersLastPosition(i_friend) != null && getUsersCurrentWork(m_loginUser).Position == getUsersCurrentWork(i_friend).Position)
-            //{
-            //    numOfMatches++;
-            //}
-
             return (numOfMatches / 2) * 100;
         }
-
-        //private Page getUsersLastPosition(User i_user)
-        //{
-        //    WorkExperience currentWork = null;
-        //    Page lastPosition = null;
-
-        //    if (i_user.WorkExperiences != null && i_user.WorkExperiences.Count() != 0)
-        //    {
-        //        currentWork = getUsersCurrentWork(i_user);
-        //    }
-
-        //    if (currentWork != null)
-        //    {
-        //        lastPosition = currentWork.Position;
-        //    }
-
-        //    return lastPosition;
-        //}
-
-        //private WorkExperience getUsersCurrentWork(User i_user)
-        //{
-        //    WorkExperience currentWork = null;
-
-        //    if (i_user.WorkExperiences != null && i_user.WorkExperiences.Count() != 0)
-        //    {
-        //        foreach (WorkExperience work in i_user.WorkExperiences)
-        //        {
-        //            if (string.IsNullOrEmpty(work.EndDate.ToString()))
-        //            {
-        //                currentWork = work;
-        //            }
-        //        }
-        //    }
-
-        //    return currentWork;
-        //}
 
         public int Calculate(User i_friend)
         {
