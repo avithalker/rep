@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 using DesktopFacebook.Business;
 using DesktopFacebook.CommonDefines;
@@ -65,6 +66,13 @@ namespace DesktopFacebook.Forms
             }
         }
 
+        private void fetchUserPostsAsync()
+        {
+            Thread loadPostThread = new Thread(() => fetchUserPosts());
+
+            loadPostThread.Start();
+        }
+
         private void fetchUserPosts()
         {
             int wallPostXLocation = AttachPhotoPictureBox1.Location.X;
@@ -84,7 +92,7 @@ namespace DesktopFacebook.Forms
         {
             WallPostControl wallPostControl = new WallPostControl(m_UserManager, i_wallPost);
             wallPostControl.Location = new Point(i_X, i_Y);
-            UserWallTab.Controls.Add(wallPostControl);
+            UserWallTab.Invoke(new Action(() => UserWallTab.Controls.Add(wallPostControl)));
             return wallPostControl;
         }
 
@@ -197,7 +205,7 @@ namespace DesktopFacebook.Forms
                     {
                         if (!m_DataFetchIndicator.ArePostsWereFetch)
                         {
-                            fetchUserPosts();
+                            fetchUserPostsAsync();
                         }
 
                         break;
