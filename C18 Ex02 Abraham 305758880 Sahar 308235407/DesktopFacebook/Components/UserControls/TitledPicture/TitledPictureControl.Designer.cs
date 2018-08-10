@@ -1,4 +1,4 @@
-﻿namespace DesktopFacebook.Components.UserControls
+﻿namespace DesktopFacebook.Components.UserControls.TitledPicture
 {
     partial class TitledPictureControl
     {

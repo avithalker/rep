@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\UserControls\TitledPicture\AlbumDescriptiveCover.cs" />
     <Compile Include="CommonDefines\eTabPageType.cs" />
     <Compile Include="Components\Pages\AlbumsPage.cs">
       <SubType>UserControl</SubType>
@@ -101,10 +102,11 @@
     <Compile Include="Components\UserControls\FriendshipMatchScaleControl.Designer.cs">
       <DependentUpon>FriendshipMatchScaleControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\UserControls\TitledPictureControl.cs">
+    <Compile Include="Components\UserControls\TitledPicture\IDescriptivePicture.cs" />
+    <Compile Include="Components\UserControls\TitledPicture\TitledPictureControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\UserControls\TitledPictureControl.Designer.cs">
+    <Compile Include="Components\UserControls\TitledPicture\TitledPictureControl.Designer.cs">
       <DependentUpon>TitledPictureControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Components\UserControls\WallPostControl.cs">
@@ -163,7 +165,7 @@
     <EmbeddedResource Include="Components\UserControls\FacebookPostControl.resx">
       <DependentUpon>FacebookPostControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\UserControls\TitledPictureControl.resx">
+    <EmbeddedResource Include="Components\UserControls\TitledPicture\TitledPictureControl.resx">
       <DependentUpon>TitledPictureControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\UserControls\WallPostControl.resx">

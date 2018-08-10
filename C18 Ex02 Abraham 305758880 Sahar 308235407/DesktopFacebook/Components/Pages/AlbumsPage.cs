@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using DesktopFacebook.Business;
-using DesktopFacebook.Components.UserControls;
+using DesktopFacebook.Components.UserControls.TitledPicture;
 using FacebookWrapper.ObjectModel;
 
 namespace DesktopFacebook.Components.Pages
@@ -36,7 +36,7 @@ namespace DesktopFacebook.Components.Pages
 
         private TitledPictureControl addAlbumComponent(Album i_album, int i_x, int i_y)
         {
-            TitledPictureControl albumControl = new TitledPictureControl(i_album.PictureAlbumURL, i_album.Name, i_album.Id);
+            TitledPictureControl albumControl = new TitledPictureControl(new AlbumDescriptiveCover(i_album), i_album.Id);
 
             albumControl.Location = new Point(i_x, i_y);
             albumControl.Click += AlbumControl_Click;

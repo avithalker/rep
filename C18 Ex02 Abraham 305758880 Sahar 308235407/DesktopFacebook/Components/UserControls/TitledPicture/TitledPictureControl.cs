@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace DesktopFacebook.Components.UserControls
+namespace DesktopFacebook.Components.UserControls.TitledPicture
 {
     public partial class TitledPictureControl : UserControl
     {
@@ -13,15 +13,15 @@ namespace DesktopFacebook.Components.UserControls
             set { m_Id = value; }
         }
 
-        public TitledPictureControl(string i_ImageUrl, string i_Title, string i_Id)
+        public TitledPictureControl(IDescriptivePicture i_DescriptivePicture, string i_Id)
         {
             InitializeComponent();
             WireAllControls(this);
             m_Id = i_Id;
-            TitleLabel.Text = i_Title;
-            if (!string.IsNullOrEmpty(i_ImageUrl))
+            TitleLabel.Text = i_DescriptivePicture.Description;
+            if (!string.IsNullOrEmpty(i_DescriptivePicture.PictureUrl))
             {
-                PhotoPictureBox.LoadAsync(i_ImageUrl);
+                PhotoPictureBox.LoadAsync(i_DescriptivePicture.PictureUrl);
             }
         }
 
