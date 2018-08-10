@@ -12,40 +12,12 @@ namespace DesktopFacebook.CustomFeatures.SmartFilter
             List<User> filteredList = i_FriendList;
             foreach (FilterData filterData in i_FiltersToUse)
             {
-                IFriendsFilter filter = getCompatibleFilter(filterData.FilterType);
+                IFriendsFilter filter = FilterFactory.GetCompatibleFilter(filterData.FilterType);
 
                 filteredList = filter.Filter(filteredList, filterData);
             }
 
             return filteredList;
-        }
-
-        private static IFriendsFilter getCompatibleFilter(eFilterType i_FilterType)
-        {
-            switch (i_FilterType)
-            {
-                case eFilterType.AgeRangeFilter:
-                    {
-                        return new AgeFilter();
-                    }
-
-                case eFilterType.GenderFilter:
-                    {
-                        return new GenderFilter();
-                    }
-
-                case eFilterType.LivingCityFilter:
-                    {
-                        return new LivingCityFilter();
-                    }
-
-                case eFilterType.RelationshipFilter:
-                    {
-                        return new RelationshipFilter();
-                    }
-            }
-
-            return null;
         }
     }
 }

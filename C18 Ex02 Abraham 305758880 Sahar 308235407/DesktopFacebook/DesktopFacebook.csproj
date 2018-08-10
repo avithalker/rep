@@ -116,6 +116,7 @@
     <Compile Include="CustomFeatures\FriendshipMatchScale\FriendshipMatchScaleCalculator.cs" />
     <Compile Include="CustomFeatures\SmartFilter\eFilterType.cs" />
     <Compile Include="CustomFeatures\SmartFilter\FilterActivator.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\FilterFactory.cs" />
     <Compile Include="CustomFeatures\SmartFilter\FiltersData\AgeRangeFilterData.cs" />
     <Compile Include="CustomFeatures\SmartFilter\FiltersData\FilterData.cs" />
     <Compile Include="CustomFeatures\SmartFilter\FiltersData\GenderFilterData.cs" />

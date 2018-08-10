@@ -19,7 +19,7 @@ namespace DesktopFacebook.CustomFeatures.SmartFilter.Filters
                     continue;
                 }
 
-                int age = DateTime.Now.Year - DateTime.Parse(friend.Birthday).Year;
+                int age = DateTime.Now.Year - DateTime.ParseExact(friend.Birthday, "mm/dd/yyyy", null).Year;
 
                 if ((age < 18 && ageFilterData.IsUnder18) || (age >= 18 && !ageFilterData.IsUnder18))
                 {
