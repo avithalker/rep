@@ -27,6 +27,7 @@ namespace DesktopFacebook.Forms
             m_DataFetchIndicator = new DataFetchIndicator();
             addTabsPages();
             initializeUserGeneralInfo();
+            userBindingSource.Add(i_UserManager.NativeClient);
         }
 
         private void addTabsPages()
@@ -47,23 +48,24 @@ namespace DesktopFacebook.Forms
         private void initializeUserGeneralInfo()
         {
             UserProfilePicture.LoadAsync(m_UserManager.NativeClient.PictureLargeURL);
-            UserNameLabel.Text = m_UserManager.NativeClient.Name;
-            UserGenderLabel.Text = m_UserManager.NativeClient.Gender.ToString();
-            UsersBirthdate.Text = m_UserManager.NativeClient.Birthday;
-            if (m_UserManager.NativeClient.Hometown != null)
-            {
-                UserHomeTownLabel.Text = m_UserManager.NativeClient.Hometown.Name;
-            }
+            //UserNameLabel.Text = m_UserManager.NativeClient.Name;
+            //UserGenderLabel.Text = m_UserManager.NativeClient.Gender.ToString();
+            //UsersBirthdate.Text = m_UserManager.NativeClient.Birthday;
+            //if (m_UserManager.NativeClient.Hometown != null)
+            //{
+            //    UserHomeTownLabel.Text = m_UserManager.NativeClient.Hometown.Name;
+            //}
 
-            if (m_UserManager.NativeClient.Location != null)
-            {
-                UserCurrentCityLabel.Text = m_UserManager.NativeClient.Location.Name;
-            }
+            //if (m_UserManager.NativeClient.Location != null)
+            //{
+            //    UserCurrentCityLabel.Text = m_UserManager.NativeClient.Location.Name;
+            //}
 
-            if (m_UserManager.NativeClient.RelationshipStatus.HasValue)
-            {
-                UserRelationshipLabel.Text = m_UserManager.NativeClient.RelationshipStatus.Value.ToString();
-            }
+            //if (m_UserManager.NativeClient.RelationshipStatus.HasValue)
+            //{
+            //    UserRelationshipLabel.Text = m_UserManager.NativeClient.RelationshipStatus.Value.ToString();
+            //}
+
         }
 
         private void fetchUserPostsAsync()

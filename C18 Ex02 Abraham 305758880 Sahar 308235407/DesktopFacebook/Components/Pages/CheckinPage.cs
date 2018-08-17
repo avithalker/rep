@@ -20,12 +20,13 @@ namespace DesktopFacebook.Components.Pages
 
         public void FetchCheckins()
         {
-            CheckinsListBox.DisplayMember = "Description";
-            foreach (Checkin checkin in m_FacebookUserManager.NativeClient.Checkins)
-            {
-                CheckinsListBox.Items.Add(checkin);
-            }
+            //CheckinsListBox.DisplayMember = "Description";
+            //foreach (Checkin checkin in m_FacebookUserManager.NativeClient.Checkins)
+            //{
+            //    CheckinsListBox.Items.Add(checkin);
+            //}
 
+            checkinBindingSource.DataSource = m_FacebookUserManager.NativeClient.Checkins;
             m_DataFetchIndicator.AreCheckinWereFetch = true;
         }
 
@@ -34,7 +35,7 @@ namespace DesktopFacebook.Components.Pages
             Checkin selectedCheckin = CheckinsListBox.SelectedItem as Checkin;
             fillExtendedChekinData(selectedCheckin);
         }
-
+        
         private void fillExtendedChekinData(Checkin selectedCheckin)
         {
             CheckinMessgeOutputLabel.Text = selectedCheckin.Message;

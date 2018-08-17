@@ -37,38 +37,41 @@
             // 
             this.SelectedAlbumNameLabel.AutoSize = true;
             this.SelectedAlbumNameLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SelectedAlbumNameLabel.Location = new System.Drawing.Point(230, 12);
+            this.SelectedAlbumNameLabel.Location = new System.Drawing.Point(460, 23);
+            this.SelectedAlbumNameLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.SelectedAlbumNameLabel.Name = "SelectedAlbumNameLabel";
-            this.SelectedAlbumNameLabel.Size = new System.Drawing.Size(163, 16);
+            this.SelectedAlbumNameLabel.Size = new System.Drawing.Size(332, 31);
             this.SelectedAlbumNameLabel.TabIndex = 6;
             this.SelectedAlbumNameLabel.Text = "Non album was selected";
             // 
             // AlbumPicturesPanel
             // 
             this.AlbumPicturesPanel.AutoScroll = true;
-            this.AlbumPicturesPanel.Location = new System.Drawing.Point(230, 41);
+            this.AlbumPicturesPanel.Location = new System.Drawing.Point(460, 79);
+            this.AlbumPicturesPanel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.AlbumPicturesPanel.Name = "AlbumPicturesPanel";
-            this.AlbumPicturesPanel.Size = new System.Drawing.Size(465, 428);
+            this.AlbumPicturesPanel.Size = new System.Drawing.Size(930, 823);
             this.AlbumPicturesPanel.TabIndex = 5;
             // 
             // AlbumsPanel
             // 
             this.AlbumsPanel.AutoScroll = true;
-            this.AlbumsPanel.Location = new System.Drawing.Point(10, 1);
-            this.AlbumsPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.AlbumsPanel.Location = new System.Drawing.Point(20, 2);
+            this.AlbumsPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AlbumsPanel.Name = "AlbumsPanel";
-            this.AlbumsPanel.Size = new System.Drawing.Size(207, 480);
+            this.AlbumsPanel.Size = new System.Drawing.Size(414, 923);
             this.AlbumsPanel.TabIndex = 4;
             // 
             // AlbumsPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.SelectedAlbumNameLabel);
             this.Controls.Add(this.AlbumPicturesPanel);
             this.Controls.Add(this.AlbumsPanel);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "AlbumsPage";
-            this.Size = new System.Drawing.Size(704, 482);
+            this.Size = new System.Drawing.Size(1408, 927);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -28,6 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Label createdTimeLabel;
+            System.Windows.Forms.Label descriptionLabel;
+            System.Windows.Forms.Label messageLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckinPage));
+            System.Windows.Forms.Label nameLabel;
             this.CheckinGroupBox = new System.Windows.Forms.GroupBox();
             this.CheckinFriendsOutputLabel = new System.Windows.Forms.Label();
             this.CheckinDateOutputLbel = new System.Windows.Forms.Label();
@@ -39,8 +45,65 @@
             this.CheckinLocationLabel = new System.Windows.Forms.Label();
             this.CheckinListLabel = new System.Windows.Forms.Label();
             this.CheckinsListBox = new System.Windows.Forms.ListBox();
+            this.checkinBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.EditCheckinGroupBox = new System.Windows.Forms.GroupBox();
+            this.createdTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.descriptionTextBox = new System.Windows.Forms.TextBox();
+            this.messageTextBox = new System.Windows.Forms.TextBox();
+            this.checkinBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
+            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.checkinBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
+            createdTimeLabel = new System.Windows.Forms.Label();
+            descriptionLabel = new System.Windows.Forms.Label();
+            messageLabel = new System.Windows.Forms.Label();
+            nameLabel = new System.Windows.Forms.Label();
             this.CheckinGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkinBindingSource)).BeginInit();
+            this.EditCheckinGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkinBindingNavigator)).BeginInit();
+            this.checkinBindingNavigator.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // createdTimeLabel
+            // 
+            createdTimeLabel.AutoSize = true;
+            createdTimeLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            createdTimeLabel.Location = new System.Drawing.Point(16, 81);
+            createdTimeLabel.Name = "createdTimeLabel";
+            createdTimeLabel.Size = new System.Drawing.Size(181, 29);
+            createdTimeLabel.TabIndex = 0;
+            createdTimeLabel.Text = "Created Time:";
+            // 
+            // descriptionLabel
+            // 
+            descriptionLabel.AutoSize = true;
+            descriptionLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            descriptionLabel.Location = new System.Drawing.Point(16, 125);
+            descriptionLabel.Name = "descriptionLabel";
+            descriptionLabel.Size = new System.Drawing.Size(158, 29);
+            descriptionLabel.TabIndex = 2;
+            descriptionLabel.Text = "Description:";
+            // 
+            // messageLabel
+            // 
+            messageLabel.AutoSize = true;
+            messageLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            messageLabel.Location = new System.Drawing.Point(16, 170);
+            messageLabel.Name = "messageLabel";
+            messageLabel.Size = new System.Drawing.Size(124, 29);
+            messageLabel.TabIndex = 4;
+            messageLabel.Text = "Message:";
             // 
             // CheckinGroupBox
             // 
@@ -53,9 +116,11 @@
             this.CheckinGroupBox.Controls.Add(this.CheckinMessageLabel);
             this.CheckinGroupBox.Controls.Add(this.CheckinLocationLabel);
             this.CheckinGroupBox.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckinGroupBox.Location = new System.Drawing.Point(311, 59);
+            this.CheckinGroupBox.Location = new System.Drawing.Point(622, 113);
+            this.CheckinGroupBox.Margin = new System.Windows.Forms.Padding(6);
             this.CheckinGroupBox.Name = "CheckinGroupBox";
-            this.CheckinGroupBox.Size = new System.Drawing.Size(334, 244);
+            this.CheckinGroupBox.Padding = new System.Windows.Forms.Padding(6);
+            this.CheckinGroupBox.Size = new System.Drawing.Size(668, 469);
             this.CheckinGroupBox.TabIndex = 6;
             this.CheckinGroupBox.TabStop = false;
             this.CheckinGroupBox.Text = "Extended information";
@@ -63,42 +128,47 @@
             // CheckinFriendsOutputLabel
             // 
             this.CheckinFriendsOutputLabel.AutoSize = true;
-            this.CheckinFriendsOutputLabel.Location = new System.Drawing.Point(114, 162);
+            this.CheckinFriendsOutputLabel.Location = new System.Drawing.Point(228, 312);
+            this.CheckinFriendsOutputLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.CheckinFriendsOutputLabel.Name = "CheckinFriendsOutputLabel";
-            this.CheckinFriendsOutputLabel.Size = new System.Drawing.Size(0, 16);
+            this.CheckinFriendsOutputLabel.Size = new System.Drawing.Size(0, 31);
             this.CheckinFriendsOutputLabel.TabIndex = 6;
             // 
             // CheckinDateOutputLbel
             // 
             this.CheckinDateOutputLbel.AutoSize = true;
-            this.CheckinDateOutputLbel.Location = new System.Drawing.Point(114, 122);
+            this.CheckinDateOutputLbel.Location = new System.Drawing.Point(228, 235);
+            this.CheckinDateOutputLbel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.CheckinDateOutputLbel.Name = "CheckinDateOutputLbel";
-            this.CheckinDateOutputLbel.Size = new System.Drawing.Size(0, 16);
+            this.CheckinDateOutputLbel.Size = new System.Drawing.Size(0, 31);
             this.CheckinDateOutputLbel.TabIndex = 4;
             // 
             // CheckinLocationOutputLabel
             // 
             this.CheckinLocationOutputLabel.AutoSize = true;
-            this.CheckinLocationOutputLabel.Location = new System.Drawing.Point(114, 81);
+            this.CheckinLocationOutputLabel.Location = new System.Drawing.Point(228, 156);
+            this.CheckinLocationOutputLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.CheckinLocationOutputLabel.Name = "CheckinLocationOutputLabel";
-            this.CheckinLocationOutputLabel.Size = new System.Drawing.Size(0, 16);
+            this.CheckinLocationOutputLabel.Size = new System.Drawing.Size(0, 31);
             this.CheckinLocationOutputLabel.TabIndex = 5;
             // 
             // CheckinMessgeOutputLabel
             // 
             this.CheckinMessgeOutputLabel.AutoSize = true;
-            this.CheckinMessgeOutputLabel.Location = new System.Drawing.Point(114, 41);
+            this.CheckinMessgeOutputLabel.Location = new System.Drawing.Point(228, 79);
+            this.CheckinMessgeOutputLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.CheckinMessgeOutputLabel.Name = "CheckinMessgeOutputLabel";
-            this.CheckinMessgeOutputLabel.Size = new System.Drawing.Size(0, 16);
+            this.CheckinMessgeOutputLabel.Size = new System.Drawing.Size(0, 31);
             this.CheckinMessgeOutputLabel.TabIndex = 4;
             // 
             // CheckinFriendsLbael
             // 
             this.CheckinFriendsLbael.AutoSize = true;
             this.CheckinFriendsLbael.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckinFriendsLbael.Location = new System.Drawing.Point(6, 162);
+            this.CheckinFriendsLbael.Location = new System.Drawing.Point(12, 312);
+            this.CheckinFriendsLbael.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.CheckinFriendsLbael.Name = "CheckinFriendsLbael";
-            this.CheckinFriendsLbael.Size = new System.Drawing.Size(59, 16);
+            this.CheckinFriendsLbael.Size = new System.Drawing.Size(118, 31);
             this.CheckinFriendsLbael.TabIndex = 3;
             this.CheckinFriendsLbael.Text = "Friends:";
             // 
@@ -106,9 +176,10 @@
             // 
             this.CheckinDateLabel.AutoSize = true;
             this.CheckinDateLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckinDateLabel.Location = new System.Drawing.Point(6, 122);
+            this.CheckinDateLabel.Location = new System.Drawing.Point(12, 235);
+            this.CheckinDateLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.CheckinDateLabel.Name = "CheckinDateLabel";
-            this.CheckinDateLabel.Size = new System.Drawing.Size(44, 16);
+            this.CheckinDateLabel.Size = new System.Drawing.Size(85, 31);
             this.CheckinDateLabel.TabIndex = 2;
             this.CheckinDateLabel.Text = "Date:";
             // 
@@ -116,9 +187,10 @@
             // 
             this.CheckinMessageLabel.AutoSize = true;
             this.CheckinMessageLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckinMessageLabel.Location = new System.Drawing.Point(6, 41);
+            this.CheckinMessageLabel.Location = new System.Drawing.Point(12, 79);
+            this.CheckinMessageLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.CheckinMessageLabel.Name = "CheckinMessageLabel";
-            this.CheckinMessageLabel.Size = new System.Drawing.Size(70, 16);
+            this.CheckinMessageLabel.Size = new System.Drawing.Size(134, 31);
             this.CheckinMessageLabel.TabIndex = 1;
             this.CheckinMessageLabel.Text = "Message:";
             // 
@@ -126,9 +198,10 @@
             // 
             this.CheckinLocationLabel.AutoSize = true;
             this.CheckinLocationLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckinLocationLabel.Location = new System.Drawing.Point(6, 81);
+            this.CheckinLocationLabel.Location = new System.Drawing.Point(12, 156);
+            this.CheckinLocationLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.CheckinLocationLabel.Name = "CheckinLocationLabel";
-            this.CheckinLocationLabel.Size = new System.Drawing.Size(68, 16);
+            this.CheckinLocationLabel.Size = new System.Drawing.Size(136, 31);
             this.CheckinLocationLabel.TabIndex = 0;
             this.CheckinLocationLabel.Text = "Location:";
             // 
@@ -137,35 +210,236 @@
             this.CheckinListLabel.AutoSize = true;
             this.CheckinListLabel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CheckinListLabel.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.CheckinListLabel.Location = new System.Drawing.Point(3, 14);
+            this.CheckinListLabel.Location = new System.Drawing.Point(6, 27);
+            this.CheckinListLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.CheckinListLabel.Name = "CheckinListLabel";
-            this.CheckinListLabel.Size = new System.Drawing.Size(109, 19);
+            this.CheckinListLabel.Size = new System.Drawing.Size(213, 39);
             this.CheckinListLabel.TabIndex = 5;
             this.CheckinListLabel.Text = "Checkin list:";
             // 
             // CheckinsListBox
             // 
+            this.CheckinsListBox.DataSource = this.checkinBindingSource;
+            this.CheckinsListBox.DisplayMember = "Name";
             this.CheckinsListBox.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CheckinsListBox.FormattingEnabled = true;
-            this.CheckinsListBox.ItemHeight = 16;
-            this.CheckinsListBox.Location = new System.Drawing.Point(7, 59);
-            this.CheckinsListBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CheckinsListBox.ItemHeight = 31;
+            this.CheckinsListBox.Location = new System.Drawing.Point(14, 113);
+            this.CheckinsListBox.Margin = new System.Windows.Forms.Padding(4);
             this.CheckinsListBox.Name = "CheckinsListBox";
-            this.CheckinsListBox.Size = new System.Drawing.Size(236, 244);
+            this.CheckinsListBox.Size = new System.Drawing.Size(468, 438);
             this.CheckinsListBox.TabIndex = 4;
             this.CheckinsListBox.SelectedIndexChanged += new System.EventHandler(this.CheckinsListBox_SelectedIndexChanged);
             // 
+            // checkinBindingSource
+            // 
+            this.checkinBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Checkin);
+            // 
+            // EditCheckinGroupBox
+            // 
+            this.EditCheckinGroupBox.Controls.Add(nameLabel);
+            this.EditCheckinGroupBox.Controls.Add(this.nameTextBox);
+            this.EditCheckinGroupBox.Controls.Add(createdTimeLabel);
+            this.EditCheckinGroupBox.Controls.Add(this.createdTimeDateTimePicker);
+            this.EditCheckinGroupBox.Controls.Add(descriptionLabel);
+            this.EditCheckinGroupBox.Controls.Add(this.descriptionTextBox);
+            this.EditCheckinGroupBox.Controls.Add(messageLabel);
+            this.EditCheckinGroupBox.Controls.Add(this.messageTextBox);
+            this.EditCheckinGroupBox.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.EditCheckinGroupBox.Location = new System.Drawing.Point(618, 610);
+            this.EditCheckinGroupBox.Name = "EditCheckinGroupBox";
+            this.EditCheckinGroupBox.Size = new System.Drawing.Size(687, 277);
+            this.EditCheckinGroupBox.TabIndex = 7;
+            this.EditCheckinGroupBox.TabStop = false;
+            this.EditCheckinGroupBox.Text = "Edit Checkin";
+            // 
+            // createdTimeDateTimePicker
+            // 
+            this.createdTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.checkinBindingSource, "CreatedTime", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.createdTimeDateTimePicker.Location = new System.Drawing.Point(200, 77);
+            this.createdTimeDateTimePicker.Name = "createdTimeDateTimePicker";
+            this.createdTimeDateTimePicker.Size = new System.Drawing.Size(420, 39);
+            this.createdTimeDateTimePicker.TabIndex = 1;
+            // 
+            // descriptionTextBox
+            // 
+            this.descriptionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.checkinBindingSource, "Description", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.descriptionTextBox.Location = new System.Drawing.Point(200, 122);
+            this.descriptionTextBox.Name = "descriptionTextBox";
+            this.descriptionTextBox.Size = new System.Drawing.Size(420, 39);
+            this.descriptionTextBox.TabIndex = 3;
+            // 
+            // messageTextBox
+            // 
+            this.messageTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.checkinBindingSource, "Message", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, "[NoData]"));
+            this.messageTextBox.Location = new System.Drawing.Point(200, 167);
+            this.messageTextBox.Name = "messageTextBox";
+            this.messageTextBox.Size = new System.Drawing.Size(420, 39);
+            this.messageTextBox.TabIndex = 5;
+            // 
+            // checkinBindingNavigator
+            // 
+            this.checkinBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.checkinBindingNavigator.BindingSource = this.checkinBindingSource;
+            this.checkinBindingNavigator.CountItem = this.bindingNavigatorCountItem;
+            this.checkinBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.checkinBindingNavigator.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.checkinBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bindingNavigatorMoveFirstItem,
+            this.bindingNavigatorMovePreviousItem,
+            this.bindingNavigatorSeparator,
+            this.bindingNavigatorPositionItem,
+            this.bindingNavigatorCountItem,
+            this.bindingNavigatorSeparator1,
+            this.bindingNavigatorMoveNextItem,
+            this.bindingNavigatorMoveLastItem,
+            this.bindingNavigatorSeparator2,
+            this.bindingNavigatorAddNewItem,
+            this.bindingNavigatorDeleteItem,
+            this.checkinBindingNavigatorSaveItem});
+            this.checkinBindingNavigator.Location = new System.Drawing.Point(0, 0);
+            this.checkinBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.checkinBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.checkinBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.checkinBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.checkinBindingNavigator.Name = "checkinBindingNavigator";
+            this.checkinBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
+            this.checkinBindingNavigator.Size = new System.Drawing.Size(1408, 39);
+            this.checkinBindingNavigator.TabIndex = 8;
+            this.checkinBindingNavigator.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(36, 36);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(71, 36);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(36, 36);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
+            // 
+            // bindingNavigatorMoveFirstItem
+            // 
+            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
+            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
+            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(36, 36);
+            this.bindingNavigatorMoveFirstItem.Text = "Move first";
+            // 
+            // bindingNavigatorMovePreviousItem
+            // 
+            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
+            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
+            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(36, 36);
+            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
+            // 
+            // bindingNavigatorSeparator
+            // 
+            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 39);
+            // 
+            // bindingNavigatorPositionItem
+            // 
+            this.bindingNavigatorPositionItem.AccessibleName = "Position";
+            this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 39);
+            this.bindingNavigatorPositionItem.Text = "0";
+            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
+            // 
+            // bindingNavigatorSeparator1
+            // 
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 39);
+            // 
+            // bindingNavigatorMoveNextItem
+            // 
+            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
+            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
+            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(36, 36);
+            this.bindingNavigatorMoveNextItem.Text = "Move next";
+            // 
+            // bindingNavigatorMoveLastItem
+            // 
+            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
+            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
+            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(36, 36);
+            this.bindingNavigatorMoveLastItem.Text = "Move last";
+            // 
+            // bindingNavigatorSeparator2
+            // 
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 39);
+            // 
+            // checkinBindingNavigatorSaveItem
+            // 
+            this.checkinBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.checkinBindingNavigatorSaveItem.Enabled = false;
+            this.checkinBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("checkinBindingNavigatorSaveItem.Image")));
+            this.checkinBindingNavigatorSaveItem.Name = "checkinBindingNavigatorSaveItem";
+            this.checkinBindingNavigatorSaveItem.Size = new System.Drawing.Size(36, 36);
+            this.checkinBindingNavigatorSaveItem.Text = "Save Data";
+            // 
+            // nameLabel
+            // 
+            nameLabel.AutoSize = true;
+            nameLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            nameLabel.Location = new System.Drawing.Point(35, 224);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new System.Drawing.Size(92, 29);
+            nameLabel.TabIndex = 6;
+            nameLabel.Text = "Name:";
+            // 
+            // nameTextBox
+            // 
+            this.nameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.checkinBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nameTextBox.Location = new System.Drawing.Point(200, 221);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(420, 39);
+            this.nameTextBox.TabIndex = 7;
+            // 
             // CheckinPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.checkinBindingNavigator);
+            this.Controls.Add(this.EditCheckinGroupBox);
             this.Controls.Add(this.CheckinGroupBox);
             this.Controls.Add(this.CheckinListLabel);
             this.Controls.Add(this.CheckinsListBox);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "CheckinPage";
-            this.Size = new System.Drawing.Size(704, 482);
+            this.Size = new System.Drawing.Size(1408, 927);
             this.CheckinGroupBox.ResumeLayout(false);
             this.CheckinGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkinBindingSource)).EndInit();
+            this.EditCheckinGroupBox.ResumeLayout(false);
+            this.EditCheckinGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkinBindingNavigator)).EndInit();
+            this.checkinBindingNavigator.ResumeLayout(false);
+            this.checkinBindingNavigator.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,5 +458,24 @@
         private System.Windows.Forms.Label CheckinLocationLabel;
         private System.Windows.Forms.Label CheckinListLabel;
         private System.Windows.Forms.ListBox CheckinsListBox;
+        private System.Windows.Forms.GroupBox EditCheckinGroupBox;
+        private System.Windows.Forms.DateTimePicker createdTimeDateTimePicker;
+        private System.Windows.Forms.BindingSource checkinBindingSource;
+        private System.Windows.Forms.TextBox descriptionTextBox;
+        private System.Windows.Forms.TextBox messageTextBox;
+        private System.Windows.Forms.BindingNavigator checkinBindingNavigator;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
+        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
+        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
+        private System.Windows.Forms.ToolStripButton checkinBindingNavigatorSaveItem;
+        private System.Windows.Forms.TextBox nameTextBox;
     }
 }
