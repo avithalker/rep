@@ -116,6 +116,7 @@
       <DependentUpon>WallPostControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomFeatures\FriendshipMatchScale\FriendshipMatchScaleCalculator.cs" />
+    <Compile Include="CustomFeatures\FriendshipMatchScale\CacheFriendshipCalculator.cs" />
     <Compile Include="CustomFeatures\SmartFilter\eFilterType.cs" />
     <Compile Include="CustomFeatures\SmartFilter\FilterActivator.cs" />
     <Compile Include="CustomFeatures\SmartFilter\FilterFactory.cs" />
