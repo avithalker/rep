@@ -31,7 +31,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserProfileForm));
-            this.UserNameLabel = new System.Windows.Forms.Label();
             this.UsersDetailsControlTab = new System.Windows.Forms.TabControl();
             this.UserWallTab = new System.Windows.Forms.TabPage();
             this.ClearImagePictureBox1 = new DesktopFacebook.Components.UserControls.ClickablePictureBox();
@@ -60,6 +59,7 @@
             this.UserHomeTown = new System.Windows.Forms.Label();
             this.UsersBirthdate = new System.Windows.Forms.Label();
             this.UserCurrentCity = new System.Windows.Forms.Label();
+            this.UserNameLabel = new System.Windows.Forms.Label();
             this.UsersDetailsControlTab.SuspendLayout();
             this.UserWallTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ClearImagePictureBox1)).BeginInit();
@@ -69,17 +69,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.UserProfilePicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // UserNameLabel
-            // 
-            this.UserNameLabel.AutoSize = true;
-            this.UserNameLabel.Font = new System.Drawing.Font("Tahoma", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserNameLabel.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.UserNameLabel.Location = new System.Drawing.Point(18, 406);
-            this.UserNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.UserNameLabel.Name = "UserNameLabel";
-            this.UserNameLabel.Size = new System.Drawing.Size(0, 65);
-            this.UserNameLabel.TabIndex = 5;
             // 
             // UsersDetailsControlTab
             // 
@@ -91,7 +80,7 @@
             this.UsersDetailsControlTab.Controls.Add(this.SmartPostTab);
             this.UsersDetailsControlTab.Controls.Add(this.FriendshipMatchTab);
             this.UsersDetailsControlTab.Location = new System.Drawing.Point(610, 12);
-            this.UsersDetailsControlTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UsersDetailsControlTab.Margin = new System.Windows.Forms.Padding(4);
             this.UsersDetailsControlTab.Name = "UsersDetailsControlTab";
             this.UsersDetailsControlTab.SelectedIndex = 0;
             this.UsersDetailsControlTab.Size = new System.Drawing.Size(1424, 977);
@@ -107,7 +96,7 @@
             this.UserWallTab.Controls.Add(this.PostTextBox);
             this.UserWallTab.Controls.Add(this.PostButton);
             this.UserWallTab.Location = new System.Drawing.Point(8, 39);
-            this.UserWallTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UserWallTab.Margin = new System.Windows.Forms.Padding(4);
             this.UserWallTab.Name = "UserWallTab";
             this.UserWallTab.Size = new System.Drawing.Size(1408, 930);
             this.UserWallTab.TabIndex = 4;
@@ -118,7 +107,7 @@
             // 
             this.ClearImagePictureBox1.Image = global::DesktopFacebook.Properties.Resources.Clear;
             this.ClearImagePictureBox1.Location = new System.Drawing.Point(1090, 29);
-            this.ClearImagePictureBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ClearImagePictureBox1.Margin = new System.Windows.Forms.Padding(6);
             this.ClearImagePictureBox1.Name = "ClearImagePictureBox1";
             this.ClearImagePictureBox1.Size = new System.Drawing.Size(50, 48);
             this.ClearImagePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -132,7 +121,7 @@
             this.AttachPhotoPictureBox1.ErrorImage = null;
             this.AttachPhotoPictureBox1.Image = global::DesktopFacebook.Properties.Resources.ImagePlaceHolder;
             this.AttachPhotoPictureBox1.Location = new System.Drawing.Point(30, 196);
-            this.AttachPhotoPictureBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.AttachPhotoPictureBox1.Margin = new System.Windows.Forms.Padding(6);
             this.AttachPhotoPictureBox1.Name = "AttachPhotoPictureBox1";
             this.AttachPhotoPictureBox1.Size = new System.Drawing.Size(84, 67);
             this.AttachPhotoPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -143,7 +132,7 @@
             // PreviewPhotoPictureBox
             // 
             this.PreviewPhotoPictureBox.Location = new System.Drawing.Point(1090, 29);
-            this.PreviewPhotoPictureBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.PreviewPhotoPictureBox.Margin = new System.Windows.Forms.Padding(6);
             this.PreviewPhotoPictureBox.Name = "PreviewPhotoPictureBox";
             this.PreviewPhotoPictureBox.Size = new System.Drawing.Size(280, 269);
             this.PreviewPhotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -155,7 +144,7 @@
             this.PostTextBox.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PostTextBox.ForeColor = System.Drawing.SystemColors.GrayText;
             this.PostTextBox.Location = new System.Drawing.Point(30, 29);
-            this.PostTextBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.PostTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.PostTextBox.Name = "PostTextBox";
             this.PostTextBox.Size = new System.Drawing.Size(1044, 152);
             this.PostTextBox.TabIndex = 2;
@@ -166,7 +155,7 @@
             // PostButton
             // 
             this.PostButton.Location = new System.Drawing.Point(188, 221);
-            this.PostButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PostButton.Margin = new System.Windows.Forms.Padding(4);
             this.PostButton.Name = "PostButton";
             this.PostButton.Size = new System.Drawing.Size(204, 42);
             this.PostButton.TabIndex = 0;
@@ -178,9 +167,9 @@
             // 
             this.FriendsTab.AutoScroll = true;
             this.FriendsTab.Location = new System.Drawing.Point(8, 39);
-            this.FriendsTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FriendsTab.Margin = new System.Windows.Forms.Padding(4);
             this.FriendsTab.Name = "FriendsTab";
-            this.FriendsTab.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FriendsTab.Padding = new System.Windows.Forms.Padding(4);
             this.FriendsTab.Size = new System.Drawing.Size(1408, 930);
             this.FriendsTab.TabIndex = 0;
             this.FriendsTab.Text = "Friends";
@@ -189,7 +178,7 @@
             // AlbumsTab
             // 
             this.AlbumsTab.Location = new System.Drawing.Point(8, 39);
-            this.AlbumsTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AlbumsTab.Margin = new System.Windows.Forms.Padding(4);
             this.AlbumsTab.Name = "AlbumsTab";
             this.AlbumsTab.Size = new System.Drawing.Size(1408, 930);
             this.AlbumsTab.TabIndex = 2;
@@ -199,7 +188,7 @@
             // CheckInsTab
             // 
             this.CheckInsTab.Location = new System.Drawing.Point(8, 39);
-            this.CheckInsTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CheckInsTab.Margin = new System.Windows.Forms.Padding(4);
             this.CheckInsTab.Name = "CheckInsTab";
             this.CheckInsTab.Size = new System.Drawing.Size(1408, 930);
             this.CheckInsTab.TabIndex = 3;
@@ -209,9 +198,9 @@
             // EventsTab
             // 
             this.EventsTab.Location = new System.Drawing.Point(8, 39);
-            this.EventsTab.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.EventsTab.Margin = new System.Windows.Forms.Padding(6);
             this.EventsTab.Name = "EventsTab";
-            this.EventsTab.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.EventsTab.Padding = new System.Windows.Forms.Padding(6);
             this.EventsTab.Size = new System.Drawing.Size(1408, 930);
             this.EventsTab.TabIndex = 5;
             this.EventsTab.Text = "Events";
@@ -220,9 +209,9 @@
             // SmartPostTab
             // 
             this.SmartPostTab.Location = new System.Drawing.Point(8, 39);
-            this.SmartPostTab.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SmartPostTab.Margin = new System.Windows.Forms.Padding(6);
             this.SmartPostTab.Name = "SmartPostTab";
-            this.SmartPostTab.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SmartPostTab.Padding = new System.Windows.Forms.Padding(6);
             this.SmartPostTab.Size = new System.Drawing.Size(1408, 930);
             this.SmartPostTab.TabIndex = 6;
             this.SmartPostTab.Text = "Smart post";
@@ -231,9 +220,9 @@
             // FriendshipMatchTab
             // 
             this.FriendshipMatchTab.Location = new System.Drawing.Point(8, 39);
-            this.FriendshipMatchTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FriendshipMatchTab.Margin = new System.Windows.Forms.Padding(4);
             this.FriendshipMatchTab.Name = "FriendshipMatchTab";
-            this.FriendshipMatchTab.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FriendshipMatchTab.Padding = new System.Windows.Forms.Padding(4);
             this.FriendshipMatchTab.Size = new System.Drawing.Size(1408, 930);
             this.FriendshipMatchTab.TabIndex = 7;
             this.FriendshipMatchTab.Text = "Friendship Match";
@@ -251,7 +240,7 @@
             // UserProfilePicture
             // 
             this.UserProfilePicture.Location = new System.Drawing.Point(12, 12);
-            this.UserProfilePicture.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UserProfilePicture.Margin = new System.Windows.Forms.Padding(4);
             this.UserProfilePicture.Name = "UserProfilePicture";
             this.UserProfilePicture.Size = new System.Drawing.Size(420, 390);
             this.UserProfilePicture.TabIndex = 0;
@@ -260,7 +249,7 @@
             // LogoutButton
             // 
             this.LogoutButton.Location = new System.Drawing.Point(12, 942);
-            this.LogoutButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LogoutButton.Margin = new System.Windows.Forms.Padding(4);
             this.LogoutButton.Name = "LogoutButton";
             this.LogoutButton.Size = new System.Drawing.Size(180, 46);
             this.LogoutButton.TabIndex = 14;
@@ -385,12 +374,23 @@
             this.UserCurrentCity.TabIndex = 17;
             this.UserCurrentCity.Text = "Unknown";
             // 
+            // UserNameLabel
+            // 
+            this.UserNameLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Name", true));
+            this.UserNameLabel.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.UserNameLabel.Location = new System.Drawing.Point(6, 458);
+            this.UserNameLabel.Name = "UserNameLabel";
+            this.UserNameLabel.Size = new System.Drawing.Size(170, 39);
+            this.UserNameLabel.TabIndex = 18;
+            this.UserNameLabel.Text = "UnKnown";
+            // 
             // UserProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(2104, 1077);
+            this.Controls.Add(this.UserNameLabel);
             this.Controls.Add(this.UserCurrentCity);
             this.Controls.Add(this.UsersBirthdate);
             this.Controls.Add(this.UserHomeTown);
@@ -400,13 +400,12 @@
             this.Controls.Add(this.UsersDetailsControlTab);
             this.Controls.Add(this.UserRelationshipLabel);
             this.Controls.Add(this.UserGenderLabel);
-            this.Controls.Add(this.UserNameLabel);
             this.Controls.Add(this.BirthDateLabel);
             this.Controls.Add(this.RelationshipLabel);
             this.Controls.Add(this.GenderLabel);
             this.Controls.Add(this.UserProfilePicture);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UserProfileForm";
             this.Text = "UserProfileForm";
             this.Shown += new System.EventHandler(this.UserProfileForm_Shown);
@@ -426,7 +425,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox UserProfilePicture;
-        private System.Windows.Forms.Label UserNameLabel;
         private System.Windows.Forms.TabControl UsersDetailsControlTab;
         private System.Windows.Forms.TabPage FriendsTab;
         private System.Windows.Forms.TabPage AlbumsTab;
@@ -454,5 +452,6 @@
         private System.Windows.Forms.Label GenderLabel;
         private System.Windows.Forms.Label UsersBirthdate;
         private System.Windows.Forms.Label UserCurrentCity;
+        private System.Windows.Forms.Label UserNameLabel;
     }
 }
