@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FacebookWrapper.ObjectModel;
 
@@ -58,14 +59,17 @@ namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
         {
             int numOfMatches = 0;
             int matchResult = 0;
+            List<string> userCheckinCategories = getCheckinsCategories(m_loginUser);
+            List<string> friendCheckinCategories = getCheckinsCategories(i_friend);
 
             if (i_friend.Checkins.Count != 0)
             {
-                foreach (Checkin checkin in i_friend.Checkins)
+                foreach (string userCategory in userCheckinCategories)
                 {
-                    foreach (Checkin friendsCheckin in m_loginUser.Checkins)
+                    foreach (string friendCategory in friendCheckinCategories)
                     {
-                        if (checkin.Place.Category == friendsCheckin.Place.Category)
+                        
+                        if (userCategory == friendCategory)
                         {
                             numOfMatches++;
                         }
@@ -76,6 +80,23 @@ namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
             }
 
             return matchResult;
+        }
+
+        private List<string> getCheckinsCategories(User i_user)
+        {
+            List<string> categories = new List<string>();
+            if(i_user.Checkins.Count != 0)
+            {
+                foreach(Checkin checkin in i_user.Checkins)
+                {
+                    if(checkin.Place.Category != null && !categories.Contains(checkin.Place.Category))
+                    {
+                        categories.Add(checkin.Place.Category);
+                    }
+                }
+            }
+
+            return categories;
         }
 
         private int calculatePrivateInfoMatch(User i_friend)
