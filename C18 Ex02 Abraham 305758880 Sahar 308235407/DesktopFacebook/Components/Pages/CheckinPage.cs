@@ -20,12 +20,6 @@ namespace DesktopFacebook.Components.Pages
 
         public void FetchCheckins()
         {
-            //CheckinsListBox.DisplayMember = "Description";
-            //foreach (Checkin checkin in m_FacebookUserManager.NativeClient.Checkins)
-            //{
-            //    CheckinsListBox.Items.Add(checkin);
-            //}
-
             checkinBindingSource.DataSource = m_FacebookUserManager.NativeClient.Checkins;
             m_DataFetchIndicator.AreCheckinWereFetch = true;
         }

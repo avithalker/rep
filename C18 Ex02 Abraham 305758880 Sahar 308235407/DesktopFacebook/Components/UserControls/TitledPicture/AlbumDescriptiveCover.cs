@@ -10,6 +10,7 @@ namespace DesktopFacebook.Components.UserControls.TitledPicture
         {
             m_Album = i_Album;
         }
+
         public string PictureUrl
         {
             get

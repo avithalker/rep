@@ -7,12 +7,12 @@ namespace DesktopFacebook.Components.Pages
 {
     public partial class FriendshipMatchScalePage : UserControl
     {
-        private FriendshipMatchScaleCalculator m_FriendshipMatchScaleCalculator;
+        private CacheFriendshipCalculator m_FriendshipMatchScaleCalculator;
 
         public FriendshipMatchScalePage(User i_facebookUser)
         {
             InitializeComponent();
-            m_FriendshipMatchScaleCalculator = new FriendshipMatchScaleCalculator(i_facebookUser);
+            m_FriendshipMatchScaleCalculator = new CacheFriendshipCalculator(i_facebookUser);
         }
 
         public void FetchFriendsToListBox(User i_facebookUser)

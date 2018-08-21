@@ -1,24 +1,48 @@
-﻿using FacebookWrapper.ObjectModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
-
+using FacebookWrapper.ObjectModel;
 
 namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
 {
     public class CacheFriendshipCalculator
     {
         public FriendshipMatchScaleCalculator m_FriendshipCalculator { get; set; }
-        public UserDataCache m_userDataCache { get; set; }
-        public Dictionary<String, List<Checkin>> m_FriendsCheckins { get; set; }
-        public Dictionary<String, int> m_CachedFriendshipMatchValues { get; set; }
 
-        public CacheFriendshipCalculator()
+        public Dictionary<string, int> m_CachedFriendshipMatchValues { get; set; }
+
+        public CacheFriendshipCalculator(User m_loginUser)
         {
-            //fetchUserData()
+            m_FriendshipCalculator = new FriendshipMatchScaleCalculator(m_loginUser);
         }
-        public int Calculate()
+
+        public int Calculate(User i_friend)
         {
-            return 0;
+            int result;
+
+            if (m_CachedFriendshipMatchValues!= null && m_CachedFriendshipMatchValues.ContainsKey(i_friend.Id))
+            {
+                return m_CachedFriendshipMatchValues[i_friend.Id];
+            }
+            else
+            {
+                if(m_CachedFriendshipMatchValues == null)
+                {
+                    m_CachedFriendshipMatchValues = new Dictionary<string, int>();
+                }
+                result = m_FriendshipCalculator.Calculate(i_friend);
+                saveFriendshipMatchValueToCache(i_friend.Id, result);
+                m_CachedFriendshipMatchValues[i_friend.Id] = result;
+                return result;
+            }
+        }
+
+        private void saveFriendshipMatchValueToCache(string i_id, int i_result)
+        {
+            if (m_CachedFriendshipMatchValues == null)
+            {
+                m_CachedFriendshipMatchValues = new Dictionary<string, int>();
+            }
+            m_CachedFriendshipMatchValues[i_id] = i_result;
         }
     }
 }

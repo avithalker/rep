@@ -68,7 +68,6 @@ namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
                 {
                     foreach (string friendCategory in friendCheckinCategories)
                     {
-                        
                         if (userCategory == friendCategory)
                         {
                             numOfMatches++;

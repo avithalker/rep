@@ -52,7 +52,7 @@ namespace DesktopFacebook.Business
         {
             m_userSettings.UserLastAccessToken = string.Empty;
             m_userSettings.SaveSettings();
-            FacebookService.Logout(()=> { });
+            FacebookService.Logout(() => { });
         }
 
         public bool IsRecognizedUser()
