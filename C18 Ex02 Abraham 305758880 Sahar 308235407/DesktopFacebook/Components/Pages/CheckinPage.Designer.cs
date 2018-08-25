@@ -29,11 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label createdTimeLabel;
-            System.Windows.Forms.Label descriptionLabel;
-            System.Windows.Forms.Label messageLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckinPage));
-            System.Windows.Forms.Label nameLabel;
             this.CheckinGroupBox = new System.Windows.Forms.GroupBox();
             this.CheckinFriendsOutputLabel = new System.Windows.Forms.Label();
             this.CheckinDateOutputLbel = new System.Windows.Forms.Label();
@@ -46,10 +42,6 @@
             this.CheckinListLabel = new System.Windows.Forms.Label();
             this.CheckinsListBox = new System.Windows.Forms.ListBox();
             this.checkinBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.EditCheckinGroupBox = new System.Windows.Forms.GroupBox();
-            this.createdTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.descriptionTextBox = new System.Windows.Forms.TextBox();
-            this.messageTextBox = new System.Windows.Forms.TextBox();
             this.checkinBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -63,47 +55,11 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.checkinBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.nameTextBox = new System.Windows.Forms.TextBox();
-            createdTimeLabel = new System.Windows.Forms.Label();
-            descriptionLabel = new System.Windows.Forms.Label();
-            messageLabel = new System.Windows.Forms.Label();
-            nameLabel = new System.Windows.Forms.Label();
             this.CheckinGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkinBindingSource)).BeginInit();
-            this.EditCheckinGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkinBindingNavigator)).BeginInit();
             this.checkinBindingNavigator.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // createdTimeLabel
-            // 
-            createdTimeLabel.AutoSize = true;
-            createdTimeLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            createdTimeLabel.Location = new System.Drawing.Point(16, 81);
-            createdTimeLabel.Name = "createdTimeLabel";
-            createdTimeLabel.Size = new System.Drawing.Size(181, 29);
-            createdTimeLabel.TabIndex = 0;
-            createdTimeLabel.Text = "Created Time:";
-            // 
-            // descriptionLabel
-            // 
-            descriptionLabel.AutoSize = true;
-            descriptionLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            descriptionLabel.Location = new System.Drawing.Point(16, 125);
-            descriptionLabel.Name = "descriptionLabel";
-            descriptionLabel.Size = new System.Drawing.Size(158, 29);
-            descriptionLabel.TabIndex = 2;
-            descriptionLabel.Text = "Description:";
-            // 
-            // messageLabel
-            // 
-            messageLabel.AutoSize = true;
-            messageLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            messageLabel.Location = new System.Drawing.Point(16, 170);
-            messageLabel.Name = "messageLabel";
-            messageLabel.Size = new System.Drawing.Size(124, 29);
-            messageLabel.TabIndex = 4;
-            messageLabel.Text = "Message:";
             // 
             // CheckinGroupBox
             // 
@@ -235,48 +191,6 @@
             // 
             this.checkinBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Checkin);
             // 
-            // EditCheckinGroupBox
-            // 
-            this.EditCheckinGroupBox.Controls.Add(nameLabel);
-            this.EditCheckinGroupBox.Controls.Add(this.nameTextBox);
-            this.EditCheckinGroupBox.Controls.Add(createdTimeLabel);
-            this.EditCheckinGroupBox.Controls.Add(this.createdTimeDateTimePicker);
-            this.EditCheckinGroupBox.Controls.Add(descriptionLabel);
-            this.EditCheckinGroupBox.Controls.Add(this.descriptionTextBox);
-            this.EditCheckinGroupBox.Controls.Add(messageLabel);
-            this.EditCheckinGroupBox.Controls.Add(this.messageTextBox);
-            this.EditCheckinGroupBox.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.EditCheckinGroupBox.Location = new System.Drawing.Point(618, 610);
-            this.EditCheckinGroupBox.Name = "EditCheckinGroupBox";
-            this.EditCheckinGroupBox.Size = new System.Drawing.Size(687, 277);
-            this.EditCheckinGroupBox.TabIndex = 7;
-            this.EditCheckinGroupBox.TabStop = false;
-            this.EditCheckinGroupBox.Text = "Edit Checkin";
-            // 
-            // createdTimeDateTimePicker
-            // 
-            this.createdTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.checkinBindingSource, "CreatedTime", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.createdTimeDateTimePicker.Location = new System.Drawing.Point(200, 77);
-            this.createdTimeDateTimePicker.Name = "createdTimeDateTimePicker";
-            this.createdTimeDateTimePicker.Size = new System.Drawing.Size(420, 39);
-            this.createdTimeDateTimePicker.TabIndex = 1;
-            // 
-            // descriptionTextBox
-            // 
-            this.descriptionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.checkinBindingSource, "Description", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.descriptionTextBox.Location = new System.Drawing.Point(200, 122);
-            this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(420, 39);
-            this.descriptionTextBox.TabIndex = 3;
-            // 
-            // messageTextBox
-            // 
-            this.messageTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.checkinBindingSource, "Message", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, "[NoData]"));
-            this.messageTextBox.Location = new System.Drawing.Point(200, 167);
-            this.messageTextBox.Name = "messageTextBox";
-            this.messageTextBox.Size = new System.Drawing.Size(420, 39);
-            this.messageTextBox.TabIndex = 5;
-            // 
             // checkinBindingNavigator
             // 
             this.checkinBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
@@ -402,30 +316,11 @@
             this.checkinBindingNavigatorSaveItem.Size = new System.Drawing.Size(36, 36);
             this.checkinBindingNavigatorSaveItem.Text = "Save Data";
             // 
-            // nameLabel
-            // 
-            nameLabel.AutoSize = true;
-            nameLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            nameLabel.Location = new System.Drawing.Point(35, 224);
-            nameLabel.Name = "nameLabel";
-            nameLabel.Size = new System.Drawing.Size(92, 29);
-            nameLabel.TabIndex = 6;
-            nameLabel.Text = "Name:";
-            // 
-            // nameTextBox
-            // 
-            this.nameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.checkinBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nameTextBox.Location = new System.Drawing.Point(200, 221);
-            this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(420, 39);
-            this.nameTextBox.TabIndex = 7;
-            // 
             // CheckinPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.checkinBindingNavigator);
-            this.Controls.Add(this.EditCheckinGroupBox);
             this.Controls.Add(this.CheckinGroupBox);
             this.Controls.Add(this.CheckinListLabel);
             this.Controls.Add(this.CheckinsListBox);
@@ -435,8 +330,6 @@
             this.CheckinGroupBox.ResumeLayout(false);
             this.CheckinGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkinBindingSource)).EndInit();
-            this.EditCheckinGroupBox.ResumeLayout(false);
-            this.EditCheckinGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkinBindingNavigator)).EndInit();
             this.checkinBindingNavigator.ResumeLayout(false);
             this.checkinBindingNavigator.PerformLayout();
@@ -458,11 +351,7 @@
         private System.Windows.Forms.Label CheckinLocationLabel;
         private System.Windows.Forms.Label CheckinListLabel;
         private System.Windows.Forms.ListBox CheckinsListBox;
-        private System.Windows.Forms.GroupBox EditCheckinGroupBox;
-        private System.Windows.Forms.DateTimePicker createdTimeDateTimePicker;
         private System.Windows.Forms.BindingSource checkinBindingSource;
-        private System.Windows.Forms.TextBox descriptionTextBox;
-        private System.Windows.Forms.TextBox messageTextBox;
         private System.Windows.Forms.BindingNavigator checkinBindingNavigator;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
@@ -476,6 +365,5 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton checkinBindingNavigatorSaveItem;
-        private System.Windows.Forms.TextBox nameTextBox;
     }
 }

@@ -24,7 +24,7 @@ namespace DesktopFacebook.Components.Pages
             }
         }
 
-        private void FriendshipMatchButton_Click(object sender, EventArgs e)
+        private void friendshipMatchButton_Click(object sender, EventArgs e)
         {
             string valueInPercents;
 
