@@ -24,7 +24,7 @@ namespace DesktopFacebook.Components.Pages
             }
         }
 
-        private void friendshipMatchButton_Click(object sender, EventArgs e)
+        private void FriendshipMatchButton_Click(object sender, EventArgs e)
         {
             string valueInPercents;
 
@@ -34,8 +34,16 @@ namespace DesktopFacebook.Components.Pages
             }
             else
             {
-                valueInPercents = m_FriendshipMatchScaleCalculator.Calculate((User)FriendsListBox.SelectedItem).ToString() + '%';
-                FriendshipMatchValue.Text = valueInPercents;
+                try
+                {
+                    valueInPercents = m_FriendshipMatchScaleCalculator.Calculate((User)FriendsListBox.SelectedItem).ToString() + '%';
+                    FriendshipMatchValue.Text = valueInPercents;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(string.Format("Failed to calculate. Info: {0}", ex.Message));
+                }
+
             }
         }
     }

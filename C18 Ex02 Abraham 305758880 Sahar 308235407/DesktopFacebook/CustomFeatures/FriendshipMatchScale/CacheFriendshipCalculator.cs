@@ -25,10 +25,6 @@ namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
             }
             else
             {
-                if(m_CachedFriendshipMatchValues == null)
-                {
-                    m_CachedFriendshipMatchValues = new Dictionary<string, int>();
-                }
                 result = m_FriendshipCalculator.Calculate(i_friend);
                 saveFriendshipMatchValueToCache(i_friend.Id, result);
                 m_CachedFriendshipMatchValues[i_friend.Id] = result;
