@@ -19,7 +19,7 @@ namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
         {
             int result;
 
-            if (m_CachedFriendshipMatchValues!= null && m_CachedFriendshipMatchValues.ContainsKey(i_friend.Id))
+            if (m_CachedFriendshipMatchValues != null && m_CachedFriendshipMatchValues.ContainsKey(i_friend.Id))
             {
                 return m_CachedFriendshipMatchValues[i_friend.Id];
             }
@@ -38,6 +38,7 @@ namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
             {
                 m_CachedFriendshipMatchValues = new Dictionary<string, int>();
             }
+
             m_CachedFriendshipMatchValues[i_id] = i_result;
         }
     }

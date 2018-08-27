@@ -43,7 +43,6 @@ namespace DesktopFacebook.Components.Pages
                 {
                     MessageBox.Show(string.Format("Failed to calculate. Info: {0}", ex.Message));
                 }
-
             }
         }
     }

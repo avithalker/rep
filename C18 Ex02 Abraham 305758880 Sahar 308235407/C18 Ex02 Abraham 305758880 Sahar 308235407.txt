@@ -1,0 +1,9 @@
+==========================Exercise Checking Report==========================
+Exercise No...........: 2
+First Student Details.: 305758880 - Abraham Thalker
+Second Student Details: 308235407 - Sahar Haltzi
+Delivery Date.........: 27.08.18
+Delivered In Delay....: No
+Delay Reason..........: 
+Comments..............: 
+=======================End Exercise Checking Report=========================
