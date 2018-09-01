@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D6600215-8921-4D5E-8E15-75F9BE2B3057}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DesktopFacebook</RootNamespace>
+    <AssemblyName>DesktopFacebook</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FbGraphApiWrapper, Version=6.8.0.17, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Users\SAHAR\Downloads\01_FB01_BasicFacebookFeatures.V6.8.0.17\01_FB01_BasicFacebookFeatures.V6.8.0.17\FBApi\FbGraphApiWrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\UserControls\TitledPicture\AlbumDescriptiveCover.cs" />
+    <Compile Include="CommonDefines\eTabPageType.cs" />
+    <Compile Include="Components\Pages\AlbumsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Pages\AlbumsPage.Designer.cs">
+      <DependentUpon>AlbumsPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Pages\CheckinPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Pages\CheckinPage.Designer.cs">
+      <DependentUpon>CheckinPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Pages\EventsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Pages\EventsPage.Designer.cs">
+      <DependentUpon>EventsPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Pages\FriendsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Pages\FriendsPage.Designer.cs">
+      <DependentUpon>FriendsPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Pages\SmartPostPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Pages\SmartPostPage.Designer.cs">
+      <DependentUpon>SmartPostPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Pages\FriendshipMatchScalePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Pages\FriendshipMatchScalePage.Designer.cs">
+      <DependentUpon>FriendshipMatchScalePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\UserControls\ClickablePictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\UserControls\FacebookPostControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\UserControls\FacebookPostControl.Designer.cs">
+      <DependentUpon>FacebookPostControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\UserControls\FriendshipMatchScaleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\UserControls\FriendshipMatchScaleControl.Designer.cs">
+      <DependentUpon>FriendshipMatchScaleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\UserControls\TitledPicture\IDescriptivePicture.cs" />
+    <Compile Include="Components\UserControls\TitledPicture\TitledPictureControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\UserControls\TitledPicture\TitledPictureControl.Designer.cs">
+      <DependentUpon>TitledPictureControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\UserControls\WallPostControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\UserControls\WallPostControl.Designer.cs">
+      <DependentUpon>WallPostControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomFeatures\FriendshipMatchScale\FriendshipMatchScaleCalculator.cs" />
+    <Compile Include="CustomFeatures\FriendshipMatchScale\CacheFriendshipCalculator.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\eFilterType.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\FilterActivator.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\FilterFactory.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\FiltersData\AgeRangeFilterData.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\FiltersData\FilterData.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\FiltersData\GenderFilterData.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\FiltersData\LivingCityFilterData.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\FiltersData\RelationshipFitlerData.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\Filters\AgeFilter.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\Filters\GenderFilter.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\Filters\IFriendsFilter.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\Filters\LivingCityFilter.cs" />
+    <Compile Include="CustomFeatures\SmartFilter\Filters\RelationshipFilter.cs" />
+    <Compile Include="DataFetchIndicator.cs" />
+    <Compile Include="Forms\LoginUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LoginUserForm.Designer.cs">
+      <DependentUpon>LoginUserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserProfileForm.Designer.cs">
+      <DependentUpon>UserProfileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Components\Pages\AlbumsPage.resx">
+      <DependentUpon>AlbumsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Pages\CheckinPage.resx">
+      <DependentUpon>CheckinPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Pages\EventsPage.resx">
+      <DependentUpon>EventsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Pages\FriendsPage.resx">
+      <DependentUpon>FriendsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Pages\SmartPostPage.resx">
+      <DependentUpon>SmartPostPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Pages\FriendshipMatchScalePage.resx">
+      <DependentUpon>FriendshipMatchScalePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\UserControls\FacebookPostControl.resx">
+      <DependentUpon>FacebookPostControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\UserControls\TitledPicture\TitledPictureControl.resx">
+      <DependentUpon>TitledPictureControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\UserControls\WallPostControl.resx">
+      <DependentUpon>WallPostControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoginUserForm.resx">
+      <DependentUpon>LoginUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserProfileForm.resx">
+      <DependentUpon>UserProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.Album.datasource" />
+    <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.Checkin.datasource" />
+    <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.User.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DesktopFacebook.Business\DesktopFacebook.Business.csproj">
+      <Project>{21382d00-ef99-4392-ad1b-5091e01d6433}</Project>
+      <Name>DesktopFacebook.Business</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Components\Resources\Facebook-Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Components\Resources\Clear.png" />
+    <Content Include="Components\Resources\Delete.png" />
+    <Content Include="Components\Resources\ImagePlaceHolder.png" />
+    <None Include="Components\Resources\ImagePlaceHolder2.png" />
+    <Content Include="Components\Resources\Like.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
