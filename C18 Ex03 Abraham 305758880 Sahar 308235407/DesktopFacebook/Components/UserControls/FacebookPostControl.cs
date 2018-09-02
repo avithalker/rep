@@ -8,8 +8,10 @@ namespace DesktopFacebook.Components.UserControls
 {
     public partial class FacebookPostControl : UserControl
     {
-        private FacebookUserManager m_FacebookUserManager;
         private string m_TaggedFriends;
+
+        public event Action<string, string> OnPostReady;
+        public event Action<string, string> OnPictureReady;
 
         public FacebookPostControl()
         {
@@ -20,14 +22,6 @@ namespace DesktopFacebook.Components.UserControls
         {
             get { return m_TaggedFriends; }
             set { m_TaggedFriends = value; }
-        }
-
-        public FacebookUserManager UserManager
-        {
-            set
-            {
-                m_FacebookUserManager = value;
-            }
         }
 
         private void CleanPostControls()
@@ -45,9 +39,7 @@ namespace DesktopFacebook.Components.UserControls
                 {
                     int wallPostXLocation = AttachPhotoPictureBox1.Location.X;
                     int wallPostYLocation = AttachPhotoPictureBox1.Location.Y + AttachPhotoPictureBox1.Height + 40;
-                    Status postedStatus = m_FacebookUserManager.NativeClient.PostStatus(PostTextBox.Text, i_TaggedFriendIDs: m_TaggedFriends);
-                    
-                    // AddNewWallPostToExistWall(m_FacebookUser.Posts[0], wallPostXLocation, wallPostYLocation);
+                    NotifyPostObservers(PostTextBox.Text, i_TaggedFriendIDs: m_TaggedFriends);
                 }
                 else
                 {
@@ -57,7 +49,7 @@ namespace DesktopFacebook.Components.UserControls
                     }
                     else
                     {
-                        m_FacebookUserManager.NativeClient.PostPhoto(PreviewPhotoPictureBox.ImageLocation, PostTextBox.Text);
+                        NotifyPhotoObservers(PreviewPhotoPictureBox.ImageLocation, PostTextBox.Text);
                     }
                 }
 
@@ -66,6 +58,22 @@ namespace DesktopFacebook.Components.UserControls
             catch (Exception ex)
             {
                 MessageBox.Show("Post Action Failed: " + ex.Message);
+            }
+        }
+
+        private void NotifyPhotoObservers(string i_ImageLocation, string i_Text)
+        {
+            if(OnPictureReady != null)
+            {
+                OnPictureReady(i_ImageLocation, i_Text);
+            }
+        }
+
+        private void NotifyPostObservers(string i_Text, string i_TaggedFriendIDs)
+        {
+            if(OnPostReady !=null)
+            {
+                OnPostReady(i_Text, i_TaggedFriendIDs);
             }
         }
 

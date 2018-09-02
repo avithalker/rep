@@ -18,7 +18,18 @@ namespace DesktopFacebook.Components.Pages
             InitializeComponent();
 
             m_FacebookUserManager = i_FacebookUserManager;
-            facebookPostControl1.UserManager = i_FacebookUserManager;
+            facebookPostControl1.OnPictureReady += PostControl_OnPictureReady;
+            facebookPostControl1.OnPostReady += PostControl_OnPostReady;
+        }
+
+        private void PostControl_OnPostReady(string i_Text, string i_TaggedFriendIDs)
+        {
+            m_FacebookUserManager.NativeClient.PostStatus(i_Text, i_TaggedFriendIDs: i_TaggedFriendIDs);
+        }
+
+        private void PostControl_OnPictureReady(string i_ImageLocation, string i_Text)
+        {
+            m_FacebookUserManager.NativeClient.PostPhoto(i_ImageLocation, i_Text);
         }
 
         private void GenderCheckBox_CheckedChanged(object sender, EventArgs e)
