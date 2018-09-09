@@ -11,6 +11,7 @@ namespace DesktopFacebook.Components.UserControls
         private string m_TaggedFriends;
 
         public event Action<string, string> OnPostReady;
+
         public event Action<string, string> OnPictureReady;
 
         public FacebookPostControl()
@@ -71,7 +72,7 @@ namespace DesktopFacebook.Components.UserControls
 
         private void NotifyPostObservers(string i_Text, string i_TaggedFriendIDs)
         {
-            if(OnPostReady !=null)
+            if(OnPostReady != null)
             {
                 OnPostReady(i_Text, i_TaggedFriendIDs);
             }

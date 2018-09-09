@@ -65,7 +65,6 @@ namespace DesktopFacebook.Forms
             //{
             //    UserRelationshipLabel.Text = m_UserManager.NativeClient.RelationshipStatus.Value.ToString();
             //}
-
         }
 
         private void fetchUserPostsAsync()

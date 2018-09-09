@@ -11,16 +11,17 @@ namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
         private User m_loginUser;
 
         internal MatchCategoryContainer MatchCategoryContainer { get; }
+
         public MusicMatchCategory m_MusicMatchCategory;
         public CheckinsMatchCategory m_CheckinsMatchCategory;
         public PrivateDetailsMatchCategory m_PrivateDetailsMatchCategory;
-
 
         public FriendshipMatchScaleCalculator(User i_loginUser)
         {
             m_loginUser = i_loginUser;
             MatchCategoryContainer = new MatchCategoryContainer(createMatchCategories());
         }
+
         private List<MatchCategory> createMatchCategories()
         {
             m_MusicMatchCategory = new MusicMatchCategory(m_loginUser);
@@ -31,15 +32,14 @@ namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
 
             return result;
         }
+
         public int Calculate(User i_friend)
         { 
-   
             int entertainmentPercentMatch = m_CheckinsMatchCategory.GetMatchValue(i_friend) * 1 / 3;
             int privateInfoMatch = m_PrivateDetailsMatchCategory.GetMatchValue(i_friend) * 1 / 3;
             int musicMatch = m_MusicMatchCategory.GetMatchValue(i_friend) * 1 / 3;
 
             return musicMatch + privateInfoMatch + entertainmentPercentMatch;
         }
-
     }
 }

@@ -1,9 +1,9 @@
-﻿using FacebookWrapper.ObjectModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FacebookWrapper.ObjectModel;
 
 namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
 {
@@ -17,7 +17,9 @@ namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
         }
 
         public string CategoryName { get; set; }
+
         public int MatchValue { get; set; }
+
         public abstract int GetMatchValue(User i_friend);
     }
 }
