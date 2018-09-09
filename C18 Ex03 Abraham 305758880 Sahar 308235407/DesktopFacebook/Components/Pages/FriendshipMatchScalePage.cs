@@ -54,7 +54,7 @@ namespace DesktopFacebook.Components.Pages
         {
             foreach(PartialMatchCategory matchCategory in m_CategoryContainer)
             {
-                CategoriesListBox.Items.Add(String.Format("{0}: {1}", matchCategory.CategoryName, matchCategory.MatchValue.ToString()));
+                CategoriesListBox.Items.Add(String.Format("{0}: {1}%", matchCategory.CategoryName, matchCategory.MatchValue.ToString()));
             }
         }
     }
