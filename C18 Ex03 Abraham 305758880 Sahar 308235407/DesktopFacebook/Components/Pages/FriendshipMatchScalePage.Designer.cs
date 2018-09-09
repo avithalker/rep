@@ -33,6 +33,8 @@
             this.FriendshipMatchValue = new System.Windows.Forms.Label();
             this.FriendshipMatchButton = new System.Windows.Forms.Button();
             this.FriendsListBox = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.CategoriesListBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // ChooseAFriendLabel
@@ -81,10 +83,30 @@
             this.FriendsListBox.Size = new System.Drawing.Size(368, 354);
             this.FriendsListBox.TabIndex = 5;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(579, 56);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(285, 25);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Match values by Categories:";
+            // 
+            // CategoriesListBox
+            // 
+            this.CategoriesListBox.FormattingEnabled = true;
+            this.CategoriesListBox.ItemHeight = 25;
+            this.CategoriesListBox.Location = new System.Drawing.Point(573, 107);
+            this.CategoriesListBox.Name = "CategoriesListBox";
+            this.CategoriesListBox.Size = new System.Drawing.Size(291, 254);
+            this.CategoriesListBox.TabIndex = 7;
+            // 
             // FriendshipMatchScalePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.CategoriesListBox);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.FriendsListBox);
             this.Controls.Add(this.FriendshipMatchButton);
             this.Controls.Add(this.FriendshipMatchValue);
@@ -104,5 +126,7 @@
         private System.Windows.Forms.Label FriendshipMatchValue;
         private System.Windows.Forms.Button FriendshipMatchButton;
         private System.Windows.Forms.ListBox FriendsListBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox CategoriesListBox;
     }
 }

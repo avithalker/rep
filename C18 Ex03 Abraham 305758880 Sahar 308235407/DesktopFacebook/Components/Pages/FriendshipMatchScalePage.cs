@@ -2,12 +2,14 @@
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using DesktopFacebook.CustomFeatures.FriendshipMatchScale;
+using DesktopFacebook.CustomFeatures.FriendshipMatchScale.MatchCategoryTypes;
 
 namespace DesktopFacebook.Components.Pages
 {
     public partial class FriendshipMatchScalePage : UserControl
     {
         private CacheFriendshipCalculator m_FriendshipMatchScaleCalculator;
+        private MatchCategoryContainer m_CategoryContainer;
 
         public FriendshipMatchScalePage(User i_facebookUser)
         {
@@ -37,12 +39,22 @@ namespace DesktopFacebook.Components.Pages
                 try
                 {
                     valueInPercents = m_FriendshipMatchScaleCalculator.Calculate((User)FriendsListBox.SelectedItem).ToString() + '%';
+                    m_CategoryContainer = m_FriendshipMatchScaleCalculator.MatchCategoryContainer;
+                    setCategoriesValues();
                     FriendshipMatchValue.Text = valueInPercents;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(string.Format("Failed to calculate. Info: {0}", ex.Message));
                 }
+            }
+        }
+
+        private void setCategoriesValues()
+        {
+            foreach(PartialMatchCategory matchCategory in m_CategoryContainer)
+            {
+                CategoriesListBox.Items.Add(String.Format("{0}: {1}", matchCategory.CategoryName, matchCategory.MatchValue.ToString()));
             }
         }
     }

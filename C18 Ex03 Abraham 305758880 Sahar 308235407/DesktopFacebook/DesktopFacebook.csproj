@@ -117,6 +117,12 @@
     </Compile>
     <Compile Include="CustomFeatures\FriendshipMatchScale\FriendshipMatchScaleCalculator.cs" />
     <Compile Include="CustomFeatures\FriendshipMatchScale\CacheFriendshipCalculator.cs" />
+    <Compile Include="CustomFeatures\FriendshipMatchScale\MatchCategoryContainer.cs" />
+    <Compile Include="CustomFeatures\FriendshipMatchScale\MatchCategory.cs" />
+    <Compile Include="CustomFeatures\FriendshipMatchScale\MatchCategoryTypes\CheckinsMatchCategory.cs" />
+    <Compile Include="CustomFeatures\FriendshipMatchScale\MatchCategoryTypes\MusicMatchCategory.cs" />
+    <Compile Include="CustomFeatures\FriendshipMatchScale\MatchCategoryTypes\PartialMatchCategory.cs" />
+    <Compile Include="CustomFeatures\FriendshipMatchScale\MatchCategoryTypes\PrivateDetailsMatchCategory.cs" />
     <Compile Include="CustomFeatures\SmartFilter\eFilterType.cs" />
     <Compile Include="CustomFeatures\SmartFilter\FilterActivator.cs" />
     <Compile Include="CustomFeatures\SmartFilter\FilterFactory.cs" />

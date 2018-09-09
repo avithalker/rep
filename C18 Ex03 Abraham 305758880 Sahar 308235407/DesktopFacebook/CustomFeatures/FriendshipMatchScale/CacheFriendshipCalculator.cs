@@ -10,6 +10,8 @@ namespace DesktopFacebook.CustomFeatures.FriendshipMatchScale
 
         public Dictionary<string, int> m_CachedFriendshipMatchValues { get; set; }
 
+        internal MatchCategoryContainer MatchCategoryContainer { get { return m_FriendshipCalculator.MatchCategoryContainer; } }
+
         public CacheFriendshipCalculator(User m_loginUser)
         {
             m_FriendshipCalculator = new FriendshipMatchScaleCalculator(m_loginUser);
